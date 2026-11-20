@@ -1,0 +1,16 @@
+.appear {
+  transition:
+    opacity var(--dur-slow) var(--ease-out) var(--appear-delay, 0ms),
+    transform var(--dur-slow) var(--ease-out) var(--appear-delay, 0ms);
+}
+
+.appear[data-state="out"] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.appear[data-state="in"],
+.appear[data-state="static"] {
+  opacity: 1;
+  transform: none;
+}

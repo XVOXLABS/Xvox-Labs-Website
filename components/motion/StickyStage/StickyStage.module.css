@@ -1,0 +1,21 @@
+.track {
+  position: relative;
+  height: calc(var(--stage-length) * 100vh);
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.track[data-reduced="true"] {
+  height: auto;
+}
+
+.track[data-reduced="true"] .stage {
+  position: static;
+  height: auto;
+  overflow: visible;
+}
