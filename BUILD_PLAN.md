@@ -2,7 +2,7 @@
 
 > **For Claude Code:** This is the build plan for the Xvox Labs website. Read it together with `CLAUDE.md` and `AGENTS.md` before any task. **What the site contains comes from the HTML prototype. How it looks and behaves comes from the Framer reference.** Always plan first and wait for approval before writing code. Anything marked **Pending approval** is not decided: ask, don't assume. Proposed folders and files are not created until a task approves them.
 
-Version: Nov 21, 2026 (rev. 3: Framer is the design and experience reference; prototype is the content source)
+Version: Nov 21, 2026 (rev. 5: remaining Phase 3 decisions recorded; Framer/Kaviyan used as inspiration only; Phase 3 implementation approved)
 
 ## Project references
 
@@ -17,11 +17,11 @@ Version: Nov 21, 2026 (rev. 3: Framer is the design and experience reference; pr
 - Never copy Framer's content, copy, branding, business information, client logos, images or page structure. Only its design language and behaviour.
 - Never invent new sections or replace prototype content without approval. A Framer pattern is used only where a prototype section exists to carry it.
 - Framer platform elements ("Made in Framer" badge, edit button) are not part of the design.
-- The prototype's "Prototype: sitemap" developer panel is not part of the site (pending your confirmation).
+- The prototype's "Prototype: sitemap" developer panel is not part of the public website (decided).
 
 **Notes on the references**
 
-- The Framer site is the earlier Xvox Labs site, built on the commercial "Kaviyan" Framer template (its tab title still says so). **Pending: you to confirm the template's licence allows recreating its design outside Framer.**
+- The Framer site is the earlier Xvox Labs site, built on the commercial "Kaviyan" Framer template (its tab title still says so). The template is marked **Limited**. **Approved use (Nov 21, 2026): inspiration only.** Use its visual theme (colours, typography, spacing, visual styling, UI feel, responsive approach, animation inspiration). Do **not** copy or extract the Framer template, its source files, components, assets, content, page structure or proprietary implementation. The Xvox Labs design is implemented independently in Next.js with the prototype's content and functionality.
 - Both references already share the same agent characters (Scout, Quill, Beacon, Relay, Sage and the pink video agent Reel), a `#FAFAFA` background, `#0F0F0F` text, large regular-weight headings with tight letter-spacing, and white cards inside light-grey frames. The redesign is a shift in typeface, accent, component styling and motion, not a different world.
 
 ## Confirmed technology stack
@@ -33,7 +33,7 @@ Version: Nov 21, 2026 (rev. 3: Framer is the design and experience reference; pr
 
 **Not used:** TypeScript, Tailwind CSS, Bootstrap, React Router, Python, Java.
 
-**Dependencies:** do not install, remove or upgrade any package without approval. Animation library: **Pending approval** (recommendation: none; see Motion approach).
+**Dependencies:** do not install, remove or upgrade any package without approval. **No animation library** (approved): motion uses CSS animations and lightweight React hooks.
 
 ## Current project status
 
@@ -50,27 +50,39 @@ Version: Nov 21, 2026 (rev. 3: Framer is the design and experience reference; pr
 
 ## Framer design system (measured from the live site)
 
-Values below were read from the rendered Framer site (computed styles and screenshots at 1440px and 375px). They become the project tokens once approved.
+Values below were read from the rendered Framer site (computed styles and screenshots at 390, 810, 1024, 1200 and 1440px). Approved decisions are marked **Approved**.
 
 | Area | Framer reference | Prototype today | Plan |
 | --- | --- | --- | --- |
-| Primary font | **Switzer** 400 / 500 / 600 (Fontshare, ITF Free Font License) | Geist | Switch to Switzer, self-hosted with `next/font/local` (font files added to the repo, no npm package). **Pending approval** |
-| Secondary fonts | Inter 400–600 (small UI text), Arimo (minor) | Geist Mono | Keep to Switzer + Inter unless a UI element needs more. **Pending approval** |
+| Primary font | **Switzer** 400 / 500 / 600 (Fontshare, ITF Free Font License) | Geist | **Approved.** Self-hosted with `next/font/local` (font files in `public/fonts/`, no npm package). Files not downloaded yet |
+| Secondary font | Inter (11px UI text) | Geist Mono | Inter via `next/font/google` (built in), only where Framer uses it |
 | Page background | `#FAFAFA` | `#FAFAFA` | Same |
 | Text | `#0F0F0F`; muted `rgba(15,15,15,.6)` | `#0F0F0F`; muted `#6E6E6E` | Framer values |
-| Accent | `#FF6038` (active nav link, hero icon tile, form labels, send button, footer wordmark) | `#EB5A2B` | Framer accent. **Pending approval** |
+| Accent | `#FF6038` (active and hovered nav link, hero icon tile, form labels, send button, footer wordmark) | `#EB5A2B` | **Approved:** `#FF6038` |
 | Frames / panels | Light grey `#F0F0F0` / `#EDEDED` holding white cards | `#F0F0F0` frame | Framer values |
 | Dark surfaces | `#121212` / `#111111` (agent stage, buttons) | `#111111` | Framer values |
 | Agent tints | Pastel cards (`#F6ECE6` peach, lavender, mint, sky) | `#ECE9F7`, `#F6ECE6`, `#E7F1E3`, `#E5EBF6` | Same family; keep prototype tints matched to agents |
-| H1 | 104px / 104px, weight 400, letter-spacing −3% (−3.12px) | `clamp` up to ~84px, −0.03em | Framer scale |
-| H2 | 60px / 60px, weight 400, −2.5% | 32–46px | Framer scale |
-| H3 | 44px / 1.15, weight 400, −2% | various | Framer scale |
-| Body / UI | 15–20px, weight 400–500 | 16px | Framer scale |
+| Type scale | Stepped (not fluid), see the table below | `clamp` sizes | Framer scale |
 | Radii | 28px frames, 24/20px cards, 9–10px buttons, 5–8px tags, 50% icons | 28 / 20 / 9 / 8px | Framer values (already close) |
 | Card frame pattern | White cards (radius ~20–24px) inside a light-grey frame (radius 28px, ~8–10px padding) | Same idea (`.frame`) | Framer spacing and radii |
 | Content width | ~1136px content (152–1288px at 1440) | 1100px | Framer width |
 
-**Mobile type (375px, measured):** H1 ~36px over two lines; section headings ~30px; body ~16px. Exact fluid scale is set during Phase 3 by measuring Framer at 375, 810, 1024 and 1440.
+**Type scale (measured; Switzer weight 400 unless noted; display sizes letter-spacing −3%)**
+
+| Role | ≥ 1200px | 810–1199px | < 810px |
+| --- | --- | --- | --- |
+| H1 (display) | 104 / 104 | 72 / 72 | 37 / 37 |
+| Section heading, large | 60 / 60 | 48 / 48 | 38 / 38 |
+| Heading | 44 | 36 | 30 |
+| Subheading | 32 | 28 | 24 |
+| Card title | 24 | 22 | 20 |
+| Small title | 20 | 18 | 18 |
+| Lead | 20 / 28 | 18 / 25.2 | 18 / 25.2 |
+| Body | 16 / 24, 14 / 21, 13 / 19.5 | same | same |
+| UI label | 15 / 15, weight 500 | same | same |
+| Micro | 11 / 15.4 (Switzer), 11 / 15.95 (Inter) | same | 12 / 18 |
+
+**Breakpoints (Framer):** desktop ≥ 1200px, tablet 810–1199px, phone < 810px. The burger navigation replaces the desktop nav below 1200px. Margins, section spacing, shadows and component sizes per breakpoint are measured from Framer at the start of Phase 3 (not guessed).
 
 ## Framer components and patterns (observed)
 
@@ -79,7 +91,7 @@ Values below were read from the rendered Framer site (computed styles and screen
 | **Header (desktop)** | Logo left; centred **floating white pill** (radius ~12px, soft shadow) holding the links, active link in accent orange; **black button** right ("Contact Us"). Sticky, stays floating over content |
 | **Header (mobile)** | White bar with logo left and a **black square burger button** right (turns into ×) |
 | **Mobile menu** | Full-width white panel dropping under the header: rows divided by hairlines, an accordion row with chevron (Services), full-width black CTA button at the bottom |
-| **Desktop dropdown** | Services ▾ dropdown. **Not captured** (did not open in automated testing); needs a screenshot from you or verification during build |
+| **Desktop dropdown** | Opens on hover. Full-width white panel under the header, soft shadow, 4 columns separated by hairlines; grey column headings; items are a title plus a muted description; a bottom row with a CTA text and accent ↗. Verified Nov 21, 2026 |
 | **Buttons** | Primary: black, white text, ~10px radius. Secondary: light grey with small arrow (→). Form submit: accent orange with paper-plane icon. Square icon buttons: black (+/−) or white with arrow (→) |
 | **Section header A** | Big heading left (H2), muted lead text + grey arrow button right, aligned on a two-column grid |
 | **Section header B** | Centred H2, muted subline, grey button (FAQ style) |
@@ -109,10 +121,13 @@ Values below were read from the rendered Framer site (computed styles and screen
 | **Moving logo strip** | Logo tiles move (partial tiles caught mid-motion) | Inferred |
 | **Timeline deck** | Timeline cards stacked in a "deck" that likely moves on scroll | Inferred (`Timeline Deck` layer) |
 | **FAQ accordion** | +/− toggle, one answer open | Verified |
-| **Mobile menu** | Panel drops down; burger turns into × | Verified |
-| **Button / card hovers** | Not measurable automatically | **Unverified**; to be checked by hand during build |
+| **Mobile menu** | Panel drops down; burger turns into × (below 1200px) | Verified |
+| **Desktop dropdown** | Opens on hover | Verified |
+| **Nav link hover** | Link colour changes to accent `#FF6038` | Verified (computed style) |
+| **Button / card hovers** | No computed change detected | **Unverified** |
+| **Timings and easing** | Not measurable from outside | **Unverified** |
 
-**Motion approach (Pending approval):** reproduce these with plain CSS (transitions, keyframes, `position: sticky`) and small client hooks (`IntersectionObserver`, one `requestAnimationFrame` scroll handler). No animation library. Animate only `transform` and `opacity`. Respect `prefers-reduced-motion` (content simply appears). The hero H1 is visible immediately, never hidden behind an animation, to protect LCP. If any effect cannot be matched without a library, it comes back to you as a question.
+**Motion approach (Approved):** reproduce these with plain CSS (transitions, keyframes, `position: sticky`) and small client hooks (`IntersectionObserver`, one `requestAnimationFrame` scroll handler). No animation library. Animate only `transform` and `opacity`. Respect `prefers-reduced-motion` (content simply appears). The hero H1 is visible immediately, never hidden behind an animation, to protect LCP. If any effect cannot be matched without a library, it comes back to you as a question.
 
 **Prototype interactions that stay (functionality):** Solutions/Services menus, mobile menu, cart + drawer + checkout (browser storage), scripted Vox chat with local plan, Safe AI self-check quiz, mission board, marketplace filters and search, team-at-work tabs, FAQ, forms. They are restyled and animated the Framer way; their behaviour stays.
 
@@ -122,13 +137,13 @@ Values below were read from the rendered Framer site (computed styles and screen
 
 | Prototype element | Framer pattern | Responsive behaviour (Framer) | Notes |
 | --- | --- | --- | --- |
-| Header: logo, 6 links (Solutions ▾, Services ▾, How it works, Marketplace, Pricing, About), Cart, "Get your AI plan", "Book a call" | Floating white link pill + right-side buttons ("Book a call" black, "Get your AI plan" grey secondary, Cart as small grey button) | Mobile: logo + black square burger | Prototype has more links/buttons than Framer's pill; fit must be checked at 1024–1280px. **Pending:** logo (Framer's orange sphere logo, or prototype "X" mark, or your file) |
-| Solutions / Services mega menus | Framer dropdown style (white card, soft shadow, radius 20–24px) | Mobile: accordion rows | Framer desktop dropdown not captured |
-| Mobile menu (4 groups, scroll-% pill) | Framer full-width drop panel with hairline rows, accordions for Solutions and Services, black CTA at bottom | — | Scroll-% pill is replaced by the Framer burger. **Pending approval** |
+| Header: logo, 6 links (Solutions ▾, Services ▾, How it works, Marketplace, Pricing, About), Cart, "Get your AI plan", "Book a call" | Floating white link pill (hover and active links in accent) + right-side buttons ("Book a call" black, "Get your AI plan" grey secondary, Cart as small grey button) | Below 1200px: logo + black square burger | Prototype has more links/buttons than Framer's pill; fit checked at 1200px first and reported if it doesn't fit (nothing is dropped). **Logo: Option C (orange striped sphere + XVOX wordmark), used exactly as supplied in `public/brand/`; file not yet provided** |
+| Solutions / Services mega menus | Framer dropdown panel (verified): full width, column hairlines, grey column headings, title items | Below 1200px: accordion rows | Opens on hover like Framer, and also on click, tap and keyboard. Prototype items have no descriptions or bottom CTA row; only prototype content is shown |
+| Mobile menu (4 groups, scroll-% pill) | Framer full-width drop panel with hairline rows, accordions for Solutions and Services, black CTA at bottom | — | **Approved:** Framer mobile navbar (hamburger, accordion, CTA) replaces the scroll-% pill; cart stays reachable |
 | Cart drawer | Framer card styling (white, radius 24px, grey frame), slide-in | Full-width on mobile | — |
 | Ask Vox floating button + chat | Black pill button, white chat card with Framer type and inputs | Full-screen sheet on mobile | — |
 | Closing CTA "Start with a two-minute plan." | Section header B (centred) + buttons | Stacked | — |
-| Footer (description, 2 buttons, Solutions / Services / Explore columns) | Framer footer card + grey frame, column labels, divider, copyright row | Columns become 2×2 on mobile | **Pending:** the large gradient wordmark ("XVOX LABS") is a Framer footer pattern; include? |
+| Footer (logo, description, 2 buttons, Solutions / Services / Explore / Company columns, "© 2026 Xvox Labs.") | **Approved:** Framer footer design with original XVOX branding: white card in a grey frame, grey column labels, divider, copyright row, large accent gradient wordmark | Columns become 2×2 on phone | Wordmark text: `XVOX LABS` (decided) |
 
 ### Homepage (prototype order kept)
 
@@ -168,24 +183,40 @@ Values below were read from the rendered Framer site (computed styles and screen
 
 ## Responsive behaviour
 
-- Match Framer's behaviour at **375, 810, 1024 and 1440px** (Framer's usual breakpoints are 390 / 810 / 1200; exact values measured in Phase 3).
-- Measured at 375px: header becomes logo + black burger; full-width drop menu; H1 ~36px; agent and use-case cards one column; logo strip two columns; footer columns 2×2; wordmark scaled to width.
-- Not yet captured: 810px and 1024px. These are measured before Phase 3 sign-off.
+- Framer breakpoints (measured): **desktop ≥ 1200px, tablet 810–1199px, phone < 810px**. Checked at 390, 810, 1024, 1200 and 1440px, plus a 320px safety check.
+- Phone (measured): logo + black burger; full-width drop menu; H1 37px; agent and use-case cards one column; logo strip two columns; footer columns 2×2; wordmark scaled to width.
+- Tablet (measured at 810 and 1024px): burger navigation; H1 72px; agent cards two columns; stat cards three columns.
 - Fixes found in the prototype audit still apply: no horizontal overflow at 320px (the prototype header overflows there), and no `100vw` full-bleed offset on desktops with scrollbars.
 
 ## Pending decisions
 
-### Design and experience: Pending approval
+### Design and experience
 
-- [ ] Framer template licence allows recreating the design outside Framer
-- [ ] Switzer font (self-hosted files) replaces Geist
-- [ ] Accent `#FF6038` replaces `#EB5A2B`
-- [ ] Logo: Framer's orange sphere mark, the prototype's "X" mark, or your SVG file
-- [ ] Footer gradient wordmark
-- [ ] Mobile scroll-% pill replaced by Framer burger
-- [ ] Motion approach: plain CSS + small hooks, no animation library
-- [ ] Desktop dropdown and hover states: send screenshots or a short screen recording, or approve checking them during build
-- [ ] Drop the prototype "Prototype: sitemap" panel
+**Approved (Nov 21, 2026)**
+
+- [x] Switzer font (replaces Geist)
+- [x] Accent `#FF6038` (replaces `#EB5A2B`)
+- [x] Original XVOX logo, used exactly as selected: no substitute variant, recolouring, redrawing or recreating
+- [x] Framer footer design with original XVOX branding
+- [x] Framer mobile navbar: hamburger, accordion, CTA
+- [x] Reproduce the Framer visual experience and the prototype's functionality, with no omissions or invented additions
+- [x] Motion with CSS animations and lightweight React hooks; no animation libraries
+
+**Decided (Nov 21, 2026)**
+
+- [x] **Logo:** Option C, the original orange striped sphere + XVOX wordmark. Preserved exactly (design and colour); no other variant, recolouring or recreation. You will place the exact image file in `public/brand/`.
+- [x] **Footer wordmark text:** `XVOX LABS`.
+- [x] **Switzer font:** approved for download, but only after you have reviewed the licence.
+- [x] **Unverifiable motion** (button/card hovers, timings, easing): match the observed behaviour; you review it side by side with Framer before it is final.
+- [x] **"Prototype: sitemap" panel:** left out of the public website.
+
+- [x] **Kaviyan / Framer reference:** inspiration only (visual theme, typography, colours, spacing, UI feel, responsive approach, animation inspiration). No copying or extraction of the template, its source, components, assets, content, page structure or implementation. Our design is implemented independently.
+- [x] **Phase 3 implementation approved** (Nov 21, 2026).
+
+**Open items during Phase 3 (no assumptions)**
+
+- [ ] **Logo file:** the exact Option C image goes in `public/brand/`. Until then a logo slot is built and nothing is substituted, redrawn or recoloured.
+- [ ] **Switzer licence review:** you review the actual licence before any font file is downloaded or added. Until then the type uses the fallback stack.
 
 ### Content decisions (approved Nov 21, 2026)
 
@@ -245,9 +276,9 @@ Every link in `data/` carries both `href` (new route) and `prototypeHref` (origi
 | Phase | Goal | Output | Approval gate | Status |
 | --- | --- | --- | --- | --- |
 | 1. Setup | Next.js running locally | Clean app | Site loads | **Done** (`9ab7d7e`) |
-| 2. References & content | Extract prototype content into `data/`; copy prototype images | `data/` files, `public/images/`, `docs/CONTENT_INVENTORY.md` | You approve decisions and URL map | **In review** (branch `phase-2-content`) |
-| 3. Design system | Framer tokens + base components + motion hooks | `globals.css`, fonts, Button, Card, Frame, Tabs, Accordion, motion hooks, `/style-guide` | You compare `/style-guide` with Framer | — |
-| 4. Layout + homepage | Header, menus, footer, then the 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) at 4 widths | — |
+| 2. References & content | Extract prototype content into `data/`; copy prototype images | `data/` files, `public/images/`, `docs/CONTENT_INVENTORY.md` | You approve decisions and URL map | **Approved** (commits `855ea2e`, `932401b`; branch `phase-2-content` pushed) |
+| 3. Design system + shared layout | Global design system, reusable UI components, desktop and mobile navbar, dropdown menus, footer, shared layout shell, motion and animation system | `globals.css`, fonts, logo, `components/ui`, `components/layout`, `components/motion`, `hooks/`, `/style-guide` | You compare `/style-guide`, header and footer with Framer at 390 / 810 / 1024 / 1200 / 1440px | **In progress** (branch `phase-3-design-system`); open: logo file, Switzer licence review |
+| 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) | — |
 | 5. Other pages | All prototype pages in the Framer style | Routes | Every link works, content matches prototype | — |
 | 6. SEO & AEO | Metadata, schema, sitemap | `sitemap.js`, `robots.js`, JSON-LD, `llms.txt` | Lighthouse + Rich Results | — |
 | 7. Test & deploy | Production build, hosting | Live site | Checklist signed off | — |
@@ -292,7 +323,8 @@ hooks/                       useInView, useScrollProgress, useReducedMotion
 data/                        Prototype content: agents, departments, solutions, services, ladder, marketplace, faq, navigation, site
 lib/                         Helpers: seo.js, schema.js, cart.js; later API clients
 public/
-  fonts/                     Switzer files (if approved)
+  brand/                     The selected original XVOX logo, unchanged
+  fonts/                     Switzer files
   images/                    Prototype images, unchanged
 ```
 
@@ -391,7 +423,7 @@ Create components/ui (Button, IconButton, Frame, Card, Tag, Badge, Tabs, Accordi
 Create the approved motion utilities (useInView, useScrollProgress, useReducedMotion, and components/motion Appear, CountUp, StickyStage, Marquee) with no animation library. Everything must respect prefers-reduced-motion and keep content in the server HTML. Demo each on /style-guide. Plan first.
 ```
 
-**Prompt 5 — Header, menus, footer**
+**Prompt 5 — Header, menus, footer (Phase 3)**
 
 ```text
 Build the header (Framer floating nav pill, prototype links and buttons), Solutions/Services menus, mobile menu, cart drawer and footer, following the Global rows of the section mapping in BUILD_PLAN.md. Content from data/navigation.js. Keyboard and screen-reader accessible. Plan first.
