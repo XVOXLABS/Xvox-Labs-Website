@@ -1,475 +1,416 @@
 # Xvox Labs Website — Build Plan
 
-> **For Claude Code:** This is the approved build plan for the Xvox Labs website. Read it together with `CLAUDE.md` and `AGENTS.md` before any task. Follow the phase order, the folder structure, the design tokens and the SEO/AEO rules below. Always plan first and wait for approval before writing code. Items marked "needs approval" are not decided yet: ask, don't assume.
+> **For Claude Code:** This is the build plan for the Xvox Labs website. Read it together with `CLAUDE.md` and `AGENTS.md` before any task. **What the site contains comes from the HTML prototype. How it looks and behaves comes from the Framer reference.** Always plan first and wait for approval before writing code. Anything marked **Pending approval** is not decided: ask, don't assume. Proposed folders and files are not created until a task approves them.
 
-Version: Nov 20, 2026
+Version: Nov 21, 2026 (rev. 3: Framer is the design and experience reference; prototype is the content source)
 
-## How to use this plan
+## Project references
 
-Build the site one small, approved task at a time with Claude Code in VS Code, and commit after every working step. The v5 prototype is your content and design reference; it is rebuilt in Next.js, not copied in.
-
-**The vibe-coding loop (repeat for every task):**
-
-1. **Ask for a plan first.** Paste the task prompt (see the last section) and add: "Plan only, do not write code yet."
-2. **Read the plan.** Check which files it will create or change. More than three files → make sure each one makes sense.
-3. **Approve.** Reply "Approved, implement."
-4. **Run it.** `npm run dev`, open `http://localhost:3000`, check desktop and mobile width (browser DevTools → device toolbar).
-5. **Check the terminal and browser console.** No red errors.
-6. **Commit.** `git add .` → `git commit -m "feat: navbar"`. One commit per working feature.
-7. **If something breaks,** paste the exact error to Claude Code. Don't say "it's broken".
-
-**Golden rules**
-
-- One feature per prompt. "Build the Hero section" works; "build the homepage" does not.
-- Never accept a change you don't understand. Ask "explain this file in simple Tanglish".
-- Content lives in `data/` files, never typed inside components. Prices and claims stay as `null` until you approve them.
-- Keep `CLAUDE.md` updated with every new decision, so every new Claude session knows the rules.
-- Work on a branch per phase (`phase-3-design-system`), merge to `main` only when it works.
-
-## Phase overview
-
-Eight phases, each ending with a check you approve before the next one starts. SEO and accessibility are built into every phase, not saved for the end.
-
-| Phase | Goal | Output | Approval gate |
+| # | Reference | Location | Role |
 | --- | --- | --- | --- |
-| 1. Setup | Next.js project running locally | Empty app, Git clean, first commit | Site loads at localhost:3000 |
-| 2. Content & sitemap | Lock routes and page content | `data/` files, final sitemap | You approve URLs and copy |
-| 3. Design system | Tokens and base components | `globals.css`, Button, Container, SectionHeading, Card | You approve a style preview page |
-| 4. Homepage | All 12 sections | `app/page.js` + 12 section components | Desktop + mobile review |
-| 5. Other pages | Solutions, Services, How it works, Marketplace, Pricing, About, utility | All routes with real content | Every link works, no placeholders |
-| 6. SEO & AEO | Metadata, schema, sitemap, answer blocks | `sitemap.js`, `robots.js`, JSON-LD, `llms.txt` | Rich Results + Lighthouse checks pass |
-| 7. Test & deploy | Production build, hosting | Live site on your domain | Full checklist signed off |
-| 8. Backend (later) | Forms, Vox AI plan, checkout | APIs, database, payments | Separate approval |
-
-## Decisions to settle first
-
-These change the folder structure or the design, so answer them before Phase 3. Business decisions (prices, final solution list, proof) can wait until Phase 5; until then those spots show "Book a call" or stay hidden.
-
-| Decision | Recommendation (needs approval) | Why |
-| --- | --- | --- |
-| Solution and service URLs | `/solutions/growth/inbound-lead-response` and `/services/design-product/ux-audits` | Avoids the clash between department pages and solution pages; good for breadcrumbs and SEO |
-| Blog and Careers URLs | `/blog`, `/blog/[slug]`, `/careers` (linked from About) | Short URLs rank and share better; About still links to both |
-| Extra pages from prototype | Add `/safe-ai/self-check`, `/results`, `/how-it-works/agents/[slug]` | The self-check is the Safe AI lead magnet; Results holds proof once approved |
-| Cart and checkout | Leave out until Phase 8; "Buy" goes to `/contact?item=...` | No payment backend yet; avoids a fake checkout |
-| Fonts | Geist + Geist Mono through `next/font` (built into Next.js, no install) | Already in the prototype; self-hosted fonts load faster and avoid layout shift |
-| Colours | Keep the prototype palette (see Design system) | Needs your yes, plus the logo files |
-| Agent characters | Reuse the prototype `.webp` images and SVG faces | Already designed; check you own the rights |
-| Video agent (Reel) | Hide until you decide | Open business decision |
-
-- [ ] Approve URL structure
-- [ ] Approve extra pages
-- [ ] Send logo files (SVG preferred)
-- [ ] Confirm colours and fonts
-
-## Phase 1 — Setup
-
-Goal: a clean Next.js app running inside your existing repo, without losing `CLAUDE.md` or `AGENTS.md`. Run these in the VS Code terminal (PowerShell), inside the `Xvox-Labs-Website` folder.
-
-**Step 1 — Check tools.** Node must be version 20 or newer (22 LTS is best).
-
-```powershell
-node -v; npm -v; git --version
-git status
-```
-
-**Step 2 — Move your docs aside.** Next.js won't install into a folder that already has files it doesn't recognise.
-
-```powershell
-New-Item -ItemType Directory -Path ..\xvox-docs-backup -Force
-Move-Item CLAUDE.md, AGENTS.md, BUILD_PLAN.md ..\xvox-docs-backup\
-```
-
-**Step 3 — Create the Next.js app in this folder** (the `.` means "here").
-
-```powershell
-npx create-next-app@latest . --js --app --eslint --no-tailwind --no-src-dir --import-alias "@/*" --use-npm
-```
-
-If it asks about Turbopack, say Yes. If it asks about the React Compiler or anything else, say No.
-
-**Step 4 — Put your docs back** (this replaces any `AGENTS.md` / `CLAUDE.md` that Next.js created).
-
-```powershell
-Move-Item ..\xvox-docs-backup\CLAUDE.md, ..\xvox-docs-backup\AGENTS.md, ..\xvox-docs-backup\BUILD_PLAN.md . -Force
-```
-
-**Step 5 — Run it.**
-
-```powershell
-npm run dev
-```
-
-Open `http://localhost:3000`. You should see the Next.js starter page. Press `Ctrl + C` to stop.
-
-**Step 6 — Clean the starter and commit.** Ask Claude Code to remove the starter content (Prompt 1 at the end), then:
-
-```powershell
-git add .
-git commit -m "chore: set up Next.js app"
-git push
-```
-
-**Also in Phase 1:** copy the prototype images into `public/images/agents/` and save the prototype `index.html` in a `reference/` folder that is listed in `.gitignore`, so Claude Code can read it without it going live.
-
-## Folder structure and routing
-
-Each folder in `app/` becomes a URL. Detail pages use one template file (`[slug]`) that reads its content from `data/`, so 20 solutions don't mean 20 page files.
-
-```text
-app/
-  layout.js                 Navbar + Footer + fonts + default metadata
-  page.js                   Home
-  globals.css               Reset, tokens, typography
-  not-found.js              Custom 404
-  sitemap.js  robots.js     SEO files (Phase 6)
-  solutions/
-    page.js                 Hub: all departments
-    [department]/page.js    e.g. /solutions/growth
-    [department]/[solution]/page.js
-  services/
-    page.js
-    [pillar]/page.js        e.g. /services/safe-ai
-    [pillar]/[service]/page.js
-  how-it-works/
-    page.js
-    agents/[agent]/page.js
-  marketplace/
-    page.js                 with category filter
-    [item]/page.js
-  pricing/  about/  careers/  blog/  results/
-  safe-ai/self-check/
-  contact/  ai-plan/  trust-data/  privacy/  terms/
-components/
-  layout/    Navbar, MegaMenu, MobileMenu, Footer
-  common/    Button, Container, SectionHeading, Card, Badge, Tabs, Accordion, Breadcrumbs, Reveal
-  sections/  Hero, Problems, TeamAtWork, HowItWorks, ... (one folder each)
-  seo/       JsonLd
-data/        site.js, navigation.js, solutions.js, services.js, agents.js, marketplace.js, faq.js, pricing.js
-lib/         seo.js (metadata helper), schema.js (JSON-LD builders)
-hooks/       useInView.js, useReducedMotion.js
-public/      images/, icons/, logo.svg, llms.txt
-```
-
-**Rules for every component folder:** `Name.jsx` + `Name.module.css`. Only add `"use client"` when the component needs clicks, state or scroll effects (Navbar, Tabs, Accordion, Reveal). Everything else stays a server component: faster pages and better SEO.
-
-**Data example** (`data/solutions.js`): each solution has `slug`, `department`, `title`, `summary`, `problem`, `outcome`, `agents`, `steps`, `timeline`, `priceFrom` (`null` until approved), `faq`, `seoTitle`, `seoDescription`. Pages and the sitemap both read from this one file.
-
-## Phase 3 — Design system
-
-All colours, sizes and spacing live as CSS variables in `app/globals.css`; components only use the variables, never raw hex codes. Values below come from the v5 prototype and need your approval.
-
-```css
-:root {
-  /* Colour — base */
-  --color-bg: #FAFAFA;        --color-surface: #FFFFFF;
-  --color-frame: #F0F0F0;     --color-line: #E7E7E7;
-  --color-ink: #0F0F0F;       --color-muted: #6E6E6E;   /* 4.9:1 on bg, passes AA */
-  --color-dark: #111111;
-  /* Colour — action */
-  --color-accent: #EB5A2B;    /* large text, icons, highlights */
-  --color-accent-strong: #C2410C; /* button fill with white 16px text: 5.2:1 */
-  /* Colour — department / category */
-  --color-coral: #FF6B4A; --color-sun: #FFC83D; --color-mint: #3DDBA4;
-  --color-plum: #8A5CF6;  --color-blue: #3D6BFF;
-  --tint-1: #ECE9F7; --tint-2: #F6ECE6; --tint-3: #E7F1E3; --tint-4: #E5EBF6;
-
-  /* Type (fluid: grows smoothly from mobile to desktop) */
-  --font-sans: var(--font-geist), 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, Menlo, monospace;
-  --text-xs: 0.8125rem;  --text-sm: 0.9375rem;  --text-base: 1.0625rem;
-  --text-lg: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
-  --text-h3: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
-  --text-h2: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
-  --text-h1: clamp(2.5rem, 1.6rem + 4vw, 4.75rem);
-  --leading-tight: 1.05; --leading-body: 1.6;
-
-  /* Spacing (4px steps) */
-  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
-  --space-6: 24px; --space-8: 32px; --space-12: 48px; --space-16: 64px;
-  --section-y: clamp(64px, 8vw, 128px);
-
-  /* Shape and depth */
-  --radius-sm: 10px; --radius: 20px; --radius-pill: 999px;
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px rgb(0 0 0 / 0.06);
-
-  /* Layout */
-  --container: 1200px; --gutter: clamp(16px, 4vw, 32px);
-
-  /* Motion */
-  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur-fast: 150ms; --dur: 300ms; --dur-slow: 600ms;
-}
-```
-
-**Breakpoints (mobile-first, `min-width`):** 640px small tablet · 768px tablet · 1024px laptop · 1280px desktop. CSS variables can't be used inside media queries, so write these numbers directly.
-
-**Contrast note:** white 16px text on `#EB5A2B` is only 3.5:1, below the 4.5:1 accessibility minimum. That's why buttons use the darker `--color-accent-strong`. Approve or pick another shade.
-
-**Deliverable for this phase:** a hidden `/style-guide` page showing every colour, heading size, button and card, so you can approve the look before any real section is built. Remove it (or block it from search) before launch.
-
-## Component library
-
-Build the shared pieces first (Phase 3), then sections only combine them. If a pattern appears on two pages, it becomes a component.
-
-| Component | Group | Job | Client? | Key details |
-| --- | --- | --- | --- | --- |
-| Navbar | layout | Logo, menu, two CTA buttons | Yes | Sticky; shrinks on scroll; menus open on click/tap, not hover only |
-| MegaMenu | layout | Solutions by department, Services by pillar | Yes | Opens with button, closes on Esc and outside click; `aria-expanded` |
-| MobileMenu | layout | Full-screen menu under 1024px | Yes | Accordions for Solutions/Services; CTA buttons pinned at bottom |
-| Footer | layout | Sitemap links, Xvox Studio ↗, legal | No | Same links every page = strong internal linking |
-| Container | common | Max width + side padding | No | Uses `--container`, `--gutter` |
-| Section | common | Vertical spacing + optional tint background | No | `as` prop for semantic tag |
-| SectionHeading | common | Eyebrow, H2, lead text | No | `level` prop keeps heading order correct |
-| Button | common | Primary, secondary, ghost; link or button | No | Renders `Link` for internal URLs; 44px min tap size |
-| Card | common | Base card for solutions, services, products | No | Whole card clickable via one link, not nested links |
-| Badge / Chip | common | Department tag, "Price to set", category | No | Colour from department token |
-| Tabs | common | Team-at-work, marketplace categories | Yes | Arrow-key support, `role="tablist"` |
-| Accordion | common | FAQ | Yes | Built on `<details>`/`<summary>`: works without JavaScript and is crawlable |
-| Breadcrumbs | common | Detail pages | No | Also outputs BreadcrumbList schema |
-| AgentAvatar | common | Agent image + name | No | `next/image`, real alt text |
-| Reveal | common | Fade/slide in on scroll | Yes | Wraps any block; respects reduced motion |
-| ContactForm | common | Short form | Yes | Frontend only until Phase 8; validation messages |
-| JsonLd | seo | Prints structured data | No | One script tag per page |
-
-**Section components (homepage + reused on inner pages):** Hero, LogoStrip, Problems, TeamAtWork, HowItWorks, ServicesGrid, SafeAI, Proof, WaysToBuy, MarketplaceFeatured, FAQ, ContactCTA. Inner pages add: PageHero, SolutionDetail, AgentTeam ("Your team for this"), BuyOptions, Timeline, ComparisonTable.
-
-## Animation plan
-
-All motion is plain CSS plus one small `useInView` hook, with no animation library. That keeps pages fast and keeps the code yours. Motion should explain (show agents handing work to each other), never just decorate.
+| 1 | **HTML prototype v5** | `D:\Downloads\Xvox Labs — Website prototype v5 (1)\` (`index.html` + `img/`) | **WHAT the site contains**: all content and copy, sections and their order, pages, navigation structure, business information, features, assets and functionality. Read-only: never modify or delete its files |
+| 2 | **Framer site** | https://rational-happen-962580.framer.app/ | **HOW the site looks and behaves**: visual theme, typography, colours, backgrounds, layouts, spacing, alignment, section presentation, navbar, buttons, cards, UI components, hover effects, scroll animations, transitions, interactions and responsive behaviour |
+| 3 | **Business blueprint** | `D:\Downloads\Xvox Labs — What we sell & how people buy.pdf` | Business reference for later content decisions (B1–B13). It does not override the prototype's content without your approval |
 
 **Rules**
 
-- Animate only `transform` and `opacity`. These are smooth on phones and don't move the layout.
-- Durations: 150ms for hovers, 300ms for menus and tabs, 600ms for scroll reveals. One easing for everything (`--ease-out`).
-- Nothing important is hidden until animation runs. If JavaScript fails, content still shows.
-- `@media (prefers-reduced-motion: reduce)` turns off movement: content just appears.
-- Content above the fold (hero headline) appears immediately. Animating it delays Largest Contentful Paint, an SEO speed score.
+- Never copy Framer's content, copy, branding, business information, client logos, images or page structure. Only its design language and behaviour.
+- Never invent new sections or replace prototype content without approval. A Framer pattern is used only where a prototype section exists to carry it.
+- Framer platform elements ("Made in Framer" badge, edit button) are not part of the design.
+- The prototype's "Prototype: sitemap" developer panel is not part of the site (pending your confirmation).
 
-| Pattern | Where | How |
-| --- | --- | --- |
-| Scroll reveal | Section headings, card grids | `Reveal` adds a class when 15% visible; fade + 16px rise |
-| Stagger | Card grids, problem tiles | Each child gets `style={{'--i': index}}`; `transition-delay: calc(var(--i) * 60ms)` |
-| Hero entrance | Hero sub-line, buttons, tools line | CSS keyframes on load, 100ms apart; headline stays static |
-| Card hover | All cards | Lift 4px + shadow; arrow slides 4px. Desktop only via `@media (hover: hover)` |
-| Menu open | MegaMenu, MobileMenu | Fade + 8px slide; focus moves into menu |
-| Tab switch | TeamAtWork, Marketplace | Crossfade panels; active indicator slides under tab |
-| Agent handoff | TeamAtWork | Steps light up in order (Problem → agents → Sage → Outcome), each ~700ms, while the section is visible; pauses off-screen |
-| Sticky process | How it works | Left column sticks; right steps reveal while scrolling. Desktop only; a simple list on mobile |
-| Agent eyes | Agent avatars | Pupils follow the cursor (from the prototype). Desktop pointer only; off for reduced motion |
-| Accordion | FAQ | Height animation with `grid-template-rows: 0fr → 1fr` |
+**Notes on the references**
 
-**Later, optional:** page-to-page transitions with the browser's View Transitions API. Add it only after launch, if you want it.
+- The Framer site is the earlier Xvox Labs site, built on the commercial "Kaviyan" Framer template (its tab title still says so). **Pending: you to confirm the template's licence allows recreating its design outside Framer.**
+- Both references already share the same agent characters (Scout, Quill, Beacon, Relay, Sage and the pink video agent Reel), a `#FAFAFA` background, `#0F0F0F` text, large regular-weight headings with tight letter-spacing, and white cards inside light-grey frames. The redesign is a shift in typeface, accent, component styling and motion, not a different world.
 
-## Phases 4–5 — Page-by-page build
+## Confirmed technology stack
 
-Build the homepage one section per prompt, top to bottom, checking each on mobile before the next. Then build one template per page type and fill it from `data/`.
+- Next.js with the **App Router** and built-in file-based routing (multi-page)
+- **JavaScript only** (`.js` / `.jsx`), React components
+- Traditional CSS: **CSS Modules** for components, **`app/globals.css`** for shared foundations and design tokens
+- Each major component has its own JSX + CSS Module, e.g. `components/sections/home/Hero/Hero.jsx` + `Hero.module.css`
 
-**Homepage order (Phase 4)**
+**Not used:** TypeScript, Tailwind CSS, Bootstrap, React Router, Python, Java.
 
-| # | Section | Content source | Blocked by |
+**Dependencies:** do not install, remove or upgrade any package without approval. Animation library: **Pending approval** (recommendation: none; see Motion approach).
+
+## Current project status
+
+| Item | Status |
+| --- | --- |
+| Next.js 16.4.6, React 19.3.0, ESLint 9 | Installed; JavaScript only, `jsconfig.json` `@/*` alias; no TypeScript, Tailwind, Bootstrap or React Router |
+| `next.config.mjs` | `agentRules: false` |
+| `app/layout.js` | Geist + Geist Mono via `next/font` (will change if Switzer is approved), `lang="en"`, placeholder `metadataBase` (TODO), title template `%s \| Xvox Labs` |
+| `app/page.js`, `app/globals.css` | Minimal page; empty globals |
+| `data/` | **Phase 2:** all prototype content, extracted verbatim (12 content files + `data/pages/` with 20 pages and 6 page templates) |
+| `public/images/` | **Phase 2:** the 25 prototype images, byte-identical (`agents/` holds the 14 agent files) |
+| `docs/CONTENT_INVENTORY.md` | **Phase 2:** internal inventory: counts, internal-only prices, hidden placeholders, open items, route map |
+| `reference/index.html` | Read-only copy of the prototype, git-ignored |
+
+## Framer design system (measured from the live site)
+
+Values below were read from the rendered Framer site (computed styles and screenshots at 1440px and 375px). They become the project tokens once approved.
+
+| Area | Framer reference | Prototype today | Plan |
 | --- | --- | --- | --- |
-| 1 | Hero: outcome headline (the only H1), 2 buttons, "works with" tools line | `data/site.js` | Integrations list to claim |
-| 2 | LogoStrip: "Businesses running on Xvox" | Approved logos only | Hidden until approved |
-| 3 | Problems: "What's slowing you down?", 5 department tiles | `data/solutions.js` | — |
-| 4 | TeamAtWork: 4 tabs, agent handoff | `data/agents.js` | Video agent decision |
-| 5 | HowItWorks: Audit → Build → Live, "usually 4–6 weeks, depends on scope" | `data/process.js` | — |
-| 6 | ServicesGrid: 4 pillars, one line each | `data/services.js` | — |
-| 7 | SafeAI: Sage, approvals, data handling | `data/trust.js` | Safe AI wording |
-| 8 | Proof: case studies or sample outputs | Approved only | Hidden until approved |
-| 9 | WaysToBuy: ladder Step 0–5 | `data/pricing.js` | Prices (show "Book a call" until set) |
-| 10 | MarketplaceFeatured: 3 items | `data/marketplace.js` | Final items |
-| 11 | FAQ: hosting, ownership, models, costs, data, integrations, approvals | `data/faq.js` | Your answers |
-| 12 | ContactCTA: short form + Vox AI plan button | — | — |
+| Primary font | **Switzer** 400 / 500 / 600 (Fontshare, ITF Free Font License) | Geist | Switch to Switzer, self-hosted with `next/font/local` (font files added to the repo, no npm package). **Pending approval** |
+| Secondary fonts | Inter 400–600 (small UI text), Arimo (minor) | Geist Mono | Keep to Switzer + Inter unless a UI element needs more. **Pending approval** |
+| Page background | `#FAFAFA` | `#FAFAFA` | Same |
+| Text | `#0F0F0F`; muted `rgba(15,15,15,.6)` | `#0F0F0F`; muted `#6E6E6E` | Framer values |
+| Accent | `#FF6038` (active nav link, hero icon tile, form labels, send button, footer wordmark) | `#EB5A2B` | Framer accent. **Pending approval** |
+| Frames / panels | Light grey `#F0F0F0` / `#EDEDED` holding white cards | `#F0F0F0` frame | Framer values |
+| Dark surfaces | `#121212` / `#111111` (agent stage, buttons) | `#111111` | Framer values |
+| Agent tints | Pastel cards (`#F6ECE6` peach, lavender, mint, sky) | `#ECE9F7`, `#F6ECE6`, `#E7F1E3`, `#E5EBF6` | Same family; keep prototype tints matched to agents |
+| H1 | 104px / 104px, weight 400, letter-spacing −3% (−3.12px) | `clamp` up to ~84px, −0.03em | Framer scale |
+| H2 | 60px / 60px, weight 400, −2.5% | 32–46px | Framer scale |
+| H3 | 44px / 1.15, weight 400, −2% | various | Framer scale |
+| Body / UI | 15–20px, weight 400–500 | 16px | Framer scale |
+| Radii | 28px frames, 24/20px cards, 9–10px buttons, 5–8px tags, 50% icons | 28 / 20 / 9 / 8px | Framer values (already close) |
+| Card frame pattern | White cards (radius ~20–24px) inside a light-grey frame (radius 28px, ~8–10px padding) | Same idea (`.frame`) | Framer spacing and radii |
+| Content width | ~1136px content (152–1288px at 1440) | 1100px | Framer width |
 
-**Page templates (Phase 5), in this order**
+**Mobile type (375px, measured):** H1 ~36px over two lines; section headings ~30px; body ~16px. Exact fluid scale is set during Phase 3 by measuring Framer at 375, 810, 1024 and 1440.
 
-1. **Solution detail** (most important for sales and SEO): problem → outcome → "Your team for this" (agents + Sage) → how it runs → timeline → BuyOptions (Download / Implement / Hire / Custom) → FAQ → related solutions.
-2. **Department page:** intro, list of its solutions, shared FAQ.
-3. **Solutions hub:** all departments with their solutions; links to every detail page.
-4. **Service pillar + service detail:** what you get, deliverables, timeline, process, FAQ, CTA. Safe AI pillar includes the review journey and the "Ship / Ship with fixes / Don't ship" verdicts, always called a review.
-5. **How it works:** approach, meet the team, Sage and safety, delivery timeline; agent detail pages.
-6. **Marketplace hub + item page:** category tabs; item page with preview/sample, what's included, price (or "Price to set"), FAQ.
-7. **Pricing:** ways to buy, paid audit, care plans, pricing FAQ.
-8. **About, Careers, Blog, Results.**
-9. **Utility:** Contact, AI plan (frontend form only), Trust & data, Privacy, Terms, 404.
+## Framer components and patterns (observed)
 
-**Content rule:** every page needs real text before it ships. Where a fact is missing, the page says "Book a call" or hides the block. It never shows invented numbers.
+| Pattern | What it looks like |
+| --- | --- |
+| **Header (desktop)** | Logo left; centred **floating white pill** (radius ~12px, soft shadow) holding the links, active link in accent orange; **black button** right ("Contact Us"). Sticky, stays floating over content |
+| **Header (mobile)** | White bar with logo left and a **black square burger button** right (turns into ×) |
+| **Mobile menu** | Full-width white panel dropping under the header: rows divided by hairlines, an accordion row with chevron (Services), full-width black CTA button at the bottom |
+| **Desktop dropdown** | Services ▾ dropdown. **Not captured** (did not open in automated testing); needs a screenshot from you or verification during build |
+| **Buttons** | Primary: black, white text, ~10px radius. Secondary: light grey with small arrow (→). Form submit: accent orange with paper-plane icon. Square icon buttons: black (+/−) or white with arrow (→) |
+| **Section header A** | Big heading left (H2), muted lead text + grey arrow button right, aligned on a two-column grid |
+| **Section header B** | Centred H2, muted subline, grey button (FAQ style) |
+| **Frame + cards** | Light-grey rounded frame containing a grid of white rounded cards |
+| **Stat cards** | Large number (with count-up), uppercase label, muted description |
+| **Agent cards** | Pastel tinted card: small uppercase role, name, white uppercase trait tags, large character image, white square arrow button top-right; opens a popup |
+| **Dark agent stage** | Dark rounded panel with a header row (icon chip + text, small "6 Agents" badge) and a row of characters; hover shows a dark tooltip with name + role; white status strip below ("All 6 agents are ready to work.") |
+| **Timeline cards** | "01. Discovery" title + week badge (calendar icon pill), hairline divider, muted text; two staggered columns inside a grey frame, accent-dot captions |
+| **Use-case cards** | White card: coloured dot + uppercase category, title, small agent images, count text + white square arrow button |
+| **Filter tabs + item cards** | Pill tabs (black active, grey inactive); item cards with a tinted image area, white type tag, icon, small agent image, title, muted text, + button, price |
+| **Pricing tier cards** | White top card (title, text, price or "Priced after a discovery call", full-width black button) above an "Everything in …" checklist on the grey frame |
+| **FAQ** | Numbered rows in white cards inside a grey frame; black square +/− button; open row shows muted answer |
+| **Contact** | Grey frame: left side has a dark label chip, big heading, text; right side a white form card with uppercase field labels (OPTIONAL in accent), grey filled inputs, orange send button |
+| **Footer** | White card inside a grey frame: logo + short text left; columns with grey labels right; divider; copyright row; huge accent **gradient wordmark** at the bottom fading out |
+| **Logo strip** | Small muted label, row of bordered white tiles (2-column grid on mobile) |
+
+## Motion and interaction (Framer reference)
+
+| Effect | Where on Framer | Evidence |
+| --- | --- | --- |
+| **Sticky hero stage** | Hero pins for ~1800px of scroll: headline + agents row → agents fan out → statement sentence assembles | Verified (scroll screenshots, `Hero Stage` / `Fan` layers) |
+| **Word-by-word statement** | Large sentence whose words and inline agent images animate in while scrolling | Verified (mid-animation screenshot) |
+| **Agent hover tooltip** | Dark stage: hovering a character shows a dark name/role tooltip | Verified |
+| **Agent card popup** | Agent directory cards open a popup on click | Inferred (`card popup trigger` layers) |
+| **Count-up stats** | Numbers count from 0 to the value when visible | Verified (raw HTML says "0+", rendered "50+") |
+| **Appear animations** | 10 elements with Framer appear effects (fade / rise on load or on view) | Verified (`data-framer-appear-id`) |
+| **Moving logo strip** | Logo tiles move (partial tiles caught mid-motion) | Inferred |
+| **Timeline deck** | Timeline cards stacked in a "deck" that likely moves on scroll | Inferred (`Timeline Deck` layer) |
+| **FAQ accordion** | +/− toggle, one answer open | Verified |
+| **Mobile menu** | Panel drops down; burger turns into × | Verified |
+| **Button / card hovers** | Not measurable automatically | **Unverified**; to be checked by hand during build |
+
+**Motion approach (Pending approval):** reproduce these with plain CSS (transitions, keyframes, `position: sticky`) and small client hooks (`IntersectionObserver`, one `requestAnimationFrame` scroll handler). No animation library. Animate only `transform` and `opacity`. Respect `prefers-reduced-motion` (content simply appears). The hero H1 is visible immediately, never hidden behind an animation, to protect LCP. If any effect cannot be matched without a library, it comes back to you as a question.
+
+**Prototype interactions that stay (functionality):** Solutions/Services menus, mobile menu, cart + drawer + checkout (browser storage), scripted Vox chat with local plan, Safe AI self-check quiz, mission board, marketplace filters and search, team-at-work tabs, FAQ, forms. They are restyled and animated the Framer way; their behaviour stays.
+
+## Section mapping: prototype content → Framer design
+
+### Global
+
+| Prototype element | Framer pattern | Responsive behaviour (Framer) | Notes |
+| --- | --- | --- | --- |
+| Header: logo, 6 links (Solutions ▾, Services ▾, How it works, Marketplace, Pricing, About), Cart, "Get your AI plan", "Book a call" | Floating white link pill + right-side buttons ("Book a call" black, "Get your AI plan" grey secondary, Cart as small grey button) | Mobile: logo + black square burger | Prototype has more links/buttons than Framer's pill; fit must be checked at 1024–1280px. **Pending:** logo (Framer's orange sphere logo, or prototype "X" mark, or your file) |
+| Solutions / Services mega menus | Framer dropdown style (white card, soft shadow, radius 20–24px) | Mobile: accordion rows | Framer desktop dropdown not captured |
+| Mobile menu (4 groups, scroll-% pill) | Framer full-width drop panel with hairline rows, accordions for Solutions and Services, black CTA at bottom | — | Scroll-% pill is replaced by the Framer burger. **Pending approval** |
+| Cart drawer | Framer card styling (white, radius 24px, grey frame), slide-in | Full-width on mobile | — |
+| Ask Vox floating button + chat | Black pill button, white chat card with Framer type and inputs | Full-screen sheet on mobile | — |
+| Closing CTA "Start with a two-minute plan." | Section header B (centred) + buttons | Stacked | — |
+| Footer (description, 2 buttons, Solutions / Services / Explore columns) | Framer footer card + grey frame, column labels, divider, copyright row | Columns become 2×2 on mobile | **Pending:** the large gradient wordmark ("XVOX LABS") is a Framer footer pattern; include? |
+
+### Homepage (prototype order kept)
+
+| # | Prototype section (content) | Framer pattern | Motion | Mobile / tablet |
+| --- | --- | --- | --- | --- |
+| 1 | Hero: "Your business, run by AI agents." + inline icon tile, sub-line, 2 buttons, agents row, team sentence ("Your team: Scout researches, …") | Framer hero: centred 104px H1 with inline **accent** icon tile, muted sub-line, agents row at the bottom; then the **statement panel** with inline agent images | Sticky hero stage: agents fan → team sentence assembles word by word (Framer's statement effect fits the prototype's sentence with agent slots) | H1 ~36px; agents row scaled; sequence shortened |
+| 2 | Puzzle: "Each agent is one piece of the puzzle." (scroll assembly) | Dark agent stage panel (header chip, character row, status strip) | Keep the prototype's puzzle assembly on scroll, restyled; hover tooltips on characters | Characters wrap / scale |
+| 3 | "Works with the tools you already use" strip | Logo strip (label + bordered tiles) | Moving strip | 2-column tile grid |
+| 4 | "What's getting in your way?" department tiles | Use-case cards in a grey frame | Appear on view | 1 column (mobile), 2 (tablet) |
+| 5 | "I need a team." / "I need one thing." | Section header A + two white cards in a frame | Appear on view | Stacked |
+| 6 | "Real orchestration. Watch it run." team-at-work tabs | Pill filter tabs + dark agent stage for the flow | Prototype flow playback, Framer easing; tooltips | Tabs scroll horizontally |
+| 7 | "Audit, build, live. Then we stay on." | Timeline cards (3 cards: number + title + week badge) | Timeline deck motion | 1 column |
+| 8 | "Expert work, when you need people too." (4 service areas) | Agent-card style tinted cards with arrow button | Hover lift | 1–2 columns |
+| 9 | "Same business. More breathing room." (before / after) | Two white cards in a frame (stat-card typography) | Appear on view | Stacked |
+| 10 | "Your data, your rules, your approval." (Safe AI) | Principles-style tinted cards | Appear on view | Stacked |
+| 11 | "See the work before you buy." sample cards | Item cards with tinted image area | Hover | 1 column |
+| 12 | "From a free plan to fully run for you." ladder (Step 0–5) | Pricing tier cards (top white card + checklist) | Appear on view | Horizontal scroll or stacked (decide at build) |
+| 13 | "Or take the ready-made version." marketplace | Filter tabs + item cards | Tab crossfade | 1–2 columns |
+| 14 | FAQ "Questions technical buyers ask." | Framer FAQ (centred header, numbered rows, black +/−) | Accordion | Full width |
+| 15 | Contact "Tell us what you are fixing." | Framer contact (grey frame, dark chip, form card, orange send button) | — | Stacked |
+| 16 | "Start with a two-minute plan." | Section header B | — | Stacked |
+
+### Other pages (same patterns, prototype content)
+
+| Prototype page | Framer patterns used |
+| --- | --- |
+| Page heroes (`.ph1`) on every inner page | Section header A (big heading left, lead + button right) |
+| Solutions hub, department pages | Use-case cards in grey frames |
+| Solution detail (8 sections) | Header A; "Your team for this" → agent cards + timeline cards; ways to buy → tier cards; marketplace → item cards; related → use-case cards; FAQ → Framer FAQ |
+| Services hub, area and service pages, Safe AI review | Tinted cards, timeline cards for the review steps, tier cards for packages |
+| How it works, agents, agent pages | Agent directory cards with popup; dark agent stage; timeline cards; mission board restyled |
+| Marketplace hub and item pages | Filter tabs + item cards; item page uses tier-card styling for price and buy |
+| Pricing | Tier cards, compare table restyled with Framer type, FAQ |
+| About, Careers, Blog, Results, Trust, Privacy | Header A, white cards in frames, FAQ |
+| Book a call, Checkout, Talent waitlist, Self-check | Framer contact form styling |
+| Studio, Inbox, 404 | Header A + cards |
+
+## Responsive behaviour
+
+- Match Framer's behaviour at **375, 810, 1024 and 1440px** (Framer's usual breakpoints are 390 / 810 / 1200; exact values measured in Phase 3).
+- Measured at 375px: header becomes logo + black burger; full-width drop menu; H1 ~36px; agent and use-case cards one column; logo strip two columns; footer columns 2×2; wordmark scaled to width.
+- Not yet captured: 810px and 1024px. These are measured before Phase 3 sign-off.
+- Fixes found in the prototype audit still apply: no horizontal overflow at 320px (the prototype header overflows there), and no `100vw` full-bleed offset on desktops with scrollbars.
+
+## Pending decisions
+
+### Design and experience: Pending approval
+
+- [ ] Framer template licence allows recreating the design outside Framer
+- [ ] Switzer font (self-hosted files) replaces Geist
+- [ ] Accent `#FF6038` replaces `#EB5A2B`
+- [ ] Logo: Framer's orange sphere mark, the prototype's "X" mark, or your SVG file
+- [ ] Footer gradient wordmark
+- [ ] Mobile scroll-% pill replaced by Framer burger
+- [ ] Motion approach: plain CSS + small hooks, no animation library
+- [ ] Desktop dropdown and hover states: send screenshots or a short screen recording, or approve checking them during build
+- [ ] Drop the prototype "Prototype: sitemap" panel
+
+### Content decisions (approved Nov 21, 2026)
+
+- **Prices:** only **$1,500** (blueprint) and **Free** (AI plan) are published. Every other price and every "Price to set" shows **"Contact Us to Discuss Pricing"** with a **"Discuss Pricing"** button to `/book`; consultation-based services use **"Book a call"**. Applies to the homepage, pricing, solutions, services and marketplace. Original values stay in `data/` (`priceStatus`) and in `docs/CONTENT_INVENTORY.md`.
+- **Placeholders:** fully placeholder blocks are hidden (`hidden: true` in `data/`), with their text kept for reference. Where only part of a block is placeholder, `text` keeps the original and `display` holds what the site shows.
+  - **Footer:** shows only "© 2026 Xvox Labs." (the prototype note is not shown).
+  - **Careers:** shows only "Until then, send a note through the contact form with “Careers” in the message."
+  - **Homepage proof section** ("See the work before you buy.") and its three placeholder cards are hidden until real samples exist; the section and its content stay in `data/pages/home.js`.
+- **Pending (do not invent):**
+  - **Xvox Studio external URL:** not available; Studio links stay on the internal `/studio` page (marked `pending` in `data/`).
+  - **Terms of Service, Cookie Policy, Marketplace Terms:** no approved legal content; no placeholder legal text is published (recorded in `data/site.js` → `pending`).
+- **Content never shown in the prototype** (old SERVICES list, superseded page versions) is not migrated.
+- **Exact duplicates** are stored once, with no wording changes.
+- **"Hire" link on agent pages** points to `/pricing#hire` (it was broken in the prototype).
+- **Solution URLs** are flat: `/solutions/[slug]`.
+- **Images:** `public/images/agents/` for agent files, `public/images/` for the rest, original names.
+
+### Business content (prototype vs blueprint): Pending approval
+
+The prototype's content is used as-is. These blueprint differences are resolved later, one by one, only with your approval.
+
+| # | Topic | Prototype v5 | Blueprint |
+| --- | --- | --- | --- |
+| B1 | Department names | Sales & Marketing, Customer Experience, Finance & Reporting, Operations & Admin, Design Operations | Growth, Customer Experience, Business Ops, Admin Ops, Design Ops |
+| B2 | Solution list | 19 problem-named solutions, incl. design / brand / Safe AI / video items | 19 draft solutions; design, brand and Safe AI are Services |
+| B3 | Agent framing | "Meet the team you can hire" | Agents are the team, not the menu; avoid "Hire Scout" |
+| B4 | Video agent (Reel) | Present | Open decision: here or Studio |
+| B5 | Ways to buy naming | "Hosted by us" and "Hire" both present | Ladder Step 0–5 |
+| B6 | Prices | Blueprint $1,500, marketplace prices, others "TBS" | Audit / implement / hire "from [$__]" |
+| B7 | Marketplace categories | Blueprints, Claude skills, automation packs, micro / nano tools, templates | Blueprints, skills, plugins, nano tools, templates |
+| B8 | Safe AI naming | Mixed ("responsible-ai") | "Safe AI" only; "review", never "certification" |
+| B9 | Extra pages | Cart, checkout, talent, inbox, build, results, studio, design | Not in the sitemap |
+| B10 | Homepage | 16 sections (listed above), including Problems, Safe AI and Contact | 12 sections |
+| B11 | Vox AI plan | Scripted chat; real AI only inside the Claude runtime | "Free AI plan" always visible |
+| B12 | Live domain | — | Needed for `metadataBase`, canonicals, sitemap |
+| B13 | Proof | Placeholders | Collect 2–3 case studies |
+
+### URLs (approved Nov 21, 2026)
+
+| Prototype | Route |
+| --- | --- |
+| `#home` | `/` |
+| `#solutions`, `#dept-<id>` (5), `#solution-<slug>` (23) | `/solutions`, `/solutions/<id>`, `/solutions/<slug>` (one dynamic segment; department ids and solution slugs never collide) |
+| `#services`, `#svc-<area>` (4), `#service-<id>` (21) | `/services`, `/services/<area>`, `/services/<area>/<id>` |
+| `#how` = `#agents`, `#agent-<id>` (6) | `/how-it-works`, `/how-it-works/agents/<id>` |
+| `#market` = `#marketplace`, `#item-<id>` (44) | `/marketplace`, `/marketplace/<id>` |
+| `#design`, `#responsible-ai` | `/services/design`, `/services/safe` |
+| `#selfcheck` | `/safe-ai/self-check` |
+| `#hire` | `/pricing#hire` |
+| `#pricing`, `#about`, `#careers`, `#blog`, `#results`, `#trust`, `#privacy`, `#book`, `#checkout`, `#build`, `#studio`, `#talent`, `#inbox` | Same names as routes |
+| `#guide` | Opens the Vox chat (no page) |
+
+Every link in `data/` carries both `href` (new route) and `prototypeHref` (original).
+
+## Phase overview
+
+| Phase | Goal | Output | Approval gate | Status |
+| --- | --- | --- | --- | --- |
+| 1. Setup | Next.js running locally | Clean app | Site loads | **Done** (`9ab7d7e`) |
+| 2. References & content | Extract prototype content into `data/`; copy prototype images | `data/` files, `public/images/`, `docs/CONTENT_INVENTORY.md` | You approve decisions and URL map | **In review** (branch `phase-2-content`) |
+| 3. Design system | Framer tokens + base components + motion hooks | `globals.css`, fonts, Button, Card, Frame, Tabs, Accordion, motion hooks, `/style-guide` | You compare `/style-guide` with Framer | — |
+| 4. Layout + homepage | Header, menus, footer, then the 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) at 4 widths | — |
+| 5. Other pages | All prototype pages in the Framer style | Routes | Every link works, content matches prototype | — |
+| 6. SEO & AEO | Metadata, schema, sitemap | `sitemap.js`, `robots.js`, JSON-LD, `llms.txt` | Lighthouse + Rich Results | — |
+| 7. Test & deploy | Production build, hosting | Live site | Checklist signed off | — |
+| 8. Backend (later) | Real Vox AI, form storage, checkout | APIs, database, payments | Separate approval | — |
+
+## How to use this plan
+
+1. **Ask for a plan first.** "Plan only, do not write code yet."
+2. **Read the plan.** Check the files it creates or changes.
+3. **Approve.** "Approved, implement."
+4. **Run it.** `npm run dev`, open `http://localhost:3000`, check 375 / 810 / 1024 / 1440px.
+5. **Compare.** Look against Framer (design and motion) and the prototype (content).
+6. **Commit.** Review `git status`, `git add` the feature's files, commit. One commit per working feature.
+7. **If something breaks,** paste the exact error.
+
+**Golden rules**
+
+- One feature per prompt.
+- Content lives in `data/`, copied from the prototype; never typed inside components, never invented.
+- Design values live as tokens in `globals.css`, measured from Framer; never raw hex in components.
+- Keep `CLAUDE.md` updated with every decision.
+- Branch per phase, merge to `main` when it works.
+
+## Folder structure
+
+**Exists:** `app/` (`layout.js`, `page.js`, `globals.css`, `favicon.ico`), `data/` and `data/pages/` (Phase 2), `public/images/` and `public/images/agents/` (Phase 2), `docs/CONTENT_INVENTORY.md`, git-ignored `reference/index.html`, config files.
+
+**Proposed (not created):**
+
+```text
+app/                         Routes, layouts, metadata
+  layout.js  page.js  globals.css  not-found.js
+  solutions/  services/  how-it-works/  marketplace/  pricing/  about/  …   (URL map above)
+  api/                       Phase 8 only
+components/
+  layout/                    Header, NavPill, MegaMenu, MobileMenu, Footer, CartDrawer, VoxChat
+  ui/                        Button, IconButton, Frame, Card, Tag, Badge, Tabs, Accordion, SectionHeader, StatCard, Tooltip, Field
+  sections/home/             One folder per homepage section (Hero/Hero.jsx + Hero.module.css, …)
+  sections/shared/           Sections reused by inner pages (PageHeader, WaysToBuy, FaqBlock, ClosingCta, …)
+  motion/                    Small client wrappers for approved effects (Appear, CountUp, StickyStage, Marquee)
+hooks/                       useInView, useScrollProgress, useReducedMotion
+data/                        Prototype content: agents, departments, solutions, services, ladder, marketplace, faq, navigation, site
+lib/                         Helpers: seo.js, schema.js, cart.js; later API clients
+public/
+  fonts/                     Switzer files (if approved)
+  images/                    Prototype images, unchanged
+```
+
+- `app/`: routing, composition, metadata. Pages assemble sections and read `data/`.
+- `components/layout/`: chrome shared by every page.
+- `components/ui/`: small, reusable Framer-style building blocks with no business content.
+- `components/sections/`: page sections; content passed in from `data/`.
+- `components/motion/` + `hooks/`: the only place animation logic lives, so every effect respects reduced motion in one place.
+- `data/`: the single source of content (from the prototype).
+- `lib/`: pure helpers, ready for backend work later.
+- `public/`: fonts, images, icons, `llms.txt`.
+
+Every component: `Name.jsx` + `Name.module.css`. `"use client"` only when the component needs state, events or motion.
 
 ## SEO plan
 
-SEO is built in from Phase 3: every page is born with its title, description, canonical URL, one H1 and schema. Phase 6 adds the sitewide files and checks. Everything uses built-in Next.js features, so nothing extra to install.
+- `metadata` / `generateMetadata()` on every route; title template `'%s | Xvox Labs'`; unique 140–160 character descriptions; `alternates.canonical`; `metadataBase` = live domain (B12).
+- One H1 per page, then H2 → H3 in order; semantic `header`, `nav`, `main`, `section`, `footer`.
+- Real alt text on every image (the prototype already has most).
+- Phase 6: `app/sitemap.js`, `app/robots.js`, `app/not-found.js`, `app/manifest.js` + icons.
+- JSON-LD: Organization + WebSite (home), Service (solutions, services), Product + Offer (marketplace, approved prices only), FAQPage, BreadcrumbList.
+- Scroll animations never hide text from crawlers: content is in the server HTML and only visually animated.
 
-**Per page (every route)**
+## AEO plan
 
-- `export const metadata` (fixed pages) or `generateMetadata()` (detail pages reading `data/`).
-- Title pattern: `Inbound Lead Response Automation | Xvox Labs`, 50–60 characters. Set once in `layout.js` as `title.template: '%s | Xvox Labs'`.
-- Description: 140–160 characters, says the problem and the outcome, unique per page.
-- `alternates.canonical` on every page; `metadataBase` set in `layout.js` to your live domain.
-- Open Graph and Twitter card: title, description, image. Generate share images with Next's built-in `opengraph-image.js`.
-- One H1, then H2 → H3 in order. Semantic tags: `header`, `nav`, `main`, `section`, `article`, `footer`.
-- Every image has real alt text ("Scout agent researching a lead"), not "image1".
-
-**Sitewide files (Phase 6)**
-
-| File | What it does |
+| Practice | How |
 | --- | --- |
-| `app/sitemap.js` | Builds the XML sitemap from `data/`, so new solutions appear automatically |
-| `app/robots.js` | Allows crawling, points to the sitemap; blocks `/style-guide` |
-| `app/not-found.js` | Helpful 404 with links back into the site |
-| `app/manifest.js` + icons | Favicon and app icons |
-
-**Structured data (JSON-LD)**
-
-| Schema | Pages |
-| --- | --- |
-| Organization + WebSite | Home (logo, name, social links, contact) |
-| Service | Each solution and service page |
-| Product + Offer | Marketplace items, only once a price is approved |
-| FAQPage | Pages with an FAQ block |
-| BreadcrumbList | All detail pages |
-| Article | Blog posts |
-
-Google now shows FAQ rich results mainly for government and health sites, but FAQPage markup still helps AI engines read your answers.
-
-**Internal linking:** each solution links to its department, related solutions, the agents used and Pricing. Each service links to related solutions. The footer links to every hub. Use descriptive link text ("See inbound lead response"), not "click here".
-
-**After launch:** verify the site in Google Search Console and Bing Webmaster Tools, submit the sitemap and check for crawl errors monthly. Bing matters because several AI assistants use its index.
-
-- [ ] Confirm the live domain (needed for canonical URLs and the sitemap)
-- [ ] Pick 1 main search phrase per solution and service page
-
-## AEO plan (AI answer engines)
-
-AI assistants (ChatGPT, Perplexity, Gemini, Claude, Google AI Overviews) quote pages that answer one question clearly, in plain HTML, from a source they can identify. Each item below is built into the page templates, so every new page gets it automatically.
-
-| Practice | How we build it |
-| --- | --- |
-| Answer first | Every solution, service and pricing page opens with a 40–60 word answer block: what it is, who it's for, the outcome. Stored as `summary` in `data/` |
-| Question headings | H2s phrased like buyer questions: "How long does setup take?", "Who owns the agents?", "What data do the agents see?" |
-| FAQ on every key page | 4–8 real questions, `<details>` markup + FAQPage schema |
-| Content in the HTML | Tab and accordion text is rendered on the server and only visually hidden, so crawlers read all of it |
-| Tables for comparisons | Download vs Implement vs Hire; Quick Scan vs Full Review. AI engines lift tables well |
-| One consistent entity | Always "Xvox Labs", the same one-line description on every page, Organization schema with `sameAs` links (LinkedIn, X, GitHub) |
-| Clear separation from Studio | Xvox Studio named only as a separate company link, so engines don't merge the two |
-| Trust signals | Team page with real people, Trust & data page, last-updated date on key pages |
-| `public/llms.txt` | A short plain-text map of the site and key pages for AI crawlers (a newer convention, cheap to add) |
-| AI crawler access | `robots.js` allows GPTBot, ClaudeBot, PerplexityBot and Google-Extended, unless you decide otherwise |
-| Precise claims only | No invented stats; "usually 4–6 weeks, depends on scope". Engines and buyers both trust specific, honest wording |
-
-**Measure it after launch:** build a list of 20–25 buyer prompts ("best AI lead response service for small business", "how to check an AI agent before launch"), ask them in each AI engine monthly, and log whether Xvox Labs is cited.
-
-- [ ] Decide whether AI crawlers may use the site content
+| Answer first | Solution, service and pricing pages open with a short answer block (from prototype content) |
+| Question headings and FAQ | `<details>` / accordion markup + FAQPage schema |
+| Content in the HTML | Tabs, accordions and animated text rendered on the server |
+| One consistent entity | Always "Xvox Labs"; Organization schema with `sameAs` |
+| `public/llms.txt` | Short plain-text map of key pages |
+| AI crawler access | **Pending approval** |
 
 ## Accessibility and performance
 
-Target: Lighthouse 90+ in all four scores on mobile, and Core Web Vitals in the green: LCP under 2.5s, CLS under 0.1, INP under 200ms. Check every finished page against this list.
+Target: Lighthouse 90+ on mobile; LCP < 2.5s, CLS < 0.1, INP < 200ms.
 
-**Accessibility**
-
-- [ ] Text contrast at least 4.5:1 (3:1 for large text)
-- [ ] Every action works by keyboard: Tab, Enter, Esc; visible focus ring
-- [ ] "Skip to content" link at the top of every page
-- [ ] Menus, tabs and accordions use the right ARIA roles and `aria-expanded`
-- [ ] Tap targets at least 44 × 44px; nothing works only on hover
-- [ ] Form fields have labels and clear error messages
-- [ ] Reduced-motion setting respected
-- [ ] Page language set: `<html lang="en">`
-
-**Performance**
-
-- [ ] Fonts through `next/font` (no flash, no layout shift)
-- [ ] Images through `next/image` with width and height; hero image `priority`
-- [ ] Prototype `.webp` images resized to the size they're shown at
-- [ ] Most components are server components; `"use client"` only where needed
-- [ ] No animation library, no unused CSS
-- [ ] Pages are static (built once), which is the fastest option for a marketing site
-- [ ] Run `npm run build` and check the size report for large pages
+- [ ] Contrast ≥ 4.5:1 (check muted `rgba(15,15,15,.6)` and orange-on-light text)
+- [ ] Keyboard: Tab, Enter, Esc; visible focus ring; skip link
+- [ ] Menus, tabs, accordions, tooltips and popups with correct ARIA; hover content also reachable by focus and tap
+- [ ] Tap targets ≥ 44px
+- [ ] `prefers-reduced-motion` turns off all scroll and hover motion
+- [ ] Sticky scroll stages don't trap keyboard or screen-reader users
+- [x] `<html lang="en">`
+- [ ] Fonts via `next/font` (self-hosted, no layout shift)
+- [ ] Images via `next/image`; animated agent `.webp` files (0.8–1.7 MB) loaded only on hover / desktop
+- [ ] Animation code client-only and small; static pages where possible
 
 ## Phase 7 — Testing, Git and deployment
 
-Test each page as it's built, then do one full pass before launch. Hosting is chosen together in Phase 7; Vercel (made by the Next.js team) is the simplest fit, with Netlify as the main alternative.
-
-**Git habits**
-
-| When | Command | Why |
-| --- | --- | --- |
-| Start a phase | `git checkout -b phase-4-homepage` | Keeps `main` always working |
-| After each working feature | `git add .` then `git commit -m "feat: hero section"` | Easy to undo one step |
-| End of day | `git push -u origin phase-4-homepage` | Backup on GitHub |
-| Phase approved | Open a pull request on GitHub → merge to `main` | Clean history |
-| Something broke | `git restore <file>` or `git log` + ask Claude Code | Go back safely |
-
-Commit prefixes: `feat:` new feature, `fix:` bug, `style:` CSS only, `docs:` documentation, `chore:` setup.
+**Git habits:** branch per phase (`phase-2-content`), commit each working feature with specific files, push daily, PR to `main` when a phase is approved. Prefixes: `feat:`, `fix:`, `style:`, `docs:`, `chore:`.
 
 **Pre-launch checklist**
 
-- [ ] `npm run build` finishes with no errors or warnings
-- [ ] `npm run lint` is clean
-- [ ] Every route opens; every nav, footer and CTA link goes to the right page
-- [ ] Tested at 375px, 768px, 1024px and 1440px wide
-- [ ] Tested in Chrome, Safari (or iPhone), Firefox and Edge
-- [ ] Browser console has no errors
-- [ ] Lighthouse mobile: Performance, Accessibility, Best Practices, SEO all 90+
-- [ ] Google Rich Results Test passes on Home, one solution and one marketplace item
-- [ ] No placeholder text, invented prices, fake logos or "certification" wording
-- [ ] Privacy and Terms pages reviewed by you
-- [ ] Domain connected, HTTPS on, `metadataBase` set to the real domain
-- [ ] Sitemap submitted to Google Search Console and Bing Webmaster Tools
+- [ ] `npm run build` and `npm run lint` clean
+- [ ] Every prototype page and link works in the new routes
+- [ ] Side-by-side check vs Framer at 375 / 810 / 1024 / 1440px
+- [ ] Content check vs prototype: nothing added, removed or reworded without approval
+- [ ] Chrome, Safari / iPhone, Firefox, Edge
+- [ ] Lighthouse mobile 90+ in all four
+- [ ] No Framer copy, client logos or branding; no placeholder or invented claims
+- [ ] Domain, HTTPS, `metadataBase`, sitemap submitted
 
 ## Claude Code prompts
 
-Copy one prompt at a time into Claude Code in VS Code. Each one asks for a plan first, so nothing is written until you approve.
+Each prompt asks for a plan first. Prompts that depend on pending decisions wait for them.
 
-**Prompt 0 — Update project memory (once, after Phase 1)**
+**Prompt 0 — Update project memory**
 
 ```text
-Read CLAUDE.md, AGENTS.md and BUILD_PLAN.md. Add a short "Build plan" section to CLAUDE.md that says: follow BUILD_PLAN.md for phases, folder structure, design tokens, components, animation, SEO and AEO; Next.js App Router, JavaScript only, CSS Modules + globals.css, no Tailwind/TypeScript/animation libraries; content in data/ files; prices null until approved; URL structure /solutions/[department]/[solution] and /services/[pillar]/[service] once I approve it. Show me the diff before saving.
+Read CLAUDE.md, AGENTS.md and BUILD_PLAN.md. Add a short "Build plan" section to CLAUDE.md: content comes from the HTML prototype (read-only); look and behaviour come from the Framer reference (never its content, branding or assets); stack is Next.js App Router, JavaScript, CSS Modules + globals.css; no TypeScript/Tailwind/Bootstrap/React Router; no dependency changes without approval; content in data/; design tokens from Framer measurements. Show me the diff before saving.
 ```
 
-**Prompt 1 — Clean starter**
+**Prompt 1 — Extract prototype content (Phase 2)**
 
 ```text
-Remove the Next.js starter content from app/page.js and app/page.module.css and empty globals.css. Set up Geist and Geist Mono with next/font in layout.js, exposed as CSS variables --font-geist and --font-geist-mono. Set lang="en", metadataBase (placeholder https://example.com, marked TODO) and a title template '%s | Xvox Labs'. Plan first, list files, wait for my approval.
+Extract the prototype's content (agents, departments, solutions, services, ladder, marketplace, FAQ, navigation, page copy) from D:\Downloads\Xvox Labs — Website prototype v5 (1)\index.html into data/ files, unchanged. Do not reword, merge or drop anything. List every file and what it holds. Plan first.
 ```
 
-**Prompt 2 — Design tokens + style guide**
+**Prompt 2 — Design tokens and style guide (Phase 3)**
 
 ```text
-Using the "Phase 3 — Design system" section of BUILD_PLAN.md, write globals.css: a modern CSS reset, all :root tokens, base typography for h1-h4, p, a, focus-visible styles, and a prefers-reduced-motion rule. Then create app/style-guide/page.js showing every colour, heading size and spacing step. Mark the page noindex. Plan first.
+Using the "Framer design system" section of BUILD_PLAN.md and the approved decisions, write app/globals.css (reset, tokens, base typography, focus styles, reduced-motion rule), set up the approved fonts, and create a noindex /style-guide page showing every token and base component. Plan first.
 ```
 
-**Prompt 3 — Shared components**
+**Prompt 3 — UI components**
 
 ```text
-Create components/common: Container, Section, SectionHeading, Button (primary/secondary/ghost, renders next/link for internal hrefs, 44px min height), Card, Badge. Each has Name.jsx + Name.module.css, uses only CSS variables, and is a server component. Add them to /style-guide. Follow the "Component library" section of BUILD_PLAN.md. Plan first.
+Create components/ui (Button, IconButton, Frame, Card, Tag, Badge, Tabs, Accordion, SectionHeader, StatCard, Tooltip, Field) matching the Framer patterns table in BUILD_PLAN.md. Each has Name.jsx + Name.module.css and uses only tokens. Add them to /style-guide. Plan first.
 ```
 
-**Prompt 4 — Navbar and footer**
+**Prompt 4 — Motion hooks**
 
 ```text
-Build components/layout Navbar, MegaMenu, MobileMenu and Footer, following the navigation in CLAUDE.md and the "Component library" section of BUILD_PLAN.md. Menus open on click/tap, close on Esc and outside click, use aria-expanded, and move focus correctly. Mobile menu under 1024px with accordions and the two CTA buttons pinned at the bottom. Read menu items from data/navigation.js. Look at reference/index.html for the visual style only. Plan first.
+Create the approved motion utilities (useInView, useScrollProgress, useReducedMotion, and components/motion Appear, CountUp, StickyStage, Marquee) with no animation library. Everything must respect prefers-reduced-motion and keep content in the server HTML. Demo each on /style-guide. Plan first.
 ```
 
-**Prompt 5 — One homepage section (repeat for each of the 12)**
+**Prompt 5 — Header, menus, footer**
 
 ```text
-Build the [Hero] section as components/sections/[Hero]/[Hero].jsx + .module.css. Content from data/[site].js. Match the style of reference/index.html but use our tokens and components. Mobile-first. Follow the "Animation plan" in BUILD_PLAN.md; respect reduced motion. Do not invent numbers, logos or testimonials: leave unapproved content as null and hide the block. Plan first.
+Build the header (Framer floating nav pill, prototype links and buttons), Solutions/Services menus, mobile menu, cart drawer and footer, following the Global rows of the section mapping in BUILD_PLAN.md. Content from data/navigation.js. Keyboard and screen-reader accessible. Plan first.
 ```
 
-**Prompt 6 — Detail page template**
+**Prompt 6 — One homepage section (repeat per row of the homepage mapping)**
 
 ```text
-Create app/solutions/[department]/[solution]/page.js. Use generateStaticParams and generateMetadata from data/solutions.js. Layout: Breadcrumbs, answer-first summary (40-60 words), problem, outcome, AgentTeam, timeline, BuyOptions, FAQ (details/summary), related solutions. Add JSON-LD for Service, FAQPage and BreadcrumbList. Unknown slug returns notFound(). Follow the SEO and AEO sections of BUILD_PLAN.md. Plan first.
+Build homepage section [#] from the "Homepage" mapping table in BUILD_PLAN.md as components/sections/home/[Name]/[Name].jsx + .module.css. Content from data/ (prototype, unchanged); design, motion and responsive behaviour from the Framer pattern named in the table. Do not add or remove content. Plan first.
 ```
 
-**Prompt 7 — SEO files**
+**Prompt 7 — Page template**
 
 ```text
-Add app/sitemap.js (built from all data/ files), app/robots.js (allow all, block /style-guide, sitemap URL), Organization + WebSite JSON-LD on the home page, public/llms.txt, and an opengraph-image.js for the site. Then list every page with its title and description length so I can check them. Plan first.
+Build the [solution detail] page at the route in the URL map, using the Framer patterns listed for it in BUILD_PLAN.md and content from data/. generateStaticParams + generateMetadata; unknown slug returns notFound(). Plan first.
 ```
 
 **Prompt 8 — Check a finished page**
 
 ```text
-Review [page] against the checklists in BUILD_PLAN.md: one H1 and correct heading order, unique title/description, canonical, alt text, keyboard access, contrast, reduced motion, server vs client components, no invented claims. Report problems as a list before changing anything.
+Review [page] against BUILD_PLAN.md: content matches the prototype exactly; look and motion match Framer at 375/810/1024/1440; one H1 and heading order; metadata; alt text; keyboard; contrast; reduced motion. Report problems as a list before changing anything.
 ```
