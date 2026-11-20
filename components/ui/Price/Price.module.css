@@ -1,0 +1,30 @@
+.price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.amount {
+  font-size: 32px;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.unit {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--color-ink-muted);
+}
+
+.discuss {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.label {
+  font-size: 15px;
+  line-height: 21px;
+  font-weight: 500;
+}

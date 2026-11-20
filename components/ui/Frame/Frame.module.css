@@ -1,0 +1,24 @@
+.frame {
+  background: var(--color-frame);
+  border-radius: var(--radius-frame);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--frame-columns), minmax(0, 1fr));
+}
+
+@media (max-width: 809px) {
+  .frame {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

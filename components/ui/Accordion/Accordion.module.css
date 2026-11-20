@@ -1,0 +1,104 @@
+.frame {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: var(--radius-card);
+  background: var(--color-frame);
+}
+
+.item {
+  border-radius: var(--radius-row);
+  background: var(--color-surface);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+  cursor: pointer;
+  list-style: none;
+  border-radius: var(--radius-row);
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.question {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+
+/* Black square with a plus that turns into a minus */
+.toggle {
+  position: relative;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-button-sm);
+  background: var(--color-black);
+}
+
+.toggle::before,
+.toggle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1.5px;
+  background: var(--color-on-dark);
+  transform: translate(-50%, -50%);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.toggle::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.item[open] .toggle::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.answer {
+  padding: 0 24px 24px;
+  color: var(--color-ink-muted);
+  font-size: 16px;
+  line-height: 24px;
+  max-width: 68ch;
+}
+
+.item[open] .answer {
+  animation: answer-in var(--dur) var(--ease-out);
+}
+
+@keyframes answer-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 809px) {
+  .summary {
+    padding: 20px;
+  }
+
+  .question {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  .answer {
+    padding: 0 20px 20px;
+  }
+}

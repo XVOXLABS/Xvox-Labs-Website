@@ -1,0 +1,20 @@
+.category {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  line-height: 13.44px;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: #101114;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
