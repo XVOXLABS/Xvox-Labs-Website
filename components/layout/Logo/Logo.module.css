@@ -1,0 +1,15 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Shown only until the approved logo file is configured (lib/brand.js). */
+.pending {
+  display: inline-flex;
+  align-items: center;
+  font-size: 15px;
+  line-height: 15px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
