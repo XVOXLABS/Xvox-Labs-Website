@@ -12,7 +12,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "ABOUT"
+          "text": "About"
         },
         {
           "tag": "h1",
@@ -41,7 +41,7 @@ export const page = {
       "blocks": [
         {
           "tag": "h4",
-          "text": "TEAM MEMBER 1"
+          "text": "Team member 1"
         },
         {
           "tag": "p",
@@ -49,7 +49,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "TEAM MEMBER 2"
+          "text": "Team member 2"
         },
         {
           "tag": "p",
@@ -57,7 +57,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "TEAM MEMBER 3"
+          "text": "Team member 3"
         },
         {
           "tag": "p",
@@ -65,7 +65,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "TEAM MEMBER 4"
+          "text": "Team member 4"
         },
         {
           "tag": "p",
@@ -84,7 +84,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "HOW WE WORK"
+          "text": "How we work"
         },
         {
           "tag": "h2.big",
@@ -92,7 +92,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "PROBLEM FIRST"
+          "text": "Problem first"
         },
         {
           "tag": "p",
@@ -100,7 +100,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "A PERSON APPROVES"
+          "text": "A person approves"
         },
         {
           "tag": "p",
@@ -108,7 +108,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "PLAIN WHEN IT’S ENOUGH"
+          "text": "Plain when it’s enough"
         },
         {
           "tag": "p",
@@ -116,7 +116,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "YOU OWN IT"
+          "text": "You own it"
         },
         {
           "tag": "p",
@@ -129,7 +129,7 @@ export const page = {
       "blocks": [
         {
           "tag": "h4",
-          "text": "CAREERS"
+          "text": "Careers"
         },
         {
           "tag": "p",
@@ -137,7 +137,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "BLOG AND GUIDES"
+          "text": "Blog and guides"
         },
         {
           "tag": "p",
@@ -145,7 +145,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "XVOX STUDIO ↗"
+          "text": "Xvox Studio ↗"
         },
         {
           "tag": "p",

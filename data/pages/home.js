@@ -61,7 +61,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "HOW THE TEAM WORKS"
+          "text": "How the team works"
         },
         {
           "tag": "h2.big",
@@ -272,7 +272,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eb2",
-          "text": "OUR SOLUTIONS"
+          "text": "Our solutions"
         },
         {
           "tag": "h2.big",
@@ -414,7 +414,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eb2",
-          "text": "SEE THE TEAM AT WORK"
+          "text": "See the team at work"
         },
         {
           "tag": "h2.big",
@@ -458,7 +458,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "TRIGGER"
+          "text": "Trigger"
         },
         {
           "tag": "b",
@@ -466,7 +466,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "CONTEXT IT READS"
+          "text": "Context it reads"
         },
         {
           "tag": "span.tool",
@@ -478,7 +478,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "ORCHESTRATOR"
+          "text": "Orchestrator"
         },
         {
           "tag": "b",
@@ -490,7 +490,8 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "SCOUT"
+          "text": "Scout",
+          "fromData": true
         },
         {
           "tag": "b",
@@ -507,7 +508,8 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "RELAY"
+          "text": "Relay",
+          "fromData": true
         },
         {
           "tag": "b",
@@ -524,7 +526,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "SAFETY CHECKS · SAGE"
+          "text": "Safety checks · Sage"
         },
         {
           "tag": "li",
@@ -544,7 +546,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "HUMAN IN THE LOOP · SALES LEAD"
+          "text": "Human in the loop · Sales lead"
         },
         {
           "tag": "b",
@@ -564,7 +566,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "OUTCOME"
+          "text": "Outcome"
         },
         {
           "tag": "b",
@@ -572,7 +574,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "SHARED MEMORY"
+          "text": "Shared memory"
         },
         {
           "tag": "span",
@@ -580,7 +582,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "RUN LOG"
+          "text": "Run log"
         },
         {
           "tag": "li.muted",
@@ -603,7 +605,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eb2",
-          "text": "HOW IT WORKS"
+          "text": "How it works"
         },
         {
           "tag": "h2.big",
@@ -654,7 +656,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eb2",
-          "text": "SERVICES"
+          "text": "Services"
         },
         {
           "tag": "h2.big",
@@ -746,7 +748,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eb2",
-          "text": "A DIFFERENT KIND OF WEEK"
+          "text": "A different kind of week"
         },
         {
           "tag": "h2.big",
@@ -807,7 +809,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "SAFE AI, BUILT IN"
+          "text": "Safe AI, built in"
         },
         {
           "tag": "h2",
@@ -858,7 +860,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eb2",
-          "text": "PROOF"
+          "text": "Proof"
         },
         {
           "tag": "h2.big",
@@ -911,7 +913,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eb2",
-          "text": "WAYS TO BUY"
+          "text": "Ways to buy"
         },
         {
           "tag": "h2.big",
@@ -919,7 +921,7 @@ export const page = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 0"
+          "text": "Step 0"
         },
         {
           "tag": "h4",
@@ -942,7 +944,7 @@ export const page = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 1"
+          "text": "Step 1"
         },
         {
           "tag": "h4",
@@ -967,7 +969,7 @@ export const page = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 2"
+          "text": "Step 2"
         },
         {
           "tag": "h4",
@@ -992,7 +994,7 @@ export const page = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 3"
+          "text": "Step 3"
         },
         {
           "tag": "h4",
@@ -1017,7 +1019,7 @@ export const page = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 4"
+          "text": "Step 4"
         },
         {
           "tag": "h4",
@@ -1046,7 +1048,7 @@ export const page = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 5"
+          "text": "Step 5"
         },
         {
           "tag": "h4",
@@ -1086,7 +1088,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eb2",
-          "text": "MARKETPLACE"
+          "text": "Marketplace"
         },
         {
           "tag": "h2.big",
@@ -1361,7 +1363,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "CONTACT"
+          "text": "Contact"
         },
         {
           "tag": "h2.big",

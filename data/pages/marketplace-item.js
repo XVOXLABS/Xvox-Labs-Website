@@ -82,11 +82,11 @@ export const template = {
         },
         {
           "tag": "h5",
-          "text": "WHAT YOU GET"
+          "text": "What you get"
         },
         {
           "tag": "h5",
-          "text": "WORKS WITH"
+          "text": "Works with"
         }
       ]
     },
@@ -95,7 +95,7 @@ export const template = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "CONNECTED TO"
+          "text": "Connected to"
         },
         {
           "tag": "h2.big",
@@ -118,7 +118,7 @@ export const template = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "YOU MIGHT ALSO NEED"
+          "text": "You might also need"
         },
         {
           "tag": "h2.big",
@@ -153,7 +153,7 @@ export const template = {
 
 export const computedText = {
   "item-bp-consistent-posting": [
-    "BLUEPRINT · FOR QUILL",
+    "Blueprint · for Quill",
     "$1,500 one-time",
     "Agent Quill · Content agent →",
     "Use case We never have time to post →",
@@ -164,7 +164,7 @@ export const computedText = {
     "Claude skill ✦ Brand voice writer Teaches Claude your tone from five examples, then writes posts and emails that sound like you. $79 +"
   ],
   "item-bp-found-online": [
-    "BLUEPRINT · FOR BEACON",
+    "Blueprint · for Beacon",
     "$1,500 one-time",
     "Agent Beacon · Search agent →",
     "Use case Nobody finds us in search or AI answers →",
@@ -175,7 +175,7 @@ export const computedText = {
     "Claude skill ✦ AI answer visibility audit Checks how your business shows up in AI assistant answers and drafts fixes. $99 +"
   ],
   "item-bp-leads-go-cold": [
-    "BLUEPRINT · FOR SCOUT",
+    "Blueprint · for Scout",
     "$1,500 one-time",
     "Agent Scout · Research agent →",
     "Use case Leads go cold before we reply →",
@@ -186,7 +186,7 @@ export const computedText = {
     "Blueprint ▦ Design request intake blueprint The complete system for design request intake: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-bp-prospecting": [
-    "BLUEPRINT · FOR SCOUT",
+    "Blueprint · for Scout",
     "$1,500 one-time",
     "Agent Scout · Research agent →",
     "Use case We cannot find the right prospects →",
@@ -197,7 +197,7 @@ export const computedText = {
     "Blueprint ▦ Design request intake blueprint The complete system for design request intake: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-bp-admin-overload": [
-    "BLUEPRINT · FOR RELAY",
+    "Blueprint · for Relay",
     "$1,500 one-time",
     "Agent Relay · Outreach agent →",
     "Use case Admin eats our week →",
@@ -208,7 +208,7 @@ export const computedText = {
     "Claude skill ✦ Lead qualifier Scores new leads against your best clients and writes the first reply. $69 +"
   ],
   "item-bp-tools-dont-talk": [
-    "BLUEPRINT · FOR SAGE",
+    "Blueprint · for Sage",
     "$1,500 one-time",
     "Agent Sage · Safety agent →",
     "Use case Our tools do not talk to each other →",
@@ -219,7 +219,7 @@ export const computedText = {
     "Automation pack ⇄ CRM and projects sync Keeps clients and projects in step between your CRM and monday.com. Plain automation. $299 +"
   ],
   "item-bp-slow-replies": [
-    "BLUEPRINT · FOR BEACON",
+    "Blueprint · for Beacon",
     "$1,500 one-time",
     "Agent Beacon · Search agent →",
     "Use case Clients wait too long for answers →",
@@ -230,7 +230,7 @@ export const computedText = {
     "Claude skill ✦ AI answer visibility audit Checks how your business shows up in AI assistant answers and drafts fixes. $99 +"
   ],
   "item-bp-manual-onboarding": [
-    "BLUEPRINT · FOR RELAY",
+    "Blueprint · for Relay",
     "$1,500 one-time",
     "Agent Relay · Outreach agent →",
     "Use case Onboarding a client takes days →",
@@ -241,7 +241,7 @@ export const computedText = {
     "Claude skill ✦ Lead qualifier Scores new leads against your best clients and writes the first reply. $69 +"
   ],
   "item-bp-confusing-site": [
-    "BLUEPRINT · FOR BEACON",
+    "Blueprint · for Beacon",
     "$1,500 one-time",
     "Agent Beacon · Search agent →",
     "Use case Our website is hard to use →",
@@ -252,7 +252,7 @@ export const computedText = {
     "Claude skill ✦ AI answer visibility audit Checks how your business shows up in AI assistant answers and drafts fixes. $99 +"
   ],
   "item-bp-inconsistent-brand": [
-    "BLUEPRINT · FOR QUILL",
+    "Blueprint · for Quill",
     "$1,500 one-time",
     "Agent Quill · Content agent →",
     "Use case Our brand looks different everywhere →",
@@ -263,7 +263,7 @@ export const computedText = {
     "Claude skill ✦ Brand voice writer Teaches Claude your tone from five examples, then writes posts and emails that sound like you. $79 +"
   ],
   "item-bp-video-content": [
-    "BLUEPRINT · FOR REEL",
+    "Blueprint · for Reel",
     "$1,500 one-time",
     "Agent Reel · Video agent →",
     "Use case We need video but have no editor →",
@@ -274,7 +274,7 @@ export const computedText = {
     "Micro tool ◧ Caption studio Brand-styled captions and every aspect ratio from one upload. $25 / month +"
   ],
   "item-bp-is-it-safe": [
-    "BLUEPRINT · FOR SAGE",
+    "Blueprint · for Sage",
     "$1,500 one-time",
     "Agent Sage · Safety agent →",
     "Use case We do not know if our AI is safe to use →",
@@ -285,7 +285,7 @@ export const computedText = {
     "Automation pack ⇄ CRM and projects sync Keeps clients and projects in step between your CRM and monday.com. Plain automation. $299 +"
   ],
   "item-bp-review-my-agent": [
-    "BLUEPRINT · FOR SAGE",
+    "Blueprint · for Sage",
     "$1,500 one-time",
     "Agent Sage · Safety agent →",
     "Use case We built an agent and need it reviewed →",
@@ -296,7 +296,7 @@ export const computedText = {
     "Automation pack ⇄ CRM and projects sync Keeps clients and projects in step between your CRM and monday.com. Plain automation. $299 +"
   ],
   "item-bp-client-updates": [
-    "BLUEPRINT · FOR QUILL",
+    "Blueprint · for Quill",
     "$1,500 one-time",
     "Agent Quill · Content agent →",
     "Use case Clients keep asking where things stand →",
@@ -307,7 +307,7 @@ export const computedText = {
     "Claude skill ✦ Brand voice writer Teaches Claude your tone from five examples, then writes posts and emails that sound like you. $79 +"
   ],
   "item-bp-proposals": [
-    "BLUEPRINT · FOR SCOUT",
+    "Blueprint · for Scout",
     "$1,500 one-time",
     "Agent Scout · Research agent →",
     "Use case Proposals take days to write →",
@@ -318,7 +318,7 @@ export const computedText = {
     "Blueprint ▦ Design request intake blueprint The complete system for design request intake: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-bp-reporting": [
-    "BLUEPRINT · FOR SCOUT",
+    "Blueprint · for Scout",
     "$1,500 one-time",
     "Agent Scout · Research agent →",
     "Use case We don’t know our numbers until month-end →",
@@ -329,7 +329,7 @@ export const computedText = {
     "Blueprint ▦ Design request intake blueprint The complete system for design request intake: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-bp-invoice-chase": [
-    "BLUEPRINT · FOR RELAY",
+    "Blueprint · for Relay",
     "$1,500 one-time",
     "Agent Relay · Outreach agent →",
     "Use case Invoices get paid late →",
@@ -340,7 +340,7 @@ export const computedText = {
     "Claude skill ✦ Lead qualifier Scores new leads against your best clients and writes the first reply. $69 +"
   ],
   "item-bp-call-assistant": [
-    "BLUEPRINT · FOR RELAY",
+    "Blueprint · for Relay",
     "$1,500 one-time",
     "Agent Relay · Outreach agent →",
     "Use case Important calls get missed →",
@@ -351,7 +351,7 @@ export const computedText = {
     "Claude skill ✦ Lead qualifier Scores new leads against your best clients and writes the first reply. $69 +"
   ],
   "item-bp-meeting-notes": [
-    "BLUEPRINT · FOR QUILL",
+    "Blueprint · for Quill",
     "$1,500 one-time",
     "Agent Quill · Content agent →",
     "Use case Meetings end and nothing gets written down →",
@@ -362,7 +362,7 @@ export const computedText = {
     "Claude skill ✦ Brand voice writer Teaches Claude your tone from five examples, then writes posts and emails that sound like you. $79 +"
   ],
   "item-bp-design-intake": [
-    "BLUEPRINT · FOR SCOUT",
+    "Blueprint · for Scout",
     "$1,500 one-time",
     "Agent Scout · Research agent →",
     "Use case Every design request is a fire drill →",
@@ -373,7 +373,7 @@ export const computedText = {
     "Blueprint ▦ Reporting and dashboards blueprint The complete system for reporting and dashboards: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-bp-asset-variants": [
-    "BLUEPRINT · FOR REEL",
+    "Blueprint · for Reel",
     "$1,500 one-time",
     "Agent Reel · Video agent →",
     "Use case Resizing assets eats our designers’ week →",
@@ -383,7 +383,7 @@ export const computedText = {
     "Micro tool ◧ Caption studio Brand-styled captions and every aspect ratio from one upload. $25 / month +"
   ],
   "item-bp-design-qa": [
-    "BLUEPRINT · FOR BEACON",
+    "Blueprint · for Beacon",
     "$1,500 one-time",
     "Agent Beacon · Search agent →",
     "Use case Designs reach developers with gaps →",
@@ -394,7 +394,7 @@ export const computedText = {
     "Claude skill ✦ AI answer visibility audit Checks how your business shows up in AI assistant answers and drafts fixes. $99 +"
   ],
   "item-sk-brand-voice": [
-    "CLAUDE SKILL · FOR QUILL",
+    "Claude skill · for Quill",
     "$79 one-time",
     "Agent Quill · Content agent →",
     "Use case We never have time to post →",
@@ -406,7 +406,7 @@ export const computedText = {
     "Blueprint ▦ Meeting notes and follow-ups blueprint The complete system for meeting notes and follow-ups: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-sk-competitor-brief": [
-    "CLAUDE SKILL · FOR SCOUT",
+    "Claude skill · for Scout",
     "$49 one-time",
     "Agent Scout · Research agent →",
     "Use case We cannot find the right prospects →",
@@ -418,7 +418,7 @@ export const computedText = {
     "Blueprint ▦ Proposals and quotes blueprint The complete system for proposals and quotes: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-sk-aeo-audit": [
-    "CLAUDE SKILL · FOR BEACON",
+    "Claude skill · for Beacon",
     "$99 one-time",
     "Agent Beacon · Search agent →",
     "Use case Nobody finds us in search or AI answers →",
@@ -430,7 +430,7 @@ export const computedText = {
     "Blueprint ▦ Design QA and handoff blueprint The complete system for design qa and handoff: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-sk-lead-qualifier": [
-    "CLAUDE SKILL · FOR RELAY",
+    "Claude skill · for Relay",
     "$69 one-time",
     "Agent Relay · Outreach agent →",
     "Use case Leads go cold before we reply →",
@@ -442,7 +442,7 @@ export const computedText = {
     "Blueprint ▦ Client onboarding blueprint The complete system for client onboarding: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-sk-safety-checklist": [
-    "CLAUDE SKILL · FOR SAGE",
+    "Claude skill · for Sage",
     "$59 one-time",
     "Agent Sage · Safety agent →",
     "Use case We do not know if our AI is safe to use →",
@@ -454,7 +454,7 @@ export const computedText = {
     "Automation pack ⇄ CRM and projects sync Keeps clients and projects in step between your CRM and monday.com. Plain automation. $299 +"
   ],
   "item-sk-proposal-writer": [
-    "CLAUDE SKILL · FOR QUILL",
+    "Claude skill · for Quill",
     "$89 one-time",
     "Agent Quill · Content agent →",
     "Use case Leads go cold before we reply →",
@@ -466,7 +466,7 @@ export const computedText = {
     "Blueprint ▦ Brand consistency kit blueprint The complete system for brand consistency kit: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-sk-weekly-report": [
-    "CLAUDE SKILL · FOR RELAY",
+    "Claude skill · for Relay",
     "$49 one-time",
     "Agent Relay · Outreach agent →",
     "Use case Admin eats our week →",
@@ -477,7 +477,7 @@ export const computedText = {
     "Blueprint ▦ Automated phone calls blueprint The complete system for automated phone calls: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-au-lead-router": [
-    "AUTOMATION PACK · FOR RELAY",
+    "Automation pack · for Relay",
     "$249 one-time",
     "Agent Relay · Outreach agent →",
     "Use case Leads go cold before we reply →",
@@ -488,7 +488,7 @@ export const computedText = {
     "Blueprint ▦ Invoice reminders blueprint The complete system for invoice reminders: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-au-invoice-reminders": [
-    "AUTOMATION PACK · FOR RELAY",
+    "Automation pack · for Relay",
     "$199 one-time",
     "Agent Relay · Outreach agent →",
     "Use case Admin eats our week →",
@@ -499,7 +499,7 @@ export const computedText = {
     "Blueprint ▦ Automated phone calls blueprint The complete system for automated phone calls: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-au-crm-sync": [
-    "AUTOMATION PACK · FOR SAGE",
+    "Automation pack · for Sage",
     "$299 one-time",
     "Agent Sage · Safety agent →",
     "Use case Our tools do not talk to each other →",
@@ -510,7 +510,7 @@ export const computedText = {
     "Claude skill ✦ Agent safety checklist Runs an agent through privacy, safety and human-in-the-loop checks and writes a plain report. $59 +"
   ],
   "item-au-social-scheduler": [
-    "AUTOMATION PACK · FOR QUILL",
+    "Automation pack · for Quill",
     "$199 one-time",
     "Agent Quill · Content agent →",
     "Use case We never have time to post →",
@@ -521,7 +521,7 @@ export const computedText = {
     "Blueprint ▦ Meeting notes and follow-ups blueprint The complete system for meeting notes and follow-ups: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-au-ticket-triage": [
-    "AUTOMATION PACK · FOR RELAY",
+    "Automation pack · for Relay",
     "$249 one-time",
     "Agent Relay · Outreach agent →",
     "Use case Clients wait too long for answers →",
@@ -532,7 +532,7 @@ export const computedText = {
     "Blueprint ▦ Invoice reminders blueprint The complete system for invoice reminders: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-tl-lead-inbox": [
-    "MICRO TOOL · FOR RELAY",
+    "Micro tool · for Relay",
     "$29 / month",
     "/ month",
     "Agent Relay · Outreach agent →",
@@ -545,7 +545,7 @@ export const computedText = {
     "Blueprint ▦ Client onboarding blueprint The complete system for client onboarding: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-tl-brand-kit": [
-    "MICRO TOOL · FOR QUILL",
+    "Micro tool · for Quill",
     "$19 / month",
     "/ month",
     "Agent Quill · Content agent →",
@@ -558,7 +558,7 @@ export const computedText = {
     "Blueprint ▦ Meeting notes and follow-ups blueprint The complete system for meeting notes and follow-ups: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-tl-agent-monitor": [
-    "MICRO TOOL · FOR SAGE",
+    "Micro tool · for Sage",
     "$49 / month",
     "/ month",
     "Agent Sage · Safety agent →",
@@ -571,7 +571,7 @@ export const computedText = {
     "Claude skill ✦ Agent safety checklist Runs an agent through privacy, safety and human-in-the-loop checks and writes a plain report. $59 +"
   ],
   "item-sk-video-script": [
-    "CLAUDE SKILL · FOR QUILL",
+    "Claude skill · for Quill",
     "$59 one-time",
     "Agent Quill · Content agent →",
     "Use case We need video but have no editor →",
@@ -582,7 +582,7 @@ export const computedText = {
     "Blueprint ▦ Client progress updates blueprint The complete system for client progress updates: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-au-clip-cutter": [
-    "AUTOMATION PACK · FOR REEL",
+    "Automation pack · for Reel",
     "$249 one-time",
     "Agent Reel · Video agent →",
     "Use case We need video but have no editor →",
@@ -593,7 +593,7 @@ export const computedText = {
     "Micro tool ◧ Caption studio Brand-styled captions and every aspect ratio from one upload. $25 / month +"
   ],
   "item-tl-caption-studio": [
-    "MICRO TOOL · FOR REEL",
+    "Micro tool · for Reel",
     "$25 / month",
     "/ month",
     "Agent Reel · Video agent →",
@@ -605,7 +605,7 @@ export const computedText = {
     "Automation pack ⇄ Long-to-short clip cutter Drops long recordings into a folder and gets back short clips ready for review. $249 +"
   ],
   "item-tp-content-calendar": [
-    "TEMPLATE · FOR QUILL",
+    "Template · for Quill",
     "$29 one-time",
     "Agent Quill · Content agent →",
     "Use case We never have time to post →",
@@ -616,7 +616,7 @@ export const computedText = {
     "Blueprint ▦ Meeting notes and follow-ups blueprint The complete system for meeting notes and follow-ups: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-tp-onboarding-portal": [
-    "TEMPLATE · FOR RELAY",
+    "Template · for Relay",
     "$99 one-time",
     "Agent Relay · Outreach agent →",
     "Use case Onboarding a client takes days →",
@@ -627,7 +627,7 @@ export const computedText = {
     "Blueprint ▦ Automated phone calls blueprint The complete system for automated phone calls: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-tp-design-system": [
-    "TEMPLATE · FOR BEACON",
+    "Template · for Beacon",
     "$99 one-time",
     "Agent Beacon · Search agent →",
     "Use case Our website is hard to use →",
@@ -639,7 +639,7 @@ export const computedText = {
     "Blueprint ▦ Brand consistency kit blueprint The complete system for brand consistency kit: agents, workflows, approval steps and setup packs. $1,500 +"
   ],
   "item-tp-ai-policy": [
-    "TEMPLATE · FOR SAGE",
+    "Template · for Sage",
     "$49 one-time",
     "Agent Sage · Safety agent →",
     "Use case We do not know if our AI is safe to use →",

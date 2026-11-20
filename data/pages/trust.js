@@ -12,7 +12,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "TRUST AND DATA"
+          "text": "Trust and data"
         },
         {
           "tag": "h1",
@@ -41,7 +41,7 @@ export const page = {
       "blocks": [
         {
           "tag": "h4",
-          "text": "WHERE IT RUNS"
+          "text": "Where it runs"
         },
         {
           "tag": "p",
@@ -49,7 +49,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "WHICH MODELS"
+          "text": "Which models"
         },
         {
           "tag": "p",
@@ -57,7 +57,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "TRAINING ON YOUR DATA"
+          "text": "Training on your data"
         },
         {
           "tag": "p",
@@ -65,7 +65,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "HUMAN APPROVAL"
+          "text": "Human approval"
         },
         {
           "tag": "p",
@@ -73,7 +73,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "WHAT SAGE CHECKS"
+          "text": "What Sage checks"
         },
         {
           "tag": "p",
@@ -81,7 +81,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "ACCESS"
+          "text": "Access"
         },
         {
           "tag": "p",
@@ -94,7 +94,7 @@ export const page = {
       "blocks": [
         {
           "tag": "h4",
-          "text": "COMPLIANCE STATUS"
+          "text": "Compliance status"
         },
         {
           "tag": "p",
@@ -102,7 +102,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "SUBPROCESSORS"
+          "text": "Subprocessors"
         },
         {
           "tag": "p",
@@ -115,7 +115,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "SAFE AI, BUILT IN"
+          "text": "Safe AI, built in"
         },
         {
           "tag": "h2",

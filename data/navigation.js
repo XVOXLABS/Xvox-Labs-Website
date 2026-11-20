@@ -215,7 +215,7 @@ export const solutionsMenu = [
 export const servicesMenu = [
   {
     "tag": "a.mg-h",
-    "text": "DESIGN & PRODUCT",
+    "text": "Design & Product",
     "href": "/services/design",
     "prototypeHref": "#svc-design"
   },
@@ -269,7 +269,7 @@ export const servicesMenu = [
   },
   {
     "tag": "a.mg-h",
-    "text": "AI AUTOMATION",
+    "text": "AI Automation",
     "href": "/services/ai",
     "prototypeHref": "#svc-ai"
   },
@@ -299,7 +299,7 @@ export const servicesMenu = [
   },
   {
     "tag": "a.mg-h",
-    "text": "BRAND & MARKETING",
+    "text": "Brand & Marketing",
     "href": "/services/brand",
     "prototypeHref": "#svc-brand"
   },
@@ -341,7 +341,7 @@ export const servicesMenu = [
   },
   {
     "tag": "a.mg-h",
-    "text": "SAFE AI",
+    "text": "Safe AI",
     "href": "/services/safe",
     "prototypeHref": "#svc-safe"
   },
@@ -387,7 +387,7 @@ export const servicesMenu = [
 export const mobileMenu = [
   {
     "tag": "h5",
-    "text": "SOLUTIONS"
+    "text": "Solutions"
   },
   {
     "tag": "a",
@@ -427,7 +427,7 @@ export const mobileMenu = [
   },
   {
     "tag": "h5",
-    "text": "SERVICES"
+    "text": "Services"
   },
   {
     "tag": "a",
@@ -468,7 +468,7 @@ export const mobileMenu = [
   },
   {
     "tag": "h5",
-    "text": "EXPLORE"
+    "text": "Explore"
   },
   {
     "tag": "a",
@@ -502,7 +502,7 @@ export const mobileMenu = [
   },
   {
     "tag": "h5",
-    "text": "GET STARTED"
+    "text": "Get started"
   },
   {
     "tag": "a",
@@ -547,7 +547,7 @@ export const footer = [
   },
   {
     "tag": "h5",
-    "text": "SOLUTIONS"
+    "text": "Solutions"
   },
   {
     "tag": "a",
@@ -581,7 +581,7 @@ export const footer = [
   },
   {
     "tag": "h5",
-    "text": "SERVICES"
+    "text": "Services"
   },
   {
     "tag": "a",
@@ -616,7 +616,7 @@ export const footer = [
   },
   {
     "tag": "h5",
-    "text": "EXPLORE"
+    "text": "Explore"
   },
   {
     "tag": "a",
@@ -650,7 +650,7 @@ export const footer = [
   },
   {
     "tag": "h5",
-    "text": "COMPANY"
+    "text": "Company"
   },
   {
     "tag": "a",

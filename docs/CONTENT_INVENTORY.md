@@ -171,7 +171,7 @@ Links marked pending in `data/`:
 | `data/navigation.js` | Video, film and production → Xvox Studio ↗ | external Xvox Studio URL not available yet: link stays on the internal /studio page |
 | `data/pages/home.js` | Xvox Studio ↗ | external Xvox Studio URL not available yet: link stays on the internal /studio page |
 | `data/pages/service-pillar.js` | Xvox Studio ↗ | external Xvox Studio URL not available yet: link stays on the internal /studio page |
-| `data/pages/services.js` | SISTER COMPANY Video, film and production → Xvox Studio ↗ AI-native film-making, VFX, sound, micro dramas and launch videos live on their own site. ↗ | external Xvox Studio URL not available yet: link stays on the internal /studio page |
+| `data/pages/services.js` | Sister company Video, film and production → Xvox Studio ↗ AI-native film-making, VFX, sound, micro dramas and launch videos live on their own site. ↗ | external Xvox Studio URL not available yet: link stays on the internal /studio page |
 
 ## Needs a decision
 

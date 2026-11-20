@@ -43,7 +43,7 @@ export const template = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "SEE THE TEAM AT WORK"
+          "text": "See the team at work"
         },
         {
           "tag": "button.btn",
@@ -59,15 +59,15 @@ export const template = {
         },
         {
           "tag": "span.olb",
-          "text": "TRIGGER"
+          "text": "Trigger"
         },
         {
           "tag": "span.olb",
-          "text": "CONTEXT IT READS"
+          "text": "Context it reads"
         },
         {
           "tag": "span.olb",
-          "text": "ORCHESTRATOR"
+          "text": "Orchestrator"
         },
         {
           "tag": "b",
@@ -75,7 +75,7 @@ export const template = {
         },
         {
           "tag": "span.olb",
-          "text": "SAFETY CHECKS · SAGE"
+          "text": "Safety checks · Sage"
         },
         {
           "tag": "button.btn",
@@ -91,15 +91,15 @@ export const template = {
         },
         {
           "tag": "span.olb",
-          "text": "OUTCOME"
+          "text": "Outcome"
         },
         {
           "tag": "span.olb",
-          "text": "SHARED MEMORY"
+          "text": "Shared memory"
         },
         {
           "tag": "span.olb",
-          "text": "RUN LOG"
+          "text": "Run log"
         },
         {
           "tag": "li.muted",
@@ -118,7 +118,7 @@ export const template = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "WAYS TO BUY"
+          "text": "Ways to buy"
         },
         {
           "tag": "h2.big",
@@ -126,7 +126,7 @@ export const template = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 0"
+          "text": "Step 0"
         },
         {
           "tag": "h4",
@@ -146,7 +146,7 @@ export const template = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 1"
+          "text": "Step 1"
         },
         {
           "tag": "h4",
@@ -169,7 +169,7 @@ export const template = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 2"
+          "text": "Step 2"
         },
         {
           "tag": "h4",
@@ -191,7 +191,7 @@ export const template = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 3"
+          "text": "Step 3"
         },
         {
           "tag": "h4",
@@ -214,7 +214,7 @@ export const template = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 4"
+          "text": "Step 4"
         },
         {
           "tag": "h4",
@@ -241,7 +241,7 @@ export const template = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 5"
+          "text": "Step 5"
         },
         {
           "tag": "h4",
@@ -302,33 +302,29 @@ export const template = {
 
 export const computedText = {
   "dept-growth": [
-    "SALES & MARKETING",
     "Social content, search visibility, lead follow-up and proposals.. Pick a solution to see how it works, how long it takes and how to buy it.",
-    "SALES & MARKETING Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
-    "SALES & MARKETING SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
-    "SALES & MARKETING Inbound lead response Reply to every new lead within minutes, day or night. Live in 2–4 weeks →",
-    "SALES & MARKETING Lead research and outreach Find companies like your best clients and start the conversation. Live in 3–4 weeks →",
-    "SALES & MARKETING Short-form video Turn long videos into ready-to-post clips with captions. Live in 2–4 weeks →",
-    "SALES & MARKETING Proposals and quotes Turn a sales call into a ready-to-send proposal the same day. Live in 2–4 weeks →",
+    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
+    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
+    "Sales & Marketing Inbound lead response Reply to every new lead within minutes, day or night. Live in 2–4 weeks →",
+    "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. Live in 3–4 weeks →",
+    "Sales & Marketing Short-form video Turn long videos into ready-to-post clips with captions. Live in 2–4 weeks →",
+    "Sales & Marketing Proposals and quotes Turn a sales call into a ready-to-send proposal the same day. Live in 2–4 weeks →",
     "Sales & Marketing, step by step.",
     "Monday 8:00, weekly content run",
     "Brand voice guide",
     "Last week’s results",
     "Find topics and trends in parallel, then draft the week",
-    "BEACON",
     "Finds what buyers search for and ask AI",
     "Search Console",
     "AI answer tracker",
-    "SCOUT",
     "Collects competitor and trend notes",
     "Web search",
-    "QUILL",
     "Drafts five posts and one blog",
     "Claims have sources",
     "Matches brand voice",
     "No copyrighted images",
     "Right sizes for each channel",
-    "HUMAN IN THE LOOP · MARKETING LEAD",
+    "Human in the loop · Marketing lead",
     "Approve this week’s posts?",
     "Posts scheduled for the week, results tracked",
     "Every agent reads and writes here: Topic list · Trend notes · Week of drafts",
@@ -339,19 +335,16 @@ export const computedText = {
     "Design Operations →"
   ],
   "dept-cx": [
-    "CUSTOMER EXPERIENCE",
     "Customer support, onboarding and progress updates.. Pick a solution to see how it works, how long it takes and how to buy it.",
-    "CUSTOMER EXPERIENCE AI chat and voice support Answer common questions instantly. A person handles the rest. Live in 4–6 weeks →",
-    "CUSTOMER EXPERIENCE Client onboarding Collect forms, contracts and setup details automatically. Live in 3–5 weeks →",
-    "CUSTOMER EXPERIENCE Client progress updates Send clients a clear weekly update without writing it yourself. Live in 2–3 weeks →",
+    "Customer Experience AI chat and voice support Answer common questions instantly. A person handles the rest. Live in 4–6 weeks →",
+    "Customer Experience Client onboarding Collect forms, contracts and setup details automatically. Live in 3–5 weeks →",
+    "Customer Experience Client progress updates Send clients a clear weekly update without writing it yourself. Live in 2–3 weeks →",
     "Customer Experience, step by step.",
     "A customer asks “Where is my order?”",
     "Help centre",
     "Order system",
     "Find the answer, check the order, reply",
-    "BEACON",
     "Finds the answer in your help centre",
-    "RELAY",
     "Checks the order and drafts a reply",
     "Shopify",
     "Intercom",
@@ -359,7 +352,7 @@ export const computedText = {
     "No other customer’s data",
     "Refund rules followed",
     "Clear, polite tone",
-    "HUMAN IN THE LOOP · SUPPORT AGENT",
+    "Human in the loop · Support agent",
     "Approve this reply?",
     "Answered in 40 seconds, ticket logged",
     "Every agent reads and writes here: Matching article · Draft reply",
@@ -370,20 +363,17 @@ export const computedText = {
     "Design Operations →"
   ],
   "dept-bizops": [
-    "FINANCE & REPORTING",
     "Weekly reporting and invoice follow-up.. Pick a solution to see how it works, how long it takes and how to buy it.",
-    "FINANCE & REPORTING Reporting and dashboards Get your key numbers every Monday, pulled from your tools. Live in 3–4 weeks →",
-    "FINANCE & REPORTING Invoice reminders Follow up on unpaid invoices automatically and politely. Live in 2–3 weeks →",
+    "Finance & Reporting Reporting and dashboards Get your key numbers every Monday, pulled from your tools. Live in 3–4 weeks →",
+    "Finance & Reporting Invoice reminders Follow up on unpaid invoices automatically and politely. Live in 2–3 weeks →",
     "Finance & Reporting, step by step.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
-    "SCOUT",
-    "QUILL",
     "Facts match sources",
     "Follows your rules",
     "No personal data exposed",
     "Safe to send or publish",
-    "HUMAN IN THE LOOP · YOU",
+    "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1 · Results of step 2",
     "Reporting and dashboards · typically live in 3–4 weeks",
@@ -393,21 +383,19 @@ export const computedText = {
     "Design Operations →"
   ],
   "dept-admin": [
-    "OPERATIONS & ADMIN",
     "Data entry, tool integrations, phone calls and meeting notes.. Pick a solution to see how it works, how long it takes and how to buy it.",
-    "OPERATIONS & ADMIN Admin and data entry Stop copying data between tools and chasing routine tasks. Live in 3–5 weeks →",
-    "OPERATIONS & ADMIN Tool integrations Connect your CRM, billing and project tools so data stays in sync. Live in 3–5 weeks →",
-    "OPERATIONS & ADMIN Automated phone calls Call customers automatically about bookings, delays and renewals. Live in 4–6 weeks →",
-    "OPERATIONS & ADMIN Meeting notes and follow-ups Get notes, action items and follow-ups minutes after every meeting. Live in 2–3 weeks →",
+    "Operations & Admin Admin and data entry Stop copying data between tools and chasing routine tasks. Live in 3–5 weeks →",
+    "Operations & Admin Tool integrations Connect your CRM, billing and project tools so data stays in sync. Live in 3–5 weeks →",
+    "Operations & Admin Automated phone calls Call customers automatically about bookings, delays and renewals. Live in 4–6 weeks →",
+    "Operations & Admin Meeting notes and follow-ups Get notes, action items and follow-ups minutes after every meeting. Live in 2–3 weeks →",
     "Operations & Admin, step by step.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
-    "RELAY",
     "Facts match sources",
     "Follows your rules",
     "No personal data exposed",
     "Safe to send or publish",
-    "HUMAN IN THE LOOP · YOU",
+    "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1",
     "Admin and data entry · typically live in 3–5 weeks",
@@ -417,21 +405,18 @@ export const computedText = {
     "Design Operations →"
   ],
   "dept-designops": [
-    "DESIGN OPERATIONS",
     "Request intake, asset resizing and design QA.. Pick a solution to see how it works, how long it takes and how to buy it.",
-    "DESIGN OPERATIONS Design request intake Every design request arrives with a brief, assets and a deadline. Live in 2–4 weeks →",
-    "DESIGN OPERATIONS Asset resizing and variants Create every size and format from one approved design. Live in 2–4 weeks →",
-    "DESIGN OPERATIONS Design QA and handoff Check specs and accessibility before designs reach developers. Live in 3–4 weeks →",
+    "Design Operations Design request intake Every design request arrives with a brief, assets and a deadline. Live in 2–4 weeks →",
+    "Design Operations Asset resizing and variants Create every size and format from one approved design. Live in 2–4 weeks →",
+    "Design Operations Design QA and handoff Check specs and accessibility before designs reach developers. Live in 3–4 weeks →",
     "Design Operations, step by step.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
-    "SCOUT",
-    "QUILL",
     "Facts match sources",
     "Follows your rules",
     "No personal data exposed",
     "Safe to send or publish",
-    "HUMAN IN THE LOOP · YOU",
+    "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1 · Results of step 2",
     "Design request intake · typically live in 2–4 weeks",

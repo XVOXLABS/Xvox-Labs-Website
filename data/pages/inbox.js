@@ -12,7 +12,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "TEAM ONLY"
+          "text": "Team only"
         },
         {
           "tag": "h1",

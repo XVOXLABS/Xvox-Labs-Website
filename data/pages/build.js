@@ -12,7 +12,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "MISSION BOARD"
+          "text": "Mission board"
         },
         {
           "tag": "h1",
@@ -29,7 +29,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "MISSION BOARD"
+          "text": "Mission board"
         },
         {
           "tag": "h2.big",
@@ -150,7 +150,7 @@ export const page = {
         },
         {
           "tag": "h5",
-          "text": "YOUR AGENTS · DRAG ONTO A JOB, OR TAP ONE THEN TAP A JOB"
+          "text": "Your agents · drag onto a job, or tap one then tap a job"
         },
         {
           "tag": "button.tag2",
@@ -190,7 +190,7 @@ export const page = {
         },
         {
           "tag": "span.eyebrow",
-          "text": "LIVE BLUEPRINT"
+          "text": "Live blueprint"
         },
         {
           "tag": "h3",
@@ -218,7 +218,7 @@ export const page = {
         },
         {
           "tag": "h5",
-          "text": "SYSTEMS IT CONNECTS"
+          "text": "Systems it connects"
         },
         {
           "tag": "span.chip",
@@ -251,7 +251,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "OR START COMPLETE"
+          "text": "Or start complete"
         },
         {
           "tag": "h2.big",

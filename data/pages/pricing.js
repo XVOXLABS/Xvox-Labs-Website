@@ -12,7 +12,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "PRICING"
+          "text": "Pricing"
         },
         {
           "tag": "h1",
@@ -39,7 +39,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.ln",
-          "text": "STEP 0"
+          "text": "Step 0"
         },
         {
           "tag": "h4",
@@ -62,7 +62,7 @@ export const page = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 1"
+          "text": "Step 1"
         },
         {
           "tag": "h4",
@@ -87,7 +87,7 @@ export const page = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 2"
+          "text": "Step 2"
         },
         {
           "tag": "h4",
@@ -112,7 +112,7 @@ export const page = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 3"
+          "text": "Step 3"
         },
         {
           "tag": "h4",
@@ -137,7 +137,7 @@ export const page = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 4"
+          "text": "Step 4"
         },
         {
           "tag": "h4",
@@ -166,7 +166,7 @@ export const page = {
         },
         {
           "tag": "span.ln",
-          "text": "STEP 5"
+          "text": "Step 5"
         },
         {
           "tag": "h4",
@@ -206,7 +206,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "COMPARE"
+          "text": "Compare"
         },
         {
           "tag": "h2.big",
@@ -383,7 +383,8 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "SAFE AI REVIEW"
+          "text": "Safe AI Review",
+          "fromData": true
         },
         {
           "tag": "h2.big",
@@ -408,7 +409,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "MARKETPLACE"
+          "text": "Marketplace"
         },
         {
           "tag": "h2.big",

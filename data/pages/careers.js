@@ -12,7 +12,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "CAREERS"
+          "text": "Careers"
         },
         {
           "tag": "h1",

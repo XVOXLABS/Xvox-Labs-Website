@@ -12,7 +12,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "SOLUTIONS"
+          "text": "Solutions"
         },
         {
           "tag": "h1",
@@ -124,7 +124,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "ALL SOLUTIONS"
+          "text": "All solutions"
         },
         {
           "tag": "h2.big",
@@ -161,7 +161,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "SALES & MARKETING Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
+          "text": "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
           "href": "/solutions/consistent-posting",
           "prototypeHref": "#solution-consistent-posting"
         },
@@ -177,7 +177,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "SALES & MARKETING SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
+          "text": "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
           "href": "/solutions/found-online",
           "prototypeHref": "#solution-found-online"
         },
@@ -193,7 +193,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "SALES & MARKETING Inbound lead response Reply to every new lead within minutes, day or night. Live in 2–4 weeks →",
+          "text": "Sales & Marketing Inbound lead response Reply to every new lead within minutes, day or night. Live in 2–4 weeks →",
           "href": "/solutions/leads-go-cold",
           "prototypeHref": "#solution-leads-go-cold"
         },
@@ -209,7 +209,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "SALES & MARKETING Lead research and outreach Find companies like your best clients and start the conversation. Live in 3–4 weeks →",
+          "text": "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. Live in 3–4 weeks →",
           "href": "/solutions/prospecting",
           "prototypeHref": "#solution-prospecting"
         },
@@ -225,7 +225,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "OPERATIONS & ADMIN Admin and data entry Stop copying data between tools and chasing routine tasks. Live in 3–5 weeks →",
+          "text": "Operations & Admin Admin and data entry Stop copying data between tools and chasing routine tasks. Live in 3–5 weeks →",
           "href": "/solutions/admin-overload",
           "prototypeHref": "#solution-admin-overload"
         },
@@ -241,7 +241,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "OPERATIONS & ADMIN Tool integrations Connect your CRM, billing and project tools so data stays in sync. Live in 3–5 weeks →",
+          "text": "Operations & Admin Tool integrations Connect your CRM, billing and project tools so data stays in sync. Live in 3–5 weeks →",
           "href": "/solutions/tools-dont-talk",
           "prototypeHref": "#solution-tools-dont-talk"
         },
@@ -257,7 +257,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "CUSTOMER EXPERIENCE AI chat and voice support Answer common questions instantly. A person handles the rest. Live in 4–6 weeks →",
+          "text": "Customer Experience AI chat and voice support Answer common questions instantly. A person handles the rest. Live in 4–6 weeks →",
           "href": "/solutions/slow-replies",
           "prototypeHref": "#solution-slow-replies"
         },
@@ -273,7 +273,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "CUSTOMER EXPERIENCE Client onboarding Collect forms, contracts and setup details automatically. Live in 3–5 weeks →",
+          "text": "Customer Experience Client onboarding Collect forms, contracts and setup details automatically. Live in 3–5 weeks →",
           "href": "/solutions/manual-onboarding",
           "prototypeHref": "#solution-manual-onboarding"
         },
@@ -289,7 +289,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "DESIGN & BRAND Website redesign A clear, fast website structured around what visitors need. Live in 4–6 weeks →",
+          "text": "Design & Brand Website redesign A clear, fast website structured around what visitors need. Live in 4–6 weeks →",
           "href": "/solutions/confusing-site",
           "prototypeHref": "#solution-confusing-site"
         },
@@ -305,7 +305,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "DESIGN & BRAND Brand consistency kit Templates and rules that keep every channel on brand. Live in 4–6 weeks →",
+          "text": "Design & Brand Brand consistency kit Templates and rules that keep every channel on brand. Live in 4–6 weeks →",
           "href": "/solutions/inconsistent-brand",
           "prototypeHref": "#solution-inconsistent-brand"
         },
@@ -321,7 +321,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "SALES & MARKETING Short-form video Turn long videos into ready-to-post clips with captions. Live in 2–4 weeks →",
+          "text": "Sales & Marketing Short-form video Turn long videos into ready-to-post clips with captions. Live in 2–4 weeks →",
           "href": "/solutions/video-content",
           "prototypeHref": "#solution-video-content"
         },
@@ -337,7 +337,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "SAFE AI AI safety check Check what your AI can see, say and do before you launch. Live in 4–6 weeks →",
+          "text": "Safe AI AI safety check Check what your AI can see, say and do before you launch. Live in 4–6 weeks →",
           "href": "/solutions/is-it-safe",
           "prototypeHref": "#solution-is-it-safe"
         },
@@ -353,7 +353,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "SAFE AI AI agent review An expert review of an agent you or a vendor built. Live in 4–6 weeks →",
+          "text": "Safe AI AI agent review An expert review of an agent you or a vendor built. Live in 4–6 weeks →",
           "href": "/solutions/review-my-agent",
           "prototypeHref": "#solution-review-my-agent"
         },
@@ -369,7 +369,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "CUSTOMER EXPERIENCE Client progress updates Send clients a clear weekly update without writing it yourself. Live in 2–3 weeks →",
+          "text": "Customer Experience Client progress updates Send clients a clear weekly update without writing it yourself. Live in 2–3 weeks →",
           "href": "/solutions/client-updates",
           "prototypeHref": "#solution-client-updates"
         },
@@ -385,7 +385,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "SALES & MARKETING Proposals and quotes Turn a sales call into a ready-to-send proposal the same day. Live in 2–4 weeks →",
+          "text": "Sales & Marketing Proposals and quotes Turn a sales call into a ready-to-send proposal the same day. Live in 2–4 weeks →",
           "href": "/solutions/proposals",
           "prototypeHref": "#solution-proposals"
         },
@@ -401,7 +401,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "FINANCE & REPORTING Reporting and dashboards Get your key numbers every Monday, pulled from your tools. Live in 3–4 weeks →",
+          "text": "Finance & Reporting Reporting and dashboards Get your key numbers every Monday, pulled from your tools. Live in 3–4 weeks →",
           "href": "/solutions/reporting",
           "prototypeHref": "#solution-reporting"
         },
@@ -417,7 +417,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "FINANCE & REPORTING Invoice reminders Follow up on unpaid invoices automatically and politely. Live in 2–3 weeks →",
+          "text": "Finance & Reporting Invoice reminders Follow up on unpaid invoices automatically and politely. Live in 2–3 weeks →",
           "href": "/solutions/invoice-chase",
           "prototypeHref": "#solution-invoice-chase"
         },
@@ -433,7 +433,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "OPERATIONS & ADMIN Automated phone calls Call customers automatically about bookings, delays and renewals. Live in 4–6 weeks →",
+          "text": "Operations & Admin Automated phone calls Call customers automatically about bookings, delays and renewals. Live in 4–6 weeks →",
           "href": "/solutions/call-assistant",
           "prototypeHref": "#solution-call-assistant"
         },
@@ -449,7 +449,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "OPERATIONS & ADMIN Meeting notes and follow-ups Get notes, action items and follow-ups minutes after every meeting. Live in 2–3 weeks →",
+          "text": "Operations & Admin Meeting notes and follow-ups Get notes, action items and follow-ups minutes after every meeting. Live in 2–3 weeks →",
           "href": "/solutions/meeting-notes",
           "prototypeHref": "#solution-meeting-notes"
         },
@@ -465,7 +465,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "DESIGN OPERATIONS Design request intake Every design request arrives with a brief, assets and a deadline. Live in 2–4 weeks →",
+          "text": "Design Operations Design request intake Every design request arrives with a brief, assets and a deadline. Live in 2–4 weeks →",
           "href": "/solutions/design-intake",
           "prototypeHref": "#solution-design-intake"
         },
@@ -481,7 +481,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "DESIGN OPERATIONS Asset resizing and variants Create every size and format from one approved design. Live in 2–4 weeks →",
+          "text": "Design Operations Asset resizing and variants Create every size and format from one approved design. Live in 2–4 weeks →",
           "href": "/solutions/asset-variants",
           "prototypeHref": "#solution-asset-variants"
         },
@@ -497,7 +497,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "DESIGN OPERATIONS Design QA and handoff Check specs and accessibility before designs reach developers. Live in 3–4 weeks →",
+          "text": "Design Operations Design QA and handoff Check specs and accessibility before designs reach developers. Live in 3–4 weeks →",
           "href": "/solutions/design-qa",
           "prototypeHref": "#solution-design-qa"
         },

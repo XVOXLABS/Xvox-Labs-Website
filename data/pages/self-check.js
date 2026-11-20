@@ -37,7 +37,7 @@ export const page = {
         },
         {
           "tag": "span.eyebrow",
-          "text": "SAFE AI SELF-CHECK"
+          "text": "Safe AI self-check"
         },
         {
           "tag": "h1",

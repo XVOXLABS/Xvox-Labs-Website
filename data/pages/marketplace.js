@@ -12,7 +12,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "MARKETPLACE"
+          "text": "Marketplace"
         },
         {
           "tag": "h1",
@@ -39,7 +39,7 @@ export const page = {
         },
         {
           "tag": "h5",
-          "text": "TYPE"
+          "text": "Type"
         },
         {
           "tag": "button",
@@ -67,7 +67,7 @@ export const page = {
         },
         {
           "tag": "h5",
-          "text": "AGENT"
+          "text": "Agent"
         },
         {
           "tag": "button",
@@ -99,7 +99,7 @@ export const page = {
         },
         {
           "tag": "h5",
-          "text": "USE CASE CATEGORY"
+          "text": "Use case category"
         },
         {
           "tag": "button",

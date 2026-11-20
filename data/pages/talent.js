@@ -12,7 +12,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "TALENT MARKETPLACE · COMING LATER"
+          "text": "Talent marketplace · coming later"
         },
         {
           "tag": "h1",
@@ -29,7 +29,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.cat",
-          "text": "FOR CREATORS"
+          "text": "For creators"
         },
         {
           "tag": "h3",
@@ -37,7 +37,7 @@ export const page = {
         },
         {
           "tag": "span.cat",
-          "text": "FOR AGENTS"
+          "text": "For agents"
         },
         {
           "tag": "h3",

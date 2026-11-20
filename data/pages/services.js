@@ -12,7 +12,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "SERVICES"
+          "text": "Services"
         },
         {
           "tag": "h1",
@@ -108,7 +108,7 @@ export const page = {
       "blocks": [
         {
           "tag": "a.studio",
-          "text": "SISTER COMPANY Video, film and production → Xvox Studio ↗ AI-native film-making, VFX, sound, micro dramas and launch videos live on their own site. ↗",
+          "text": "Sister company Video, film and production → Xvox Studio ↗ AI-native film-making, VFX, sound, micro dramas and launch videos live on their own site. ↗",
           "href": "/studio",
           "prototypeHref": "#studio",
           "pending": "external Xvox Studio URL not available yet: link stays on the internal /studio page"
@@ -128,7 +128,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "PACKAGED AUTOMATION"
+          "text": "Packaged automation"
         },
         {
           "tag": "h2.big",

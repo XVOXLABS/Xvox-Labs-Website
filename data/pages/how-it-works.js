@@ -12,7 +12,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "HOW IT WORKS"
+          "text": "How it works"
         },
         {
           "tag": "h1",
@@ -39,7 +39,7 @@ export const page = {
       "blocks": [
         {
           "tag": "h4",
-          "text": "1 · PROBLEM"
+          "text": "1 · Problem"
         },
         {
           "tag": "p",
@@ -47,7 +47,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "2 · AGENT TEAM"
+          "text": "2 · Agent team"
         },
         {
           "tag": "p",
@@ -55,7 +55,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "3 · SAGE CHECKS"
+          "text": "3 · Sage checks"
         },
         {
           "tag": "p",
@@ -63,7 +63,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "4 · YOU APPROVE"
+          "text": "4 · You approve"
         },
         {
           "tag": "p",
@@ -76,7 +76,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "SEE IT RUN"
+          "text": "See it run"
         },
         {
           "tag": "h2.big",
@@ -116,7 +116,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "TRIGGER"
+          "text": "Trigger"
         },
         {
           "tag": "b",
@@ -124,7 +124,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "CONTEXT IT READS"
+          "text": "Context it reads"
         },
         {
           "tag": "span.tool",
@@ -136,7 +136,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "ORCHESTRATOR"
+          "text": "Orchestrator"
         },
         {
           "tag": "b",
@@ -148,7 +148,8 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "SCOUT"
+          "text": "Scout",
+          "fromData": true
         },
         {
           "tag": "b",
@@ -165,7 +166,8 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "RELAY"
+          "text": "Relay",
+          "fromData": true
         },
         {
           "tag": "b",
@@ -182,7 +184,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "SAFETY CHECKS · SAGE"
+          "text": "Safety checks · Sage"
         },
         {
           "tag": "li",
@@ -202,7 +204,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "HUMAN IN THE LOOP · SALES LEAD"
+          "text": "Human in the loop · Sales lead"
         },
         {
           "tag": "b",
@@ -222,7 +224,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "OUTCOME"
+          "text": "Outcome"
         },
         {
           "tag": "b",
@@ -230,7 +232,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "SHARED MEMORY"
+          "text": "Shared memory"
         },
         {
           "tag": "span",
@@ -238,7 +240,7 @@ export const page = {
         },
         {
           "tag": "span.olb",
-          "text": "RUN LOG"
+          "text": "Run log"
         },
         {
           "tag": "li.muted",
@@ -262,7 +264,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "MEET SOME OF THE TEAM"
+          "text": "Meet some of the team"
         },
         {
           "tag": "h2.big",
@@ -280,7 +282,7 @@ export const page = {
         },
         {
           "tag": "a.acard",
-          "text": "RESEARCH AGENT Scout Weekly brief by Monday 9am →",
+          "text": "Research agent Scout Weekly brief by Monday 9am →",
           "href": "/how-it-works/agents/scout",
           "prototypeHref": "#agent-scout"
         },
@@ -291,7 +293,7 @@ export const page = {
         },
         {
           "tag": "a.acard",
-          "text": "CONTENT AGENT Quill A week of posts, drafted →",
+          "text": "Content agent Quill A week of posts, drafted →",
           "href": "/how-it-works/agents/quill",
           "prototypeHref": "#agent-quill"
         },
@@ -302,7 +304,7 @@ export const page = {
         },
         {
           "tag": "a.acard",
-          "text": "SEARCH AGENT Beacon Found in search and AI answers →",
+          "text": "Search agent Beacon Found in search and AI answers →",
           "href": "/how-it-works/agents/beacon",
           "prototypeHref": "#agent-beacon"
         },
@@ -313,7 +315,7 @@ export const page = {
         },
         {
           "tag": "a.acard",
-          "text": "OUTREACH AGENT Relay Replies to leads in minutes →",
+          "text": "Outreach agent Relay Replies to leads in minutes →",
           "href": "/how-it-works/agents/relay",
           "prototypeHref": "#agent-relay"
         },
@@ -324,7 +326,7 @@ export const page = {
         },
         {
           "tag": "a.acard",
-          "text": "SAFETY AGENT Sage Checks every output first →",
+          "text": "Safety agent Sage Checks every output first →",
           "href": "/how-it-works/agents/sage",
           "prototypeHref": "#agent-sage"
         },
@@ -335,7 +337,7 @@ export const page = {
         },
         {
           "tag": "a.acard",
-          "text": "VIDEO AGENT Reel Long videos into short clips →",
+          "text": "Video agent Reel Long videos into short clips →",
           "href": "/how-it-works/agents/reel",
           "prototypeHref": "#agent-reel"
         },
@@ -346,7 +348,7 @@ export const page = {
         },
         {
           "tag": "a.acard",
-          "text": "YOUR GUIDE Vox Maps your problem to the right team in about two minutes. →",
+          "text": "Your guide Vox Maps your problem to the right team in about two minutes. →",
           "href": "#vox",
           "prototypeHref": "#guide"
         },
@@ -398,7 +400,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "SAFE AI, BUILT IN"
+          "text": "Safe AI, built in"
         },
         {
           "tag": "h2",
@@ -447,7 +449,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "DELIVERY"
+          "text": "Delivery"
         },
         {
           "tag": "h2.big",
@@ -548,7 +550,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "MODEL-AGNOSTIC"
+          "text": "Model-agnostic"
         },
         {
           "tag": "h2.big",
@@ -624,7 +626,7 @@ export const page = {
       "blocks": [
         {
           "tag": "span.eyebrow",
-          "text": "MISSION BOARD"
+          "text": "Mission board"
         },
         {
           "tag": "h2.big",
@@ -745,7 +747,7 @@ export const page = {
         },
         {
           "tag": "h5",
-          "text": "YOUR AGENTS · DRAG ONTO A JOB, OR TAP ONE THEN TAP A JOB"
+          "text": "Your agents · drag onto a job, or tap one then tap a job"
         },
         {
           "tag": "button.tag2",
@@ -785,7 +787,7 @@ export const page = {
         },
         {
           "tag": "span.eyebrow",
-          "text": "LIVE BLUEPRINT"
+          "text": "Live blueprint"
         },
         {
           "tag": "h3",
@@ -813,7 +815,7 @@ export const page = {
         },
         {
           "tag": "h5",
-          "text": "SYSTEMS IT CONNECTS"
+          "text": "Systems it connects"
         },
         {
           "tag": "span.chip",
