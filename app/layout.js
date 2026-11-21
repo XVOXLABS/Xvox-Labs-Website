@@ -6,13 +6,12 @@ import Toast from "@/components/layout/Toast/Toast";
 import VoxChat from "@/components/layout/VoxChat/VoxChat";
 import "./globals.css";
 
-// Inter: used for small UI text, as in the Framer reference.
-// Switzer (primary font) is added with next/font/local once its licence is approved;
-// until then --font-sans falls back to "Helvetica Neue", Arial, sans-serif.
+// Inter: the primary font for the whole site (SIL Open Font License 1.1).
+// next/font/google self-hosts the official files at build time; no npm font package.
+// Loaded as the variable font so every weight in use (400-700) renders as a real weight.
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
 });
 
 export const metadata = {

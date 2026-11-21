@@ -94,7 +94,7 @@ export default function StyleGuidePage() {
 
       <Section aria-labelledby="sg-type">
         <h2 id="sg-type" className={styles.h}>Typography</h2>
-        <p className={styles.muted}>Sizes per breakpoint: desktop ≥ 1200px / tablet 810–1199px / phone &lt; 810px. Switzer is pending licence approval; the fallback stack is shown until then.</p>
+        <p className={styles.muted}>Sizes per breakpoint: desktop ≥ 1200px / tablet 810–1199px / phone &lt; 810px. Primary font: Inter.</p>
         <div className={styles.typeList}>
           {TYPE.map(([name, cls, sizes]) => (
             <div key={cls} className={styles.typeRow}>

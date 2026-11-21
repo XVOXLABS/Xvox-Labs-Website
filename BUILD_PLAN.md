@@ -41,7 +41,7 @@ Version: Nov 21, 2026 (rev. 5: remaining Phase 3 decisions recorded; Framer/Kavi
 | --- | --- |
 | Next.js 16.4.6, React 19.3.0, ESLint 9 | Installed; JavaScript only, `jsconfig.json` `@/*` alias; no TypeScript, Tailwind, Bootstrap or React Router |
 | `next.config.mjs` | `agentRules: false` |
-| `app/layout.js` | Geist + Geist Mono via `next/font` (will change if Switzer is approved), `lang="en"`, placeholder `metadataBase` (TODO), title template `%s \| Xvox Labs` |
+| `app/layout.js` | Inter (variable font) via `next/font/google` as the primary font, `lang="en"`, placeholder `metadataBase` (TODO), title template `%s \| Xvox Labs` |
 | `app/page.js`, `app/globals.css` | Minimal page; empty globals |
 | `data/` | **Phase 2:** all prototype content, extracted verbatim (12 content files + `data/pages/` with 20 pages and 6 page templates) |
 | `public/images/` | **Phase 2:** the 25 prototype images, byte-identical (`agents/` holds the 14 agent files) |
@@ -54,8 +54,8 @@ Values below were read from the rendered Framer site (computed styles and screen
 
 | Area | Framer reference | Prototype today | Plan |
 | --- | --- | --- | --- |
-| Primary font | **Switzer** 400 / 500 / 600 (Fontshare, ITF Free Font License) | Geist | **Approved.** Self-hosted with `next/font/local` (font files in `public/fonts/`, no npm package). Files not downloaded yet |
-| Secondary font | Inter (11px UI text) | Geist Mono | Inter via `next/font/google` (built in), only where Framer uses it |
+| Primary font | Switzer 400 / 500 / 600 (Fontshare) | Geist | **Approved (Nov 21, 2026): Inter** (SIL Open Font License 1.1) for all text, via `next/font/google` (official files, self-hosted at build time, no npm package). Switzer is not used. |
+| Secondary font | Inter (11px UI text) | Geist Mono | Inter (the same primary font); category labels keep their Inter styling |
 | Page background | `#FAFAFA` | `#FAFAFA` | Same |
 | Text | `#0F0F0F`; muted `rgba(15,15,15,.6)` | `#0F0F0F`; muted `#6E6E6E` | Framer values |
 | Accent | `#FF6038` (active and hovered nav link, hero icon tile, form labels, send button, footer wordmark) | `#EB5A2B` | **Approved:** `#FF6038` |
@@ -67,7 +67,7 @@ Values below were read from the rendered Framer site (computed styles and screen
 | Card frame pattern | White cards (radius ~20–24px) inside a light-grey frame (radius 28px, ~8–10px padding) | Same idea (`.frame`) | Framer spacing and radii |
 | Content width | ~1136px content (152–1288px at 1440) | 1100px | Framer width |
 
-**Type scale (measured; Switzer weight 400 unless noted; display sizes letter-spacing −3%)**
+**Type scale (measured on Framer, which uses Switzer; applied with Inter; weight 400 unless noted; display sizes letter-spacing −3%)**
 
 | Role | ≥ 1200px | 810–1199px | < 810px |
 | --- | --- | --- | --- |
@@ -194,7 +194,7 @@ Values below were read from the rendered Framer site (computed styles and screen
 
 **Approved (Nov 21, 2026)**
 
-- [x] Switzer font (replaces Geist)
+- [x] ~~Switzer font (replaces Geist)~~ Replaced by Inter (see below)
 - [x] Accent `#FF6038` (replaces `#EB5A2B`)
 - [x] Original XVOX logo, used exactly as selected: no substitute variant, recolouring, redrawing or recreating
 - [x] Framer footer design with original XVOX branding
@@ -206,7 +206,7 @@ Values below were read from the rendered Framer site (computed styles and screen
 
 - [x] **Logo:** Option C, the original orange striped sphere + XVOX wordmark. Preserved exactly (design and colour); no other variant, recolouring or recreation. You will place the exact image file in `public/brand/`.
 - [x] **Footer wordmark text:** `XVOX LABS`.
-- [x] **Switzer font:** approved for download, but only after you have reviewed the licence.
+- [x] **Primary font: Inter** (approved Nov 21, 2026; replaces Switzer). Official Inter under the SIL Open Font License 1.1, loaded with the existing `next/font/google` setup (no new package or dependency). Used for headings, body, navigation, buttons and components; category labels keep their Inter styling. All approved sizes, weights, spacing and breakpoints unchanged. Switzer is not downloaded or used, and its licence review is no longer needed.
 - [x] **Unverifiable motion** (button/card hovers, timings, easing): match the observed behaviour; you review it side by side with Framer before it is final.
 - [x] **"Prototype: sitemap" panel:** left out of the public website.
 
@@ -219,10 +219,10 @@ Values below were read from the rendered Framer site (computed styles and screen
 
 - [x] Section spacing 110 / 96 / 56 px (desktop / tablet / phone).
 - [x] Tablet (810–1199px) side gutter for sections and footer: 24px. The header keeps 32px.
-- [x] Lead text: main font (Switzer once approved), 20/28 desktop, 18/25.2 tablet and phone, 60% ink. The Inter lead is dropped; Inter stays for category labels.
-- [x] Desktop nav pill: tighter spacing (side padding 12, link gap 2) and an equal-column grid. It is exactly centred wherever both sides fit (from about 1440px with the current fallback font) and as close to centre as space allows on narrower desktops. No link, Cart or action is hidden or removed.
+- [x] Lead text: main font (Inter), 20/28 desktop, 18/25.2 tablet and phone, 60% ink. The Inter lead is dropped; Inter stays for category labels.
+- [x] Desktop nav pill: tighter spacing (side padding 12, link gap 2, link padding 10/7 for Inter) and an equal-column grid. It is exactly centred wherever both sides fit (from about 1440px) and as close to centre as space allows on narrower desktops. No link, Cart or action is hidden or removed.
 - [x] Desktop header right inset 64px (logo stays at 58px).
-- [x] Footer wordmark: weight 600, letter-spacing −0.06em, solid accent faded into the frame colour (110 / 76 / 36 px), bottom cropped by the frame (about 20% desktop, 25% tablet, none on phone). Final size to be re-tuned once Switzer is added.
+- [x] Footer wordmark: weight 600, letter-spacing −0.06em, solid accent faded into the frame colour (110 / 76 / 36 px), bottom cropped by the frame (about 20% desktop, 25% tablet, none on phone). Size 17.2cqw with Inter, so the letters span about 90% of the frame like Framer's.
 - [x] Tablet footer: outer padding 8 / 24 / 24, card padding 32.
 - [x] Dropdown: titles 15/15, descriptions 12/18. Dropdown triggers stay dark when open or hovered; only the chevron turns.
 - [x] Tabs: radius 9, active #111, inactive #F0F0F0, gap 6.
@@ -235,7 +235,6 @@ Values below were read from the rendered Framer site (computed styles and screen
 **Open items during Phase 3 (no assumptions)**
 
 - [ ] **Logo file:** the exact Option C image goes in `public/brand/`. Until then a logo slot is built and nothing is substituted, redrawn or recoloured.
-- [ ] **Switzer licence review:** you review the actual licence before any font file is downloaded or added. Until then the type uses the fallback stack.
 
 ### Content decisions (approved Nov 21, 2026)
 
@@ -296,7 +295,7 @@ Every link in `data/` carries both `href` (new route) and `prototypeHref` (origi
 | --- | --- | --- | --- | --- |
 | 1. Setup | Next.js running locally | Clean app | Site loads | **Done** (`9ab7d7e`) |
 | 2. References & content | Extract prototype content into `data/`; copy prototype images | `data/` files, `public/images/`, `docs/CONTENT_INVENTORY.md` | You approve decisions and URL map | **Approved** (commits `855ea2e`, `932401b`; branch `phase-2-content` pushed) |
-| 3. Design system + shared layout | Global design system, reusable UI components, desktop and mobile navbar, dropdown menus, footer, shared layout shell, motion and animation system | `globals.css`, fonts, logo, `components/ui`, `components/layout`, `components/motion`, `hooks/`, `/style-guide` | You compare `/style-guide`, header and footer with Framer at 390 / 810 / 1024 / 1200 / 1440px | **In progress** (branch `phase-3-design-system`); open: logo file, Switzer licence review |
+| 3. Design system + shared layout | Global design system, reusable UI components, desktop and mobile navbar, dropdown menus, footer, shared layout shell, motion and animation system | `globals.css`, fonts, logo, `components/ui`, `components/layout`, `components/motion`, `hooks/`, `/style-guide` | You compare `/style-guide`, header and footer with Framer at 390 / 810 / 1024 / 1200 / 1440px | **In progress** (branch `phase-3-design-system`); open: logo file |
 | 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) | — |
 | 5. Other pages | All prototype pages in the Framer style | Routes | Every link works, content matches prototype | — |
 | 6. SEO & AEO | Metadata, schema, sitemap | `sitemap.js`, `robots.js`, JSON-LD, `llms.txt` | Lighthouse + Rich Results | — |
@@ -343,7 +342,6 @@ data/                        Prototype content: agents, departments, solutions, 
 lib/                         Helpers: seo.js, schema.js, cart.js; later API clients
 public/
   brand/                     The selected original XVOX logo, unchanged
-  fonts/                     Switzer files
   images/                    Prototype images, unchanged
 ```
 

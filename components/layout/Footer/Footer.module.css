@@ -125,7 +125,7 @@
 .wordmark span {
   display: block;
   margin-bottom: calc(-0.72em * var(--crop));
-  font-size: 15.4cqw;
+  font-size: 17.2cqw;
   font-weight: 600;
   line-height: 0.72;
   letter-spacing: -0.06em;
