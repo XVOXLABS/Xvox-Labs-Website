@@ -1,4 +1,5 @@
 import ForkCards from "@/components/sections/home/ForkCards/ForkCards";
+import HeroSequence from "@/components/sections/home/HeroSequence/HeroSequence";
 import HowSteps from "@/components/sections/home/HowSteps/HowSteps";
 import ProblemTiles from "@/components/sections/home/ProblemTiles/ProblemTiles";
 import SafeAiBox from "@/components/sections/home/SafeAiBox/SafeAiBox";
@@ -12,7 +13,7 @@ import ClosingCta from "@/components/sections/shared/ClosingCta/ClosingCta";
 export default function Home() {
   return (
     <>
-      {/* 1. Hero sequence: step 3 */}
+      <HeroSequence />
       {/* 2. Puzzle stage: step 4 */}
       <ToolsStrip />
       <ProblemTiles />

@@ -399,5 +399,6 @@ export const agentPopup = {
   "hire": "Hire {name} ↗",
   "hirePath": "Hosted by us",
   "hireAbout": "{name} ({role})",
-  "fullProfile": "Full profile ↗"
+  "fullProfile": "Full profile ↗",
+  "close": "Close"
 };

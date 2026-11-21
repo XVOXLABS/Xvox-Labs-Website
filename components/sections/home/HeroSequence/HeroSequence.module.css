@@ -1,0 +1,276 @@
+/* Prototype .seq.seq2: 240vh, edge to edge; the stage sticks for one screen */
+.seq {
+  position: relative;
+  height: 240vh;
+}
+
+.stick {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Desktop header backing for the pinned stage only. At 1200px and up the shared header has no
+   background, so stage content lifting away showed around the nav pill; the prototype's nav fades
+   from the page colour (.nav: var(--bg) 55% to transparent). JavaScript keeps this band level with
+   the viewport top, so it only covers what sits under the header. */
+.headerBand {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .headerBand {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 4;
+    display: block;
+    height: calc(var(--header-offset) + var(--header-height));
+    background: linear-gradient(var(--color-bg) 55%, rgba(250, 250, 250, 0));
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  .seq:not([data-placed="true"]) .headerBand {
+    visibility: hidden;
+  }
+}
+
+/* Hero text (prototype .seq-hero); JavaScript sets top and the lift-away transform */
+.hero {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: clamp(76px, 12vh, 130px);
+  z-index: 1;
+  padding-inline: 16px;
+  text-align: center;
+  will-change: transform;
+}
+
+.title {
+  font-size: var(--fs-display);
+  line-height: var(--lh-display);
+  letter-spacing: var(--ls-display);
+}
+
+/* Inline icon tile (prototype .htile, accent colour: decision D2) */
+.tile {
+  display: inline-grid;
+  place-items: center;
+  width: 0.78em;
+  height: 0.78em;
+  margin: 0 0.04em;
+  vertical-align: -0.06em;
+  border-radius: 0.18em;
+  background: var(--color-accent);
+  box-shadow: 0 0.1em 0.25em -0.08em rgba(0, 0, 0, 0.6);
+  transform: rotate(-6deg);
+  transition: transform 0.4s;
+}
+
+.tile:hover {
+  transform: rotate(6deg) scale(1.06);
+}
+
+.tile svg {
+  width: 58%;
+}
+
+.sub {
+  max-width: 56ch;
+  margin: 20px auto 0;
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+  color: var(--color-ink-muted);
+  animation: unblur 1.2s 0.3s both;
+}
+
+@keyframes unblur {
+  from {
+    filter: blur(8px);
+  }
+  to {
+    filter: none;
+  }
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+/* Team sentence (prototype .mani.seq-sent); starts below the screen until JavaScript moves it */
+.sent {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(92vw, 24ch);
+  margin: 0;
+  font-size: clamp(30px, 4.6vw, 58px);
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  text-align: center;
+  transform: translate(-50%, -50%) translateY(58vh);
+  will-change: transform;
+}
+
+.word {
+  color: #b9b9b9;
+  transition: color 0.3s;
+}
+
+.word[data-lit="true"] {
+  color: var(--color-ink);
+}
+
+.slot {
+  display: inline-block;
+  width: 0.95em;
+  height: 1em;
+  vertical-align: -0.16em;
+}
+
+/* Agents (prototype .fly2). Before JavaScript runs they sit in the starting row via CSS;
+   once placed, JavaScript positions them with transforms from the stage's top-left corner. */
+.fly {
+  --w: min(470px, 24.5vw);
+  --gap: calc((98vw - var(--w)) / 4);
+  position: absolute;
+  left: calc(50% + (var(--i) - 2) * var(--gap) - var(--w) / 2);
+  top: calc(100% - var(--w) * var(--ratio) * 0.58);
+  z-index: 3;
+  width: var(--w);
+  padding: 0;
+  border: 0;
+  background: none;
+  transform: rotate(var(--r));
+  transform-origin: 0 0;
+  will-change: transform;
+  cursor: pointer;
+}
+
+.seq[data-placed="true"] .fly {
+  left: 0;
+  top: 0;
+}
+
+.chr {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.2));
+}
+
+.seq[data-done="true"] .chr {
+  filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.45));
+}
+
+/* Hover squash (prototype .sq:hover .chr) */
+@media (hover: hover) {
+  .fly:hover .chr {
+    animation: squash 0.7s cubic-bezier(0.3, 1.4, 0.5, 1);
+  }
+
+  .seq[data-done="true"] .fly:hover {
+    filter: brightness(1.04);
+  }
+}
+
+@keyframes squash {
+  25% {
+    transform: scale(1.12, 0.86);
+  }
+  55% {
+    transform: scale(0.94, 1.08);
+  }
+  100% {
+    transform: none;
+  }
+}
+
+/* Name tag: on mouse hover once the sequence is finished (prototype), and on keyboard focus at any
+   point (decision D5: keyboard users reach the agents from the hero buttons, before the sequence ends) */
+.tag {
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  padding: 5px 10px;
+  border-radius: 7px;
+  background: #222222;
+  color: var(--color-on-dark);
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 100%);
+  transition: opacity 0.25s;
+}
+
+.seq[data-done="true"] .fly:hover .tag,
+.fly:focus-visible .tag {
+  opacity: 1;
+}
+
+/* Before the sequence finishes, the agents only peek in from the bottom of the screen, so the
+   keyboard-focus tag sits above the agent instead of below it */
+.seq:not([data-done="true"]) .tag {
+  top: -10px;
+  bottom: auto;
+  transform: translate(-50%, -100%);
+}
+
+@media (max-width: 599px) {
+  .fly {
+    --w: 41.7vw;
+    --gap: calc(var(--w) * 0.34);
+  }
+}
+
+/* Reduced motion (decision D1): still, non-pinned layout. Hero text, then the sentence with every
+   agent in its slot (placed by JavaScript); nothing moves with the scroll. */
+@media (prefers-reduced-motion: reduce) {
+  .seq {
+    height: auto;
+  }
+
+  .stick {
+    position: relative;
+    height: auto;
+    overflow: visible;
+    padding: clamp(76px, 12vh, 130px) 0 var(--section-pad-y);
+  }
+
+  .hero {
+    position: relative;
+    top: auto;
+  }
+
+  .sent {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: var(--section-pad-y) auto 0;
+    transform: none;
+  }
+
+  .word {
+    color: var(--color-ink);
+  }
+
+  .headerBand {
+    display: none;
+  }
+
+  .seq:not([data-placed="true"]) .fly {
+    visibility: hidden;
+  }
+}

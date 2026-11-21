@@ -1604,6 +1604,10 @@ export const interactive = {
     "hint": "Scroll to lock them together.",
     "hintSolved": "One team, one shared brief."
   },
+  // Hero team sentence (prototype PAGES.home): the phrases around the five agent slots, in order.
+  // Slot i (Scout, Quill, Beacon, Relay, Sage) sits before phrase i + 1. Joined with spaces they
+  // equal the extracted p.mani text.
+  "heroSentence": ["Your team:", "researches,", "writes,", "gets you found,", "follows up, and", "checks it all before you approve."],
   // Marketplace "Featured" tab: the prototype's fixed list, in order. Type tabs show the first 8 of that type.
   "featuredItems": ["bp-leads-go-cold", "sk-brand-voice", "au-lead-router", "tl-lead-inbox", "tp-content-calendar", "sk-aeo-audit", "au-crm-sync", "tl-agent-monitor"],
   // Saved topic for /book: "About" set by the homepage ladder buttons ("Home page|{step title}").

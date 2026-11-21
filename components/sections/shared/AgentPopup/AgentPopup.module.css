@@ -1,0 +1,240 @@
+/* Centred modal (Dialog placement="center": native <dialog> centring); popup size and look */
+.dialog {
+  width: min(900px, calc(100% - 32px));
+  max-width: none;
+  max-height: 92vh;
+  overflow: auto;
+  border-radius: 26px;
+  background: var(--color-bg);
+}
+
+dialog.dialog[open] {
+  display: block;
+}
+
+/* Prototype .pop: stage left, body right; one column below 760px */
+.pop {
+  position: relative;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+}
+
+.close {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--color-frame);
+  color: var(--color-ink);
+  font-size: 14px;
+}
+
+.stage {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  min-height: 340px;
+  overflow: hidden;
+}
+
+.say {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  right: 18px;
+  z-index: 1;
+  margin: 0;
+  padding: 10px 13px;
+  border-radius: 14px 14px 14px 4px;
+  background: var(--color-surface);
+  font-size: 14px;
+  line-height: 21px;
+  box-shadow: 0 10px 24px -14px rgba(0, 0, 0, 0.35);
+}
+
+.figure {
+  display: block;
+  width: min(70%, 280px);
+  height: auto;
+  margin-bottom: -4%;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 26px 26px 22px;
+}
+
+.name {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+}
+
+.line {
+  margin-top: -6px;
+  font-size: 15px;
+  line-height: 22.5px;
+  color: var(--color-ink-muted);
+}
+
+/* Popup tab row: wrap onto a second line instead of scrolling sideways, so all four tabs stay
+   fully visible in the narrow popup column (the shared Tabs component is unchanged) */
+.tabs > [role="tablist"] {
+  flex-wrap: wrap;
+  overflow: visible;
+}
+
+/* Tab panes (prototype .pop-pane / .pop-cell) */
+.pane {
+  display: grid;
+  gap: 8px;
+  min-height: 180px;
+  align-content: start;
+}
+
+.cell {
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--color-surface);
+}
+
+.cell p {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.warm {
+  background: #f7f3ee;
+}
+
+.cellTitle {
+  margin-bottom: 4px;
+  font-size: 11px;
+  line-height: 15.4px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+/* Prototype .ilist: check marks in small grey squares */
+.ticks {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ticks li {
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.ticks li::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--color-frame);
+  font-size: 11px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  padding: 7px 10px;
+  border-radius: var(--radius-button-sm);
+  background: var(--color-bg);
+  box-shadow: inset 0 0 0 1px var(--color-frame);
+  font-size: 13px;
+  line-height: 13px;
+  font-weight: 500;
+}
+
+/* Prototype .links2: white rows, small label above, arrow right, slides on hover */
+.links {
+  display: grid;
+  gap: 8px;
+  min-height: 180px;
+  align-content: start;
+}
+
+.links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 15px;
+  line-height: 21px;
+  transition: transform 0.25s var(--ease-out);
+}
+
+@media (hover: hover) {
+  .links a:hover {
+    transform: translateX(6px);
+  }
+}
+
+.links small {
+  display: block;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--color-ink-muted);
+}
+
+.muted {
+  font-size: 14px;
+  color: var(--color-ink-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.discuss {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+@media (max-width: 760px) {
+  .pop {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stage {
+    min-height: 280px;
+  }
+
+  .body {
+    padding: 22px 20px 20px;
+  }
+}
