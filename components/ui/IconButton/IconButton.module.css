@@ -16,8 +16,18 @@
   color: var(--color-on-dark);
 }
 
+/* Card arrow (Framer): 40 x 30, soft shadow, 20px icon */
 .light {
-  background: var(--color-surface);
+  width: 40px;
+  height: 30px;
+  border-radius: var(--radius-button);
+  background: var(--color-icon-button);
   color: var(--color-ink);
-  border: 1px solid var(--color-frame);
+  box-shadow: var(--shadow-control);
+  font-size: 20px;
+}
+
+.light :global(svg) {
+  width: 20px;
+  height: 20px;
 }

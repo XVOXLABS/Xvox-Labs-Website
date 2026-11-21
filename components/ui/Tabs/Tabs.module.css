@@ -1,6 +1,6 @@
 .list {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   overflow-x: auto;
   scrollbar-width: none;
   padding-bottom: 2px;
@@ -15,8 +15,8 @@
   min-height: 34px;
   padding: 9px 14px;
   border: 0;
-  border-radius: var(--radius-button-sm);
-  background: var(--color-frame);
+  border-radius: var(--radius-tab);
+  background: var(--color-control);
   color: var(--color-ink);
   font-size: 13px;
   line-height: 15.6px;
@@ -27,7 +27,7 @@
 }
 
 .tab[aria-selected="true"] {
-  background: var(--color-black);
+  background: var(--color-control-active);
   color: #ffffff;
   font-weight: 700;
 }

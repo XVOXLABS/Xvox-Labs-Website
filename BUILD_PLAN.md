@@ -212,6 +212,25 @@ Values below were read from the rendered Framer site (computed styles and screen
 
 - [x] **Kaviyan / Framer reference:** inspiration only (visual theme, typography, colours, spacing, UI feel, responsive approach, animation inspiration). No copying or extraction of the template, its source, components, assets, content, page structure or implementation. Our design is implemented independently.
 - [x] **Phase 3 implementation approved** (Nov 21, 2026).
+- [x] **Cart totals:** a total shows only when every item has a published price; otherwise "Contact Us to Discuss Pricing" with the "Discuss Pricing" CTA.
+- [x] **Vox guided conversation** (Phase 3): the prototype's guided flow, frontend only. The confirmation never claims a lead was sent or saved. Real AI replies are Phase 8.
+
+**Visual corrections after the side-by-side Framer review (approved Nov 21, 2026)**
+
+- [x] Section spacing 110 / 96 / 56 px (desktop / tablet / phone).
+- [x] Tablet (810–1199px) side gutter for sections and footer: 24px. The header keeps 32px.
+- [x] Lead text: main font (Switzer once approved), 20/28 desktop, 18/25.2 tablet and phone, 60% ink. The Inter lead is dropped; Inter stays for category labels.
+- [x] Desktop nav pill: tighter spacing (side padding 12, link gap 2) and an equal-column grid. It is exactly centred wherever both sides fit (from about 1440px with the current fallback font) and as close to centre as space allows on narrower desktops. No link, Cart or action is hidden or removed.
+- [x] Desktop header right inset 64px (logo stays at 58px).
+- [x] Footer wordmark: weight 600, letter-spacing −0.06em, solid accent faded into the frame colour (110 / 76 / 36 px), bottom cropped by the frame (about 20% desktop, 25% tablet, none on phone). Final size to be re-tuned once Switzer is added.
+- [x] Tablet footer: outer padding 8 / 24 / 24, card padding 32.
+- [x] Dropdown: titles 15/15, descriptions 12/18. Dropdown triggers stay dark when open or hovered; only the chevron turns.
+- [x] Tabs: radius 9, active #111, inactive #F0F0F0, gap 6.
+- [x] Light icon button (card arrow): 40 × 30, radius 10, #FCFCFD, shadow rgba(30,20,40,.07) 0 2px 3px. The dark FAQ toggle is unchanged.
+- [x] Hover transitions 0.2s (easing unchanged).
+- [x] Phone header background #FDFDFF. Mobile menu panel without shadow.
+- [x] Smallest heading (h5 size) weight 500.
+- [x] Vox chat restored to the prototype styling: dark header, 3px stage bars (past and current stages in accent `#FF6038`), monospace uppercase labels using the system monospace (`ui-monospace, Menlo, monospace`; no Geist Mono or other new font), 420 × 660 panel, black Send button when disabled. Phones keep the full-screen chat.
 
 **Open items during Phase 3 (no assumptions)**
 

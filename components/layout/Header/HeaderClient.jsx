@@ -85,7 +85,7 @@ export default function HeaderClient({ nav, menus, mobile }) {
                   <button
                     ref={(el) => (triggerRefs.current[link.menu] = el)}
                     type="button"
-                    className={`${styles.link} ${isActive(pathname, link.href) || openMenu === link.menu ? styles.active : ""}`}
+                    className={`${styles.link} ${isActive(pathname, link.href) ? styles.active : ""}`}
                     aria-expanded={openMenu === link.menu}
                     aria-controls={`menu-${link.menu}`}
                     onClick={() => setOpenMenu(openMenu === link.menu ? null : link.menu)}

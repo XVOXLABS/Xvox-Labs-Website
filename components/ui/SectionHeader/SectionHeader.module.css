@@ -58,10 +58,9 @@
 }
 
 .lead {
-  font-family: var(--font-ui);
   font-size: var(--fs-lead);
   line-height: var(--lh-lead);
-  color: var(--color-ink-lead);
+  color: var(--color-ink-muted);
   max-width: 54ch;
 }
 

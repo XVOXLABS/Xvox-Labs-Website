@@ -100,30 +100,58 @@
   color: var(--color-ink-muted);
 }
 
-/* Large wordmark fading out at the bottom (Framer footer pattern, XVOX LABS text) */
+/* Large wordmark (Framer footer pattern, XVOX LABS text): solid accent, weight 600, cropped by
+   the bottom of the frame and faded into the frame colour. Line height ~ cap height, so the
+   negative bottom margin crops the letters themselves (about 20% desktop, 25% tablet, none on phone). */
 .wordmark {
+  --crop: 0.2;
+  --fade: 110px;
+  position: relative;
   overflow: hidden;
-  padding: 2cqw 2cqw 0;
-  line-height: 0.82;
+  padding: 2cqw 1cqw 0;
   text-align: center;
   user-select: none;
 }
 
+.wordmark::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: var(--fade);
+  background: linear-gradient(180deg, rgba(237, 237, 237, 0) 0%, var(--color-frame) 100%);
+  pointer-events: none;
+}
+
 .wordmark span {
   display: block;
-  font-size: 15.5cqw;
-  font-weight: 500;
-  letter-spacing: -0.03em;
+  margin-bottom: calc(-0.72em * var(--crop));
+  font-size: 15.4cqw;
+  font-weight: 600;
+  line-height: 0.72;
+  letter-spacing: -0.06em;
   white-space: nowrap;
-  background: linear-gradient(180deg, var(--color-accent) 35%, rgba(255, 96, 56, 0) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-accent);
 }
 
 @media (max-width: 1199px) {
   .top {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Tablet: 810-1199px */
+@media (min-width: 810px) and (max-width: 1199px) {
+  .footer {
+    padding: 8px 24px 24px;
+  }
+
+  .card {
+    padding: 32px;
+  }
+
+  .wordmark {
+    --crop: 0.25;
+    --fade: 76px;
   }
 }
 
@@ -146,5 +174,10 @@
   .label {
     font-size: 12px;
     line-height: 18px;
+  }
+
+  .wordmark {
+    --crop: 0;
+    --fade: 36px;
   }
 }

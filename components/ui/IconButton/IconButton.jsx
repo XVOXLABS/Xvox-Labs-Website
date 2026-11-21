@@ -1,6 +1,6 @@
 import styles from "./IconButton.module.css";
 
-// Square icon control (Framer): dark (FAQ +/-) or light (card arrow).
+// Icon control (Framer): dark 32 x 32 (FAQ +/-) or light 40 x 30 (card arrow).
 // Purely visual by default (`as="span"`), so it can sit inside a link or summary without
 // nesting interactive elements. Pass as="button" and a `label` to use it on its own.
 export default function IconButton({ as: Tag = "span", tone = "dark", label, className = "", children, ...rest }) {

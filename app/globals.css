@@ -15,13 +15,15 @@
   --color-ink: #0f0f0f;
   --color-ink-muted: rgba(15, 15, 15, 0.6);
   --color-ink-faint: rgba(15, 15, 15, 0.35);
-  --color-ink-lead: #666666;
   --color-black: #000000;
   --color-dark: #121212;
   --color-on-dark: #fafafa;
   --color-accent: #ff6038;
   --color-accent-soft: rgba(255, 96, 56, 0.8);
   --color-tag: rgba(255, 255, 255, 0.8);
+  --color-control: #f0f0f0; /* inactive tab */
+  --color-control-active: #111111; /* active tab */
+  --color-icon-button: #fcfcfd; /* light icon button (card arrow) */
 
   /* Agent / department tints (from the prototype content, data/) */
   --tint-p1: #ece9f7;
@@ -44,8 +46,8 @@
   --lh-h3: 1.15;
   --fs-h4: 24px;
   --fs-h5: 20px;
-  --fs-lead: 21px;
-  --lh-lead: 31px;
+  --fs-lead: 20px;
+  --lh-lead: 28px;
   --ls-display: -0.03em;
   --ls-h1: -0.025em;
   --ls-h2: -0.02em;
@@ -60,23 +62,26 @@
   --radius-badge: 12px;
   --radius-button: 10px;
   --radius-button-sm: 8px;
+  --radius-tab: 9px;
   --radius-tag: 5px;
 
   /* Depth */
   --shadow-nav: rgba(39, 30, 90, 0.12) 0 2px 2px 0;
+  --shadow-control: rgba(30, 20, 40, 0.07) 0 2px 3px 0;
   --shadow-panel: rgba(15, 15, 15, 0.25) 0 24px 48px -24px, rgba(52, 41, 99, 0.16) 0 15px 20px 0;
 
   /* Layout */
   --container: 1136px;
   --gutter: 32px;
   --header-pad-x: 58px;
+  --header-pad-right: 64px; /* desktop CTA inset */
   --header-height: 72px;
   --header-offset: 10px;
-  --section-pad-y: 80px;
+  --section-pad-y: 110px;
 
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --dur-fast: 150ms;
+  --dur-fast: 200ms;
   --dur: 300ms;
   --dur-slow: 600ms;
 
@@ -92,7 +97,12 @@
     --fs-h3: 28px;
     --fs-h4: 22px;
     --fs-h5: 18px;
+    --fs-lead: 18px;
+    --lh-lead: 25.2px;
+    --gutter: 24px;
     --header-pad-x: 32px;
+    --header-pad-right: 32px;
+    --section-pad-y: 96px;
   }
 }
 
@@ -106,8 +116,11 @@
     --fs-h4: 20px;
     --fs-h5: 18px;
     --fs-lead: 18px;
+    --lh-lead: 25.2px;
     --gutter: 20px;
     --header-pad-x: 20px;
+    --header-pad-right: 20px;
+    --section-pad-y: 56px;
     --radius-frame: 24px;
   }
 }

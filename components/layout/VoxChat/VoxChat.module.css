@@ -72,12 +72,23 @@
   overflow: hidden;
 }
 
+/* Prototype panel size: 420 x 660 (shorter on low screens). Phones keep the full-screen sheet. */
+@media (min-width: 810px) {
+  dialog.dialog {
+    width: min(420px, calc(100vw - 32px));
+    height: min(660px, calc(100vh - 96px));
+    border-radius: var(--radius-card);
+  }
+}
+
+/* Prototype chat header: dark bar (values from the prototype) */
 .head {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px;
-  border-bottom: 1px solid rgba(15, 15, 15, 0.08);
+  gap: 10px;
+  padding: 12px 14px;
+  background: #111111;
+  color: #ffffff;
 }
 
 .who {
@@ -88,7 +99,7 @@
 }
 
 .who b {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 18px;
   font-weight: 500;
 }
@@ -99,46 +110,57 @@
   gap: 6px;
   font-size: 12px;
   line-height: 18px;
-  color: var(--color-ink-muted);
+  color: #aaaaaa;
 }
 
 .icon {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border: 0;
-  border-radius: var(--radius-button-sm);
-  background: var(--color-frame);
+  border-radius: 9px;
+  background: #222222;
+  color: #ffffff;
   font-size: 14px;
 }
 
+/* Stage indicator (prototype): 3px bars, past and current stages in the accent,
+   monospace uppercase labels underneath (system monospace, no extra font). */
 .stages {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  column-gap: 4px;
   margin: 0;
-  padding: 12px 16px;
+  padding: 10px 14px 0;
   list-style: none;
-  font-size: 11px;
-  line-height: 15.4px;
-  color: var(--color-ink-faint);
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 10px;
+  line-height: 13px;
+  text-transform: uppercase;
+  color: #6e6e6e;
 }
 
 .stages li {
-  padding-top: 8px;
-  border-top: 2px solid var(--color-frame);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.stages li[data-active="true"] {
-  border-top-color: var(--color-accent);
-  color: var(--color-ink);
+.stages li::before {
+  content: "";
+  height: 3px;
+  border-radius: 3px;
+  background: #e7e7e7;
+  transition: background-color 0.4s;
 }
 
-.stages li {
-  transition:
-    border-color var(--dur-slow) var(--ease-out),
-    color var(--dur-slow) var(--ease-out);
+.stages li[data-active="true"]::before {
+  background: var(--color-accent);
+}
+
+.stages li:last-child {
+  text-align: right;
 }
 
 .body {
@@ -500,9 +522,13 @@
   font-weight: 500;
 }
 
-.input:disabled,
-.send:disabled {
+.input:disabled {
   opacity: 0.5;
+}
+
+/* Prototype: Send stays black when disabled */
+.send:disabled {
+  opacity: 1;
 }
 
 @media (max-width: 809px) {
