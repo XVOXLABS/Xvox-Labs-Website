@@ -373,3 +373,31 @@ export const coreAgentIds = [
   "relay",
   "sage"
 ];
+
+// Agent popup (prototype agentPop): opened from the homepage hero and puzzle agents, later from
+// the How it works and agent pages. Extracted verbatim (Phase 4, step 1).
+// Price is never written here: the Buy button shows the price of the agent's first blueprint
+// from data/marketplace.js through the approved pricing rule (decision U2).
+export const agentPopup = {
+  "tabs": [
+    ["persona", "Persona"],
+    ["skills", "Skills and systems"],
+    ["jobs", "Jobs"],
+    ["uses", "Use cases"]
+  ],
+  "personality": "Personality",
+  "bestFor": "Best for",
+  "never": "Never does",
+  "check": "Human checkpoint",
+  "skills": "Skills",
+  "systems": "Systems it connects",
+  "noJobs": "Joins custom missions.",
+  "useCase": "Use case",
+  "marketplace": "Marketplace",
+  "marketplaceCount": "{count} skills, blueprints and tools",
+  "buy": "Buy {name} · {price}",
+  "hire": "Hire {name} ↗",
+  "hirePath": "Hosted by us",
+  "hireAbout": "{name} ({role})",
+  "fullProfile": "Full profile ↗"
+};

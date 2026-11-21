@@ -133,3 +133,21 @@ export const voxChat = [
     "text": "Type your answer…"
   }
 ];
+
+// Lead form ("Start a project") text the prototype builds in code (bookForm, drawPref and the submit
+// handler). Extracted verbatim (Phase 4, step 1); used by the homepage contact block and later /book.
+// Confirmation: approved demo-mode wording (Nov 21, 2026). The prototype's "Request received." and
+// its email promise are not used, and there is no "Sending…" state: nothing is sent or stored.
+export const leadForm = {
+  "groups": { "solutions": "Solutions", "services": "Services", "other": "Other" },
+  "error": "Add your name, a valid work email and your company.",
+  "preference": { "about": "About: {about}", "path": "Path: {path}", "clear": "Clear ✕", "notSure": "Not sure yet" },
+  "defaultAbout": "General enquiry",
+  "done": { "heading": "Thanks, {name}.", "demoNote": "Demo mode: nothing was stored in this view." }
+};
+
+// Cart toggle on item cards: removing an item that is already in the cart (prototype toast).
+export const cartToggle = {
+  "removed": "Removed from cart",
+  "addLabel": "Add {name} to cart"
+};

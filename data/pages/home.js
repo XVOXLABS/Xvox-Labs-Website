@@ -1587,3 +1587,23 @@ export const page = {
     }
   ]
 };
+
+// Text and settings the prototype builds while the homepage runs (puzUpdate, drawFeat, ladderHTML).
+// Extracted verbatim (Phase 4, step 1). {done} = number of locked pieces.
+export const interactive = {
+  "puzzle": {
+    "heading": "Each agent is one piece of the puzzle.",
+    "headingSolved": "Together, they solve the whole problem.",
+    "lead": "Alone, each one does a single job well. Keep scrolling.",
+    "leadSolved": "Research, content, search, follow-up and safety, locked into one flow, with a person in charge.",
+    "chip": "5 separate pieces",
+    "chipProgress": "{done} of 5 locked",
+    "chipSolved": "Locked together",
+    "hint": "Scroll to lock them together.",
+    "hintSolved": "One team, one shared brief."
+  },
+  // Marketplace "Featured" tab: the prototype's fixed list, in order. Type tabs show the first 8 of that type.
+  "featuredItems": ["bp-leads-go-cold", "sk-brand-voice", "au-lead-router", "tl-lead-inbox", "tp-content-calendar", "sk-aeo-audit", "au-crm-sync", "tl-agent-monitor"],
+  // Saved topic for /book: "About" set by the homepage ladder buttons ("Home page|{step title}").
+  "ladderAbout": "Home page"
+};
