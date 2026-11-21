@@ -1,0 +1,140 @@
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 24px 24px 16px;
+}
+
+.title {
+  font-size: var(--fs-h5);
+  line-height: 1.3;
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: var(--radius-button-sm);
+  background: var(--color-frame);
+  font-size: 13px;
+}
+
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 24px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding-top: 6px;
+  color: var(--color-ink-muted);
+}
+
+.lines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.line {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: var(--radius-row);
+  background: var(--color-bg);
+}
+
+.thumb {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-button);
+  font-size: 18px;
+}
+
+.lineText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.lineText b {
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
+.lineText small {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--color-ink-muted);
+}
+
+.remove {
+  border: 0;
+  background: none;
+  font-size: 13px;
+  color: var(--color-ink-muted);
+  text-decoration: underline;
+}
+
+.upsell {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: var(--radius-row);
+  background: var(--color-frame);
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.upsell h3 {
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.upsell a,
+.note a {
+  text-decoration: underline;
+}
+
+.foot {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 24px 24px;
+  border-top: 1px solid rgba(15, 15, 15, 0.08);
+}
+
+.note {
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--color-ink-muted);
+}
+
+.sum {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+.discuss {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}

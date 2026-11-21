@@ -1,0 +1,78 @@
+.dialog {
+  padding: 0;
+  border: 0;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-panel);
+}
+
+.dialog::backdrop {
+  background: rgba(15, 15, 15, 0.25);
+}
+
+.dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Drawer: full height on the right */
+.drawer {
+  position: fixed;
+  inset: 8px 8px 8px auto;
+  width: min(420px, calc(100vw - 16px));
+  height: auto;
+  max-height: none;
+  margin: 0;
+  border-radius: var(--radius-card);
+}
+
+.drawer[open] {
+  animation: drawer-in var(--dur) var(--ease-out);
+}
+
+/* Sheet: chat panel anchored bottom-right */
+.sheet {
+  position: fixed;
+  inset: auto 16px 16px auto;
+  width: min(400px, calc(100vw - 32px));
+  height: min(640px, calc(100vh - 32px));
+  margin: 0;
+  border-radius: var(--radius-panel);
+}
+
+.sheet[open] {
+  animation: sheet-in var(--dur) var(--ease-out);
+}
+
+@keyframes drawer-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 809px) {
+  .sheet {
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+  }
+}

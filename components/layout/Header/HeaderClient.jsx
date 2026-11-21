@@ -109,7 +109,7 @@ export default function HeaderClient({ nav, menus, mobile }) {
         </nav>
 
         <div className={styles.actions}>
-          <button type="button" className={styles.cart} onClick={openCart} aria-label={`${nav.cartLabel}, ${cart.length} item${cart.length === 1 ? "" : "s"}`}>
+          <button type="button" className={styles.cart} onClick={openCart} aria-label="Open cart">
             <span className={styles.cartLabel}>{nav.cartLabel}</span>
             <span className={styles.cartCount}>{cart.length}</span>
           </button>
@@ -124,7 +124,7 @@ export default function HeaderClient({ nav, menus, mobile }) {
             className={styles.burger}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-label="Menu"
             onClick={() => setMobileOpen((v) => !v)}
           >
             <span className={styles.burgerLines} aria-hidden="true">

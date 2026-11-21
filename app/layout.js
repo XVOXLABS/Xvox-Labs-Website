@@ -1,5 +1,9 @@
 import { Inter } from "next/font/google";
+import CartDrawer from "@/components/layout/CartDrawer/CartDrawer";
+import Footer from "@/components/layout/Footer/Footer";
 import Header from "@/components/layout/Header/Header";
+import Toast from "@/components/layout/Toast/Toast";
+import VoxChat from "@/components/layout/VoxChat/VoxChat";
 import "./globals.css";
 
 // Inter: used for small UI text, as in the Framer reference.
@@ -29,6 +33,10 @@ export default function RootLayout({ children }) {
         </a>
         <Header />
         <main id="main">{children}</main>
+        <Footer />
+        <CartDrawer />
+        <VoxChat />
+        <Toast />
       </body>
     </html>
   );

@@ -1,6 +1,36 @@
 // Extracted verbatim from the Xvox Labs HTML prototype v5 (index.html).
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
 
+export const askVox = {
+  "label": "Ask Vox",
+  "ariaLabel": "Open the Vox assistant",
+  "nudge": "Not sure where to start? I can map it out in two minutes.",
+  "nudgeAfterScrollY": 900,
+  "nudgeDurationMs": 7000
+};
+
+export const cartFilled = {
+  "remove": "Remove",
+  "upsellTitle": "Need it installed?",
+  "upsellText": "We can set any of these up in your tools.",
+  "upsellLink": {
+    "label": "Book a call",
+    "href": "/book",
+    "prototypeHref": "#book"
+  },
+  "oneTime": "One-time",
+  "monthly": "Monthly",
+  "perMonth": "/ month",
+  "checkout": {
+    "label": "Checkout →",
+    "href": "/checkout",
+    "prototypeHref": "#checkout"
+  },
+  "toastAdded": "Added: ",
+  "toastDefault": "Added to cart",
+  "toastViewCart": "View cart"
+};
+
 export const site = {
   "name": "Xvox Labs",
   "logoText": "xvox labs",
