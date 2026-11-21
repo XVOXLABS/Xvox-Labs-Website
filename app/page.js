@@ -2,6 +2,7 @@ import ForkCards from "@/components/sections/home/ForkCards/ForkCards";
 import HeroSequence from "@/components/sections/home/HeroSequence/HeroSequence";
 import HowSteps from "@/components/sections/home/HowSteps/HowSteps";
 import ProblemTiles from "@/components/sections/home/ProblemTiles/ProblemTiles";
+import PuzzleStage from "@/components/sections/home/PuzzleStage/PuzzleStage";
 import SafeAiBox from "@/components/sections/home/SafeAiBox/SafeAiBox";
 import ServicePillars from "@/components/sections/home/ServicePillars/ServicePillars";
 import ToolsStrip from "@/components/sections/home/ToolsStrip/ToolsStrip";
@@ -14,7 +15,7 @@ export default function Home() {
   return (
     <>
       <HeroSequence />
-      {/* 2. Puzzle stage: step 4 */}
+      <PuzzleStage />
       <ToolsStrip />
       <ProblemTiles />
       <ForkCards />
