@@ -30,6 +30,7 @@ export const questions = [
   {
     "key": "pain",
     "question": "What takes up the most time? Pick up to two.",
+    "multi": 2,
     "options": [
       "Posting and content",
       "Finding and following up leads",
@@ -42,6 +43,7 @@ export const questions = [
   {
     "key": "tools",
     "question": "Which tools do you use today?",
+    "multi": 6,
     "options": [
       "Zoho",
       "monday.com",
@@ -63,6 +65,80 @@ export const questions = [
     ]
   }
 ];
+
+// Guided flow text, verbatim from the prototype chat script
+// (startChat, switchToScript, scriptNext, localReport, makeReport, renderReport, showDetails, showSlots, submitLead).
+// Delays are the prototype's (0 when reduced motion is on).
+export const flow = {
+  aiLabel: "AI agent · Xvox Labs",
+  guidedLabel: "Guided questions · Xvox Labs",
+  switchNote: "AI replies are not available in this view, so Vox switches to guided questions.",
+  answerPlaceholder: "Type your answer…",
+  continue: "Continue",
+  enough: "Thanks, that is enough for a first plan.",
+  afterChat: "Thanks. Use the form above to continue, or press ↺ to start over.",
+  planPlaceholder: "Your plan is below",
+  building: "Putting your plan together…",
+  delays: { question: 350, report: 900, slot: 300 },
+  report: {
+    title: "Here is what I am seeing",
+    situation: "Your situation",
+    problems: "Problems I heard",
+    help: "Where we could help",
+    marketplace: "Ready-made in the marketplace",
+    agents: "Meet the agents",
+    automation: "With or without AI",
+    next: "Next",
+    nextText: "I am an AI agent, not a consultant. A person from our team can turn this into a real plan on a free 30-minute discovery call.",
+    book: "Book a discovery call →",
+    summary: "Based on what you shared, the biggest gains are in the work you repeat every week.",
+    automationNote: "Some of this can likely run as plain automation between your tools, without AI. A consultant confirms which on the call.",
+    fallback: "admin-overload",
+    maxSolutions: 3,
+    maxItems: 4,
+    perMonth: "/mo",
+  },
+  details: {
+    prompt: "Great. Who should our team reply to?",
+    name: "Name",
+    email: "Work email",
+    company: "Company",
+    budget: "Budget",
+    optional: "(optional)",
+    noBudget: "Not sure yet",
+    budgets: ["Not sure yet", "Under $5,000", "$5,000 to $15,000", "$15,000 to $30,000", "$30,000 and up"],
+    error: "Add your name, a valid work email and your company.",
+    submit: "Choose a time →",
+  },
+  slots: {
+    prompt: "Pick a time that suits you for a 30-minute call. Times are in your local time zone.",
+    days: 3,
+    times: ["10:00 AM", "1:00 PM", "3:30 PM"],
+    requested: "Requested time:",
+  },
+  // Frontend-only confirmation: nothing is sent or stored yet.
+  // "Thanks, " is new wording (the prototype's "Request sent, " would be untrue without a backend);
+  // the rest is the prototype's demo-mode text.
+  done: {
+    heading: "Thanks, ",
+    youAsked: "You asked for",
+    demoNote: "Demo mode: nothing was stored in this view.",
+    browse: { label: "Browse solutions", href: "/solutions" },
+    close: "Close",
+  },
+  // Kept for when a backend saves leads; not shown now because each line describes sending or saving.
+  afterBackend: {
+    sending: "Sending your request…",
+    heading: "Request sent, ",
+    saved: "Your request is saved and our team can see it.",
+    nextTitle: "What happens next",
+    next: ["A person from our team confirms the time by email", "They read your chat and this plan before the call", "You get a scope and price after the call"],
+    placeholder: "Request sent",
+    prototypeNoteTitle: "Prototype note",
+    prototypeNote: "In production this step creates the calendar invite and emails the report to ",
+    slotsNote: "Example times for the prototype. Developers: connect a real calendar here.",
+  },
+};
 
 export const keymap = [
   {
