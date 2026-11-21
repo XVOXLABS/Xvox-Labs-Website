@@ -1,0 +1,97 @@
+div.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cell {
+  display: flex;
+}
+
+/* Prototype .pil: tinted card, lifts on hover, light sheen sweep */
+.card {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  padding: 26px;
+  overflow: hidden;
+  transition: transform 0.3s var(--ease-out);
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.6) 50%, transparent 62%);
+  transform: translateX(-110%);
+  transition: transform 0.9s;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-4px);
+  }
+
+  .card:hover::after {
+    transform: translateX(110%);
+  }
+}
+
+.title {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--ls-h3);
+}
+
+.text {
+  max-width: 42ch;
+  font-size: 15px;
+  line-height: 22.5px;
+  color: var(--color-ink-muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 75%;
+}
+
+.chip {
+  padding: 6px 10px;
+  border-radius: var(--radius-button-sm);
+  background: var(--color-tag);
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.more {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.note {
+  font-size: 13px;
+  line-height: 19.5px;
+  color: var(--color-ink-muted);
+}
+
+.note a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 809px) {
+  div.grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .chips {
+    max-width: 100%;
+  }
+}

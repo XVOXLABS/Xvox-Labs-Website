@@ -44,6 +44,7 @@ export default function VoxChat() {
   const [open, setOpen] = useState(false);
   const [nudge, setNudge] = useState(false);
   const [nudged, setNudged] = useState(false);
+  const [footerInView, setFooterInView] = useState(false);
   const [msgs, setMsgs] = useState([]);
   const [stage, setStage] = useState(0);
   const [guided, setGuided] = useState(false);
@@ -204,6 +205,16 @@ export default function VoxChat() {
     if (body) body.scrollTop = body.scrollHeight;
   }, [msgs]);
 
+  // Track whether the site footer is on screen. Only the phone CSS uses this: the floating button
+  // steps aside while the footer is visible (the footer has its own Vox entry points).
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return undefined;
+    const observer = new IntersectionObserver(([entry]) => setFooterInView(entry.isIntersecting));
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
   // Prototype: show the nudge once, after scrolling past 900px, if the chat was never opened.
   useEffect(() => {
     if (nudged) return undefined;
@@ -277,9 +288,9 @@ export default function VoxChat() {
   return (
     <>
       {!open ? (
-        <button type="button" className={styles.fab} aria-label={askVox.ariaLabel} onClick={openChat}>
+        <button type="button" className={styles.fab} aria-label={askVox.ariaLabel} onClick={openChat} data-footer={footerInView ? "in" : "out"}>
           <Image src={vox.image} alt="" width={28} height={28} className={styles.face} />
-          <span>{askVox.label}</span>
+          <span className={styles.label}>{askVox.label}</span>
           <span className={styles.dot} aria-hidden="true" />
           {nudge ? <span className={styles.nudge}>{askVox.nudge}</span> : null}
         </button>

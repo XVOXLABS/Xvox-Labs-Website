@@ -1,0 +1,13 @@
+.word {
+  transition: color 0.6s var(--ease-out);
+  transition-delay: calc(var(--i) * 45ms);
+}
+
+/* Not yet in view: muted. In view, static (reduced motion / server): full colour. */
+.light[data-state="out"] .word {
+  color: var(--color-ink-faint);
+}
+
+.dark[data-state="out"] .word {
+  color: #555555;
+}

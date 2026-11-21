@@ -1,0 +1,23 @@
+.strip {
+  padding-block: calc(var(--section-pad-y) / 2);
+}
+
+.label {
+  margin-bottom: 18px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 19.5px;
+  color: var(--color-ink-muted);
+}
+
+/* Framer logo-strip tile (same look as the Phase 3 style-guide strip) */
+.tile {
+  padding: 14px 22px;
+  border-radius: var(--radius-button);
+  border: 1px solid var(--color-frame);
+  background: var(--color-surface);
+  font-size: 15px;
+  line-height: 15px;
+  white-space: nowrap;
+  color: var(--color-ink);
+}

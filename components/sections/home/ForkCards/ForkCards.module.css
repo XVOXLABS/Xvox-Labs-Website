@@ -1,0 +1,82 @@
+div.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cell {
+  display: flex;
+}
+
+/* Prototype fcard: tall card, image anchored to the bottom */
+.card {
+  position: relative;
+  width: 100%;
+  min-height: 600px;
+  overflow: hidden;
+  gap: 12px;
+}
+
+.title {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+}
+
+.text {
+  position: relative;
+  z-index: 1;
+  max-width: 40ch;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-ink-muted);
+}
+
+.mediaWide,
+.mediaOne {
+  position: absolute;
+  bottom: 0;
+}
+
+.mediaWide {
+  left: 0;
+  right: 0;
+  height: 48%;
+}
+
+.mediaOne {
+  right: 8%;
+  width: 44%;
+  height: 50%;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+.mediaWide .img {
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.mediaOne .img {
+  object-fit: cover;
+}
+
+.arrow {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2;
+}
+
+@media (max-width: 809px) {
+  div.grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    min-height: 560px;
+  }
+
+  .mediaOne {
+    width: 60%;
+  }
+}

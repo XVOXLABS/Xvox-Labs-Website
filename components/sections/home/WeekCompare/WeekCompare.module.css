@@ -1,0 +1,57 @@
+div.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cell {
+  display: flex;
+}
+
+.card {
+  width: 100%;
+  gap: 18px;
+}
+
+.label {
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 500;
+  color: var(--color-ink-muted);
+}
+
+.title {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--ls-h3);
+}
+
+.list {
+  display: grid;
+  gap: 16px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 17px;
+  line-height: 25.5px;
+}
+
+/* Prototype markers: "–" for the old week, "↗" for the new one */
+.without li {
+  color: var(--color-ink-muted);
+}
+
+.without li::before {
+  content: "–";
+  margin-right: 18px;
+}
+
+.with li::before {
+  content: "↗";
+  margin-right: 18px;
+}
+
+@media (max-width: 809px) {
+  div.grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

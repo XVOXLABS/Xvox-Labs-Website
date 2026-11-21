@@ -1571,7 +1571,9 @@ export const page = {
         },
         {
           "tag": "p.lead",
-          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up within a day."
+          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up within a day.",
+          "approvedText": "Tell Vox what is slowing you down. You get a plan.",
+          "decision": "K4 (Nov 21, 2026): no follow-up promise while nothing is sent or stored; prototype text kept above"
         },
         {
           "tag": "button.btn",
@@ -1605,5 +1607,11 @@ export const interactive = {
   // Marketplace "Featured" tab: the prototype's fixed list, in order. Type tabs show the first 8 of that type.
   "featuredItems": ["bp-leads-go-cold", "sk-brand-voice", "au-lead-router", "tl-lead-inbox", "tp-content-calendar", "sk-aeo-audit", "au-crm-sync", "tl-agent-monitor"],
   // Saved topic for /book: "About" set by the homepage ladder buttons ("Home page|{step title}").
-  "ladderAbout": "Home page"
+  "ladderAbout": "Home page",
+  // Service-area cards (prototype pillarCard): chip label, overflow chip and footer link.
+  "serviceCard": { "label": "Service", "more": "+{count} more", "explore": "Explore {name}" },
+  // Image alt text from the prototype homepage (forkSection). Other homepage images use alt="".
+  "imageAlt": {
+    "forkTeam": "The Xvox agents working together around one table"
+  }
 };

@@ -1,0 +1,78 @@
+/* Grey frame with a 3 / 2 / 1 column grid (desktop / tablet / phone) */
+div.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cell {
+  display: flex;
+}
+
+.tile {
+  width: 100%;
+  gap: 10px;
+}
+
+/* Prototype icard image: 5:4, rounded, gentle zoom on hover; arrow button bottom-right */
+.media {
+  position: relative;
+  display: block;
+  aspect-ratio: 5 / 4;
+  overflow: hidden;
+  border-radius: var(--radius-row);
+  background: var(--color-frame);
+  margin-bottom: 6px;
+}
+
+.img {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (hover: hover) {
+  .tile:hover .img {
+    transform: scale(1.05);
+  }
+}
+
+.arrow,
+.arrowDark {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+}
+
+.title {
+  display: block;
+  font-size: var(--fs-h4);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.text {
+  display: block;
+  font-size: 15px;
+  line-height: 22.5px;
+  color: var(--color-ink-muted);
+  max-width: 40ch;
+}
+
+/* "Not sure yet" tile is a <button>: reset native button styles */
+.button {
+  border: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+@media (max-width: 1199px) {
+  div.grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 809px) {
+  div.grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

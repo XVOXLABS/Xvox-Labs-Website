@@ -533,7 +533,41 @@
 
 @media (max-width: 809px) {
   .fab {
-    right: 16px;
-    bottom: 16px;
+    right: max(16px, env(safe-area-inset-right, 0px));
+    bottom: max(16px, env(safe-area-inset-bottom, 0px));
+    gap: 8px;
+    padding: 8px 12px 8px 8px;
+  }
+
+  /* Compact button on phones: the label stays in the page for screen readers */
+  .label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* The one-time nudge would cover section content on a phone screen */
+  .nudge {
+    display: none;
+  }
+
+  /* Step aside while the footer is on screen (it has its own Vox links); back when it leaves.
+     visibility also takes the hidden button out of the tab order. */
+  .fab {
+    transition:
+      opacity var(--dur) var(--ease-out),
+      transform var(--dur) var(--ease-out),
+      visibility var(--dur);
+  }
+
+  .fab[data-footer="in"] {
+    opacity: 0;
+    transform: translateY(12px);
+    visibility: hidden;
+    pointer-events: none;
   }
 }
