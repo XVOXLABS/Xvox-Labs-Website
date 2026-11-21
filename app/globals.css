@@ -162,8 +162,8 @@ h6 {
   text-wrap: balance;
 }
 
-ul[role="list"],
-ol[role="list"] {
+/* :where() keeps this reset at zero specificity so component styles always win */
+:where(ul[role="list"], ol[role="list"]) {
   list-style: none;
   margin: 0;
   padding: 0;

@@ -68,7 +68,7 @@ export default function StyleGuidePage() {
   const scout = agents[0];
 
   return (
-    <main id="main" className={styles.page}>
+    <div className={styles.page}>
       <Section>
         <SectionHeader layout="split" level={1} size="h1" title="Style guide" lead="Phase 3 design system: tokens, type, components and motion. Internal review page." />
       </Section>
@@ -208,6 +208,6 @@ export default function StyleGuidePage() {
           ))}
         </Marquee>
       </Section>
-    </main>
+    </div>
   );
 }

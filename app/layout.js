@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import Header from "@/components/layout/Header/Header";
 import "./globals.css";
 
 // Inter: used for small UI text, as in the Framer reference.
@@ -22,7 +23,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body>{children}</body>
+      <body>
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
+        <Header />
+        <main id="main">{children}</main>
+      </body>
     </html>
   );
 }

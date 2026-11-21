@@ -1,5 +1,5 @@
 .page {
-  padding-top: calc(var(--header-height) + var(--header-offset) + 24px);
+  display: block;
 }
 
 .h {
