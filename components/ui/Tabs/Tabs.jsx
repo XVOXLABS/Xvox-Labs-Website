@@ -4,7 +4,8 @@ import { useId, useRef, useState } from "react";
 import styles from "./Tabs.module.css";
 
 // Pill tabs (Framer filter style) with full keyboard support (arrow keys, Home, End).
-// items: [{ id, label, content }]. All panels stay in the HTML; inactive ones are hidden.
+// items: [{ id, label, content, panelFocusable }]. All panels stay in the HTML; inactive ones are hidden.
+// A panel is a tab stop by default; set panelFocusable: false when it already holds focusable controls.
 export default function Tabs({ items, label, defaultId, onChange, className = "" }) {
   const baseId = useId();
   const [active, setActive] = useState(defaultId ?? items[0]?.id);
@@ -56,7 +57,7 @@ export default function Tabs({ items, label, defaultId, onChange, className = ""
           aria-labelledby={`${baseId}-tab-${item.id}`}
           hidden={item.id !== active}
           className={styles.panel}
-          tabIndex={0}
+          tabIndex={item.panelFocusable === false ? undefined : 0}
         >
           {item.content}
         </div>

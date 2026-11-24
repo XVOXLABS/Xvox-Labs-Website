@@ -2,7 +2,7 @@
 
 > **For Claude Code:** This is the build plan for the Xvox Labs website. Read it together with `CLAUDE.md` and `AGENTS.md` before any task. **What the site contains comes from the HTML prototype. How it looks and behaves comes from the Framer reference.** Always plan first and wait for approval before writing code. Anything marked **Pending approval** is not decided: ask, don't assume. Proposed folders and files are not created until a task approves them.
 
-Version: Nov 24, 2026 (rev. 11 records the Solutions pages for team review). Rev. 10 (Nov 24) recorded the review index and route manifest. Rev. 9 (Nov 24) recorded the move to Vercel. Rev. 8 (Nov 24) recorded Step 7 implementation, visual approval, and test results. Rev. 7 (Nov 24) recorded Step 6 implementation and test results. Rev. 6 (Nov 24) synced Phase 3 and Phase 4 Steps 1–5 and recorded the approved step decisions. Rev. 5 (Nov 21) recorded the remaining Phase 3 decisions and implementation approval.
+Version: Nov 24, 2026 (rev. 15 records the review status of Phases 2.2 to 2.4). Rev. 14 recorded the Agent routes and the boundary of Mission Board work. Rev. 13 reconciled checkpoint, handover and deployment status. Rev. 12 (Nov 24) recorded Services. Rev. 11 (Nov 24) recorded Solutions. Rev. 10 (Nov 24) recorded the review index and route manifest. Rev. 9 (Nov 24) recorded the move to Vercel. Rev. 8 (Nov 24) recorded Step 7 implementation, visual approval, and test results. Rev. 7 (Nov 24) recorded Step 6 implementation and test results. Rev. 6 (Nov 24) synced Phase 3 and Phase 4 Steps 1–5 and recorded the approved step decisions. Rev. 5 (Nov 21) recorded the remaining Phase 3 decisions and implementation approval.
 
 ## Project references
 
@@ -37,7 +37,7 @@ Version: Nov 24, 2026 (rev. 11 records the Solutions pages for team review). Rev
 
 ## Current project status
 
-Verified against the code and Git on Nov 24, 2026, on `phase-4-homepage` for the Step 7 commit. Progress detail and the decision log are in `CLAUDE.md` §5–§8.
+Verified against code and Git on Nov 24, 2026. The pushed `phase-4-homepage` checkpoint `8c7d2b66f3c7d24655702700434c5e1e60c0c61d` includes the Step 8 fixes, Vercel migration, Phase 1 review index and manifest, and Phase 2.1 Solutions. The Hero animation lifecycle fix (`5478e7a`) is pushed on top of it. Phase 2.2 Services is reviewed and accepted with known dependencies, and Phase 2.3 Agents awaits owner review. Both are local and uncommitted. Phase 2.4 Marketplace is pending approval. See `CLAUDE.md` §5–§8 and §12.
 
 | Item | Status |
 | --- | --- |
@@ -45,7 +45,7 @@ Verified against the code and Git on Nov 24, 2026, on `phase-4-homepage` for the
 | `next.config.mjs` | Native Next.js routing and image optimization for Vercel at the domain root. `agentRules: false` |
 | `app/layout.js` | Inter via `next/font/google`, `lang="en"`, header/footer shell, review `noindex` metadata, deployment origin from `VERCEL_URL` with a localhost fallback, title template `%s \| Xvox Labs`. Production domain pending (B12). |
 | `app/globals.css` | **Phase 3:** reset, design tokens (Framer measurements + approved corrections), base typography, focus and reduced-motion rules |
-| Routes | `/`, `/style-guide`, `/review`, `/solutions`, and 28 `/solutions/[slug]` paths. Remaining native prototype routes are pending. |
+| Routes | `/`, `/style-guide`, `/review`, 29 Solutions routes, 26 Services routes and seven Agent routes. Remaining native prototype routes are pending. |
 | `components/` | **Phase 3:** `ui/` (14 components), `layout/` (header, menus, footer, logo slot, cart drawer, toast, Vox chat), `motion/` (Appear, CountUp, Marquee, StickyStage). **Phase 4:** `sections/home/` and `sections/shared/` |
 | `hooks/`, `lib/` | `useInView`, `useReducedMotion`, `useScrollProgress`; `actions`, `agentImages`, `brand`, `cart`, `content`, `navigation`, `orchestration`, `preference`, `pricing` |
 | `data/` | **Phase 2:** all prototype content, extracted verbatim (12 content files + `data/pages/` with 20 pages and 6 page templates). **Phase 4 Step 1:** `data/orchestration.js` and the interactive text in `data/pages/home.js`, `data/agents.js`, `data/site.js` |
@@ -53,7 +53,7 @@ Verified against the code and Git on Nov 24, 2026, on `phase-4-homepage` for the
 | Logo | Slot in `lib/brand.js` (`src: null`); `public/brand/` not created yet: **file pending** |
 | `docs/CONTENT_INVENTORY.md` | **Phase 2:** internal inventory: counts, internal-only prices, hidden placeholders, open items, route map |
 | `reference/` | Git-ignored: read-only copy of the prototype (`index.html`) and local visual-review screenshots |
-| Deployment | None. `main` holds Phase 1 only (`9ab7d7e`); nothing merged |
+| Deployment | Native Vercel configuration verified locally. No deployment recorded. The Vercel project connection, live preview URL, deployed revision and access settings are unverified. `main` holds Phase 1 setup only (`9ab7d7e`). |
 
 ## Framer design system (measured from the live site)
 
@@ -246,6 +246,7 @@ Values below were read from the rendered Framer site (computed styles and screen
 ### Content decisions (approved Nov 21, 2026)
 
 - **Prices:** only **$1,500** (blueprint) and **Free** (AI plan) are published. Every other price and every "Price to set" shows **"Contact Us to Discuss Pricing"** with a **"Discuss Pricing"** button to `/book`; consultation-based services use **"Book a call"**. Applies to the homepage, pricing, solutions, services and marketplace. Original values stay in `data/` (`priceStatus`) and in `docs/CONTENT_INVENTORY.md`.
+- **Team-review content.** Original prototype sample prices and draft pricing notes are approved for review. Preserve their values and label their review status. Published pricing rules still apply, including the consultation label for Services and Solutions. The optional visitor Budget ranges follow K5.
 - **Placeholders:** fully placeholder blocks are hidden (`hidden: true` in `data/`), with their text kept for reference. Where only part of a block is placeholder, `text` keeps the original and `display` holds what the site shows.
   - **Footer:** shows only "© 2026 Xvox Labs." (the prototype note is not shown).
   - **Careers:** shows only "Until then, send a note through the contact form with “Careers” in the message."
@@ -302,8 +303,8 @@ These phases track the team-review deliverable. The website roadmap below retain
 
 | Team-review phase | Scope | Status |
 | --- | --- | --- |
-| 1. Review index and manifest | `/review`, 20 standalone and 103 data-driven source records, four legacy aliases, Vox and Hire actions | Implemented and verified locally. All source records have working links within the index. |
-| 2. Native route templates | Solutions and departments, services, agent profiles, marketplace and the remaining standalone views | Phase 2.1 Solutions implemented and verified locally. 93 native prototype destinations remain. |
+| 1. Review index and manifest | `/review`, 20 standalone and 103 data-driven source records, four legacy aliases, Vox and Hire actions | Complete and included in the pushed checkpoint. All source records have working links within the index. |
+| 2. Native route templates | Solutions and departments, services, agent profiles, marketplace and the remaining standalone views | Phase 2.1 Solutions is in the checkpoint. All 26 Phase 2.2 Services routes were reviewed and accepted with known dependencies. The seven Phase 2.3 Agent routes are implemented locally and await owner review. Phase 2.4 Marketplace is pending approval. 60 native prototype destinations remain. |
 | 3. Prototype interaction parity | Cross-route flows, orchestration fallbacks, Mission Board, cart and checkout, self-check, booking, waitlist, and reviewable runtime-only states | Pending |
 | 4. Full review and release | Browse and verify all routes and states, regression checks, then approved Vercel handoff | Pending |
 
@@ -313,6 +314,26 @@ The index renders original extracted blocks and computed destination text, inclu
 
 The hub, five departments and 23 details use the final prototype content and approved navigation paths. The hub lists 18 department solutions, and the review index also links to the four cross-category details and the marketing bundle. `generateStaticParams()` uses the manifest for all 28 detail paths. Related-item links retain their planned URLs while those destinations are pending. See `CLAUDE.md` for verification.
 
+### Phase 2.2 — Services
+
+The Services hub, four area pages and 21 service details use the review manifest at `/services`, `/services/[area]` and `/services/[area]/[id]`. The native detail paths are generated from valid area and service pairs. The dedicated Safe AI Review preserves the five packages, sample report and FAQ. Booking topic, related links, draft pricing notes and sample product amounts are preserved. Self-check, Marketplace and the other pending pages remain separate work. See `CLAUDE.md` for verification.
+
+**Status:** reviewed and accepted by the owner with known pending dependencies (the pages named above). Its files are still uncommitted.
+
+### Phase 2.3 — Agents
+
+The hub at `/how-it-works` and profiles for Scout, Quill, Beacon, Relay, Sage and Reel use the seven approved manifest records. The hub keeps the workflow demos, agent directory and banner quick views, Safe AI content, delivery timeline, model demo, FAQ and original closing CTA. Profiles keep their original order, content, related work, pricing and booking context. Vox opens chat, and unknown agent IDs return 404.
+
+The inline Mission Board retains the original starting state and blueprint preview in place. Drag and tap placement, recommendations, scoring, state changes and the full-screen `/build` route remain planned. Native routes and local interaction checks passed, with details in `CLAUDE.md` §12.
+
+**Status:** implemented locally, awaiting owner review.
+
+**Agent preview mobile UI fix (Nov 24, 2026).** The quick-view popup (`AgentPopup`) was fixed for phones and tablets: real heading levels, a Close button that stays visible while the modal scrolls, a visible focus ring on the modal itself, and no tab stop on link-only Jobs and Use cases panels (`Tabs` opt-in `panelFocusable`). Agent colours, copy, prices and routes are unchanged. Validated for all six agents and four tabs at 320, 338, 390, 407, 810 and 1024 px: 36/36 pass, zero scoped axe violations, lowest text contrast 8.14:1, 44 px minimum targets, Escape focus restore, Hire, Buy, Full profile, Vox and Cart, and reduced motion.
+
+### Phase 2.4 — Marketplace
+
+**Status:** pending approval; not started. It covers the native `/marketplace` and `/marketplace/<id>` routes from the approved URL map above. No scope beyond that map is recorded or assumed.
+
 ## Phase overview
 
 | Phase | Goal | Output | Approval gate | Status |
@@ -320,8 +341,8 @@ The hub, five departments and 23 details use the final prototype content and app
 | 1. Setup | Next.js running locally | Clean app | Site loads | **Done** (`9ab7d7e`) |
 | 2. References & content | Extract prototype content into `data/`; copy prototype images | `data/` files, `public/images/`, `docs/CONTENT_INVENTORY.md` | You approve decisions and URL map | **Approved** (commits `855ea2e`, `932401b`; branch `phase-2-content` pushed) |
 | 3. Design system + shared layout | Global design system, reusable UI components, desktop and mobile navbar, dropdown menus, footer, shared layout shell, motion and animation system | `globals.css`, fonts, logo, `components/ui`, `components/layout`, `components/motion`, `hooks/`, `/style-guide` | You compare `/style-guide`, header and footer with Framer at 390 / 810 / 1024 / 1200 / 1440px | **Done** (commits `c3063eb` … `c0ed4a7`, Nov 21; branch `phase-3-design-system` is local only and is contained in `phase-4-homepage`); still open: logo file |
-| 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) | **In progress** on `phase-4-homepage`. Steps 1–7 done, Step 8 pending |
-| 5. Other pages | All prototype pages in the Framer style | Routes | Every link works, content matches prototype | — |
+| 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) | Steps 1–8 complete on `phase-4-homepage`, including the Step 8 fixes in the checkpoint. Phase sign-off and merge require owner approval. |
+| 5. Other pages | All prototype pages in the Framer style | Routes | Every link works, content matches prototype | In progress. See “Complete team review” for current routes and approval gates. |
 | 6. SEO & AEO | Metadata, schema, sitemap | `sitemap.js`, `robots.js`, JSON-LD, `llms.txt` | Lighthouse + Rich Results | — |
 | 7. Test & deploy | Production build, hosting | Live site | Checklist signed off | Native Vercel build verified locally for team review. Repository connection and deployment pending approval. |
 | 8. Backend (later) | Real Vox AI, form storage, checkout | APIs, database, payments | Separate approval | — |
@@ -339,12 +360,12 @@ Approved Nov 21, 2026. One reviewed local commit per step on `phase-4-homepage`;
 | 4 | Section 2 puzzle stage | Done | `73f81fc` |
 | 5 | Section 6 Team at Work + shared orchestration engine (4 flows) | Done (pushed Nov 24) | `5f5cd06` |
 | 6 | Sections 12 (buying ladder) and 13 (marketplace) | Done (visual review approved Nov 24) | `13c67e5` |
-| 7 | Sections 14 (FAQ) and 15 (contact) | Done (visual review approved Nov 24) | This commit |
-| 8 | Whole-page check: side-by-side review page (Framer / prototype / build) at 5 widths, performance and accessibility pass, final report | Pending | — |
+| 7 | Sections 14 (FAQ) and 15 (contact) | Done (visual review approved Nov 24) | `f14ac35` |
+| 8 | Whole-page audit, three major fixes and five minor fixes | Done (visual review approved) | `8c7d2b6` |
 
 Section 11 (proof) stays hidden (Phase 2 decision).
 
-**Phase 4 plan decisions (Nov 21):** A1 branch and per-step commits · A2 contact confirmation "Thanks, {name}." + "Demo mode: nothing was stored in this view." (no "Sending…", no email promise) · A3 ladder footnote: the "Prices marked 'to set'…" sentence is hidden, "Download means you run it. Hire means we run it. See pricing →" stays · A4 pinned lengths: hero 240vh; puzzle 260vh, 220vh at 601–640px, 180vh ≤ 600px · A5 links use the planned routes before Phase 5 pages exist (no temporary pages) · A6 FAQ and contact are the full prototype sections · K1 hide both contact chat bubbles · K2 hide "1 day / Reply target", keep "30 min / Discovery call" · K3 form note "Demo mode: this form doesn't send or store anything yet." · K4 closing CTA lead "Tell Vox what is slowing you down. You get a plan." · U2 popup Buy price from the blueprint data via the price rule · U3 FAQ not numbered · U4 Vox "a person from our team…" wording deferred until after Phase 4. Step 3–5 decisions: `CLAUDE.md` §8.
+**Phase 4 plan decisions (Nov 21):** A1 branch and per-step commits · A2 contact confirmation "Thanks, {name}." + "Demo mode: nothing was stored in this view." (no "Sending…", no email promise) · A3 ladder footnote: the "Prices marked 'to set'…" sentence is hidden, "Download means you run it. Hire means we run it. See pricing →" stays · A4 pinned lengths: hero 240vh; puzzle 260vh, 220vh at 601–640px, 180vh ≤ 600px · A5 links use the planned routes before Phase 5 pages exist (no temporary pages) · A6 FAQ and contact are the full prototype sections · K1 hide both contact chat bubbles · K2 hide "1 day / Reply target", keep "30 min / Discovery call" · K3 form note "Demo mode: this form doesn't send or store anything yet." · K4 closing CTA lead "Tell Vox what is slowing you down. You get a plan." · U2 popup Buy price from the blueprint data via the price rule · U3 FAQ not numbered · U4 approved in Step 8 removes only “A person from our team takes it from there.” from the Vox greeting. Step 3–5 decisions: `CLAUDE.md` §8.
 
 ### Step 6 — Buying ladder and marketplace (implemented and tested)
 
@@ -378,9 +399,9 @@ No other numerical, monthly, estimated or invented price may appear in these sec
 
 The owner approved the visual review on Nov 24. Final lint and production build passed. The saved Chrome review passed 15 check groups at 12 viewport widths, including the FAQ, field options, keyboard and reduced motion, booking topics, demo submission, and Steps 1–6 regression smoke checks. The review contains 24 screenshots. See `CLAUDE.md` §6 and the [local comparison page](reference/visual-review/phase4/step7/index.html).
 
-### Step 8 — Whole-page check (pending)
+### Step 8 — Whole-page check
 
-Side-by-side review page (Framer / prototype / build) at 5 widths; performance and accessibility pass; final report. Deferred items to raise here: U4 Vox wording, the prototype's pointer tilt on agent images (`--mx`).
+The audit and approved fixes are complete and included in the checkpoint. The major fixes address Hero layout shift, mobile sticky-header focus and normal-text contrast. The minor fixes address Vox launcher clearance, Puzzle tap targets, accessible names, mobile touch target sizes and the single U4 greeting sentence. Prototype pointer tilt (`--mx`) and the separate “Who should our team reply to?” copy change remain deferred. See `CLAUDE.md` §7 for verification and screenshots.
 
 ## How to use this plan
 
@@ -389,7 +410,7 @@ Side-by-side review page (Framer / prototype / build) at 5 widths; performance a
 3. **Approve.** "Approved, implement."
 4. **Run it.** `npm run dev`, open `http://localhost:3000`, check 375 / 810 / 1024 / 1440px.
 5. **Compare.** Look against Framer (design and motion) and the prototype (content).
-6. **Commit.** Review `git status`, `git add` the feature's files, commit. One commit per working feature.
+6. **Commit after explicit owner approval.** Review `git status` and the diff, stage only the approved files, and use the approved commit message.
 7. **If something breaks,** paste the exact error.
 
 **Golden rules**
@@ -398,11 +419,11 @@ Side-by-side review page (Framer / prototype / build) at 5 widths; performance a
 - Content lives in `data/`, copied from the prototype; never typed inside components, never invented.
 - Design values live as tokens in `globals.css`, measured from Framer; never raw hex in components.
 - Keep `CLAUDE.md` updated with every decision.
-- Branch per phase, merge to `main` when it works.
+- Follow `AGENTS.md` for branch changes and obtain explicit owner approval for each commit, push and merge.
 
 ## Folder structure
 
-**Exists (Nov 24, 2026):** `app/` (`layout.js`, `page.js`, `globals.css`, `favicon.ico`, `style-guide/`), `components/ui/`, `components/layout/`, `components/motion/` (Phase 3), `components/sections/home/` and `components/sections/shared/` (Phase 4), `hooks/`, `lib/`, `data/` and `data/pages/` (Phase 2), `public/images/` and `public/images/agents/` (Phase 2), `docs/CONTENT_INVENTORY.md`, git-ignored `reference/`, config files. Not yet: `public/brand/` (logo file pending), routes other than `/` and `/style-guide` (Phase 5), `lib/seo.js` and `lib/schema.js` (Phase 6). Actual tree: `CLAUDE.md` §3.
+**Exists (Nov 24, 2026):** `app/` (`layout.js`, `page.js`, `globals.css`, `favicon.ico`, `style-guide/`, `review/`, `solutions/` with 29 routes, `services/` with 26 local routes, and `how-it-works/` with seven local routes), `components/ui/`, `components/layout/`, `components/motion/` (Phase 3), `components/sections/home/` and `components/sections/shared/` (Phase 4), `hooks/`, `lib/`, `data/` and `data/pages/` (Phase 2), `public/images/` and `public/images/agents/` (Phase 2), `docs/CONTENT_INVENTORY.md`, git-ignored `reference/`, config files. Not yet: `public/brand/` (logo file pending), remaining native prototype routes (Phase 5), `lib/seo.js` and `lib/schema.js` (Phase 6). Actual tree: `CLAUDE.md` §3.
 
 **Planned structure (original proposal; parts above now exist):**
 
@@ -473,11 +494,13 @@ Target: Lighthouse 90+ on mobile; LCP < 2.5s, CLS < 0.1, INP < 200ms.
 
 ## Phase 7 — Testing, Git and deployment
 
-**Team-review hosting (VERCEL-1, Nov 24, 2026).** Use Vercel's Next.js preset with the existing GitHub repository and `phase-4-homepage` branch. Build from the repository root and use the preset's output. Use `npm run build` and `npm run start` to verify locally. Public assets use domain-root URLs. The review index and Solutions pages are available locally.
+**Team-review hosting (VERCEL-1, Nov 24, 2026).** Use Vercel's Next.js preset with the existing GitHub repository and `phase-4-homepage` branch. Build from the repository root and use the preset's output. Use `npm run build` and `npm run start` to verify locally. Public assets use domain-root URLs. The review index, Solutions, Services and Agent pages are available locally.
 
 Approve repository connection and the first deployment separately. Vercel treats a new project's first deployment as production. Confirm the intended Git revision, production branch and review access before import. Use the approved preview branch for later review deployments.
 
-**Git habits:** branch per phase (`phase-2-content`), commit each working feature with specific files, push daily, PR to `main` when a phase is approved. Prefixes: `feat:`, `fix:`, `style:`, `docs:`, `chore:`.
+The native Next.js configuration and production build were verified locally. No Vercel deployment is recorded. The project connection, live preview URL, deployed revision and access settings are unverified.
+
+**Git approvals.** Keep the approved `phase-4-homepage` branch for team review. Obtain explicit owner approval for each commit, push and merge. Stage only approved files, use a normal push to the approved branch on `origin`, and review changes before an approved merge into `main`. Commit prefixes include `feat:`, `fix:`, `style:`, `docs:` and `chore:`.
 
 **Pre-launch checklist**
 

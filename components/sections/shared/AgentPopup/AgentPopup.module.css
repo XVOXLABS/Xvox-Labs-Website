@@ -1,9 +1,18 @@
-/* Centred modal (Dialog placement="center": native <dialog> centring); popup size and look */
-.dialog {
-  width: min(900px, calc(100% - 32px));
-  max-width: none;
-  max-height: 92vh;
+dialog.dialog {
+  --preview-inset: clamp(12px, 2vw, 16px);
+  --preview-edge: color-mix(in srgb, var(--color-ink) 54%, var(--color-surface));
+  --preview-muted: color-mix(in srgb, var(--color-ink) 76%, var(--color-surface));
+  box-sizing: border-box;
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: 900px;
+  max-width: calc(100% - 2 * var(--preview-inset));
+  height: fit-content;
+  max-height: calc(100vh - 2 * var(--preview-inset));
+  max-height: calc(100dvh - 2 * var(--preview-inset));
   overflow: auto;
+  overscroll-behavior: contain;
   border-radius: 26px;
   background: var(--color-bg);
 }
@@ -16,7 +25,20 @@ dialog.dialog[open] {
 .pop {
   position: relative;
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  overflow-wrap: anywhere;
+}
+
+.pop :focus-visible {
+  outline-color: var(--color-ink);
+  outline-offset: 2px;
+}
+
+/* Focus that lands on the modal itself (Tab past the last control) gets the same visible ring,
+   drawn inside the edge so the scroll container does not clip it. */
+dialog.dialog:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: -6px;
 }
 
 .close {
@@ -26,9 +48,9 @@ dialog.dialog[open] {
   z-index: 3;
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
-  border: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--preview-edge);
   border-radius: 9px;
   background: var(--color-frame);
   color: var(--color-ink);
@@ -36,19 +58,18 @@ dialog.dialog[open] {
 }
 
 .stage {
-  position: relative;
-  display: grid;
-  place-items: end center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   min-height: 340px;
+  padding: 18px 18px 0;
   overflow: hidden;
 }
 
 .say {
-  position: absolute;
-  left: 18px;
-  top: 18px;
-  right: 18px;
-  z-index: 1;
+  align-self: stretch;
   margin: 0;
   padding: 10px 13px;
   border-radius: 14px 14px 14px 4px;
@@ -69,7 +90,13 @@ dialog.dialog[open] {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  min-width: 0;
   padding: 26px 26px 22px;
+}
+
+/* Keep the desktop role label clear of the close button above it. */
+@media (min-width: 761px) {
+  .body > :first-child { padding-inline-end: 44px; }
 }
 
 .name {
@@ -82,14 +109,31 @@ dialog.dialog[open] {
   margin-top: -6px;
   font-size: 15px;
   line-height: 22.5px;
-  color: var(--color-ink-muted);
+  color: var(--preview-muted);
 }
 
-/* Popup tab row: wrap onto a second line instead of scrolling sideways, so all four tabs stay
-   fully visible in the narrow popup column (the shared Tabs component is unchanged) */
 .tabs > [role="tablist"] {
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
   overflow: visible;
+}
+
+.tabs [role="tab"] {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 7px 5px;
+  border: 1px solid var(--preview-edge);
+  white-space: normal;
+}
+
+.tabs [role="tab"][aria-selected="true"] {
+  border-color: var(--color-control-active);
+}
+
+.tabs > [role="tabpanel"] {
+  margin-block-start: 16px;
 }
 
 /* Tab panes (prototype .pop-pane / .pop-cell) */
@@ -122,7 +166,7 @@ dialog.dialog[open] {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-ink-muted);
+  color: var(--preview-muted);
 }
 
 /* Prototype .ilist: check marks in small grey squares */
@@ -183,6 +227,7 @@ dialog.dialog[open] {
   justify-content: space-between;
   gap: 12px;
   padding: 14px 16px;
+  border: 1px solid var(--preview-edge);
   border-radius: 14px;
   background: var(--color-surface);
   color: var(--color-ink);
@@ -194,6 +239,7 @@ dialog.dialog[open] {
 @media (hover: hover) {
   .links a:hover {
     transform: translateX(6px);
+    background: var(--color-control);
   }
 }
 
@@ -201,20 +247,37 @@ dialog.dialog[open] {
   display: block;
   font-size: 12px;
   line-height: 18px;
-  color: var(--color-ink-muted);
+  color: var(--preview-muted);
 }
 
 .muted {
   font-size: 14px;
-  color: var(--color-ink-muted);
+  color: var(--preview-muted);
 }
 
 .actions {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
   margin-top: auto;
   padding-top: 4px;
+}
+
+.actions > :is(button, .discuss) {
+  grid-column: 1 / -1;
+}
+
+.actions :is(a, button) {
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px clamp(6px, 2vw, 16px);
+  white-space: normal;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.actions a {
+  border: 1px solid var(--preview-edge);
 }
 
 .discuss {
@@ -231,10 +294,50 @@ dialog.dialog[open] {
   }
 
   .stage {
-    min-height: 280px;
+    min-height: clamp(208px, 64vw, 280px);
+    padding: 14px 14px 0;
+  }
+
+  .say {
+    margin-inline-end: 54px;
+  }
+
+  .figure {
+    width: min(62%, 195px);
   }
 
   .body {
-    padding: 22px 20px 20px;
+    padding: 20px clamp(14px, 4vw, 20px);
+  }
+
+  /* Keep Close reachable while the tall modal scrolls: it spans the whole grid so it can stick. */
+  .close {
+    position: sticky;
+    top: 14px;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: start;
+    justify-self: end;
+    right: auto;
+    margin: 14px 14px 0 0;
+  }
+
+  .stage {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .body {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .tabs > [role="tablist"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pane,
+  .links {
+    min-height: 0;
   }
 }

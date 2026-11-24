@@ -25,17 +25,17 @@ const solutionBySlug = Object.fromEntries(solutions.map((s) => [s.slug, s]));
 // Agent quick-view popup (prototype agentPop): stage with the agent's quote and image, then
 // role, name, line, four tabs and the Buy / Hire / Full profile actions. Built on the Phase 3
 // Dialog (native modal: focus kept inside, Esc and backdrop close, focus returns to the opener).
-// Opens on the Persona tab every time (prototype POPTAB = 'persona').
-export default function AgentPopup({ agentId, onClose }) {
+// Cards default to Persona. The How it works banner opens Skills and systems.
+export default function AgentPopup({ agentId, onClose, initialTab = "persona" }) {
   const agent = agents.find((a) => a.id === agentId);
   return (
     <Dialog open={Boolean(agent)} onClose={onClose} labelledBy="agent-popup-title" placement="center" className={styles.dialog}>
-      {agent ? <PopupBody key={agent.id} agent={agent} onClose={onClose} /> : null}
+      {agent ? <PopupBody key={agent.id} agent={agent} onClose={onClose} initialTab={initialTab} /> : null}
     </Dialog>
   );
 }
 
-function PopupBody({ agent, onClose }) {
+function PopupBody({ agent, onClose, initialTab }) {
   const reduced = useReducedMotion();
   const size = agentImageSize[agent.id];
   const [w, h] = reduced ? size.still : size.anim;
@@ -56,7 +56,7 @@ function PopupBody({ agent, onClose }) {
 
   const cell = (title, children, warm) => (
     <div className={`${styles.cell} ${warm ? styles.warm : ""}`.trim()}>
-      <h4 className={styles.cellTitle}>{title}</h4>
+      <h3 className={styles.cellTitle}>{title}</h3>
       {children}
     </div>
   );
@@ -103,6 +103,7 @@ function PopupBody({ agent, onClose }) {
     {
       id: "jobs",
       label: t.tabs[2][1],
+      panelFocusable: jobs.length === 0,
       content: (
         <div className={styles.links}>
           {jobs.length ? (
@@ -124,6 +125,7 @@ function PopupBody({ agent, onClose }) {
     {
       id: "uses",
       label: t.tabs[3][1],
+      panelFocusable: false,
       content: (
         <div className={styles.links}>
           {agent.solutions.map((slug) => (
@@ -162,7 +164,7 @@ function PopupBody({ agent, onClose }) {
           {agent.name}
         </h2>
         <p className={styles.line}>{agent.line}</p>
-        <Tabs label={agent.name} items={tabs} defaultId="persona" className={styles.tabs} />
+        <Tabs label={agent.name} items={tabs} defaultId={initialTab} className={styles.tabs} />
         <div className={styles.actions}>
           {blueprint ? (
             price ? (
