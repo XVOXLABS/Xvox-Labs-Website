@@ -55,6 +55,10 @@ export default function HeroSequence() {
     const mq = window.matchMedia(REDUCED);
     let raf = 0;
     let current = null;
+    let disposed = false;
+
+    // Navigation can detach refs before passive cleanup, and fonts can resolve after it.
+    const isActive = () => !disposed && bandRef.current !== null;
 
     // Final slot position of agent i, relative to the stage (prototype x1 / y1 / s1).
     const target = (i, size, fh, sr) => {
@@ -130,13 +134,14 @@ export default function HeroSequence() {
     };
     const tick = () => {
       raf = 0;
+      if (!isActive()) return;
       const t = progress();
       current = current === null ? t : current + (t - current) * SMOOTHING;
       apply(current);
       if (Math.abs(t - current) > SETTLE) raf = window.requestAnimationFrame(tick);
     };
     const kick = () => {
-      if (!raf) raf = window.requestAnimationFrame(tick);
+      if (!raf && isActive()) raf = window.requestAnimationFrame(tick);
     };
 
     const reset = () => {
@@ -148,6 +153,7 @@ export default function HeroSequence() {
       bandRef.current.style.transform = "";
     };
     const run = () => {
+      if (!isActive()) return;
       reset();
       if (mq.matches) placeStill();
       else kick();
@@ -155,7 +161,11 @@ export default function HeroSequence() {
     const onScroll = () => {
       if (!mq.matches) kick();
     };
-    const onResize = () => (mq.matches ? placeStill() : kick());
+    const onResize = () => {
+      if (!isActive()) return;
+      if (mq.matches) placeStill();
+      else kick();
+    };
 
     run();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -163,6 +173,7 @@ export default function HeroSequence() {
     mq.addEventListener("change", run);
     document.fonts?.ready.then(onResize);
     return () => {
+      disposed = true;
       window.cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
