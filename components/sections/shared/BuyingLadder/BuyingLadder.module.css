@@ -1,0 +1,129 @@
+/* Prototype .ladder: six steps; Framer tier cards (white top panel on the grey card, decision D6).
+   Columns (decision D3): 6 at 1200px and up, 3 from 621px to 1199px, 1 at 620px and below. */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ladder {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: var(--radius-panel);
+  background: var(--color-frame);
+}
+
+/* Prototype .lstep.hi: the recommended step */
+.hi {
+  background: #fff7f2;
+  box-shadow: inset 0 0 0 1.5px var(--color-accent);
+}
+
+.top {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 14px;
+  border-radius: calc(var(--radius-panel) - 6px);
+  background: var(--color-surface);
+}
+
+.ln {
+  font-size: 11px;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.title {
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+.text {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--color-ink-muted);
+}
+
+/* Prototype .lp: 22px price; the placeholder label stays at label size */
+.lp {
+  display: flex;
+  align-items: center;
+  min-height: 30px;
+  padding-top: 4px;
+  overflow-wrap: anywhere;
+}
+
+.lp span {
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.lpLabel span {
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+.base {
+  display: flex;
+  padding: 0 2px 2px;
+}
+
+/* Narrow six-column cards (about 180px at 1200-1440px): tight button padding so "Browse blueprints →"
+   stays on one line; longer labels may still wrap */
+.base > * {
+  gap: 6px;
+  padding-inline: 6px;
+  white-space: normal;
+  text-align: center;
+}
+
+/* Prototype .lnote */
+.note {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+.note b {
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+.note a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 1199px) {
+  .ladder {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .ladder {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

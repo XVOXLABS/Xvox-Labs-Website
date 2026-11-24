@@ -1,12 +1,14 @@
 import ForkCards from "@/components/sections/home/ForkCards/ForkCards";
 import HeroSequence from "@/components/sections/home/HeroSequence/HeroSequence";
 import HowSteps from "@/components/sections/home/HowSteps/HowSteps";
+import MarketplacePreview from "@/components/sections/home/MarketplacePreview/MarketplacePreview";
 import ProblemTiles from "@/components/sections/home/ProblemTiles/ProblemTiles";
 import PuzzleStage from "@/components/sections/home/PuzzleStage/PuzzleStage";
 import SafeAiBox from "@/components/sections/home/SafeAiBox/SafeAiBox";
 import TeamAtWork from "@/components/sections/home/TeamAtWork/TeamAtWork";
 import ServicePillars from "@/components/sections/home/ServicePillars/ServicePillars";
 import ToolsStrip from "@/components/sections/home/ToolsStrip/ToolsStrip";
+import WaysToBuy from "@/components/sections/home/WaysToBuy/WaysToBuy";
 import WeekCompare from "@/components/sections/home/WeekCompare/WeekCompare";
 import ClosingCta from "@/components/sections/shared/ClosingCta/ClosingCta";
 
@@ -26,7 +28,8 @@ export default function Home() {
       <WeekCompare />
       <SafeAiBox />
       {/* 11. Proof: hidden (Phase 2 decision) */}
-      {/* 12. Buying ladder, 13. Marketplace: step 6 */}
+      <WaysToBuy />
+      <MarketplacePreview />
       {/* 14. FAQ, 15. Contact: step 7 */}
       <ClosingCta />
     </>

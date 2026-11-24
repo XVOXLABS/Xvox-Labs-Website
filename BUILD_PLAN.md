@@ -2,7 +2,7 @@
 
 > **For Claude Code:** This is the build plan for the Xvox Labs website. Read it together with `CLAUDE.md` and `AGENTS.md` before any task. **What the site contains comes from the HTML prototype. How it looks and behaves comes from the Framer reference.** Always plan first and wait for approval before writing code. Anything marked **Pending approval** is not decided: ask, don't assume. Proposed folders and files are not created until a task approves them.
 
-Version: Nov 24, 2026 (rev. 6: status synced with the code and Git: Phase 3 done, Phase 4 Steps 1–5 done, Step 6 in progress; Phase 4 step plan and approved step decisions recorded). Rev. 5 (Nov 21): remaining Phase 3 decisions recorded; Framer/Kaviyan used as inspiration only; Phase 3 implementation approved.
+Version: Nov 24, 2026 (rev. 7 records Step 6 implementation and test results). Rev. 6 (Nov 24) synced Phase 3 and Phase 4 Steps 1–5 and recorded the approved step decisions. Rev. 5 (Nov 21) recorded the remaining Phase 3 decisions and implementation approval.
 
 ## Project references
 
@@ -37,7 +37,7 @@ Version: Nov 24, 2026 (rev. 6: status synced with the code and Git: Phase 3 done
 
 ## Current project status
 
-Verified against the code and Git on Nov 24, 2026 (branch `phase-4-homepage`, HEAD `5f5cd06`). Progress detail and the decision log: `CLAUDE.md` §5–§8.
+Verified against the code and Git on Nov 24, 2026, on `phase-4-homepage` for the Step 6 commit. Progress detail and the decision log are in `CLAUDE.md` §5–§8.
 
 | Item | Status |
 | --- | --- |
@@ -303,7 +303,7 @@ Every link in `data/` carries both `href` (new route) and `prototypeHref` (origi
 | 1. Setup | Next.js running locally | Clean app | Site loads | **Done** (`9ab7d7e`) |
 | 2. References & content | Extract prototype content into `data/`; copy prototype images | `data/` files, `public/images/`, `docs/CONTENT_INVENTORY.md` | You approve decisions and URL map | **Approved** (commits `855ea2e`, `932401b`; branch `phase-2-content` pushed) |
 | 3. Design system + shared layout | Global design system, reusable UI components, desktop and mobile navbar, dropdown menus, footer, shared layout shell, motion and animation system | `globals.css`, fonts, logo, `components/ui`, `components/layout`, `components/motion`, `hooks/`, `/style-guide` | You compare `/style-guide`, header and footer with Framer at 390 / 810 / 1024 / 1200 / 1440px | **Done** (commits `c3063eb` … `c0ed4a7`, Nov 21; branch `phase-3-design-system` is local only and is contained in `phase-4-homepage`); still open: logo file |
-| 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) | **In progress** (branch `phase-4-homepage`, pushed): Steps 1–5 done, **Step 6 in progress**, Steps 7–8 pending. See "Phase 4 — homepage steps" below |
+| 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) | **In progress** on `phase-4-homepage`. Steps 1–6 done, Steps 7–8 pending |
 | 5. Other pages | All prototype pages in the Framer style | Routes | Every link works, content matches prototype | — |
 | 6. SEO & AEO | Metadata, schema, sitemap | `sitemap.js`, `robots.js`, JSON-LD, `llms.txt` | Lighthouse + Rich Results | — |
 | 7. Test & deploy | Production build, hosting | Live site | Checklist signed off | — |
@@ -321,7 +321,7 @@ Approved Nov 21, 2026. One reviewed local commit per step on `phase-4-homepage`;
 | 3 | Section 1 hero sequence + shared agent popup | Done | `27f36ac` |
 | 4 | Section 2 puzzle stage | Done | `73f81fc` |
 | 5 | Section 6 Team at Work + shared orchestration engine (4 flows) | Done (pushed Nov 24) | `5f5cd06` |
-| 6 | Sections 12 (buying ladder) and 13 (marketplace) | **In progress: partially implemented, not tested, not committed** | — |
+| 6 | Sections 12 (buying ladder) and 13 (marketplace) | Done (visual review approved Nov 24) | This commit |
 | 7 | Sections 14 (FAQ) and 15 (contact) | Pending | — |
 | 8 | Whole-page check: side-by-side review page (Framer / prototype / build) at 5 widths, performance and accessibility pass, final report | Pending | — |
 
@@ -329,20 +329,11 @@ Section 11 (proof) stays hidden (Phase 2 decision).
 
 **Phase 4 plan decisions (Nov 21):** A1 branch and per-step commits · A2 contact confirmation "Thanks, {name}." + "Demo mode: nothing was stored in this view." (no "Sending…", no email promise) · A3 ladder footnote: the "Prices marked 'to set'…" sentence is hidden, "Download means you run it. Hire means we run it. See pricing →" stays · A4 pinned lengths: hero 240vh; puzzle 260vh, 220vh at 601–640px, 180vh ≤ 600px · A5 links use the planned routes before Phase 5 pages exist (no temporary pages) · A6 FAQ and contact are the full prototype sections · K1 hide both contact chat bubbles · K2 hide "1 day / Reply target", keep "30 min / Discovery call" · K3 form note "Demo mode: this form doesn't send or store anything yet." · K4 closing CTA lead "Tell Vox what is slowing you down. You get a plan." · U2 popup Buy price from the blueprint data via the price rule · U3 FAQ not numbered · U4 Vox "a person from our team…" wording deferred until after Phase 4. Step 3–5 decisions: `CLAUDE.md` §8.
 
-### Step 6 — Buying ladder and marketplace (in progress)
+### Step 6 — Buying ladder and marketplace (implemented and tested)
 
-**Already implemented (uncommitted, not yet linted, built or tested):**
-- `lib/cart.js`: `removeFromCart(id, { toast })` option (D1); `addToCart` unchanged.
-- `components/layout/Toast/Toast.jsx`: plain message without "View cart" (D1); existing toasts unchanged.
-- `components/sections/shared/BuyingLadder/` (`.jsx` + `.module.css`): six-step ladder and footnote.
-- `components/sections/shared/ItemCard/` (`.jsx` + `.module.css`): marketplace card with stretched link, price link and cart toggle.
-- `components/sections/shared/MarketplaceFeatured/` (`.jsx` + `.module.css`): shared `Tabs` with the card grids.
+`app/page.js` renders `WaysToBuy` (section 12) and `MarketplacePreview` (section 13). The shared components are `BuyingLadder`, `MarketplaceFeatured`, and `ItemCard`. The opt-in removal toast is implemented in `lib/cart.js` and `components/layout/Toast/Toast.jsx` (D1).
 
-**Remaining:**
-- `components/sections/home/WaysToBuy/WaysToBuy.jsx` (section 12: heading + `BuyingLadder about="Home page"` + footnote).
-- `components/sections/home/MarketplacePreview/MarketplacePreview.jsx` (section 13: heading, lead, `MarketplaceFeatured`, "Open the marketplace ↗").
-- `app/page.js`: replace the Step 6 comment with both sections.
-- Lint, build, all validation and regression checks below, screenshots in `reference/visual-review/phase4/step6/`, review; commit only after approval.
+The saved review reports passing lint, production build, browser checks at all five review widths, cart compatibility (19/19), and Steps 1–5 regressions. The handover also verified all eight Blueprint cards appear as they scroll into view at 390 px. Final pre-commit lint and production build passed. See `CLAUDE.md` §6 for the test record and the [local comparison page](reference/visual-review/phase4/step6/index.html) for the screenshots.
 
 **Pricing rule (approved, final):**
 

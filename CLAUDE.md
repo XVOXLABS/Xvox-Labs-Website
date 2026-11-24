@@ -4,7 +4,7 @@
 
 `AGENTS.md` (imported above) holds the rules and workflow every agent must follow. This file holds what the project is, what is done, what is approved and what comes next. Detailed design tables, the section mapping, the URL map and the roadmap live in [`BUILD_PLAN.md`](BUILD_PLAN.md); this file links to them instead of copying them.
 
-Last verified against the code and Git: **Nov 24, 2026**, branch `phase-4-homepage`, HEAD `5f5cd06`.
+Last verified against the code and Git: **Nov 24, 2026**, on `phase-4-homepage` for the Step 6 commit.
 
 ## 1. Project overview
 
@@ -77,8 +77,8 @@ Data source: `data/pages/home.js` (section `index` in brackets). "Done" = commit
 | 9 | "Same business. More breathing room." [9] | `home/WeekCompare` | Done (Step 2) |
 | 10 | "Your data, your rules, your approval." [10] | `home/SafeAiBox` | Done (Step 2) |
 | 11 | Proof "See the work before you buy." [11] | — | **Hidden** (Phase 2 decision; content kept in data) |
-| 12 | Ways to buy "From a free plan to fully run for you." [12] | `shared/BuyingLadder` + `home/WaysToBuy` | **In progress (Step 6)** |
-| 13 | Marketplace "Or take the ready-made version." [13] | `shared/ItemCard`, `shared/MarketplaceFeatured` + `home/MarketplacePreview` | **In progress (Step 6)** |
+| 12 | Ways to buy "From a free plan to fully run for you." [12] | `shared/BuyingLadder` + `home/WaysToBuy` | Done (Step 6) |
+| 13 | Marketplace "Or take the ready-made version." [13] | `shared/ItemCard`, `shared/MarketplaceFeatured` + `home/MarketplacePreview` | Done (Step 6) |
 | 14 | FAQ "Questions technical buyers ask." [14] | — | Not started (Step 7) |
 | 15 | Contact "Tell us what you are fixing." [15] | — | Not started (Step 7) |
 | 16 | Closing CTA "Start with a two-minute plan." [16] | `shared/ClosingCta` | Done (Step 2) |
@@ -97,15 +97,16 @@ Design pattern per section: `BUILD_PLAN.md` "Homepage" table. Detailed specs for
 | 4.3 Hero + agent popup | `27f36ac` | Pinned 240vh hero, agents fly into the sentence; popup (tabs, Buy silent add, Hire saved topic); desktop header band; `Dialog` `center` placement; `addToCart(id, { silent })` |
 | 4.4 Puzzle stage | `73f81fc` | Dark panel, pinned 260 / 220 / 180vh, prototype maths, reduced-motion still layout |
 | 4.5 Team at Work + Orchestration | `5f5cd06` (Nov 24) | 4 flows, waves, Sage flag, Approve/Edit/Reject, run log; log text identical to the prototype for all flows |
+| Hero phone spacing follow-up | `033d29a` (Nov 24) | Phone agent gap ratio set to 0.7. Review in `reference/visual-review/hero-phone/` |
+| 4.6 Buying Ladder + Marketplace | This commit (Nov 24) | Sections 12–13 and opt-in cart removal toast. See §6 for review and testing |
 
 Phase 3 work lives on `phase-4-homepage` (branched from `phase-3-design-system` at `c0ed4a7`).
 
-## 6. Current work — Phase 4 Step 6: Buying Ladder & Marketplace
+## 6. Phase 4 Step 6 — Buying Ladder & Marketplace
 
-**Status: approved for implementation, IN PROGRESS, not complete, not tested, not committed.** (Same record in `BUILD_PLAN.md` "Phase 4 — homepage steps".)
+**Implementation and testing complete.** The owner approved the visual review and Step 6 commit on Nov 24, 2026. See `BUILD_PLAN.md` under “Phase 4 — homepage steps”.
 
-Done so far (uncommitted, unverified): `lib/cart.js` and `components/layout/Toast/Toast.jsx` (D1), `components/sections/shared/BuyingLadder/*`, `components/sections/shared/ItemCard/*`, `components/sections/shared/MarketplaceFeatured/*`.
-Still to do: `components/sections/home/WaysToBuy/WaysToBuy.jsx`, `components/sections/home/MarketplacePreview/MarketplacePreview.jsx`, `app/page.js` (replace the Step 6 comment), then lint, build, every check below, screenshots and review. Do not mark it done before that.
+The 11 source files match the saved review diff (`step6-full.diff`, 595 insertions and 13 deletions). `app/page.js` renders `WaysToBuy` and `MarketplacePreview` in prototype order. The sections use the shared `BuyingLadder`, `ItemCard`, and `MarketplaceFeatured` components. The cart and Toast changes implement D1.
 
 **Section 12 ladder** (`data/pricing.js` `ladder`, footnote from home section 12):
 
@@ -126,13 +127,18 @@ Footnote: "**Download** means you run it. **Hire** means we run it." + "See pric
 
 **Validation required:** price allow-list (only "Free" and "$1,500") and deny-list (no other `$` amounts, "/ month", "one-time", "Price to set", "TBS", "from $") on rendered text, accessible names, `title` attributes and served HTML at 5 widths; every placeholder shows the label; `/book` topics saved correctly; cart/Toast compatibility (Node test old vs new `lib/cart.js` + browser: add toast with View cart, card remove toast without it, drawer remove silent, popup Buy still silent); no nested interactive elements; tabs by keyboard; column counts incl. 620/621; no overflow or console errors; screenshots vs prototype in `reference/visual-review/phase4/step6/`; Steps 1–5 regression; lint and build.
 
+**Recorded results (Nov 24, 2026).** The saved review reports passing lint, production build, cart compatibility (19/19), and Steps 1–5 regressions. The browser report records zero failures, console errors, or horizontal overflow at 390, 810, 1024, 1200, and 1440 px. It covers pricing, all six tabs (8/8/8/6/4/4 cards), booking topics, cart and Toast, and keyboard and ARIA checks. Ladder boundaries were checked at 620/621 and 1199/1200 px, and reduced motion at 390 and 1440 px. Evidence is in the [review page](reference/visual-review/phase4/step6/index.html), `step6check.json`, and the 46 screenshots in `shots/`.
+
+The handover review used the saved suite results and ran a targeted Chrome check at 390 px against the existing production build. All eight Blueprint cards became visible when scrolled into view. In the saved mobile Blueprints comparison, only the first two cards had completed their entrance animation at capture time.
+
+**Final pre-commit checks (Nov 24, 2026).** `npm run lint` and `npm run build` passed. The build passed outside the sandbox after the sandbox blocked worker creation.
+
 ## 7. Remaining work (in order)
 
 **Phase 4 (homepage)**
-1. Finish **Step 6** (above), review, commit on approval.
-2. **Step 7 — FAQ and Contact** (sections 14–15): FAQ two columns, 7 questions from `data/faq.js` in order, all closed, independent toggles via the shared `Accordion` (`defaultOpen={-1}`, no group name), no numbering (U3), "Ask Vox →". Contact: K1–K4 applied, "Start a project" form (8 fields, options from data, prototype validation message), demo confirmation "Thanks, {name}." + "Demo mode: nothing was stored in this view." (no "Sending…", no email promise), saved-topic chip from `/book` preference.
-3. **Step 8 — whole-page check:** side-by-side review page (Framer / prototype / build) at 5 widths, performance and accessibility pass, final report. Raise the deferred pointer tilt (`--mx`) and U4 here.
-4. Phase 4 approval, then merge to `main` only with approval.
+1. **Step 7 — FAQ and Contact** (sections 14–15): FAQ two columns, 7 questions from `data/faq.js` in order, all closed, independent toggles via the shared `Accordion` (`defaultOpen={-1}`, no group name), no numbering (U3), "Ask Vox →". Contact: K1–K4 applied, "Start a project" form (8 fields, options from data, prototype validation message), demo confirmation "Thanks, {name}." + "Demo mode: nothing was stored in this view." (no "Sending…", no email promise), saved-topic chip from `/book` preference.
+2. **Step 8 — whole-page check:** side-by-side review page (Framer / prototype / build) at 5 widths, performance and accessibility pass, final report. Raise the deferred pointer tilt (`--mx`) and U4 here.
+3. Phase 4 approval, then merge to `main` only with approval.
 
 **Later phases** (`BUILD_PLAN.md` "Phase overview"): 5. Other pages (all prototype pages and routes) · 6. SEO & AEO (metadata, JSON-LD, sitemap, robots, `llms.txt`) · 7. Test & deploy · 8. Backend (real Vox AI, form storage, checkout; separate approval).
 
@@ -164,7 +170,7 @@ Footnote: "**Download** means you run it. **Hire** means we run it." + "See pric
 - `metadataBase` is the placeholder `https://example.com` (live domain pending, B12).
 - Only `/` and `/style-guide` exist; links to Phase 5 routes return 404 until then (accepted, A5).
 - Internal placeholder prices are in the client JavaScript (the cart imports `data/marketplace.js`); never displayed. Removing them from the bundle would be a separate approved data change.
-- `BUILD_PLAN.md` was synced with this status on Nov 24, 2026 (rev. 6). Keep the three documents consistent after each step.
+- `BUILD_PLAN.md` was synced with this status on Nov 24, 2026 (rev. 7). Keep the three documents consistent after each step.
 - Business content differences prototype vs blueprint (B1–B13 in `BUILD_PLAN.md`) are still pending.
 - Deferred: U4 Vox wording; prototype pointer tilt on agent images (`--mx`), to raise at Step 8.
 - There is no automated test suite in the repo; browser checks so far were run with ad-hoc headless-Chrome scripts outside the repository (not preserved).
@@ -188,12 +194,11 @@ Footnote: "**Download** means you run it. **Hire** means we run it." + "See pric
 
 ## 12. Git and deployment status (verified Nov 24, 2026)
 
-- Branch `phase-4-homepage`, HEAD `5f5cd06`, tracking `origin/phase-4-homepage` (0 ahead, 0 behind).
-- Uncommitted: Step 6 work in progress (see §6).
+- Branch `phase-4-homepage` tracks `origin/phase-4-homepage` at `5f5cd06`. The Step 6 commit follows the documentation sync `700cb85` and the hero phone spacing fix `033d29a`, bringing the branch to 3 ahead and 0 behind.
 - `main` = `origin/main` = `9ab7d7e` (Phase 1 only). Nothing merged.
 - Remote branches: `main`, `phase-2-content` (`932401b`), `phase-4-homepage`. Local only: `phase-3-design-system` (`c0ed4a7`, contained in `phase-4-homepage`).
 - Deployment: none. No hosting configured.
 
 ## 13. Next action
 
-Finish **Phase 4 Step 6** exactly as approved in §6: create `WaysToBuy` and `MarketplacePreview`, update `app/page.js`, then run all Step 6 validation and regression checks, lint and build, capture the screenshots, and report for review. Commit only after the owner approves. Do not start Step 7 without approval.
+Await owner approval to start **Step 7 — FAQ and Contact**. A push also requires explicit approval.

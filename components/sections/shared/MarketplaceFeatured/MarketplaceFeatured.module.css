@@ -1,0 +1,25 @@
+/* Prototype .mtabs: pill tabs that wrap so every tab stays visible (decision D5) */
+.tabs > [role="tablist"] {
+  flex-wrap: wrap;
+  overflow: visible;
+  padding: 2px;
+}
+
+.tabs [role="tabpanel"] {
+  margin-top: 16px;
+}
+
+/* Prototype .mgrid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+}
