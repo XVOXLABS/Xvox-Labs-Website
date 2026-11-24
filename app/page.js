@@ -4,6 +4,7 @@ import HowSteps from "@/components/sections/home/HowSteps/HowSteps";
 import ProblemTiles from "@/components/sections/home/ProblemTiles/ProblemTiles";
 import PuzzleStage from "@/components/sections/home/PuzzleStage/PuzzleStage";
 import SafeAiBox from "@/components/sections/home/SafeAiBox/SafeAiBox";
+import TeamAtWork from "@/components/sections/home/TeamAtWork/TeamAtWork";
 import ServicePillars from "@/components/sections/home/ServicePillars/ServicePillars";
 import ToolsStrip from "@/components/sections/home/ToolsStrip/ToolsStrip";
 import WeekCompare from "@/components/sections/home/WeekCompare/WeekCompare";
@@ -19,7 +20,7 @@ export default function Home() {
       <ToolsStrip />
       <ProblemTiles />
       <ForkCards />
-      {/* 6. Team at work (orchestration): step 5 */}
+      <TeamAtWork />
       <HowSteps />
       <ServicePillars />
       <WeekCompare />

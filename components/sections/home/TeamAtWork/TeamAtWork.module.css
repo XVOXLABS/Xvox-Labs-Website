@@ -1,0 +1,31 @@
+/* Prototype .tw: pill tabs in the grey frame. Tabs wrap so all four stay visible (decision D3). */
+.tabs > [role="tablist"] {
+  flex-wrap: wrap;
+  overflow: visible;
+  padding: 2px;
+}
+
+/* White pills on the grey frame (prototype .twtabs button); the selected tab stays dark */
+.tabs [role="tab"]:not([aria-selected="true"]) {
+  background: var(--color-surface);
+}
+
+.tabs [role="tabpanel"] {
+  margin-top: 10px;
+}
+
+/* Prototype .twfoot: blueprint and timeline, link to the solution */
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 0 8px 6px;
+  font-size: 14px;
+}
+
+.muted {
+  color: var(--color-ink-muted);
+}
