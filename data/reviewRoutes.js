@@ -153,10 +153,14 @@ export const prototypeActions = {
   "#hire": { type: "hire", withinPage: "#hire-sec", href: "/pricing#hire", reviewTarget: "#pricing" },
 };
 
+// Phase 2.5 company and conversion pages.
+const companyPaths = ["/pricing", "/book", "/trust", "/about", "/careers", "/blog", "/results", "/privacy", "/studio", "/talent", "/inbox", "/notfound"];
+
 // Add paths here when their native pages are implemented.
 export const implementedPrototypePaths = prototypeRoutes.filter(({ href }) =>
   href === "/" || href === "/solutions" || href.startsWith("/solutions/") || href === "/services" || href.startsWith("/services/") ||
-  href === "/how-it-works" || href.startsWith("/how-it-works/agents/"),
+  href === "/how-it-works" || href.startsWith("/how-it-works/agents/") || href === "/marketplace" || href.startsWith("/marketplace/") ||
+  companyPaths.includes(href),
 ).map(({ href }) => href);
 
 export function reviewAnchor(hash) {

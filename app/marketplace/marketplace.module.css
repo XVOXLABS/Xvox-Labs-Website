@@ -1,0 +1,490 @@
+.following {
+  padding-block-start: 0;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Hub: filters left, results right (prototype .mlayout); stacked below 810px. */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.side {
+  display: grid;
+  gap: 18px;
+}
+
+.results {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+@media (min-width: 810px) {
+  .layout {
+    grid-template-columns: 230px minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 810px) and (min-height: 780px) {
+  .side {
+    position: sticky;
+    top: calc(var(--header-height) + var(--header-offset) + 16px);
+  }
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-inline: 12px;
+  border-radius: var(--radius-button);
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 1px var(--color-ink-faint);
+}
+
+.searchBox:focus-within {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.searchBox input {
+  width: 100%;
+  min-height: 44px;
+  border: 0;
+  background: none;
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 15px;
+}
+
+.searchBox input:focus-visible {
+  outline: none;
+}
+
+.filterHeading {
+  margin: 0 0 8px;
+  color: var(--color-ink-muted);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.options {
+  display: grid;
+  gap: 2px;
+}
+
+.options button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 9px;
+  background: none;
+  color: var(--color-ink);
+  font-size: 15px;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+
+@media (hover: hover) {
+  .options button:hover {
+    background: var(--color-frame);
+  }
+}
+
+.options button[aria-pressed="true"] {
+  background: var(--color-control-active);
+  color: var(--color-on-dark);
+}
+
+.optionCount {
+  flex: none;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+}
+
+.options button[aria-pressed="true"] .optionCount {
+  color: var(--color-on-dark);
+  opacity: 0.8;
+}
+
+@media (max-width: 809px) {
+  .options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .options button {
+    background: var(--color-control);
+  }
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.count {
+  color: var(--color-ink-muted);
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+}
+
+.sort select {
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 9px;
+  background: var(--color-frame);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  gap: 8px;
+}
+
+.empty {
+  padding: 30px;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  color: var(--color-ink-muted);
+  text-align: center;
+}
+
+.sourceNote {
+  padding: 8px 16px;
+  border-radius: var(--radius-card);
+  background: var(--color-frame);
+}
+
+.sourceNote summary {
+  min-height: 44px;
+  padding-block: 10px;
+  cursor: pointer;
+}
+
+.sourceNote ul {
+  padding-inline-start: 1.2em;
+}
+
+.sourceNote li + li {
+  margin-block-start: 6px;
+}
+
+.sourceNote a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+}
+
+.sourceNote p {
+  margin-block-end: 8px;
+}
+
+/* Dark "Rather have it installed?" strip (prototype .darkcta). */
+.installCta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 24px;
+  border-radius: var(--radius-panel);
+  background: var(--color-dark);
+  color: var(--color-on-dark);
+}
+
+.installCta h2 {
+  font-size: var(--fs-h4);
+  font-weight: 500;
+}
+
+.installCta p {
+  margin-block-start: 4px;
+  color: var(--color-on-dark);
+  opacity: 0.75;
+  font-size: 14px;
+}
+
+.installCta :is(a, button) {
+  min-height: 44px;
+  white-space: normal;
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.actions :is(a, button) {
+  min-height: 44px;
+  white-space: normal;
+  text-align: center;
+}
+
+.closing {
+  padding: clamp(20px, 5vw, 64px);
+}
+
+.closing .actions {
+  justify-content: center;
+}
+
+/* Item page */
+.crumbRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-block-end: 20px;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.chip {
+  padding: 6px 12px;
+  border-radius: var(--radius-badge);
+  background: var(--color-frame);
+  font-size: 13px;
+}
+
+.itemPage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 8px;
+}
+
+.visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 440px;
+  overflow: hidden;
+  border-radius: var(--radius-frame);
+}
+
+.bigGlyph {
+  font-size: 140px;
+  line-height: 1;
+  color: var(--color-ink);
+}
+
+.agentMini {
+  position: absolute;
+  right: 30px;
+  bottom: -30px;
+  width: 140px;
+  aspect-ratio: 1;
+}
+
+.agentMini:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: -2px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  padding: clamp(20px, 3vw, 34px);
+  border-radius: var(--radius-frame);
+  background: var(--color-surface);
+  overflow-wrap: anywhere;
+}
+
+.eyebrow {
+  color: var(--color-ink-muted);
+  font-size: 14px;
+}
+
+.title {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+  color: var(--color-ink-muted);
+}
+
+.price {
+  font-size: 28px;
+}
+
+.price a {
+  min-height: 44px;
+}
+
+.tall {
+  min-height: 44px;
+}
+
+.label {
+  margin: 6px 0 10px;
+  color: var(--color-ink-muted);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ticks,
+.tools {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ticks li {
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.ticks li::before {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--color-frame);
+  font-size: 11px;
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tools li {
+  padding: 6px 10px;
+  border-radius: var(--radius-button);
+  background: var(--color-control);
+}
+
+.fits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.fits > .installCta {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-radius: var(--radius-frame);
+  padding: 26px;
+}
+
+.links {
+  display: grid;
+  gap: 8px;
+  margin-block-start: 22px;
+}
+
+.links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  padding: 14px 16px;
+  border-radius: var(--radius-row);
+  background: var(--color-surface);
+}
+
+.links small {
+  display: block;
+  color: var(--color-ink-muted);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.related {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-block-start: 30px;
+}
+
+@media (max-width: 1199px) {
+  .related {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 809px) {
+  .itemPage,
+  .fits {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .visual {
+    min-height: 280px;
+  }
+
+  .bigGlyph {
+    font-size: 96px;
+  }
+
+  .agentMini {
+    width: 110px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .related {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
