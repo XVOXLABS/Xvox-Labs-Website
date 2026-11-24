@@ -240,7 +240,7 @@
   }
 
   .board {
-    height: min(44vh, 340px);
+    height: min(44vh, clamp(160px, 48vw, 280px));
   }
 
   .piece {

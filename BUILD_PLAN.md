@@ -37,7 +37,7 @@ Version: Nov 24, 2026 (rev. 15 records the review status of Phases 2.2 to 2.4). 
 
 ## Current project status
 
-Verified against code and Git on Nov 24, 2026. The pushed `phase-4-homepage` checkpoint `8c7d2b66f3c7d24655702700434c5e1e60c0c61d` includes the Step 8 fixes, Vercel migration, Phase 1 review index and manifest, and Phase 2.1 Solutions. The Hero animation lifecycle fix (`5478e7a`) is pushed on top of it. Phase 2.2 Services is reviewed and accepted with known dependencies, and Phase 2.3 Agents awaits owner review. Both are local and uncommitted. Phase 2.4 Marketplace is pending approval. See `CLAUDE.md` §5–§8 and §12.
+Verified against code and Git on Nov 24, 2026. The pushed `phase-4-homepage` checkpoint `8c7d2b66f3c7d24655702700434c5e1e60c0c61d` includes the Step 8 fixes, Vercel migration, Phase 1 review index and manifest, and Phase 2.1 Solutions. The Hero animation lifecycle fix (`5478e7a`) is pushed on top of it. Phase 2.2 Services is reviewed and accepted with known dependencies, and Phase 2.3 Agents is approved. Both are in the team-review checkpoint commit. A local Phase 2.4 Marketplace implementation awaits owner review and is excluded from it. See `CLAUDE.md` §5–§8 and §12.
 
 | Item | Status |
 | --- | --- |
@@ -304,7 +304,7 @@ These phases track the team-review deliverable. The website roadmap below retain
 | Team-review phase | Scope | Status |
 | --- | --- | --- |
 | 1. Review index and manifest | `/review`, 20 standalone and 103 data-driven source records, four legacy aliases, Vox and Hire actions | Complete and included in the pushed checkpoint. All source records have working links within the index. |
-| 2. Native route templates | Solutions and departments, services, agent profiles, marketplace and the remaining standalone views | Phase 2.1 Solutions is in the checkpoint. All 26 Phase 2.2 Services routes were reviewed and accepted with known dependencies. The seven Phase 2.3 Agent routes are implemented locally and await owner review. Phase 2.4 Marketplace is pending approval. 60 native prototype destinations remain. |
+| 2. Native route templates | Solutions and departments, services, agent profiles, marketplace and the remaining standalone views | Phase 2.1 Solutions is in the checkpoint. All 26 Phase 2.2 Services routes were reviewed and accepted with known dependencies. The seven Phase 2.3 Agent routes were approved by the owner. Phase 2.4 Marketplace is not part of this checkpoint (a local implementation awaits review). 60 native prototype destinations remain. |
 | 3. Prototype interaction parity | Cross-route flows, orchestration fallbacks, Mission Board, cart and checkout, self-check, booking, waitlist, and reviewable runtime-only states | Pending |
 | 4. Full review and release | Browse and verify all routes and states, regression checks, then approved Vercel handoff | Pending |
 
@@ -318,7 +318,7 @@ The hub, five departments and 23 details use the final prototype content and app
 
 The Services hub, four area pages and 21 service details use the review manifest at `/services`, `/services/[area]` and `/services/[area]/[id]`. The native detail paths are generated from valid area and service pairs. The dedicated Safe AI Review preserves the five packages, sample report and FAQ. Booking topic, related links, draft pricing notes and sample product amounts are preserved. Self-check, Marketplace and the other pending pages remain separate work. See `CLAUDE.md` for verification.
 
-**Status:** reviewed and accepted by the owner with known pending dependencies (the pages named above). Its files are still uncommitted.
+**Status:** reviewed and accepted by the owner with known pending dependencies (the pages named above). Its files are in the team-review checkpoint commit.
 
 ### Phase 2.3 — Agents
 
@@ -326,13 +326,13 @@ The hub at `/how-it-works` and profiles for Scout, Quill, Beacon, Relay, Sage an
 
 The inline Mission Board retains the original starting state and blueprint preview in place. Drag and tap placement, recommendations, scoring, state changes and the full-screen `/build` route remain planned. Native routes and local interaction checks passed, with details in `CLAUDE.md` §12.
 
-**Status:** implemented locally, awaiting owner review.
+**Status:** approved by the owner; included in the team-review checkpoint commit.
 
 **Agent preview mobile UI fix (Nov 24, 2026).** The quick-view popup (`AgentPopup`) was fixed for phones and tablets: real heading levels, a Close button that stays visible while the modal scrolls, a visible focus ring on the modal itself, and no tab stop on link-only Jobs and Use cases panels (`Tabs` opt-in `panelFocusable`). Agent colours, copy, prices and routes are unchanged. Validated for all six agents and four tabs at 320, 338, 390, 407, 810 and 1024 px: 36/36 pass, zero scoped axe violations, lowest text contrast 8.14:1, 44 px minimum targets, Escape focus restore, Hire, Buy, Full profile, Vox and Cart, and reduced motion.
 
 ### Phase 2.4 — Marketplace
 
-**Status:** pending approval; not started. It covers the native `/marketplace` and `/marketplace/<id>` routes from the approved URL map above. No scope beyond that map is recorded or assumed.
+**Status:** not part of the team-review checkpoint. A local implementation awaits owner review and stays uncommitted. Checkout and payment are out of scope.
 
 ## Phase overview
 

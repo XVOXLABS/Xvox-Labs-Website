@@ -59,10 +59,16 @@
 }
 
 .card {
+  /* Keep the field edge at least 3:1 against the control fill. */
+  --field-edge: color-mix(in srgb, var(--color-ink) 46%, var(--color-control));
+  --field-edge-hover: color-mix(in srgb, var(--color-ink) 50%, var(--color-control));
+  --field-edge-focus: color-mix(in srgb, var(--color-ink) 54%, var(--color-control));
   min-width: 0;
   padding: clamp(20px, 3vw, 30px);
   border-radius: var(--radius-card);
   background: var(--color-surface);
+  outline: 1px solid color-mix(in srgb, var(--color-ink) 16%, var(--color-surface));
+  outline-offset: -1px;
 }
 
 .cardTitle {
@@ -99,11 +105,26 @@
   min-width: 0;
   min-height: 44px;
   padding: 10px 12px;
-  border: 1px solid var(--color-ink-muted);
+  border: 1px solid var(--field-edge);
   border-radius: var(--radius-button);
   background: var(--color-control);
   color: var(--color-ink);
   font: inherit;
+}
+
+@media (hover: hover) {
+  .field :is(input, select, textarea):hover {
+    border-color: var(--field-edge-hover);
+  }
+}
+
+.field :is(input, select, textarea):focus {
+  border-color: var(--field-edge-focus);
+}
+
+.field :is(input, select, textarea):focus-visible {
+  outline-color: var(--field-edge-focus);
+  outline-offset: 2px;
 }
 
 .field input::placeholder {
@@ -120,7 +141,7 @@
 }
 
 .intro .ask:focus-visible,
-.form :is(input, select, textarea, button):focus-visible,
+.form button:focus-visible,
 .confirmation:focus-visible {
   outline-color: var(--color-ink);
   outline-offset: 2px;

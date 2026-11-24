@@ -19,7 +19,7 @@ const REDUCED = "(prefers-reduced-motion: reduce)";
 // Price (approved rule): published items show their price (only the $1,500 blueprints today);
 // everything else shows "Contact Us to Discuss Pricing" as a link that saves the item as the topic
 // (About = item name, Path = type) and opens /book (Q1, Q2). The + / ✓ toggle works for every item (Q3).
-export default function ItemCard({ item }) {
+export default function ItemCard({ item, compact = false }) {
   const cart = useCart();
   const inCart = cart.includes(item.id);
   const type = itemTypes[item.type];
@@ -35,7 +35,8 @@ export default function ItemCard({ item }) {
   };
 
   return (
-    <article className={styles.card} onPointerEnter={(e) => swap(e, true)} onPointerLeave={(e) => swap(e, false)}>
+    <article className={compact ? `${styles.card} ${styles.compact}` : styles.card}
+      onPointerEnter={(e) => swap(e, true)} onPointerLeave={(e) => swap(e, false)}>
       <span className={styles.tile} style={{ background: `var(--tint-${type.tint})` }}>
         <span className={styles.chip}>{type.name}</span>
         <span className={styles.glyph} aria-hidden="true">

@@ -111,11 +111,11 @@ export function HubSections({ entry }) {
         <Button href={book.href} variant="secondary">{book.text}</Button>
       </Hero>
       <Section className={styles.following}>
-        <Frame className={styles.grid}>
+        <Frame className={styles.departmentGrid}>
           {departments.map((department, i) => (
-            <Card key={department.id} href={tiles[i].href} className={styles.tile}>
+            <Card key={department.id} href={tiles[i].href} className={`${styles.tile} ${styles.departmentCard}`}>
               <span className={styles.tileImage}>
-                <Image src={department.image} alt="" fill sizes="(max-width: 809px) 100vw, (max-width: 1199px) 50vw, 360px" />
+                <Image src={department.image} alt="" fill sizes="(max-width: 809px) 100vw, (max-width: 1023px) 50vw, (max-width: 1199px) 33vw, 336px" />
                 <span className={styles.imageArrow} aria-hidden="true">↗</span>
               </span>
               <Category color={department.color}>{`0${i + 1} / ${department.name}`}</Category>
@@ -287,7 +287,7 @@ function RelatedItems({ blocks, items }) {
       <SectionHead eyebrow={block(blocks, "span.eyebrow").text} title={block(blocks, "h2.big").text}
         action={<Button href={market.href} variant="secondary">{market.text}</Button>} />
       <Frame className={styles.market}>
-        {items.map((item) => <ItemCard key={item.id} item={item} />)}
+        {items.map((item) => <ItemCard key={item.id} item={item} compact />)}
       </Frame>
       {samples.length ? (
         <details className={styles.sourceNote}>

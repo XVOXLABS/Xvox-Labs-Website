@@ -154,7 +154,10 @@ export const prototypeActions = {
 };
 
 // Add paths here when their native pages are implemented.
-export const implementedPrototypePaths = ["/", ...reviewGroups.find(({ id }) => id === "solutions").entries.map(({ href }) => href)];
+export const implementedPrototypePaths = prototypeRoutes.filter(({ href }) =>
+  href === "/" || href === "/solutions" || href.startsWith("/solutions/") || href === "/services" || href.startsWith("/services/") ||
+  href === "/how-it-works" || href.startsWith("/how-it-works/agents/"),
+).map(({ href }) => href);
 
 export function reviewAnchor(hash) {
   return `review-${hash.slice(1)}`;

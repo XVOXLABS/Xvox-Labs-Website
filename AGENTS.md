@@ -29,7 +29,7 @@ Read this file before any task. Then read [`CLAUDE.md`](CLAUDE.md) (project know
 - Do not change approved designs, content, wording, prices or behaviour without approval.
 - Content lives in `data/` (copied verbatim from the prototype); never type content inside components.
 - Design values live as tokens in `app/globals.css`; components use tokens, not new raw values, unless the value is documented.
-- Pricing rule: only **Free** (AI plan) and **$1,500** (published blueprints) are shown. Everything else shows **"Contact Us to Discuss Pricing"**. See `CLAUDE.md` §8.
+- For published pricing, show only **Free** (AI plan) and **$1,500** (published blueprints). Use **"Contact Us to Discuss Pricing"** for other offers. Preserve the original prototype sample prices and draft pricing notes as labeled, approved team-review content. See `CLAUDE.md` §8.
 
 **Core behaviour**
 1. Don't assume. Don't hide confusion. Surface trade-offs.
@@ -38,6 +38,7 @@ Read this file before any task. Then read [`CLAUDE.md`](CLAUDE.md) (project know
 4. Define success criteria. Loop until verified.
 
 **How the owner works**
+- Claude and Codex work sequentially, with one active agent at a time. At every switch, the outgoing agent records completed work, changed files, test results and pending tasks in `CLAUDE.md` and provides a handover summary. The incoming agent reads the project documents, checks Git status and recent commits, and continues from the existing work.
 - Plan before build: confirm the approach in chat before generating files.
 - Execution-ready output, not outlines or scaffolds.
 - When iterating, make targeted corrections; don't rewrite the whole thing.
@@ -89,7 +90,7 @@ Read this file before any task. Then read [`CLAUDE.md`](CLAUDE.md) (project know
 - **Branch per phase** (`phase-2-content`, `phase-3-design-system`, `phase-4-homepage`). Do not switch or create branches without approval.
 - **Commits:** one reviewed commit per approved step, staging only that step's files (`git add <files>`, never `git add -A` blindly). Clear messages with prefixes `feat:`, `fix:`, `style:`, `docs:`, `chore:`. Commit only after the owner approves the diff and the message.
 - **Pushes:** only when explicitly asked, normal push to the same branch name (`git push origin <branch>`). Never force push.
-- **`main`:** protected. Nothing is merged into `main` until the owner approves the phase; merges go through review.
+- **`main`:** protected. Merges go through review and require the owner's approval of the phase and explicit approval for the merge.
 - Do not commit secrets, `.env*`, `node_modules/`, `.next/`, or the git-ignored `reference/` folder.
 
 ## G. Documentation sync

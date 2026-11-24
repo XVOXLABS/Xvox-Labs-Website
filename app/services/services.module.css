@@ -1,0 +1,207 @@
+.following {
+  padding-block-start: 0;
+}
+
+.crumbs {
+  color: var(--color-ink-muted);
+}
+
+.crumbs ol,
+.chips,
+.scores {
+  list-style: none;
+  padding: 0;
+}
+
+.crumbs ol,
+.chips,
+.actions,
+.siblings,
+.builders {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+
+.crumbs li + li::before {
+  content: "/";
+  margin-inline-end: 12px;
+}
+
+.crumbs a,
+.note a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.stack,
+.deliverable {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.deliverable {
+  min-block-size: 170px;
+  justify-content: space-between;
+}
+
+.two,
+.three,
+.four,
+.five,
+.row,
+.step,
+.scores li {
+  display: grid;
+  gap: 10px;
+}
+
+.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+.row {
+  grid-template-columns: minmax(0, 1fr) minmax(110px, 24%) auto;
+  align-items: center;
+}
+
+.row h3 {
+  margin-block-end: 4px;
+}
+
+.row small,
+.muted,
+.cardEnd {
+  color: var(--color-ink-muted);
+}
+
+.chips li,
+.arrow,
+.severity,
+.verdict {
+  border-radius: var(--radius-button);
+  background: var(--color-frame);
+  color: var(--color-ink);
+  padding: 6px 10px;
+}
+
+.chips li {
+  background: var(--color-surface);
+}
+
+.builders .chips li {
+  background: var(--color-frame);
+}
+
+.arrow {
+  display: grid;
+  min-width: 32px;
+  place-items: center;
+}
+
+.cardEnd,
+.studio {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardEnd {
+  margin-block-start: auto;
+}
+
+.studio {
+  background: var(--color-frame);
+  align-items: center;
+}
+
+.studio h2 {
+  margin-block: 8px;
+}
+
+.timeline {
+  list-style: none;
+  padding-inline-start: 10px;
+}
+
+.step {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+}
+
+.siblings,
+.closing .actions {
+  justify-content: center;
+}
+
+.closing {
+  padding: clamp(20px, 5vw, 64px);
+}
+
+.note {
+  margin-block: 8px;
+  border-radius: var(--radius-row);
+  background: var(--color-frame);
+  padding: 8px 12px;
+}
+
+.note summary {
+  cursor: pointer;
+}
+
+.note ul,
+.findings {
+  padding-inline-start: 20px;
+}
+
+.scores li {
+  grid-template-columns: minmax(0, 1fr) minmax(48px, 40%) 2ch;
+  align-items: center;
+  margin-block-start: 8px;
+}
+
+.scores meter {
+  inline-size: 100%;
+}
+
+.findings li + li {
+  margin-block-start: 8px;
+}
+
+.severity {
+  display: inline-block;
+  margin-inline-end: 4px;
+}
+
+.verdict {
+  background: var(--tint-p2);
+  box-decoration-break: clone;
+}
+
+@media (max-width: 1199px) {
+  .four,
+  .five {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 809px) {
+  .two,
+  .three,
+  .four,
+  .five {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .row > div:first-child {
+    grid-column: 1 / -1;
+  }
+}

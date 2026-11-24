@@ -123,6 +123,24 @@
   padding-top: 6px;
 }
 
+.compact {
+  gap: 8px;
+  padding-block-end: 10px;
+}
+
+.compact .tile {
+  aspect-ratio: 16 / 9;
+}
+
+.compact .meta {
+  gap: 4px;
+}
+
+.compact .row {
+  gap: 8px;
+  padding-top: 4px;
+}
+
 .price {
   font-size: 15px;
   font-weight: 500;

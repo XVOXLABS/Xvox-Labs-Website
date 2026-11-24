@@ -1,0 +1,429 @@
+.following {
+  padding-block-start: 0;
+}
+
+.two.two,
+.three.three,
+.four.four,
+.directory.directory {
+  display: grid;
+  gap: 10px;
+}
+
+.two.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.three.three,
+.directory.directory { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.four.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.actions,
+.chips,
+.modelStrip,
+.unsure {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.chips,
+.modelStrip,
+.week,
+.timeline,
+.jobs,
+.boardList {
+  list-style: none;
+  padding: 0;
+}
+
+.chips li,
+.modelStrip li {
+  padding: 6px 10px;
+  border-radius: var(--radius-button);
+  background: var(--color-control);
+  overflow-wrap: anywhere;
+}
+
+.modelStrip li.currentModel {
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+}
+
+.muted,
+.profileLead,
+.relatedEnd {
+  color: var(--color-ink-muted);
+}
+
+.smallHead {
+  font-size: var(--fs-h4);
+}
+
+.agentCard,
+.voxCard {
+  position: relative;
+  min-width: 0;
+}
+
+.directory .voxCard {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: start;
+  border-radius: var(--radius-card);
+  padding: 20px;
+  white-space: normal;
+  background: var(--color-dark);
+  color: var(--color-on-dark);
+}
+
+.voxContent {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+.voxContent strong {
+  font-size: var(--fs-h3);
+  font-weight: 400;
+}
+
+.cardArt,
+.portraitArt,
+.sageArt,
+.teammateArt {
+  display: block;
+  min-width: 0;
+}
+
+.cardArt {
+  height: 142px;
+  margin-block-start: auto;
+}
+
+.cardArt img,
+.portraitArt img,
+.sageArt img,
+.teammateArt img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.cardArrow {
+  position: absolute;
+  inset-inline-end: 16px;
+  inset-block-end: 16px;
+}
+
+.agentCard > p,
+.teammate small {
+  color: color-mix(in srgb, var(--color-ink) 76%, var(--color-surface));
+}
+
+.agentCard .cardArrow {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-button-sm);
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+}
+
+.agentCard:focus-visible,
+.teammate:focus-visible {
+  outline-color: var(--color-ink);
+}
+
+.banner {
+  position: relative;
+  isolation: isolate;
+}
+
+.banner > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-panel);
+}
+
+.banner button.hotspot {
+  position: absolute;
+  inset-inline-start: clamp(22px, var(--x), calc(100% - 22px));
+  inset-block-start: clamp(22px, var(--y), calc(100% - 22px));
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.hotspot::before {
+  content: "";
+  grid-area: 1 / 1;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--color-ink);
+  border-radius: 50%;
+  background: var(--color-surface);
+}
+
+.hotLabel {
+  position: absolute;
+  inset-block-end: 100%;
+  left: 50%;
+  width: max-content;
+  max-width: 10ch;
+  padding: 4px 8px;
+  border-radius: var(--radius-tag);
+  background: var(--color-dark);
+  color: var(--color-on-dark);
+  font-size: 12px;
+  white-space: normal;
+  transform: translateX(-50%);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.banner button.hotspot:hover,
+.banner button.hotspot:focus-visible { z-index: 1; }
+.hotspot:is(:hover, :focus-visible) .hotLabel { visibility: visible; }
+
+.sage {
+  display: flex;
+  justify-content: center;
+}
+
+.sageArt { height: 210px; }
+
+.list {
+  padding-inline-start: 1.2em;
+}
+
+.list li + li {
+  margin-block-start: 6px;
+}
+
+.delivery {
+  --weeks: minmax(0, 2.3fr) repeat(6, minmax(0, 1fr));
+}
+
+.chartHead,
+.chartRow {
+  display: grid;
+  grid-template-columns: var(--weeks);
+  gap: 6px;
+  align-items: center;
+}
+
+.chartHead span:not(:first-child) { text-align: center; }
+
+.chartRow,
+.boardList li,
+.jobs li + li {
+  border-top: 1px solid var(--color-frame);
+}
+
+.chartRow {
+  padding: 10px;
+  background: var(--color-surface);
+}
+
+.chartBar {
+  grid-column: var(--start) / var(--end);
+  padding: 6px;
+  border-radius: var(--radius-tag);
+  background: var(--tint);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.chartRange {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.modelStrip {
+  margin-block-end: 10px;
+}
+
+.actions :is(a, button),
+.modelButton.modelButton {
+  min-height: 44px;
+  white-space: normal;
+  text-align: center;
+}
+
+.modelButton.modelButton {
+  width: 100%;
+}
+
+.boardList li,
+.jobs a {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  justify-content: space-between;
+  padding-block: 8px;
+}
+
+.boardList small,
+.jobs small {
+  display: block;
+  color: var(--color-ink-muted);
+}
+
+.teammate small { display: block; }
+
+.blueprint {
+  align-self: start;
+}
+
+.back,
+.teammate {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  min-height: 44px;
+}
+
+.back {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.profileHero {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: clamp(16px, 4vw, 56px);
+}
+
+.profileIntro {
+  display: grid;
+  min-width: 0;
+  gap: 12px;
+}
+
+.profileLead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+}
+
+.portrait {
+  justify-content: space-between;
+}
+
+.portrait blockquote {
+  align-self: flex-start;
+  padding: 10px 14px;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.portraitArt {
+  height: clamp(150px, 30vw, 320px);
+}
+
+.jobs a {
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.week.week {
+  padding: 10px;
+}
+
+.weekRow.weekRow {
+  display: grid;
+  grid-template-columns: 8em minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.relatedEnd,
+.checklist {
+  margin-block-start: auto;
+}
+
+.sourceNote,
+.unsure {
+  margin-block-start: 12px;
+  background: var(--color-frame);
+  border-radius: var(--radius-card);
+}
+
+.sourceNote {
+  padding: 8px 16px;
+}
+
+.sourceNote summary {
+  min-height: 44px;
+  padding-block: 10px;
+  cursor: pointer;
+}
+
+.sourceNote a,
+.unsure a {
+  text-decoration: underline;
+}
+
+.following[id] {
+  scroll-margin-block-start: calc(var(--header-height) + 2 * var(--header-offset));
+}
+
+.teammate {
+  padding: 6px 10px;
+  border-radius: var(--radius-card);
+  background: var(--color-frame);
+}
+
+.teammateArt { width: 32px; height: 32px; }
+
+.closing {
+  padding: clamp(16px, 4vw, 48px);
+}
+
+.closing .actions {
+  justify-content: center;
+}
+
+@media (max-width: 1199px) {
+  .four.four,
+  .directory.directory { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 809px) {
+  .two.two,
+  .three.three,
+  .four.four,
+  .directory.directory,
+  .profileHero { grid-template-columns: minmax(0, 1fr); }
+
+  .chartHead { display: none; }
+  .chartRow { grid-template-columns: minmax(0, 1fr); }
+  .chartBar { grid-column: 1; text-align: start; }
+  .chartRange { position: static; width: auto; height: auto; clip-path: none; }
+
+  .weekRow.weekRow { grid-template-columns: minmax(0, 1fr) auto; }
+  .weekRow > :nth-child(2) { grid-column: 1 / -1; grid-row: 2; }
+  .four article button[aria-pressed] { min-width: 44px; min-height: 44px; }
+}
+
+@media (max-width: 479px) {
+  .banner button.hotspot:is(:nth-of-type(4), :nth-of-type(6)) { inset-block-start: 22px; }
+  .banner button.hotspot:is(:nth-of-type(3), :nth-of-type(5)) { inset-block-start: max(66px, var(--y)); }
+}
