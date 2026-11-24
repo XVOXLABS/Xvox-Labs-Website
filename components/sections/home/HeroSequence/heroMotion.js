@@ -19,10 +19,18 @@ export const START_ROTATION = [-3, 2, 0, 4, -2];
 // Progress p (0-1 through the pinned section) to the sequence phase q (0-0.5).
 export const phase = (p) => clamp(p / 0.85) * 0.5;
 
+// Phone row (stage narrower than 600px): spacing between neighbouring agents as a share of one
+// agent's width. The prototype's phone values (size 0.98 W / 2.35, gap 0.34 x size) made each agent
+// 41.7% of the screen wide but only 14% apart, so every agent hid 60-70% of its neighbour (the
+// middle ones almost vanished). 0.7 keeps the row exactly as wide (0.98 W, centred) but leaves about
+// 70% of each agent visible, close to the tablet row (about 0.75). The CSS fallback in
+// HeroSequence.module.css must use the same values.
+export const PHONE_GAP_RATIO = 0.7;
+
 // Agent size and spacing in the starting row (prototype S0 / gap), by stage width.
 export function agentRow(width) {
   const narrow = width < 600;
-  const size = narrow ? (width * 0.98) / 2.35 : Math.min(470, (width * 0.98) / 4);
-  const gap = narrow ? size * 0.34 : (width * 0.98 - size) / 4;
+  const size = narrow ? (width * 0.98) / (1 + 4 * PHONE_GAP_RATIO) : Math.min(470, (width * 0.98) / 4);
+  const gap = narrow ? size * PHONE_GAP_RATIO : (width * 0.98 - size) / 4;
   return { narrow, size, gap };
 }

@@ -228,10 +228,11 @@
   transform: translate(-50%, -100%);
 }
 
+/* Phone row: same values as agentRow() in heroMotion.js (size 0.98 W / (1 + 4 x 0.7), gap 0.7 x size) */
 @media (max-width: 599px) {
   .fly {
-    --w: 41.7vw;
-    --gap: calc(var(--w) * 0.34);
+    --w: calc(98vw / 3.8);
+    --gap: calc(var(--w) * 0.7);
   }
 }
 
