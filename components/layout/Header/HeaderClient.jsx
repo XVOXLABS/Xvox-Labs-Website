@@ -109,8 +109,8 @@ export default function HeaderClient({ nav, menus, mobile }) {
         </nav>
 
         <div className={styles.actions}>
-          <button type="button" className={styles.cart} onClick={openCart} aria-label="Open cart">
-            <span className={styles.cartLabel}>{nav.cartLabel}</span>
+          <button type="button" className={styles.cart} onClick={openCart}>
+            <span className={styles.cartLabel}>{nav.cartLabel}</span>{" "}
             <span className={styles.cartCount}>{cart.length}</span>
           </button>
           <Button href={nav.plan.href} variant="secondary" className={styles.desktopOnly}>

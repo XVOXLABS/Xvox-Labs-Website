@@ -135,7 +135,8 @@ export default function PuzzleStage() {
                       href={tags[i].href}
                       className={styles.piece}
                       style={{ "--i": i, zIndex: i + 1 }}
-                      aria-label={agent.name}
+                      data-agent-target=""
+                      aria-label={tags[i].text}
                       onPointerEnter={(e) => swap(e, agent, true)}
                       onPointerLeave={(e) => swap(e, agent, false)}
                     >

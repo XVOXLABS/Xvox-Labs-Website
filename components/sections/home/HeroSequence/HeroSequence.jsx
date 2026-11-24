@@ -14,6 +14,10 @@ import styles from "./HeroSequence.module.css";
 
 const REDUCED = "(prefers-reduced-motion: reduce)";
 const team = coreAgentIds.map((id) => agents.find((a) => a.id === id));
+const tallestAgentRatio = Math.max(...team.map(({ id }) => {
+  const [width, height] = agentImageSize[id].still;
+  return height / width;
+}));
 
 // Section 1: the hero sequence (prototype PAGES.home + seqApply). The stage is pinned for 240vh:
 // the hero lifts away, the team sentence rises, the five agents fly from a row at the bottom into
@@ -65,7 +69,7 @@ export default function HeroSequence() {
       const W = stick.clientWidth;
       const H = stick.clientHeight;
       const vh = H / 100;
-      hero.style.transform = `translateY(${-eio(clamp(q / 0.24)) * 62 * vh}px)`;
+      const lift = eio(clamp(q / 0.24)) * 62 * vh;
       const sy = (1 - eout(clamp((q - 0.05) / 0.22))) * 58 * vh;
       sent.style.transform = `translate(-50%, -50%) translateY(${sy}px)`;
       const sr = stick.getBoundingClientRect();
@@ -77,7 +81,6 @@ export default function HeroSequence() {
       const mobVis = ctm && h1m ? ctm.offsetTop + ctm.offsetHeight - h1m.offsetTop : 300;
       let wallY = 0;
       flyers.forEach((f, i) => {
-        f.style.width = `${size}px`;
         const fh = f.offsetHeight || size;
         const mobTop = narrow ? Math.max(16, (Hv - mobVis - fh * 0.8 - 18) / 2) : 0;
         const x0 = W / 2 + (i - 2) * gap - size / 2;
@@ -90,14 +93,15 @@ export default function HeroSequence() {
         const y = y0 + (t1.y - y0) * eout(ta);
         const sc = s0 + (t1.s - s0) * eio(ta);
         const rot = START_ROTATION[i] * (1 - eio(ta));
-        f.style.transform = `translate(${x}px, ${y}px) scale(${sc}) rotate(${rot}deg)`;
+        f.style.transform = `translate(${x}px, ${y - f.offsetTop}px) scale(${sc}) rotate(${rot}deg)`;
       });
       // Place the hero so its buttons sit just above the peeking agents.
       const vt = h1m ? h1m.offsetTop : 0;
       const vb = ctm ? ctm.offsetTop + ctm.offsetHeight : hero.offsetHeight;
       const head = Hv - wallY * (narrow ? 0.62 : 0.58) + wallY * 0.06;
       const top = narrow ? Math.max(16, (Hv - mobVis - wallY * 0.8 - 18) / 2) - vt : Math.max(20 - vt, ((head - (vb - vt)) / 2) * 0.7 - vt);
-      hero.style.top = `${top}px`;
+      // Use the same layout origin before and after hydration. Only the painted position moves.
+      hero.style.transform = `translateY(${top - hero.offsetTop - lift}px)`;
       const lit = Math.round(clamp((q - 0.1) / 0.32) * words.length);
       words.forEach((w, i) => (w.dataset.lit = i < lit ? "true" : "false"));
       sec.dataset.done = p > DONE_AT ? "true" : "false";
@@ -109,7 +113,6 @@ export default function HeroSequence() {
       const sr = stick.getBoundingClientRect();
       const { size } = agentRow(stick.clientWidth);
       flyers.forEach((f, i) => {
-        f.style.width = `${size}px`;
         const fh = f.offsetHeight || size;
         const t1 = target(i, size, fh, sr);
         f.style.transform = `translate(${t1.x}px, ${t1.y}px) scale(${t1.s})`;
@@ -141,7 +144,6 @@ export default function HeroSequence() {
       raf = 0;
       current = null;
       hero.style.transform = "";
-      hero.style.top = "";
       sent.style.transform = "";
       bandRef.current.style.transform = "";
     };
@@ -178,7 +180,7 @@ export default function HeroSequence() {
   const sentence = interactive.heroSentence;
   return (
     <section ref={secRef} className={styles.seq} data-done="false">
-      <div ref={stickRef} className={styles.stick}>
+      <div ref={stickRef} className={styles.stick} style={{ "--tallest-agent-ratio": tallestAgentRatio }}>
         <div ref={bandRef} className={styles.headerBand} aria-hidden="true" />
         <div ref={heroRef} className={styles.hero}>
           <h1 ref={h1Ref} className={styles.title}>
@@ -230,6 +232,7 @@ export default function HeroSequence() {
               type="button"
               className={styles.fly}
               style={{ "--i": i, "--r": `${START_ROTATION[i]}deg`, "--ratio": h / w }}
+              data-agent-target=""
               aria-label={`${agent.name}, ${agent.role}`}
               onClick={() => setOpenId(agent.id)}
               onPointerEnter={(e) => swap(e, agent, true)}

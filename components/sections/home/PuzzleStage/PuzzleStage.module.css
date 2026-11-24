@@ -244,8 +244,8 @@
   }
 
   .piece {
-    --w: calc(100cqw / 3.4);
-    --step: 0.62;
+    --w: calc(100cqw / 3.8);
+    --step: 0.7;
   }
 }
 

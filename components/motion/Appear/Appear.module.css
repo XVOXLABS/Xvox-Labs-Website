@@ -14,3 +14,9 @@
   opacity: 1;
   transform: none;
 }
+
+.appear:focus-within {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}

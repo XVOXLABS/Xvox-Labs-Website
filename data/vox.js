@@ -3,7 +3,7 @@
 // keymap: regex source + flags as strings (build with new RegExp(pattern, flags)).
 // aiRules and aiCatalog are only used by the real AI version of Vox (Phase 8).
 
-export const greeting = "Hi, I am Vox. I am an AI agent, not a consultant. I will ask a few quick questions, then show you where automation could help. A person from our team takes it from there.\n\nTo start: what does your business do?";
+export const greeting = "Hi, I am Vox. I am an AI agent, not a consultant. I will ask a few quick questions, then show you where automation could help.\n\nTo start: what does your business do?";
 
 export const questions = [
   {

@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { useEffect, useEffectEvent, useRef, useState } from "react";
 import { vox } from "@/data/agents";
@@ -41,10 +42,12 @@ function localReport(transcript) {
 // AI replies are Phase 8: as in the prototype without AI, the first answer switches Vox to guided questions.
 // Frontend only: nothing is sent or stored, and the confirmation says so.
 export default function VoxChat() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [nudge, setNudge] = useState(false);
   const [nudged, setNudged] = useState(false);
   const [footerInView, setFooterInView] = useState(false);
+  const [agentOverlap, setAgentOverlap] = useState(false);
   const [msgs, setMsgs] = useState([]);
   const [stage, setStage] = useState(0);
   const [guided, setGuided] = useState(false);
@@ -57,6 +60,7 @@ export default function VoxChat() {
   const nextId = useRef(0);
   const bodyRef = useRef(null);
   const inputRef = useRef(null);
+  const launcherRef = useRef(null);
 
   const push = (m) => {
     nextId.current += 1;
@@ -215,6 +219,42 @@ export default function VoxChat() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const launcher = launcherRef.current;
+    if (pathname !== "/" || !launcher) return undefined;
+    const phones = window.matchMedia("(max-width: 809px)");
+    const targets = document.querySelectorAll("main [data-agent-target]");
+    let observer;
+
+    const observeCorner = () => {
+      observer?.disconnect();
+      if (!phones.matches || !targets.length) return;
+      // Observe only the launcher's fixed footprint. Its size stays readable while hidden.
+      const { right, bottom } = getComputedStyle(launcher);
+      const insetRight = parseFloat(right);
+      const insetBottom = parseFloat(bottom);
+      const top = document.documentElement.clientHeight - insetBottom - launcher.offsetHeight;
+      const left = document.documentElement.clientWidth - insetRight - launcher.offsetWidth;
+      const rootMargin = `${-top}px ${-insetRight}px ${-insetBottom}px ${-left}px`;
+      const covered = new Set();
+      observer = new IntersectionObserver((entries) => {
+        for (const { target, isIntersecting } of entries) {
+          if (isIntersecting) covered.add(target);
+          else covered.delete(target);
+        }
+        setAgentOverlap(covered.size > 0);
+      }, { rootMargin });
+      targets.forEach((target) => observer.observe(target));
+    };
+
+    observeCorner();
+    window.addEventListener("resize", observeCorner);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", observeCorner);
+    };
+  }, [open, pathname]);
+
   // Prototype: show the nudge once, after scrolling past 900px, if the chat was never opened.
   useEffect(() => {
     if (nudged) return undefined;
@@ -288,11 +328,18 @@ export default function VoxChat() {
   return (
     <>
       {!open ? (
-        <button type="button" className={styles.fab} aria-label={askVox.ariaLabel} onClick={openChat} data-footer={footerInView ? "in" : "out"}>
+        <button
+          ref={launcherRef}
+          type="button"
+          className={styles.fab}
+          onClick={openChat}
+          data-footer={footerInView ? "in" : "out"}
+          data-agent-overlap={pathname === "/" && agentOverlap ? "true" : undefined}
+        >
           <Image src={vox.image} alt="" width={28} height={28} className={styles.face} />
           <span className={styles.label}>{askVox.label}</span>
           <span className={styles.dot} aria-hidden="true" />
-          {nudge ? <span className={styles.nudge}>{askVox.nudge}</span> : null}
+          {nudge ? <span className={styles.nudge} aria-hidden="true">{askVox.nudge}</span> : null}
         </button>
       ) : null}
 

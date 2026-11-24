@@ -62,6 +62,7 @@
   min-height: 39px;
   padding: 12px 18px;
   border-radius: var(--radius-button);
+  color: var(--color-ink);
 }
 
 .actions .ghost {

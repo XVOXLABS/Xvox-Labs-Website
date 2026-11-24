@@ -1,0 +1,238 @@
+.crumbs {
+  margin-block-end: 20px;
+  color: var(--color-ink-muted);
+}
+
+.crumbs ol,
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.crumbs li + li::before {
+  content: "/";
+  margin-inline-end: 10px;
+}
+
+.actions,
+.chips,
+.filters,
+.flowFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.chips {
+  justify-content: center;
+}
+
+.following {
+  padding-block-start: 0;
+}
+
+.heroImage,
+.tileImage {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-panel);
+  background: var(--color-frame);
+}
+
+.heroImage {
+  margin-block-start: 24px;
+  aspect-ratio: 3 / 1;
+}
+
+.tileImage {
+  margin: -10px -10px 4px;
+  aspect-ratio: 16 / 9;
+}
+
+.heroImage img,
+.tileImage img {
+  object-fit: cover;
+}
+
+.imageArrow {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 32px;
+  border-radius: var(--radius-button);
+  background: var(--color-surface);
+}
+
+.grid,
+.market,
+.buying,
+.comparison,
+.facts,
+.faq {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.comparison,
+.faq {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.market,
+.buying {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.tileImage {
+  align-self: stretch;
+}
+
+.cardEnd {
+  display: flex;
+  align-self: stretch;
+  justify-content: space-between;
+  gap: 8px;
+  margin-block-start: auto;
+}
+
+.muted,
+.cardEnd {
+  color: var(--color-ink-muted);
+}
+
+.filters {
+  margin-block: 16px;
+}
+
+.filters button,
+.tools li {
+  border: 0;
+  border-radius: var(--radius-button);
+  background: var(--color-frame);
+  color: var(--color-ink);
+  padding: 8px 12px;
+}
+
+.filters button {
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.filters button[aria-pressed="true"] {
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+}
+
+.workTabs [role="tabpanel"],
+.flowFooter,
+.checklist,
+.facts p,
+.comparison ul,
+.proof h3 {
+  margin-block-start: 10px;
+}
+
+.flowFooter,
+.callout {
+  justify-content: space-between;
+}
+
+.callout,
+.unsure {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+
+.unsure {
+  margin-block-start: 16px;
+  background: var(--color-frame);
+}
+
+.unsure img {
+  object-fit: contain;
+}
+
+.comparison ul,
+.checklist ul,
+.sourceNote ul {
+  padding-inline-start: 1.25em;
+}
+
+.checklist {
+  align-self: stretch;
+  margin-block-start: auto;
+  padding-block-start: 12px;
+  border-block-start: 1px solid var(--color-frame);
+}
+
+.sourceNote {
+  margin-block-start: 12px;
+  padding: 10px 16px;
+  border-radius: var(--radius-card);
+  background: var(--color-frame);
+}
+
+.sourceNote summary {
+  cursor: pointer;
+}
+
+.sourceNote a,
+.facts a,
+.unsure a,
+.crumbs a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.closing {
+  padding: clamp(20px, 5vw, 64px);
+}
+
+.closing .actions {
+  justify-content: center;
+}
+
+@media (max-width: 1199px) {
+  .grid,
+  .market,
+  .buying {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 809px) {
+  .grid,
+  .market,
+  .buying,
+  .comparison,
+  .facts,
+  .faq {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .heroImage {
+    aspect-ratio: 16 / 9;
+  }
+
+  .workTabs [role="tab"] {
+    min-height: 44px;
+  }
+}

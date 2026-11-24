@@ -2,9 +2,13 @@
 .seq {
   position: relative;
   height: 240vh;
+  container-type: inline-size;
 }
 
 .stick {
+  --row-width: 98cqw;
+  --agent-width: min(470px, var(--row-width) / 4);
+  --header-space: calc(var(--header-height) + var(--header-offset));
   position: sticky;
   top: 0;
   height: 100vh;
@@ -38,15 +42,16 @@
   }
 }
 
-/* Hero text (prototype .seq-hero); JavaScript sets top and the lift-away transform */
+/* CSS and the scroll sequence position the hero from the same layout origin. */
 .hero {
   position: absolute;
   left: 0;
   right: 0;
-  top: clamp(76px, 12vh, 130px);
+  top: 0;
   z-index: 1;
   padding-inline: 16px;
   text-align: center;
+  transform: translateY(clamp(76px, 12vh, 130px));
   will-change: transform;
 }
 
@@ -105,6 +110,12 @@
   margin-top: 26px;
 }
 
+@media (max-width: 809px) {
+  .cta > :is(a, button) {
+    min-height: 44px;
+  }
+}
+
 /* Team sentence (prototype .mani.seq-sent); starts below the screen until JavaScript moves it */
 .sent {
   position: absolute;
@@ -121,7 +132,7 @@
 }
 
 .word {
-  color: #b9b9b9;
+  color: var(--color-ink-muted);
   transition: color 0.3s;
 }
 
@@ -136,28 +147,23 @@
   vertical-align: -0.16em;
 }
 
-/* Agents (prototype .fly2). Before JavaScript runs they sit in the starting row via CSS;
-   once placed, JavaScript positions them with transforms from the stage's top-left corner. */
+/* Keep agent widths and the layout origin stable while CSS hands positioning to JavaScript. */
 .fly {
-  --w: min(470px, 24.5vw);
-  --gap: calc((98vw - var(--w)) / 4);
+  --gap: calc((var(--row-width) - var(--agent-width)) / 4);
+  --row-x: calc(50cqw + (var(--i) - 2) * var(--gap) - var(--agent-width) / 2);
+  --row-y: calc(100vh - var(--header-space) - var(--agent-width) * var(--ratio) * 0.58);
   position: absolute;
-  left: calc(50% + (var(--i) - 2) * var(--gap) - var(--w) / 2);
-  top: calc(100% - var(--w) * var(--ratio) * 0.58);
+  left: 0;
+  top: 0;
   z-index: 3;
-  width: var(--w);
+  width: var(--agent-width);
   padding: 0;
   border: 0;
   background: none;
-  transform: rotate(var(--r));
+  transform: translate(var(--row-x), var(--row-y)) rotate(var(--r));
   transform-origin: 0 0;
   will-change: transform;
   cursor: pointer;
-}
-
-.seq[data-placed="true"] .fly {
-  left: 0;
-  top: 0;
 }
 
 .chr {
@@ -228,11 +234,26 @@
   transform: translate(-50%, -100%);
 }
 
-/* Phone row: same values as agentRow() in heroMotion.js (size 0.98 W / (1 + 4 x 0.7), gap 0.7 x size) */
-@media (max-width: 599px) {
+/* The grid reserves the measured copy height and the visible agent row before JavaScript loads. */
+@container (width < 600px) {
+  .stick {
+    --agent-width: calc(var(--row-width) / 3.8);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(16px, 1fr) auto calc(18px + var(--agent-width) * var(--tallest-agent-ratio) * 0.8) minmax(0, 1fr);
+    padding-bottom: var(--header-space);
+  }
+
+  .hero {
+    position: relative;
+    grid-row: 2;
+    transform: none;
+  }
+
   .fly {
-    --w: calc(98vw / 3.8);
-    --gap: calc(var(--w) * 0.7);
+    --gap: calc(var(--agent-width) * 0.7);
+    --row-y: 18px;
+    grid-row: 3 / 4;
   }
 }
 
@@ -244,6 +265,7 @@
   }
 
   .stick {
+    display: block;
     position: relative;
     height: auto;
     overflow: visible;
@@ -253,6 +275,7 @@
   .hero {
     position: relative;
     top: auto;
+    transform: none;
   }
 
   .sent {

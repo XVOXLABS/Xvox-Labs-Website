@@ -191,6 +191,14 @@
 
   .burger {
     display: grid;
+    width: 44px;
+    height: 44px;
+  }
+
+  .cart,
+  .bar > :first-child {
+    min-width: 44px;
+    min-height: 44px;
   }
 }
 
@@ -200,7 +208,12 @@
   }
 
   .cartLabel {
-    display: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   .cart {

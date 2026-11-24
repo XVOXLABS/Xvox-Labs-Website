@@ -15,8 +15,8 @@ const inter = Inter({
 });
 
 export const metadata = {
-  // TODO: replace with the live domain before launch.
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
+  robots: { index: false, follow: false },
   title: {
     default: "Xvox Labs",
     template: "%s | Xvox Labs",

@@ -570,4 +570,10 @@
     visibility: hidden;
     pointer-events: none;
   }
+
+  .fab[data-agent-overlap="true"]:not(:focus-visible) {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 }

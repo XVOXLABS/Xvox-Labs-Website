@@ -110,6 +110,7 @@
 /* Phone: < 810px */
 @media (max-width: 809px) {
   :root {
+    scroll-padding-block-start: calc(var(--header-height) + 2 * var(--header-offset));
     --fs-display: 37px;
     --fs-h1: 38px;
     --fs-h2: 30px;

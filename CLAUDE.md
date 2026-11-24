@@ -4,14 +4,14 @@
 
 `AGENTS.md` (imported above) holds the rules and workflow every agent must follow. This file holds what the project is, what is done, what is approved and what comes next. Detailed design tables, the section mapping, the URL map and the roadmap live in [`BUILD_PLAN.md`](BUILD_PLAN.md); this file links to them instead of copying them.
 
-Last verified against the code and Git: **Nov 24, 2026**, on `phase-4-homepage` for the Step 7 commit.
+Last verified against the code and Git: **Nov 24, 2026**, on `phase-4-homepage` at `f14ac35` with the approved Step 8 fixes, Vercel migration, review index, and Solutions pages in the working tree.
 
 ## 1. Project overview
 
 - **Xvox Labs:** AI automation and software development company. It sells AI agent teams for business problems (sales, support, finance, operations, design ops), expert services, and a marketplace of ready-made blueprints, Claude skills, automation packs, micro tools and templates. Six named agents: Scout (research), Quill (content), Beacon (search), Relay (outreach), Sage (safety), Reel (video); Vox is the planning chat assistant.
 - **Goal:** rebuild the approved HTML prototype v5 as the official multi-page website, premium, modern, professional and corporate, in the visual language of the earlier Framer site.
 - **Stack (verified in `package.json`):** Next.js 16.4.6 (App Router, Turbopack), React 19.3.0, ESLint 9 + `eslint-config-next`. JavaScript only, `jsconfig.json` `@/*` alias. CSS Modules + `app/globals.css`. Inter via `next/font/google`. No other dependencies.
-- **Scripts:** `npm run dev`, `npm run build`, `npm run start`, `npm run lint`.
+- **Scripts:** `npm run dev` serves the site at the domain root. `npm run build` builds the native Next.js app, `npm run start` serves that production build locally, and `npm run lint` checks the source.
 
 ## 2. Design system and brand
 
@@ -36,7 +36,8 @@ All approved Phase 3 visual corrections are listed in `BUILD_PLAN.md` ("Visual c
 
 ```text
 app/            layout.js (Inter, header/footer shell, metadata), page.js (homepage), globals.css (tokens),
-                style-guide/ (noindex component gallery). Only routes today: / and /style-guide
+                style-guide/ (noindex component gallery), review/ (prototype source index),
+                solutions/ (hub and static params for five departments and 23 details).
 components/
   layout/       Header, MegaMenu, MobileMenu, Footer, Logo, CartDrawer, Toast, VoxChat  (Phase 3, shared)
   ui/           Accordion, Badge, Button, Card, Category, Container, Dialog, Frame, IconButton, Price,
@@ -147,10 +148,20 @@ Implementation and testing are complete. The owner approved the visual review an
 ## 7. Remaining work (in order)
 
 **Phase 4 (homepage)**
-1. **Step 8 — whole-page check:** side-by-side review page (Framer / prototype / build) at 5 widths, performance and accessibility pass, final report. Raise the deferred pointer tilt (`--mx`) and U4 here.
+1. **Step 8 — whole-page check:** completed the audit and verified the three major fixes and five minor fixes. The owner approved the visual review. Commit approval is pending.
 2. Phase 4 approval, then merge to `main` only with approval.
 
+**Step 8 verification (Nov 24, 2026).** Hero CSS and scroll motion use stable layout origins. Cold-load CLS fell from 0.5545 to 0.0000 on three throttled 390 px Chrome runs and from 0.5629 to 0.0000 at 1440 px. The mobile scroll inset keeps the focused orchestration controls below the header. The Safe AI button, footer labels, and unlit Hero words meet 4.5:1 text contrast. Cards show at full opacity on keyboard focus, and settled axe scans at 390 and 1440 px report zero text contrast violations. Lint, production build, all 15 browser regression groups at 12 widths, and normal Hero scroll assembly at the five review widths passed. The [before/after review](reference/visual-review/phase4/step8/major-fixes/index.html) contains seven screenshot pairs.
+
+**Step 8 minor-fix verification (Nov 24, 2026).** The phone Vox launcher steps aside when it overlaps Hero or Puzzle agent controls and restores when clear. It retains visible keyboard focus and keeps the existing footer behaviour. Phone Puzzle paths preserve selectable agent centres in scatter, assembly, reverse scroll, and reduced motion. Chrome touch taps reached Hero Sage and the correct Puzzle Relay and Sage links. Cart, Ask Vox, and all five Puzzle links have matching accessible names. The compact header controls, phone Hero CTAs, and phone orchestration tabs meet 44 px without increasing the header height. U4 removes one sentence from the greeting. The first question, reset, and complete guided demo passed.
+
+Lint, production build, and all 15 Steps 1–7 regression groups passed. The major-fix rerun measured CLS of 0.0000 in all three throttled 390 px runs and at 1440 px. The orchestration controls stayed below the sticky header. Settled axe scans at 390 and 1440 px reported zero text-contrast and name-mismatch violations. Hero forward and reverse scroll passed at the five review widths. See the [nine before/after screenshot pairs](reference/visual-review/phase4/step8/minor-fixes/index.html).
+
 **Later phases** (`BUILD_PLAN.md` "Phase overview"): 5. Other pages (all prototype pages and routes) · 6. SEO & AEO (metadata, JSON-LD, sitemap, robots, `llms.txt`) · 7. Test & deploy · 8. Backend (real Vox AI, form storage, checkout; separate approval).
+
+**Team review Phase 1 (Nov 24, 2026).** `/review` indexes all 123 destinations from `data/reviewRoutes.js`. It opens the extracted source records, including unfiltered hidden blocks, computed detail copy, example conversations, proof copy and sample prices. The four legacy aliases and Vox/Hire actions work in the index. Implemented records link to the native routes, and unbuilt records display their approved paths.
+
+**Team review Phase 2.1 (Nov 24, 2026).** The Solutions hub, five department pages and 23 solution details are implemented at the domain root. The hub filters the prototype’s 18 department solutions. The review index links to all 23 details, including four cross-category solutions and the marketing bundle. Department tabs and solution details reuse the orchestration engine with the original fallback. Proof placeholders, original draft pricing notes and marketplace sample amounts are reviewable on their pages. Consultation prices still use the approved pricing label. Other native pages are tracked in `BUILD_PLAN.md` under “Complete team review”.
 
 ## 8. Approved decisions (do not change without approval)
 
@@ -167,23 +178,30 @@ Implementation and testing are complete. The owner approved the visual review an
 - A6 FAQ and contact = full prototype sections.
 - K1 hide both contact chat bubbles · K2 hide "1 day / Reply target" (keep "30 min / Discovery call") · K3 form note → "Demo mode: this form doesn't send or store anything yet." · K4 closing CTA lead → "Tell Vox what is slowing you down. You get a plan."
 - K5 (Nov 24, 2026) retain the optional visitor Budget field and its five original ranges in prototype order. These capture a visitor's estimated project budget. Services and Solutions use "Contact Us to Discuss Pricing" wherever pricing appears. Blueprints are the only category that can display actual product prices.
-- U2 popup Buy price comes from the blueprint data via the price rule · U3 FAQ not numbered · U4 Vox "a person from our team…" wording: deferred (review after Phase 4).
+- U2 popup Buy price comes from the blueprint data via the price rule · U3 FAQ not numbered · U4 (Nov 24, 2026) remove only “A person from our team takes it from there.” from the Vox greeting.
 - L1–L3: $1,500 only on the Download step, published blueprints and the popup Buy button.
 
 **Step 3 (hero):** D1 reduced motion = still non-pinned layout · D2 accent tile · D3 `/build?mission=`, `/marketplace?agent=` · D4 silent add option · D5 tags on hover and keyboard focus · popup tabs wrap · desktop header band · `Dialog` gained `placement="center"`.
 **Step 4 (puzzle):** Framer panel layout (hint left, chip right, CTA strip) · tags shown > 640px · reduced motion non-pinned solved layout · centred below the 82px header · own scroll loop (no `StickyStage`) · phone layout at viewport ≤ 600px · centred eyebrow and board side inset `max(8px, 2%)`.
 **Step 5 (orchestration):** dark stage with light cards · 5 columns ≥ 1200, stacked below · tabs wrap · only the status chip is announced · memory text reset each run · reduced motion keeps the run with 60ms pauses · shared engine with the 4 homepage flows only (generic fallback deferred to Phase 5) · agent name above its task · `data-state` test attributes · flag box clears on tab switch.
 **Step 6:** see §6.
+**Step 8 (Nov 24, 2026):** S8-1 stabilize the Hero on first load with CLS below 0.10 on mobile and desktop · S8-2 keep mobile keyboard focus below the sticky header · S8-3 bring the identified normal-text contrast failures to at least 4.5:1. The owner approved these three fixes for implementation and review.
+
+**Step 8 minor scope (Nov 24, 2026):** S8-4 phone launcher clearance for Hero and Puzzle agent controls · S8-5 distinguish phone Puzzle tap targets during scatter and assembly · S8-6 accessible names for Cart, Ask Vox, and Puzzle links · S8-7 44 px target minimum for the specified mobile controls · U4 greeting sentence removal.
+
+**PAGES-1 (Nov 24, 2026, superseded by VERCEL-1):** prepare a temporary GitHub Pages team-review export under `/Xvox-Labs-Website`.
+
+**VERCEL-1 (Nov 24, 2026):** use native Next.js deployment on Vercel for team review. Keep the existing GitHub repository and `phase-4-homepage` branch. Approve the repository connection, first deployment, and any Git operation separately.
 
 ## 9. Known issues and risks (verified)
 
 - Logo file not supplied (`public/brand/` missing; `lib/brand.js` `src: null`).
-- `metadataBase` is the placeholder `https://example.com` (live domain pending, B12).
-- Only `/` and `/style-guide` exist; links to Phase 5 routes return 404 until then (accepted, A5).
-- Internal placeholder prices are in the client JavaScript (the cart imports `data/marketplace.js`); never displayed. Removing them from the bundle would be a separate approved data change.
-- `BUILD_PLAN.md` was synced with this status on Nov 24, 2026 (rev. 8). Keep the three documents consistent after each step.
+- `metadataBase` uses Vercel's `VERCEL_URL` when available, with a localhost fallback. The app still requests no indexing for review. The production domain is pending (B12).
+- Existing App Router pages are `/`, `/style-guide`, `/review` and the 29 Solutions routes. Outside the review index, links to unbuilt Phase 5 routes still return 404 (accepted, A5).
+- The review index exposes prototype sample prices and original copy for team review. The approved homepage applies the existing pricing rules.
+- `BUILD_PLAN.md` rev. 11 records the Solutions routes and remaining team-review phases.
 - Business content differences prototype vs blueprint (B1–B13 in `BUILD_PLAN.md`) are still pending.
-- Deferred: U4 Vox wording; prototype pointer tilt on agent images (`--mx`), to raise at Step 8.
+- Deferred: prototype pointer tilt on agent images (`--mx`) and the separate Vox details prompt “Who should our team reply to?”.
 - There is no automated test suite in the repo; browser checks so far were run with ad-hoc headless-Chrome scripts outside the repository (not preserved).
 
 ## 10. Assets and references
@@ -206,10 +224,16 @@ Implementation and testing are complete. The owner approved the visual review an
 ## 12. Git and deployment status (verified Nov 24, 2026)
 
 - Branch `phase-4-homepage` tracks `origin/phase-4-homepage` at `5f5cd06`. The Step 7 commit follows the documentation sync `700cb85`, the hero phone spacing fix `033d29a`, and Step 6 `13c67e5`, bringing the branch to 4 ahead and 0 behind.
+- Step 8 major fixes and five minor fixes passed owner visual review and are uncommitted.
 - `main` = `origin/main` = `9ab7d7e` (Phase 1 only). Nothing merged.
 - Remote branches: `main`, `phase-2-content` (`932401b`), `phase-4-homepage`. Local only: `phase-3-design-system` (`c0ed4a7`, contained in `phase-4-homepage`).
-- Deployment: none. No hosting configured.
+- Deployment: none. Vercel review uses the native Next.js preset and serves from the domain root. Pages-specific config and asset wrappers were removed. The former workflow and helper are preserved byte-for-byte in the Git-ignored `reference/deployment/github-pages/` archive. The previous `out/` folder is a historical Pages artifact.
+- **Historical Pages verification (Nov 24, 2026).** Lint, static export and the local Chrome suite passed for the former prefixed preview. Browser coverage included six widths, Puzzle states and reduced motion, image swaps, mobile navigation, Vox, the style guide, and Cart.
+- **Vercel migration verification (Nov 24, 2026).** Lint and native production build passed. The build ran outside the sandbox after it blocked worker creation. Local Chrome checked `/` and `/style-guide`, native trailing-slash handling, all 25 public images, the image optimizer, favicon and Inter. Homepage layout and Puzzle scatter, assembly and reverse scroll passed at 320, 390, 810, 1024, 1200 and 1440 px. Reduced-motion Puzzle, Hero/Puzzle/marketplace image swaps, mobile menu, guided Vox, style-guide reload and navigation home, and Cart persistence and removal passed. Unbuilt Phase 5 routes returned the expected 404s.
+- **Review index verification (Nov 24, 2026).** Lint and native production build passed. The production browser check passed at 320, 390, 810, 1024, 1200 and 1440 px, including direct `/review/`, all four aliases, local and fallback Hire, Vox, and navigation home. A separate check compared all 123 paths with the final prototype router and verified rendered source copy for all indexed blocks and computed records. `git diff --check` passed.
+- **Solutions verification (Nov 24, 2026).** Lint and production build passed. All 29 root-domain Solutions URLs loaded directly and on refresh in local Chrome. The hub, department, Safe AI detail and marketing bundle passed responsive checks at 320, 390, 810, 1024, 1200 and 1440 px. Chrome verified all hub filters, department workflow tabs, path navigation, Sage flag, Reject/Edit/Approve, disclosure, Blueprint cart action, Vox, booking topic and review links. An independent comparison verified all 23 orchestration specs, five department lists, related marketplace sets, rendered proof placeholders and sample amounts against the prototype.
+- **Preview limits.** Contact and Vox remain demos. Live email, AI, form storage and payments require a backend. Full native prototype routes and the runtime-only review states are pending.
 
 ## 13. Next action
 
-Await owner approval to start **Step 8 — Whole-page check**. A push or merge also requires explicit approval.
+Await approval of team-review Phase 2.1 before implementing any other route group. Commits, repository connection and deployment require separate approval. Before connecting the repository, confirm the initial deployment target and access settings. Vercel treats the first deployment of a new project as production.

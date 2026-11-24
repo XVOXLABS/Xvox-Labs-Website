@@ -63,7 +63,7 @@
   font-size: 13px;
   line-height: 19.5px;
   letter-spacing: -0.02em;
-  color: var(--color-ink-faint);
+  color: var(--color-ink-muted);
 }
 
 .links {

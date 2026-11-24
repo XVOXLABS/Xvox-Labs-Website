@@ -12,6 +12,15 @@ export const SCATTER = [
   [2.3, -0.25, -16],
 ];
 
+// Separate the near neighbours while their paths converge on narrow boards.
+const PHONE_SCATTER = [
+  SCATTER[0],
+  [-1.4, -0.68, 4],
+  SCATTER[2],
+  [0.95, -0.72, -6],
+  [2.3, -0.25, -8],
+];
+
 // Piece i starts moving at p = 0.10 + 0.06 i and locks 0.5 later (Sage locks at p = 0.84).
 export function pieceProgress(p, i) {
   return eio(clamp((p - 0.1 - i * 0.06) / 0.5));
@@ -19,13 +28,13 @@ export function pieceProgress(p, i) {
 
 // Piece width for the board size; phone = the prototype's phone layout (decision D7: viewport <= 600px).
 export function pieceWidth(bw, bh, phone) {
-  return phone ? bw / 3.4 : Math.min(bh * 0.62, bw / 4.6);
+  return phone ? bw / 3.8 : Math.min(bh * 0.62, bw / 4.6);
 }
 
 // Position of piece i at progress t (0 scattered, 1 locked in the row), from the board's bottom centre.
 export function pieceTransform(i, t, bw, bh, w, phone) {
-  const [ax, ay, ar] = SCATTER[i];
-  const tx = (i - 2) * w * (phone ? 0.62 : 0.8);
+  const [ax, ay, ar] = (phone ? PHONE_SCATTER : SCATTER)[i];
+  const tx = (i - 2) * w * (phone ? 0.7 : 0.8);
   const lim = Math.max(w, bw / 2 - w * 0.75);
   const sx = (ax / 2.3) * lim;
   const sy = ay * bh * 0.55;

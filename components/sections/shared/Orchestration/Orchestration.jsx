@@ -83,8 +83,7 @@ function paths(grid, spec) {
 // connection lines (1200px and up; stacked below, decision D2), shared memory and the run log.
 // Runs once when 35% visible while `active`, again whenever `runSignal` changes (tab switch),
 // on "Run it" and when the safety-flag box changes. Only the status chip is announced (D4).
-export default function Orchestration({ slug, active = true, runSignal = 0 }) {
-  const spec = orchestrations[slug];
+export default function Orchestration({ slug, spec = orchestrations[slug], active = true, runSignal = 0 }) {
   const [state, dispatch] = useReducer(reducer, spec, initial);
   const [flag, setFlag] = useState(false);
   const [lines, setLines] = useState([]);

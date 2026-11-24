@@ -10,6 +10,12 @@
   background: var(--color-surface);
 }
 
+@media (max-width: 809px) {
+  .tabs [role="tab"] {
+    min-height: 44px;
+  }
+}
+
 .tabs [role="tabpanel"] {
   margin-top: 10px;
 }

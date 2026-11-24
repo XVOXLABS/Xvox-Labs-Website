@@ -2,7 +2,7 @@
 
 > **For Claude Code:** This is the build plan for the Xvox Labs website. Read it together with `CLAUDE.md` and `AGENTS.md` before any task. **What the site contains comes from the HTML prototype. How it looks and behaves comes from the Framer reference.** Always plan first and wait for approval before writing code. Anything marked **Pending approval** is not decided: ask, don't assume. Proposed folders and files are not created until a task approves them.
 
-Version: Nov 24, 2026 (rev. 8 records Step 7 implementation, visual approval, and test results). Rev. 7 (Nov 24) recorded Step 6 implementation and test results. Rev. 6 (Nov 24) synced Phase 3 and Phase 4 Steps 1–5 and recorded the approved step decisions. Rev. 5 (Nov 21) recorded the remaining Phase 3 decisions and implementation approval.
+Version: Nov 24, 2026 (rev. 11 records the Solutions pages for team review). Rev. 10 (Nov 24) recorded the review index and route manifest. Rev. 9 (Nov 24) recorded the move to Vercel. Rev. 8 (Nov 24) recorded Step 7 implementation, visual approval, and test results. Rev. 7 (Nov 24) recorded Step 6 implementation and test results. Rev. 6 (Nov 24) synced Phase 3 and Phase 4 Steps 1–5 and recorded the approved step decisions. Rev. 5 (Nov 21) recorded the remaining Phase 3 decisions and implementation approval.
 
 ## Project references
 
@@ -42,10 +42,10 @@ Verified against the code and Git on Nov 24, 2026, on `phase-4-homepage` for the
 | Item | Status |
 | --- | --- |
 | Next.js 16.4.6, React 19.3.0, ESLint 9 | Installed; JavaScript only, `jsconfig.json` `@/*` alias; no TypeScript, Tailwind, Bootstrap or React Router |
-| `next.config.mjs` | `agentRules: false` |
-| `app/layout.js` | Inter (variable font) via `next/font/google` as the primary font, `lang="en"`, header/footer shell, placeholder `metadataBase` `https://example.com` (TODO, B12), title template `%s \| Xvox Labs` |
+| `next.config.mjs` | Native Next.js routing and image optimization for Vercel at the domain root. `agentRules: false` |
+| `app/layout.js` | Inter via `next/font/google`, `lang="en"`, header/footer shell, review `noindex` metadata, deployment origin from `VERCEL_URL` with a localhost fallback, title template `%s \| Xvox Labs`. Production domain pending (B12). |
 | `app/globals.css` | **Phase 3:** reset, design tokens (Framer measurements + approved corrections), base typography, focus and reduced-motion rules |
-| Routes | `/` (homepage, Phase 4 in progress) and `/style-guide` (noindex). All other routes are Phase 5 |
+| Routes | `/`, `/style-guide`, `/review`, `/solutions`, and 28 `/solutions/[slug]` paths. Remaining native prototype routes are pending. |
 | `components/` | **Phase 3:** `ui/` (14 components), `layout/` (header, menus, footer, logo slot, cart drawer, toast, Vox chat), `motion/` (Appear, CountUp, Marquee, StickyStage). **Phase 4:** `sections/home/` and `sections/shared/` |
 | `hooks/`, `lib/` | `useInView`, `useReducedMotion`, `useScrollProgress`; `actions`, `agentImages`, `brand`, `cart`, `content`, `navigation`, `orchestration`, `preference`, `pricing` |
 | `data/` | **Phase 2:** all prototype content, extracted verbatim (12 content files + `data/pages/` with 20 pages and 6 page templates). **Phase 4 Step 1:** `data/orchestration.js` and the interactive text in `data/pages/home.js`, `data/agents.js`, `data/site.js` |
@@ -296,6 +296,23 @@ The prototype's content is used as-is. These blueprint differences are resolved 
 
 Every link in `data/` carries both `href` (new route) and `prototypeHref` (original).
 
+## Complete team review
+
+These phases track the team-review deliverable. The website roadmap below retains its existing phase numbers.
+
+| Team-review phase | Scope | Status |
+| --- | --- | --- |
+| 1. Review index and manifest | `/review`, 20 standalone and 103 data-driven source records, four legacy aliases, Vox and Hire actions | Implemented and verified locally. All source records have working links within the index. |
+| 2. Native route templates | Solutions and departments, services, agent profiles, marketplace and the remaining standalone views | Phase 2.1 Solutions implemented and verified locally. 93 native prototype destinations remain. |
+| 3. Prototype interaction parity | Cross-route flows, orchestration fallbacks, Mission Board, cart and checkout, self-check, booking, waitlist, and reviewable runtime-only states | Pending |
+| 4. Full review and release | Browse and verify all routes and states, regression checks, then approved Vercel handoff | Pending |
+
+The index renders original extracted blocks and computed destination text, including previously hidden blocks. Draft, sample, placeholder and prototype-only labels are separate from the source copy. `data/reviewRoutes.js` records canonical URLs, parents and source files. While a native page is pending, its index link opens its source record. Within `/review`, legacy hashes open the corresponding record, `#guide` opens Vox and `#hire` opens the current agent’s buying section when available or the pricing review record. The approved canonical pricing destination remains `/pricing#hire`.
+
+### Phase 2.1 — Solutions
+
+The hub, five departments and 23 details use the final prototype content and approved navigation paths. The hub lists 18 department solutions, and the review index also links to the four cross-category details and the marketing bundle. `generateStaticParams()` uses the manifest for all 28 detail paths. Related-item links retain their planned URLs while those destinations are pending. See `CLAUDE.md` for verification.
+
 ## Phase overview
 
 | Phase | Goal | Output | Approval gate | Status |
@@ -306,7 +323,7 @@ Every link in `data/` carries both `href` (new route) and `prototypeHref` (origi
 | 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) | **In progress** on `phase-4-homepage`. Steps 1–7 done, Step 8 pending |
 | 5. Other pages | All prototype pages in the Framer style | Routes | Every link works, content matches prototype | — |
 | 6. SEO & AEO | Metadata, schema, sitemap | `sitemap.js`, `robots.js`, JSON-LD, `llms.txt` | Lighthouse + Rich Results | — |
-| 7. Test & deploy | Production build, hosting | Live site | Checklist signed off | — |
+| 7. Test & deploy | Production build, hosting | Live site | Checklist signed off | Native Vercel build verified locally for team review. Repository connection and deployment pending approval. |
 | 8. Backend (later) | Real Vox AI, form storage, checkout | APIs, database, payments | Separate approval | — |
 
 ## Phase 4 — homepage steps
@@ -455,6 +472,10 @@ Target: Lighthouse 90+ on mobile; LCP < 2.5s, CLS < 0.1, INP < 200ms.
 - [ ] Animation code client-only and small; static pages where possible
 
 ## Phase 7 — Testing, Git and deployment
+
+**Team-review hosting (VERCEL-1, Nov 24, 2026).** Use Vercel's Next.js preset with the existing GitHub repository and `phase-4-homepage` branch. Build from the repository root and use the preset's output. Use `npm run build` and `npm run start` to verify locally. Public assets use domain-root URLs. The review index and Solutions pages are available locally.
+
+Approve repository connection and the first deployment separately. Vercel treats a new project's first deployment as production. Confirm the intended Git revision, production branch and review access before import. Use the approved preview branch for later review deployments.
 
 **Git habits:** branch per phase (`phase-2-content`), commit each working feature with specific files, push daily, PR to `main` when a phase is approved. Prefixes: `feat:`, `fix:`, `style:`, `docs:`, `chore:`.
 
