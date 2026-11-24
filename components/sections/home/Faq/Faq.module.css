@@ -1,0 +1,41 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  align-items: start;
+  gap: 40px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.title {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+}
+
+.lead {
+  color: var(--color-ink-muted);
+  font-size: var(--fs-lead);
+  line-height: var(--lh-lead);
+}
+
+.intro .ask {
+  min-height: 44px;
+}
+
+.layout :is(summary, button):focus-visible {
+  outline-color: var(--color-ink);
+}
+
+/* The prototype stacks the FAQ at 820px. */
+@media (max-width: 820px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+}

@@ -1,3 +1,5 @@
+import Contact from "@/components/sections/home/Contact/Contact";
+import Faq from "@/components/sections/home/Faq/Faq";
 import ForkCards from "@/components/sections/home/ForkCards/ForkCards";
 import HeroSequence from "@/components/sections/home/HeroSequence/HeroSequence";
 import HowSteps from "@/components/sections/home/HowSteps/HowSteps";
@@ -30,7 +32,8 @@ export default function Home() {
       {/* 11. Proof: hidden (Phase 2 decision) */}
       <WaysToBuy />
       <MarketplacePreview />
-      {/* 14. FAQ, 15. Contact: step 7 */}
+      <Faq />
+      <Contact />
       <ClosingCta />
     </>
   );

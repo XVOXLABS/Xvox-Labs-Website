@@ -2,7 +2,7 @@
 
 > **For Claude Code:** This is the build plan for the Xvox Labs website. Read it together with `CLAUDE.md` and `AGENTS.md` before any task. **What the site contains comes from the HTML prototype. How it looks and behaves comes from the Framer reference.** Always plan first and wait for approval before writing code. Anything marked **Pending approval** is not decided: ask, don't assume. Proposed folders and files are not created until a task approves them.
 
-Version: Nov 24, 2026 (rev. 7 records Step 6 implementation and test results). Rev. 6 (Nov 24) synced Phase 3 and Phase 4 Steps 1–5 and recorded the approved step decisions. Rev. 5 (Nov 21) recorded the remaining Phase 3 decisions and implementation approval.
+Version: Nov 24, 2026 (rev. 8 records Step 7 implementation, visual approval, and test results). Rev. 7 (Nov 24) recorded Step 6 implementation and test results. Rev. 6 (Nov 24) synced Phase 3 and Phase 4 Steps 1–5 and recorded the approved step decisions. Rev. 5 (Nov 21) recorded the remaining Phase 3 decisions and implementation approval.
 
 ## Project references
 
@@ -37,7 +37,7 @@ Version: Nov 24, 2026 (rev. 7 records Step 6 implementation and test results). R
 
 ## Current project status
 
-Verified against the code and Git on Nov 24, 2026, on `phase-4-homepage` for the Step 6 commit. Progress detail and the decision log are in `CLAUDE.md` §5–§8.
+Verified against the code and Git on Nov 24, 2026, on `phase-4-homepage` for the Step 7 commit. Progress detail and the decision log are in `CLAUDE.md` §5–§8.
 
 | Item | Status |
 | --- | --- |
@@ -303,7 +303,7 @@ Every link in `data/` carries both `href` (new route) and `prototypeHref` (origi
 | 1. Setup | Next.js running locally | Clean app | Site loads | **Done** (`9ab7d7e`) |
 | 2. References & content | Extract prototype content into `data/`; copy prototype images | `data/` files, `public/images/`, `docs/CONTENT_INVENTORY.md` | You approve decisions and URL map | **Approved** (commits `855ea2e`, `932401b`; branch `phase-2-content` pushed) |
 | 3. Design system + shared layout | Global design system, reusable UI components, desktop and mobile navbar, dropdown menus, footer, shared layout shell, motion and animation system | `globals.css`, fonts, logo, `components/ui`, `components/layout`, `components/motion`, `hooks/`, `/style-guide` | You compare `/style-guide`, header and footer with Framer at 390 / 810 / 1024 / 1200 / 1440px | **Done** (commits `c3063eb` … `c0ed4a7`, Nov 21; branch `phase-3-design-system` is local only and is contained in `phase-4-homepage`); still open: logo file |
-| 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) | **In progress** on `phase-4-homepage`. Steps 1–6 done, Steps 7–8 pending |
+| 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) | **In progress** on `phase-4-homepage`. Steps 1–7 done, Step 8 pending |
 | 5. Other pages | All prototype pages in the Framer style | Routes | Every link works, content matches prototype | — |
 | 6. SEO & AEO | Metadata, schema, sitemap | `sitemap.js`, `robots.js`, JSON-LD, `llms.txt` | Lighthouse + Rich Results | — |
 | 7. Test & deploy | Production build, hosting | Live site | Checklist signed off | — |
@@ -321,8 +321,8 @@ Approved Nov 21, 2026. One reviewed local commit per step on `phase-4-homepage`;
 | 3 | Section 1 hero sequence + shared agent popup | Done | `27f36ac` |
 | 4 | Section 2 puzzle stage | Done | `73f81fc` |
 | 5 | Section 6 Team at Work + shared orchestration engine (4 flows) | Done (pushed Nov 24) | `5f5cd06` |
-| 6 | Sections 12 (buying ladder) and 13 (marketplace) | Done (visual review approved Nov 24) | This commit |
-| 7 | Sections 14 (FAQ) and 15 (contact) | Pending | — |
+| 6 | Sections 12 (buying ladder) and 13 (marketplace) | Done (visual review approved Nov 24) | `13c67e5` |
+| 7 | Sections 14 (FAQ) and 15 (contact) | Done (visual review approved Nov 24) | This commit |
 | 8 | Whole-page check: side-by-side review page (Framer / prototype / build) at 5 widths, performance and accessibility pass, final report | Pending | — |
 
 Section 11 (proof) stays hidden (Phase 2 decision).
@@ -353,10 +353,13 @@ No other numerical, monthly, estimated or invented price may appear in these sec
 
 **Validation:** price allow-list ("Free", "$1,500") and deny-list (other `$` amounts, "/ month", "/month", "per month", "/mo", "one-time", "Price to set", "TBS", "from $") on text, accessible names, `title` attributes and served HTML at 5 widths · every placeholder shows the label · `/book` topics saved (ladder steps; one card per type) · cart/Toast compatibility: Node test old vs new `lib/cart.js`; browser: add toast with View cart, card remove toast without it, drawer remove silent, popup Buy still silent · no nested interactive elements · tabs by keyboard · ladder columns incl. 620/621 · no overflow or console errors · screenshots vs prototype · Steps 1–5 regression · lint and build.
 
-### Step 7 — FAQ and contact (pending)
+### Step 7 — FAQ and contact (implemented and tested)
 
 - **FAQ:** two columns; left: eyebrow "FAQ", heading, lead "Still unsure? Vox answers questions too.", "Ask Vox →" (opens Vox); right: the 7 questions from `data/faq.js` in order in a grey frame. All closed at first, each toggles on its own, +/− icon, keyboard accessible. Uses the shared `Accordion` with its existing settings (no group name, `defaultOpen={-1}`); no numbering (U3).
 - **Contact:** eyebrow "Contact", heading, lead; K1–K3 applied; "30 min / Discovery call"; "Ask Vox instead →". "Start a project" form card: 8 fields in prototype order with their options and the prototype validation message; saved-topic chip ("About: …", "Path: …", "Clear ✕") from the `/book` preference; demo confirmation per A2.
+- **Budget and pricing (K5, Nov 24):** the optional visitor Budget field keeps the five original prototype ranges in order. Services and Solutions show "Contact Us to Discuss Pricing" wherever pricing appears. Blueprints are the only category eligible to display actual product prices.
+
+The owner approved the visual review on Nov 24. Final lint and production build passed. The saved Chrome review passed 15 check groups at 12 viewport widths, including the FAQ, field options, keyboard and reduced motion, booking topics, demo submission, and Steps 1–6 regression smoke checks. The review contains 24 screenshots. See `CLAUDE.md` §6 and the [local comparison page](reference/visual-review/phase4/step7/index.html).
 
 ### Step 8 — Whole-page check (pending)
 

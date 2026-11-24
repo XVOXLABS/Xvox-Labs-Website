@@ -1375,27 +1375,33 @@ export const page = {
         },
         {
           "tag": "small",
-          "text": "You"
+          "text": "You",
+          "hidden": true
         },
         {
           "tag": "div.bubble",
-          "text": "You Our leads go cold and nobody posts on social…"
+          "text": "You Our leads go cold and nobody posts on social…",
+          "hidden": true
         },
         {
           "tag": "small",
-          "text": "Xvox Labs team"
+          "text": "Xvox Labs team",
+          "hidden": true
         },
         {
           "tag": "div.bubble",
-          "text": "Xvox Labs team Thanks. We will reply with next steps and a time to talk."
+          "text": "Xvox Labs team Thanks. We will reply with next steps and a time to talk.",
+          "hidden": true
         },
         {
           "tag": "b",
-          "text": "1 day"
+          "text": "1 day",
+          "hidden": true
         },
         {
           "tag": "span",
-          "text": "Reply target"
+          "text": "Reply target",
+          "hidden": true
         },
         {
           "tag": "b",
@@ -1431,61 +1437,84 @@ export const page = {
         },
         {
           "tag": "option",
-          "text": "Not sure yet"
+          "text": "Not sure yet",
+          "field": "interest"
         },
         {
           "tag": "option",
           "text": "Sales & Marketing",
+          "field": "interest",
+          "group": "solutions",
           "fromData": true
         },
         {
           "tag": "option",
           "text": "Customer Experience",
+          "field": "interest",
+          "group": "solutions",
           "fromData": true
         },
         {
           "tag": "option",
           "text": "Finance & Reporting",
+          "field": "interest",
+          "group": "solutions",
           "fromData": true
         },
         {
           "tag": "option",
           "text": "Operations & Admin",
+          "field": "interest",
+          "group": "solutions",
           "fromData": true
         },
         {
           "tag": "option",
           "text": "Design Operations",
+          "field": "interest",
+          "group": "solutions",
           "fromData": true
         },
         {
           "tag": "option",
           "text": "Design & Product",
+          "field": "interest",
+          "group": "services",
           "fromData": true
         },
         {
           "tag": "option",
           "text": "AI Automation",
+          "field": "interest",
+          "group": "services",
           "fromData": true
         },
         {
           "tag": "option",
           "text": "Brand & Marketing",
+          "field": "interest",
+          "group": "services",
           "fromData": true
         },
         {
           "tag": "option",
           "text": "Safe AI",
+          "field": "interest",
+          "group": "services",
           "fromData": true
         },
         {
           "tag": "option",
           "text": "Paid audit",
+          "field": "interest",
+          "group": "other",
           "fromData": true
         },
         {
           "tag": "option",
-          "text": "Marketplace item"
+          "text": "Marketplace item",
+          "field": "interest",
+          "group": "other"
         },
         {
           "tag": "label",
@@ -1493,32 +1522,34 @@ export const page = {
         },
         {
           "tag": "option",
-          "text": "Not sure yet"
+          "text": "Not sure yet",
+          "field": "budget"
         },
+        // Visitor budget ranges approved for this field only (Nov 24, 2026).
         {
           "tag": "option",
           "text": "Under $5,000",
-          "priceStatus": "placeholder"
+          "field": "budget"
         },
         {
           "tag": "option",
           "text": "$5,000 to $15,000",
-          "priceStatus": "placeholder"
+          "field": "budget"
         },
         {
           "tag": "option",
           "text": "$15,000 to $40,000",
-          "priceStatus": "placeholder"
+          "field": "budget"
         },
         {
           "tag": "option",
           "text": "$40,000 to $100,000",
-          "priceStatus": "placeholder"
+          "field": "budget"
         },
         {
           "tag": "option",
           "text": "$100,000 and up",
-          "priceStatus": "placeholder"
+          "field": "budget"
         },
         {
           "tag": "label",
@@ -1526,19 +1557,23 @@ export const page = {
         },
         {
           "tag": "option",
-          "text": "As soon as possible"
+          "text": "As soon as possible",
+          "field": "start"
         },
         {
           "tag": "option",
-          "text": "Within a month"
+          "text": "Within a month",
+          "field": "start"
         },
         {
           "tag": "option",
-          "text": "In one to three months"
+          "text": "In one to three months",
+          "field": "start"
         },
         {
           "tag": "option",
-          "text": "Later this year"
+          "text": "Later this year",
+          "field": "start"
         },
         {
           "tag": "label",
@@ -1554,7 +1589,9 @@ export const page = {
         },
         {
           "tag": "p",
-          "text": "A person reads every request and replies within one business day. No newsletter."
+          "text": "A person reads every request and replies within one business day. No newsletter.",
+          "approvedText": "Demo mode: this form doesn't send or store anything yet.",
+          "decision": "K3 (Nov 21, 2026)"
         },
         {
           "tag": "input[placeholder]",
