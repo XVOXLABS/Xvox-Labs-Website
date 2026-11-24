@@ -2,7 +2,7 @@
 
 > **For Claude Code:** This is the build plan for the Xvox Labs website. Read it together with `CLAUDE.md` and `AGENTS.md` before any task. **What the site contains comes from the HTML prototype. How it looks and behaves comes from the Framer reference.** Always plan first and wait for approval before writing code. Anything marked **Pending approval** is not decided: ask, don't assume. Proposed folders and files are not created until a task approves them.
 
-Version: Nov 21, 2026 (rev. 5: remaining Phase 3 decisions recorded; Framer/Kaviyan used as inspiration only; Phase 3 implementation approved)
+Version: Nov 24, 2026 (rev. 6: status synced with the code and Git: Phase 3 done, Phase 4 Steps 1–5 done, Step 6 in progress; Phase 4 step plan and approved step decisions recorded). Rev. 5 (Nov 21): remaining Phase 3 decisions recorded; Framer/Kaviyan used as inspiration only; Phase 3 implementation approved.
 
 ## Project references
 
@@ -37,16 +37,23 @@ Version: Nov 21, 2026 (rev. 5: remaining Phase 3 decisions recorded; Framer/Kavi
 
 ## Current project status
 
+Verified against the code and Git on Nov 24, 2026 (branch `phase-4-homepage`, HEAD `5f5cd06`). Progress detail and the decision log: `CLAUDE.md` §5–§8.
+
 | Item | Status |
 | --- | --- |
 | Next.js 16.4.6, React 19.3.0, ESLint 9 | Installed; JavaScript only, `jsconfig.json` `@/*` alias; no TypeScript, Tailwind, Bootstrap or React Router |
 | `next.config.mjs` | `agentRules: false` |
-| `app/layout.js` | Inter (variable font) via `next/font/google` as the primary font, `lang="en"`, placeholder `metadataBase` (TODO), title template `%s \| Xvox Labs` |
-| `app/page.js`, `app/globals.css` | Minimal page; empty globals |
-| `data/` | **Phase 2:** all prototype content, extracted verbatim (12 content files + `data/pages/` with 20 pages and 6 page templates) |
+| `app/layout.js` | Inter (variable font) via `next/font/google` as the primary font, `lang="en"`, header/footer shell, placeholder `metadataBase` `https://example.com` (TODO, B12), title template `%s \| Xvox Labs` |
+| `app/globals.css` | **Phase 3:** reset, design tokens (Framer measurements + approved corrections), base typography, focus and reduced-motion rules |
+| Routes | `/` (homepage, Phase 4 in progress) and `/style-guide` (noindex). All other routes are Phase 5 |
+| `components/` | **Phase 3:** `ui/` (14 components), `layout/` (header, menus, footer, logo slot, cart drawer, toast, Vox chat), `motion/` (Appear, CountUp, Marquee, StickyStage). **Phase 4:** `sections/home/` and `sections/shared/` |
+| `hooks/`, `lib/` | `useInView`, `useReducedMotion`, `useScrollProgress`; `actions`, `agentImages`, `brand`, `cart`, `content`, `navigation`, `orchestration`, `preference`, `pricing` |
+| `data/` | **Phase 2:** all prototype content, extracted verbatim (12 content files + `data/pages/` with 20 pages and 6 page templates). **Phase 4 Step 1:** `data/orchestration.js` and the interactive text in `data/pages/home.js`, `data/agents.js`, `data/site.js` |
 | `public/images/` | **Phase 2:** the 25 prototype images, byte-identical (`agents/` holds the 14 agent files) |
+| Logo | Slot in `lib/brand.js` (`src: null`); `public/brand/` not created yet: **file pending** |
 | `docs/CONTENT_INVENTORY.md` | **Phase 2:** internal inventory: counts, internal-only prices, hidden placeholders, open items, route map |
-| `reference/index.html` | Read-only copy of the prototype, git-ignored |
+| `reference/` | Git-ignored: read-only copy of the prototype (`index.html`) and local visual-review screenshots |
+| Deployment | None. `main` holds Phase 1 only (`9ab7d7e`); nothing merged |
 
 ## Framer design system (measured from the live site)
 
@@ -154,13 +161,13 @@ Values below were read from the rendered Framer site (computed styles and screen
 | 3 | "Works with the tools you already use" strip | Logo strip (label + bordered tiles) | Moving strip | 2-column tile grid |
 | 4 | "What's getting in your way?" department tiles | Use-case cards in a grey frame | Appear on view | 1 column (mobile), 2 (tablet) |
 | 5 | "I need a team." / "I need one thing." | Section header A + two white cards in a frame | Appear on view | Stacked |
-| 6 | "Real orchestration. Watch it run." team-at-work tabs | Pill filter tabs + dark agent stage for the flow | Prototype flow playback, Framer easing; tooltips | Tabs scroll horizontally |
+| 6 | "Real orchestration. Watch it run." team-at-work tabs | Pill filter tabs + dark agent stage for the flow | Prototype flow playback, Framer easing; tooltips | ~~Tabs scroll horizontally~~ **Decided (Step 5, D3): tabs wrap so all four stay visible**; graph stacks below 1200px |
 | 7 | "Audit, build, live. Then we stay on." | Timeline cards (3 cards: number + title + week badge) | Timeline deck motion | 1 column |
 | 8 | "Expert work, when you need people too." (4 service areas) | Agent-card style tinted cards with arrow button | Hover lift | 1–2 columns |
 | 9 | "Same business. More breathing room." (before / after) | Two white cards in a frame (stat-card typography) | Appear on view | Stacked |
 | 10 | "Your data, your rules, your approval." (Safe AI) | Principles-style tinted cards | Appear on view | Stacked |
 | 11 | "See the work before you buy." sample cards | Item cards with tinted image area | Hover | 1 column |
-| 12 | "From a free plan to fully run for you." ladder (Step 0–5) | Pricing tier cards (top white card + checklist) | Appear on view | Horizontal scroll or stacked (decide at build) |
+| 12 | "From a free plan to fully run for you." ladder (Step 0–5) | Pricing tier cards (top white card + checklist) — **decided (Step 6, D6): no checklists** (the prototype ladder has none) | Appear on view | **Decided (Step 6, D3): stacked**: 6 columns ≥ 1200px, 3 at 621–1199px, 1 ≤ 620px |
 | 13 | "Or take the ready-made version." marketplace | Filter tabs + item cards | Tab crossfade | 1–2 columns |
 | 14 | FAQ "Questions technical buyers ask." | Framer FAQ (centred header, numbered rows, black +/−) | Accordion | Full width |
 | 15 | Contact "Tell us what you are fixing." | Framer contact (grey frame, dark chip, form card, orange send button) | — | Stacked |
@@ -295,12 +302,74 @@ Every link in `data/` carries both `href` (new route) and `prototypeHref` (origi
 | --- | --- | --- | --- | --- |
 | 1. Setup | Next.js running locally | Clean app | Site loads | **Done** (`9ab7d7e`) |
 | 2. References & content | Extract prototype content into `data/`; copy prototype images | `data/` files, `public/images/`, `docs/CONTENT_INVENTORY.md` | You approve decisions and URL map | **Approved** (commits `855ea2e`, `932401b`; branch `phase-2-content` pushed) |
-| 3. Design system + shared layout | Global design system, reusable UI components, desktop and mobile navbar, dropdown menus, footer, shared layout shell, motion and animation system | `globals.css`, fonts, logo, `components/ui`, `components/layout`, `components/motion`, `hooks/`, `/style-guide` | You compare `/style-guide`, header and footer with Framer at 390 / 810 / 1024 / 1200 / 1440px | **In progress** (branch `phase-3-design-system`); open: logo file |
-| 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) | — |
+| 3. Design system + shared layout | Global design system, reusable UI components, desktop and mobile navbar, dropdown menus, footer, shared layout shell, motion and animation system | `globals.css`, fonts, logo, `components/ui`, `components/layout`, `components/motion`, `hooks/`, `/style-guide` | You compare `/style-guide`, header and footer with Framer at 390 / 810 / 1024 / 1200 / 1440px | **Done** (commits `c3063eb` … `c0ed4a7`, Nov 21; branch `phase-3-design-system` is local only and is contained in `phase-4-homepage`); still open: logo file |
+| 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) | **In progress** (branch `phase-4-homepage`, pushed): Steps 1–5 done, **Step 6 in progress**, Steps 7–8 pending. See "Phase 4 — homepage steps" below |
 | 5. Other pages | All prototype pages in the Framer style | Routes | Every link works, content matches prototype | — |
 | 6. SEO & AEO | Metadata, schema, sitemap | `sitemap.js`, `robots.js`, JSON-LD, `llms.txt` | Lighthouse + Rich Results | — |
 | 7. Test & deploy | Production build, hosting | Live site | Checklist signed off | — |
 | 8. Backend (later) | Real Vox AI, form storage, checkout | APIs, database, payments | Separate approval | — |
+
+## Phase 4 — homepage steps
+
+Approved Nov 21, 2026. One reviewed local commit per step on `phase-4-homepage`; each step and each commit needs approval. After every step: lint, build, browser checks at 390 / 810 / 1024 / 1200 / 1440 (no overflow, no console errors), screenshots, report.
+
+| Step | Work | Status | Commit |
+| --- | --- | --- | --- |
+| 0 | Create branch `phase-4-homepage` from `c0ed4a7` | Done | — |
+| 1 | Extract the interactive text into `data/` (puzzle states, orchestration specs and run-log text, popup labels, form text), checked word for word against the prototype | Done | `2e8ec90` |
+| 2 | Page shell and static sections 3, 4, 5, 7, 8, 9, 10, 16; Vox widget on phones (compact button, nudge off, hidden while the footer is visible) | Done | `77056b7` |
+| 3 | Section 1 hero sequence + shared agent popup | Done | `27f36ac` |
+| 4 | Section 2 puzzle stage | Done | `73f81fc` |
+| 5 | Section 6 Team at Work + shared orchestration engine (4 flows) | Done (pushed Nov 24) | `5f5cd06` |
+| 6 | Sections 12 (buying ladder) and 13 (marketplace) | **In progress: partially implemented, not tested, not committed** | — |
+| 7 | Sections 14 (FAQ) and 15 (contact) | Pending | — |
+| 8 | Whole-page check: side-by-side review page (Framer / prototype / build) at 5 widths, performance and accessibility pass, final report | Pending | — |
+
+Section 11 (proof) stays hidden (Phase 2 decision).
+
+**Phase 4 plan decisions (Nov 21):** A1 branch and per-step commits · A2 contact confirmation "Thanks, {name}." + "Demo mode: nothing was stored in this view." (no "Sending…", no email promise) · A3 ladder footnote: the "Prices marked 'to set'…" sentence is hidden, "Download means you run it. Hire means we run it. See pricing →" stays · A4 pinned lengths: hero 240vh; puzzle 260vh, 220vh at 601–640px, 180vh ≤ 600px · A5 links use the planned routes before Phase 5 pages exist (no temporary pages) · A6 FAQ and contact are the full prototype sections · K1 hide both contact chat bubbles · K2 hide "1 day / Reply target", keep "30 min / Discovery call" · K3 form note "Demo mode: this form doesn't send or store anything yet." · K4 closing CTA lead "Tell Vox what is slowing you down. You get a plan." · U2 popup Buy price from the blueprint data via the price rule · U3 FAQ not numbered · U4 Vox "a person from our team…" wording deferred until after Phase 4. Step 3–5 decisions: `CLAUDE.md` §8.
+
+### Step 6 — Buying ladder and marketplace (in progress)
+
+**Already implemented (uncommitted, not yet linted, built or tested):**
+- `lib/cart.js`: `removeFromCart(id, { toast })` option (D1); `addToCart` unchanged.
+- `components/layout/Toast/Toast.jsx`: plain message without "View cart" (D1); existing toasts unchanged.
+- `components/sections/shared/BuyingLadder/` (`.jsx` + `.module.css`): six-step ladder and footnote.
+- `components/sections/shared/ItemCard/` (`.jsx` + `.module.css`): marketplace card with stretched link, price link and cart toggle.
+- `components/sections/shared/MarketplaceFeatured/` (`.jsx` + `.module.css`): shared `Tabs` with the card grids.
+
+**Remaining:**
+- `components/sections/home/WaysToBuy/WaysToBuy.jsx` (section 12: heading + `BuyingLadder about="Home page"` + footnote).
+- `components/sections/home/MarketplacePreview/MarketplacePreview.jsx` (section 13: heading, lead, `MarketplaceFeatured`, "Open the marketplace ↗").
+- `app/page.js`: replace the Step 6 comment with both sections.
+- Lint, build, all validation and regression checks below, screenshots in `reference/visual-review/phase4/step6/`, review; commit only after approval.
+
+**Pricing rule (approved, final):**
+
+| Item | Shown | Route |
+| --- | --- | --- |
+| Free AI plan (ladder step 0) | **Free** | "Get your AI plan →" opens Vox |
+| Published blueprints (22 cards) and ladder step 2 "Download" | **$1,500** only (no "one-time", no "/ month") | Cards: + / ✓ cart toggle. Step 2: "Browse blueprints →" → `/marketplace` |
+| Paid audit, Implement, Hire, Custom (steps 1, 3, 4, 5) | **Contact Us to Discuss Pricing** | The step's own button saves About "Home page" / Path = step title → `/book` |
+| Claude skills, Automation packs, Micro tools, Templates | **Contact Us to Discuss Pricing**, as its own text link | Saves About = item name / Path = item type → `/book` |
+| Cart drawer (unchanged) | Unpriced items show the label; total hidden unless every item is published | "Discuss Pricing →" → `/book` |
+
+No other numerical, monthly, estimated or invented price may appear in these sections, in accessible names, `title` attributes or the served HTML. Internal values stay in `data/` only.
+
+**Decisions:** D1 "Removed from cart" toast without View cart, backward-compatible · D2 placeholder prices show the label only (no extra Discuss Pricing button in ladder cards) · D3 ladder stacked: 6 columns ≥ 1200, 3 at 621–1199, 1 ≤ 620 · D4 stretched card links with separate controls, no nested interactive elements · D5 shared `Tabs`, wrapping, keyboard · D6 Framer tier cards without checklists · D7 no "/ month" until a published price exists · Q1 placeholder "Contact Us to Discuss Pricing" is a separate text link to `/book` · Q2 topic About = item name, Path = type · Q3 + / ✓ toggle on every item.
+
+**Content:** ladder from `data/pricing.js` (6 steps, Implement highlighted); marketplace heading, lead and tab labels from `data/pages/home.js` section 13; Featured = `interactive.featuredItems` (8, prototype order); type tabs = first 8 items of each type in data order (Blueprints 8 of 22, Claude skills 8, Automation packs 6, Micro tools 4, Templates 4); "Sample catalogue" note hidden.
+
+**Validation:** price allow-list ("Free", "$1,500") and deny-list (other `$` amounts, "/ month", "/month", "per month", "/mo", "one-time", "Price to set", "TBS", "from $") on text, accessible names, `title` attributes and served HTML at 5 widths · every placeholder shows the label · `/book` topics saved (ladder steps; one card per type) · cart/Toast compatibility: Node test old vs new `lib/cart.js`; browser: add toast with View cart, card remove toast without it, drawer remove silent, popup Buy still silent · no nested interactive elements · tabs by keyboard · ladder columns incl. 620/621 · no overflow or console errors · screenshots vs prototype · Steps 1–5 regression · lint and build.
+
+### Step 7 — FAQ and contact (pending)
+
+- **FAQ:** two columns; left: eyebrow "FAQ", heading, lead "Still unsure? Vox answers questions too.", "Ask Vox →" (opens Vox); right: the 7 questions from `data/faq.js` in order in a grey frame. All closed at first, each toggles on its own, +/− icon, keyboard accessible. Uses the shared `Accordion` with its existing settings (no group name, `defaultOpen={-1}`); no numbering (U3).
+- **Contact:** eyebrow "Contact", heading, lead; K1–K3 applied; "30 min / Discovery call"; "Ask Vox instead →". "Start a project" form card: 8 fields in prototype order with their options and the prototype validation message; saved-topic chip ("About: …", "Path: …", "Clear ✕") from the `/book` preference; demo confirmation per A2.
+
+### Step 8 — Whole-page check (pending)
+
+Side-by-side review page (Framer / prototype / build) at 5 widths; performance and accessibility pass; final report. Deferred items to raise here: U4 Vox wording, the prototype's pointer tilt on agent images (`--mx`).
 
 ## How to use this plan
 
@@ -322,9 +391,9 @@ Every link in `data/` carries both `href` (new route) and `prototypeHref` (origi
 
 ## Folder structure
 
-**Exists:** `app/` (`layout.js`, `page.js`, `globals.css`, `favicon.ico`), `data/` and `data/pages/` (Phase 2), `public/images/` and `public/images/agents/` (Phase 2), `docs/CONTENT_INVENTORY.md`, git-ignored `reference/index.html`, config files.
+**Exists (Nov 24, 2026):** `app/` (`layout.js`, `page.js`, `globals.css`, `favicon.ico`, `style-guide/`), `components/ui/`, `components/layout/`, `components/motion/` (Phase 3), `components/sections/home/` and `components/sections/shared/` (Phase 4), `hooks/`, `lib/`, `data/` and `data/pages/` (Phase 2), `public/images/` and `public/images/agents/` (Phase 2), `docs/CONTENT_INVENTORY.md`, git-ignored `reference/`, config files. Not yet: `public/brand/` (logo file pending), routes other than `/` and `/style-guide` (Phase 5), `lib/seo.js` and `lib/schema.js` (Phase 6). Actual tree: `CLAUDE.md` §3.
 
-**Proposed (not created):**
+**Planned structure (original proposal; parts above now exist):**
 
 ```text
 app/                         Routes, layouts, metadata

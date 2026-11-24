@@ -1,55 +1,103 @@
-# CLAUDE.md — Xvox Labs Website
+# AGENTS.md — Xvox Labs Website: rules for every coding agent
 
-## Project Identity
-This is the official Xvox Labs company website project.
+Read this file before any task. Then read [`CLAUDE.md`](CLAUDE.md) (project knowledge, progress, decisions, next action) and [`BUILD_PLAN.md`](BUILD_PLAN.md) (roadmap, design system, URL map, acceptance criteria). These rules apply to every AI coding agent (Claude Code, Codex, Cursor, Copilot and others).
 
-All development must follow a premium, modern, professional and corporate design direction.
+## A. Project identity
 
-## Core Behavior
-1. Don't assume. Don't hide confusion. Surface tradeoffs.
+- **Project:** the official Xvox Labs company website. Xvox Labs builds AI agents, automation and software for businesses (agents, services and a marketplace of ready-made blueprints, skills, automation packs, tools and templates).
+- **Repository:** `XVOXLABS/Xvox-Labs-Website` (GitHub, remote `origin`).
+- **Framework:** Next.js App Router (file-based routing, multi-page).
+- **Language:** JavaScript only (`.js` / `.jsx`), React components.
+- **Styling:** CSS Modules per component + `app/globals.css` for foundations and design tokens.
+- **Direction:** premium, modern, professional and corporate.
+
+## B. Non-negotiable rules
+
+**Technology**
+- No TypeScript. No Tailwind, Bootstrap or React Router. No Python or Java.
+- Do not install, remove or upgrade any package without explicit approval. No animation library (approved): motion uses CSS and small React hooks.
+
+**Safety**
+- Never touch `.env`, secrets or credentials files without asking.
+- Never discard, reset, clean, stash-drop or overwrite existing uncommitted work. Review existing work before changing it.
+- Never delete files outside the current task's scope.
+- No `git push --force` without explicit confirmation.
+- No commit, push, merge, branch change, remote change or change to `main` without explicit approval for that action.
+
+**Content and design**
+- Never invent business information, pricing, claims or functionality. If something is missing, ask.
+- Do not change approved designs, content, wording, prices or behaviour without approval.
+- Content lives in `data/` (copied verbatim from the prototype); never type content inside components.
+- Design values live as tokens in `app/globals.css`; components use tokens, not new raw values, unless the value is documented.
+- Pricing rule: only **Free** (AI plan) and **$1,500** (published blueprints) are shown. Everything else shows **"Contact Us to Discuss Pricing"**. See `CLAUDE.md` §8.
+
+**Core behaviour**
+1. Don't assume. Don't hide confusion. Surface trade-offs.
 2. Minimum code that solves the problem. Nothing speculative.
 3. Touch only what you must. Clean up only your own mess.
 4. Define success criteria. Loop until verified.
 
-## How I Work
-- Plan before build — confirm approach in chat before generating files.
-- I prefer execution-ready output, not outlines or scaffolds.
-- When iterating, make targeted corrections — don't rewrite the whole thing.
+**How the owner works**
+- Plan before build: confirm the approach in chat before generating files.
+- Execution-ready output, not outlines or scaffolds.
+- When iterating, make targeted corrections; don't rewrite the whole thing.
+- Ask before assuming scope on ambiguous requests. If a task needs more than ~3 file changes, outline the plan first. Flag uncertainty instead of picking silently.
 
-## Communication
-- Ask before assuming scope on ambiguous requests.
-- If a task needs more than ~3 file changes, outline the plan first.
-- Flag when you're uncertain rather than picking silently.
+## C. Source of truth
 
-## Never
-- Never touch `.env`, secrets, or credentials files without asking.
-- Never `git push --force` without explicit confirmation.
-- Never delete files outside the current task's scope.
+| Source | Decides | Notes |
+| --- | --- | --- |
+| **User-approved decisions** | Overrides everything below | Recorded in `CLAUDE.md` §8 and `BUILD_PLAN.md`. Never change one silently |
+| **HTML prototype v5** (`D:\Downloads\Xvox Labs — Website prototype v5 (1)\`, read-only copy in git-ignored `reference/index.html`) | **What** the site contains: content, copy, sections and order, pages, navigation, features, behaviour | Read-only. Never modify its files |
+| **Framer reference** (https://rational-happen-962580.framer.app/) | **How** it looks and moves: visual theme, typography, spacing, components, motion, responsive behaviour | Inspiration only. Never copy its content, branding, assets, template source or structure |
+| **Business blueprint** (`D:\Downloads\Xvox Labs — What we sell & how people buy.pdf`) | Later business decisions (B1–B13 in `BUILD_PLAN.md`) | Does not override the prototype without approval |
+| **`BUILD_PLAN.md`** | Roadmap, phases, design system tables, section mapping, URL map, SEO/AEO, acceptance | Detailed plan; not edited without separate approval |
+| **`CLAUDE.md`** | Project knowledge: progress, decisions, risks, next action | Updated when an approved task finishes |
+| **`AGENTS.md`** | Universal workflow and rules (this file) | Changed only when rules or workflow change |
+| **Actual code + Git history** | What really exists and its status | If a document says something is done but the code does not show it, the code wins: report the mismatch |
 
-## Development Principles
-- Build scalable, modular and maintainable solutions.
-- Prioritize responsive design across mobile, tablet and desktop.
-- Maintain consistent design systems and reusable components.
-- Follow accessibility and SEO best practices.
-- Avoid unnecessary dependencies.
-- Preserve existing functionality and design decisions.
-- Never overwrite existing work without reviewing it first.
+**Conflicts:** if two sources disagree (for example the prototype and the blueprint, or a plan and the code), stop and ask. Do not resolve it yourself, and never "fix" an approved decision you think is wrong: propose the change and wait.
 
-## Workflow
-1. Understand the request and inspect the existing project.
-2. Identify affected files and potential risks.
-3. Present a plan before implementation.
-4. Wait for approval when required.
-5. Implement only the approved scope.
-6. Test and verify the result.
-7. Summarize changes and any remaining issues.
+## D. Mandatory workflow
 
-## Git Rules
-- Use the existing Git repository.
-- Do not initialize another repository.
-- Do not change remotes or branches without permission.
-- Never force push without explicit approval.
-- Use clear and meaningful commit messages.
+1. Understand the requested task.
+2. Read the relevant documentation and inspect the existing code.
+3. Check `git status` and the branch; protect any uncommitted changes.
+4. Identify the phase and step the task belongs to (`CLAUDE.md` §5–7).
+5. Prepare a short plan.
+6. List the files to be created or modified.
+7. Identify dependencies and possible regressions.
+8. Wait for approval when required (anything beyond a trivial fix, any decision, any commit or push).
+9. Implement only the approved scope.
+10. Run the relevant checks, `npm run lint` and `npm run build`.
+11. Review the final diff.
+12. Report results, test evidence and remaining issues honestly (failures and skipped checks included).
+13. Update project documentation and progress status (section G).
 
-## Important
-When requirements or architecture decisions are unclear, ask before proceeding. Do not invent missing project requirements.
+## E. Section-by-section development
+
+- Work on one approved section or step at a time. Do not start the next one automatically.
+- Preserve the existing design system and reusable components; keep shared components reusable (pass content in, don't hard-code page content).
+- Compare each section with the prototype (content, behaviour) and the Framer reference (look, motion).
+- Test desktop, tablet and mobile: 390, 810, 1024, 1200 and 1440 px (plus 320 px as a safety check). Breakpoints: desktop ≥ 1200, tablet 810–1199, phone < 810.
+- Respect `prefers-reduced-motion`; keep content in the server HTML; keyboard and screen-reader access for every control.
+- Avoid unnecessary refactoring. Do not modify completed sections or Phase 3 shared components unless required, explained and approved.
+
+## F. Git safety
+
+- Use the existing repository; never initialise another. Do not change remotes.
+- **Branch per phase** (`phase-2-content`, `phase-3-design-system`, `phase-4-homepage`). Do not switch or create branches without approval.
+- **Commits:** one reviewed commit per approved step, staging only that step's files (`git add <files>`, never `git add -A` blindly). Clear messages with prefixes `feat:`, `fix:`, `style:`, `docs:`, `chore:`. Commit only after the owner approves the diff and the message.
+- **Pushes:** only when explicitly asked, normal push to the same branch name (`git push origin <branch>`). Never force push.
+- **`main`:** protected. Nothing is merged into `main` until the owner approves the phase; merges go through review.
+- Do not commit secrets, `.env*`, `node_modules/`, `.next/`, or the git-ignored `reference/` folder.
+
+## G. Documentation sync
+
+- When an approved task is **finished and verified**, update the progress, decisions and next action in `CLAUDE.md`, and propose matching updates to `BUILD_PLAN.md` (it is edited only with approval).
+- Update `AGENTS.md` only when universal rules or the workflow change.
+- Never mark planned, partial or untested work as complete. Use "in progress" and list what is left.
+- Record every new approved decision (with its ID and date) in `CLAUDE.md` §8.
+- Keep the three files consistent; link to details instead of copying them.
+
+`next.config.mjs` sets `agentRules: false` so `next dev` does not write its own block into this file. Keep it.
