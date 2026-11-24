@@ -1,0 +1,33 @@
+.following {
+  padding-block-start: 0;
+}
+
+.complete.complete {
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+  padding: clamp(16px, 3vw, 30px);
+}
+
+.image {
+  position: relative;
+  width: min(100%, 640px);
+  aspect-ratio: 16 / 9;
+}
+
+.image img {
+  object-fit: contain;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.actions :is(a, button) {
+  min-height: 44px;
+  white-space: normal;
+  text-align: center;
+}

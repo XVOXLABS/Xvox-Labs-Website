@@ -29,6 +29,8 @@ Read this file before any task. Then read [`CLAUDE.md`](CLAUDE.md) (project know
 - Do not change approved designs, content, wording, prices or behaviour without approval.
 - Content lives in `data/` (copied verbatim from the prototype); never type content inside components.
 - Design values live as tokens in `app/globals.css`; components use tokens, not new raw values, unless the value is documented.
+- Demo mode: while the site is frontend-only, forms, the quiz, the cart and the checkout never claim that something was sent, saved, emailed, ordered or paid. Use the demo wording ("Demo mode: nothing was stored in this view.") until a backend is approved (Phase 8). See `CLAUDE.md` §8 (D3).
+- Purchase actions: the Add to Cart / Pay / Buy to Contact Us change (FINAL-1) is implemented only after all planned phases and final QA are complete. Keep the cart code, add no online payment and leave unrelated CTAs unchanged. See `CLAUDE.md` §8.
 - For published pricing, show only **Free** (AI plan) and **$1,500** (published blueprints). Use **"Contact Us to Discuss Pricing"** for other offers. Preserve the original prototype sample prices and draft pricing notes as labeled, approved team-review content. See `CLAUDE.md` §8.
 
 **Core behaviour**
@@ -97,6 +99,7 @@ Read this file before any task. Then read [`CLAUDE.md`](CLAUDE.md) (project know
 
 - When an approved task is **finished and verified**, update the progress, decisions and next action in `CLAUDE.md`, and propose matching updates to `BUILD_PLAN.md` (it is edited only with approval).
 - Update `AGENTS.md` only when universal rules or the workflow change.
+- When reporting changed files, list every file (expand untracked directories) and state the count, so manifests and counts agree.
 - Never mark planned, partial or untested work as complete. Use "in progress" and list what is left.
 - Record every new approved decision (with its ID and date) in `CLAUDE.md` §8.
 - Keep the three files consistent; link to details instead of copying them.

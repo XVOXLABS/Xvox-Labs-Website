@@ -1,0 +1,243 @@
+.following {
+  padding-block-start: 0;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+}
+
+.card {
+  min-width: 0;
+  padding: clamp(18px, 3vw, 30px);
+  border-radius: var(--radius-frame);
+  background: var(--color-surface);
+}
+
+.cardTitle {
+  margin-block-end: 16px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.form {
+  display: grid;
+  gap: 14px;
+}
+
+.two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field label {
+  font-size: 14px;
+}
+
+.field input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 46%, var(--color-control));
+  border-radius: var(--radius-button);
+  background: var(--color-control);
+  color: var(--color-ink);
+  font: inherit;
+}
+
+.field input:focus-visible,
+.check input:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.payment {
+  padding: 14px 16px;
+  border-radius: var(--radius-row);
+  background: var(--color-frame);
+}
+
+.payment h3 {
+  margin-block-end: 4px;
+  font-size: var(--fs-h4);
+  font-weight: 500;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+}
+
+.check input {
+  width: 24px;
+  height: 24px;
+  flex: none;
+}
+
+.error {
+  color: #b42318;
+  font-size: 14px;
+}
+
+.tall {
+  min-height: 44px;
+}
+
+.summary {
+  min-width: 0;
+  padding: 8px;
+}
+
+.lines {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lines li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: var(--radius-row);
+  background: var(--color-surface);
+}
+
+.thumb {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  font-size: 22px;
+}
+
+.lineText {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.lineText small {
+  color: var(--color-ink-muted);
+  font-size: 13px;
+}
+
+.price {
+  flex: none;
+  max-width: 9em;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: end;
+}
+
+.totals {
+  display: grid;
+  gap: 6px;
+  margin-block-start: 8px;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.totals > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.discuss {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.discuss a {
+  min-height: 44px;
+}
+
+.confirm {
+  display: grid;
+  gap: 14px;
+  padding: clamp(18px, 3vw, 30px);
+  border-radius: var(--radius-frame);
+  background: var(--color-frame);
+}
+
+.confirmTitle {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  font-weight: 400;
+  letter-spacing: var(--ls-h2);
+}
+
+.confirmTitle:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 4px;
+}
+
+.confirmGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.panel {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 20px;
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.panel h2 {
+  font-size: var(--fs-h4);
+  font-weight: 500;
+}
+
+.panel ul {
+  margin: 0;
+  padding-inline-start: 1.2em;
+}
+
+.panel a {
+  justify-self: start;
+  min-height: 44px;
+}
+
+.muted {
+  color: var(--color-ink-muted);
+}
+
+@media (max-width: 809px) {
+  .layout,
+  .confirmGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .two {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

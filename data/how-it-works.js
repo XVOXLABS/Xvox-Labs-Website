@@ -28,6 +28,7 @@ export const models = [
   }
 ];
 
+// `preset: true` (prototype slot flag, restored Nov 24, 2026): the agent is already on this job and locked ("Included").
 export const missions = [
   {
     "id": "marketing",
@@ -64,6 +65,7 @@ export const missions = [
       {
         "job": "Keep it safe",
         "agent": "sage",
+        "preset": true,
         "does": "checks what every agent can see and flags anything risky.",
         "check": "A person reads the weekly safety report."
       }
@@ -98,6 +100,7 @@ export const missions = [
       {
         "job": "Keep it safe",
         "agent": "sage",
+        "preset": true,
         "does": "makes sure no one is contacted after opting out."
       }
     ]
@@ -136,6 +139,7 @@ export const missions = [
       {
         "job": "Keep it safe",
         "agent": "sage",
+        "preset": true,
         "does": "checks music rights, faces and claims before posting."
       }
     ]
@@ -169,6 +173,7 @@ export const missions = [
       {
         "job": "Keep it safe",
         "agent": "sage",
+        "preset": true,
         "does": "keeps private client data out of replies."
       }
     ]

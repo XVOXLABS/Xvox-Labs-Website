@@ -1,0 +1,46 @@
+// Runtime text of the Mission Board, extracted verbatim from the Xvox Labs HTML prototype v5
+// (index.html: buildHTML, drawBuild, placeAgent, autoFill and the board click handlers). These strings are
+// built by the prototype's JavaScript, so they are not part of the extracted page blocks. The missions,
+// slots and per-step copy live in data/how-it-works.js; the starting-state labels live in the page blocks.
+// `a11y` strings are additions for assistive technology only (no prototype equivalent).
+
+export const missionBoardText = {
+  hint: "Hint: needs a {role}",
+  progress: "{n} jobs on this board · {open} still open",
+  xp: "{xp} XP",
+  missing: "Missing: {job}",
+  missingText: "Add a piece to fill this step.",
+  checkpoint: "Human checkpoint · {check}",
+  remove: "Remove",
+  info: "About {name}",
+  skills: "Skills:",
+  connects: "Connects to:",
+  blueprintHeading: "How your team solves “{name}”",
+  wrong: "{agent} is not the right piece here. Try {right}, the {role}.",
+  completeToast: "Mission complete. +100 XP",
+  completeChip: "Mission complete",
+  win: "Problem solved, with a person in charge.",
+  buy: "Buy this blueprint · {price}",
+  hire: "Hire this team ↗",
+  build: "Build it for me ↗",
+  useCase: "Use case",
+  stepsToGo: "{n} step{s} to go. Recommended pieces glow green.",
+  hireAbout: "Mission: {name} ({agents})",
+  hirePath: "Hosted by us",
+  buildAbout: "Mission: {name}",
+  buildPath: "We implement it",
+  teamAlt: "All five agents locked together",
+  xpPerSlot: 20,
+  xpComplete: 100,
+  autofillDelay: 380,
+  defaultMission: "marketing",
+  a11y: {
+    missions: "Missions",
+    progress: "Mission progress",
+    trayAgent: "{name}, {role}",
+    recommended: "recommended for an open job",
+    selected: "{name} selected. Choose a job to place it on.",
+    slot: "{job}: {drop}",
+    removeFrom: "Remove {name} from {job}",
+  },
+};

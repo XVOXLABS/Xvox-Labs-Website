@@ -156,11 +156,14 @@ export const prototypeActions = {
 // Phase 2.5 company and conversion pages.
 const companyPaths = ["/pricing", "/book", "/trust", "/about", "/careers", "/blog", "/results", "/privacy", "/studio", "/talent", "/inbox", "/notfound"];
 
+// Phase 3 views (added as each is implemented).
+const phase3Paths = ["/safe-ai/self-check", "/build", "/checkout"];
+
 // Add paths here when their native pages are implemented.
 export const implementedPrototypePaths = prototypeRoutes.filter(({ href }) =>
   href === "/" || href === "/solutions" || href.startsWith("/solutions/") || href === "/services" || href.startsWith("/services/") ||
   href === "/how-it-works" || href.startsWith("/how-it-works/agents/") || href === "/marketplace" || href.startsWith("/marketplace/") ||
-  companyPaths.includes(href),
+  companyPaths.includes(href) || phase3Paths.includes(href),
 ).map(({ href }) => href);
 
 export function reviewAnchor(hash) {

@@ -1,0 +1,229 @@
+.following {
+  padding-block-start: 0;
+}
+
+.crumbs {
+  margin-block-end: 20px;
+  color: var(--color-ink-muted);
+}
+
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.crumbs li + li::before {
+  content: "/";
+  margin-inline-end: 10px;
+}
+
+.crumbs a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.box.box {
+  padding: clamp(14px, 2.4vw, 28px);
+}
+
+.question,
+.result {
+  min-height: 340px;
+  padding: clamp(18px, 3vw, 36px);
+  border-radius: var(--radius-frame);
+  background: var(--color-surface);
+}
+
+.question {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 100%;
+}
+
+.progress {
+  display: grid;
+  gap: 8px;
+  color: var(--color-ink-muted);
+  font-size: 14px;
+}
+
+.track {
+  display: block;
+  height: 6px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--color-frame);
+}
+
+.track i {
+  display: block;
+  height: 100%;
+  background: var(--color-ink);
+}
+
+.title {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  letter-spacing: var(--ls-h3);
+}
+
+.title:focus-visible,
+.link:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 4px;
+}
+
+.answers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.answers :is(a, button) {
+  min-height: 44px;
+  min-width: 96px;
+}
+
+.link {
+  align-self: flex-start;
+  min-height: 44px;
+  padding-inline: 4px;
+  border: 0;
+  background: none;
+  color: var(--color-ink);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.result {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+.chip {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: var(--radius-badge);
+  background: var(--color-frame);
+  font-size: 13px;
+}
+
+.result .title {
+  margin-block: 12px 8px;
+}
+
+.verdict {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.muted {
+  margin-block-start: 8px;
+  color: var(--color-ink-muted);
+}
+
+.bars {
+  display: grid;
+  gap: 10px;
+  margin: 20px 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.bars li {
+  display: grid;
+  grid-template-columns: minmax(0, 8.5em) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.next {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.next h3 {
+  font-size: var(--fs-h4);
+  font-weight: 500;
+}
+
+.package {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+  border-radius: var(--radius-card);
+  background: var(--tint-p2);
+}
+
+.package h4 {
+  font-size: var(--fs-h4);
+  font-weight: 500;
+}
+
+.package :is(a, button) {
+  min-height: 44px;
+  white-space: normal;
+  text-align: center;
+}
+
+.email {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.emailRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.emailRow input {
+  flex: 1 1 150px;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--color-ink) 46%, var(--color-control));
+  border-radius: var(--radius-button);
+  background: var(--color-control);
+  color: var(--color-ink);
+  font: inherit;
+}
+
+.emailRow input:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.emailRow button {
+  min-height: 44px;
+}
+
+.error {
+  color: #b42318;
+}
+
+.done {
+  padding: 14px;
+  border-radius: var(--radius-row);
+  background: var(--color-frame);
+}
+
+@media (max-width: 809px) {
+  .result {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

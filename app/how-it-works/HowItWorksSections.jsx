@@ -1,4 +1,5 @@
 import Image from "next/image";
+import MissionBoardSection from "@/components/sections/shared/MissionBoard/MissionBoardSection";
 import SectionHead from "@/components/sections/shared/SectionHead/SectionHead";
 import Accordion from "@/components/ui/Accordion/Accordion";
 import Button from "@/components/ui/Button/Button";
@@ -134,49 +135,6 @@ function Delivery({ blocks }) {
   );
 }
 
-function MissionBoard({ blocks }) {
-  const full = block(blocks, "a.btn");
-  const vacancies = blocksByTag(blocks, "div.drop");
-  const hints = blocksByTag(blocks, "span.rec");
-  const blueprint = blocks.filter(({ tag }) => tag === "li.miss" || tag === "li");
-  return (
-    <Section id="build-sec" className={styles.following}>
-      <Head blocks={blocks} lead action={<Button href={full.href} variant="secondary">{full.text}</Button>} />
-      <Frame>
-        <ul className={styles.chips}>{blocksByTag(blocks, "button").map(({ text }) => <li key={text}>{text}</li>)}</ul>
-        <div className={styles.two}>
-          <Card>
-            <div className={styles.actions}>
-              <strong>{block(blocks, "b").text}</strong><span>{block(blocks, "small").text}</span>
-              <span>{block(blocks, "b", 1).text}</span><span>{block(blocks, "span.pts").text}</span>
-            </div>
-            <ol className={styles.boardList}>
-              {blocksByTag(blocks, "span.job").map(({ text }, i) => (
-                <li key={text}><strong>{text}</strong><span>{vacancies[i]?.text ?? block(blocks, "b", 2).text}</span>
-                  <small>{hints[i]?.text ?? block(blocks, "span.lock").text}</small></li>
-              ))}
-            </ol>
-            <strong>{block(blocks, "h5").text}</strong>
-            <ul className={styles.boardList}>{blocksByTag(blocks, "button.tag2").map(({ text }) => <li key={text}>{text}</li>)}</ul>
-            <div className={styles.actions}>
-              {blocksByTag(blocks, "button.btn").slice(0, 2).map(({ text }) => <Button key={text} disabled variant="secondary">{text}</Button>)}
-              <Button href={VOX_HREF}>{block(blocks, "button.btn", 2).text}</Button>
-            </div>
-          </Card>
-          <Card className={styles.blueprint}>
-            <Category>{block(blocks, "span.eyebrow", 1).text}</Category>
-            <h3>{block(blocks, "h3").text}</h3>
-            <ul className={styles.list}>{blueprint.map(({ text }) => <li key={text}>{text}</li>)}</ul>
-            <strong>{block(blocks, "h5", 1).text}</strong>
-            <ul className={styles.chips}>{blocksByTag(blocks, "span.chip").map(({ text }) => <li key={text}>{text}</li>)}</ul>
-            <p className={styles.muted}>{block(blocks, "p.note").text}</p>
-          </Card>
-        </div>
-      </Frame>
-    </Section>
-  );
-}
-
 export default function HowItWorksSections({ entry }) {
   const section = (index) => sectionBlocks(entry, index);
   const hero = section(0);
@@ -210,7 +168,7 @@ export default function HowItWorksSections({ entry }) {
         <Frame><ModelSelector models={models} label={block(compatibility, "span.eyebrow").text} toast={agentPageText.modelToast} />
           <p className={styles.muted}>{block(compatibility, "p.note").text}</p></Frame>
       </Section>
-      <MissionBoard blocks={section(8)} />
+      <MissionBoardSection blocks={section(8)} id="build-sec" fullScreen />
       <Section className={styles.following} containerClassName={styles.two}>
         <Head blocks={questions} lead action={<Button href={VOX_HREF} variant="secondary">{block(questions, "button.btn").text}</Button>} />
         <Accordion items={faq} numbered={false} defaultOpen={-1} />
