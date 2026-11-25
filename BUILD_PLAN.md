@@ -366,6 +366,10 @@ Correction round 3 (Batch 1): focus, header style and menu contrast fixes passed
 
 Owner-supplied logo in the header and an even 22 px between desktop navigation labels (LOGO-1, NAV-1, approved). Released together with Phase 3.2 Batch 1 and the enquiry UI (REL-1). **Release checks:** lint, 128-page build and `git diff --check` pass; navbar 32/32, focus and header 25/25, Phase 3 183/183, enquiry 104/108 (4 known accessibility failures). The Batch 1, mobile menu, mascot, Marketplace and company suites were not run on the release build (details in `CLAUDE.md` §7).
 
+### Contact form with email (Nov 25, 2026) — integrated and tested locally, production not live
+
+**Scope (CONTACT-1):** the shared contact form sends through a server route to Resend; first approved part of Phase 8. No storage, no new packages. **Acceptance:** server validation, spam protection, key only on the server, success only after confirmation, demo behaviour while switched off. **Done:** frontend and backend integration; contact suite 92/92 on (desktop and mobile) and 42/42 off with a simulated provider; lint, build and `git diff --check` pass; the earlier regression run passed apart from the 4 known accessibility failures. **Temporary local test (not the final configuration):** one real email from `onboarding@resend.dev` received at `tools@xvoxlabs.com` (reported by the owner); submission, loading, success and duplicate-click prevention verified. **Final configuration:** from and to `hello@xvoxlabs.com`. **Pending:** domain verification and DNS setup, a delivery test with the final addresses, privacy notice, Vercel environment variables (without the test overrides), separate Production approval. **Production email delivery is not verified.**
+
 ## Phase overview
 
 | Phase | Goal | Output | Approval gate | Status |

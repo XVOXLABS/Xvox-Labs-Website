@@ -25,12 +25,21 @@ Read this file before any task. Then read [`CLAUDE.md`](CLAUDE.md) (project know
 - No commit, push, merge, branch change, remote change or change to `main` without explicit approval for that action.
 - No deployment, redeploy, promotion, new Vercel project or repository, or change to Vercel settings without explicit approval for that action. The owner performs deployments and promotions in the Vercel dashboard; current deployment status lives in `CLAUDE.md` §12, not here.
 
+**Contact form and email**
+- Never claim an email was sent unless the server confirms success. The server's confirmation means the provider accepted the message; call delivery verified only after a real message is confirmed in the inbox.
+- Never expose Resend API keys or other secrets in browser code, logs, Git commits or documentation.
+- Keep the contact form in demo mode unless both `RESEND_API_KEY` and `CONTACT_FORM_ENABLED=true` are configured.
+- Never enable live email sending (Preview or Production) before the domain is verified in Resend and the privacy notice is approved. A delivery test on a local machine that the owner asks for (for example with the temporary test sender) is not live sending.
+- The final sender and recipient are `hello@xvoxlabs.com` (`data/contact.js`). `CONTACT_FORM_FROM` and `CONTACT_FORM_TO` are temporary test overrides: set them only on a local machine, never in Vercel and never in a committed file.
+- Never commit `.env.local` or any other env file (`.gitignore` excludes `.env*`).
+- Current state: a temporary local delivery test succeeded; production email delivery is **not** verified (`CLAUDE.md` §7 and §13).
+
 **Content and design**
 - Never invent business information, pricing, claims or functionality. If something is missing, ask.
 - Do not change approved designs, content, wording, prices or behaviour without approval.
 - Content lives in `data/` (copied verbatim from the prototype); never type content inside components.
 - Design values live as tokens in `app/globals.css`; components use tokens, not new raw values, unless the value is documented.
-- Demo mode: while the site is frontend-only, forms, the quiz, the cart and the checkout never claim that something was sent, saved, emailed, ordered or paid. Use the demo wording ("Demo mode: nothing was stored in this view.") until a backend is approved (Phase 8). See `CLAUDE.md` §8 (D3).
+- Demo mode: where there is no approved backend, forms, the quiz, the cart and the checkout never claim that something was sent, saved, emailed, ordered or paid. Use the demo wording (“Demo mode: nothing was stored in this view.”). The contact form (approved backend) may say a message was sent only after the server confirms that the email provider accepted it; while sending is switched off it stays in demo mode. API keys are read only on the server from environment variables; never hardcode them, and never store or log visitor submissions without approval. See `CLAUDE.md` §8.
 - Logo: use the owner-supplied file `public/brand/xvox-logo.png` exactly as it is (no recolouring, redrawing, cropping or re-saving). It appears in the header only; the footer keeps the text “Xvox Labs” unless the owner approves otherwise.
 - Purchase UI is switched off (FINAL-1, executed Nov 25, 2026): `PURCHASE_ENABLED = false` in `lib/commerce.js`. New or changed pages show no money amounts, cart, buy or payment UI; purchase actions are **“Contact Our Team”** linking to `/book`. The Pricing page, its route and its navigation links stay: only its amounts and purchase actions are replaced. Never remove a page to hide pricing. Keep the cart, checkout and price code, add no online payment, leave unrelated CTAs unchanged, and turn the switch on only with explicit approval. See `CLAUDE.md` §8.
 - While the purchase UI is off, show no published or sample prices (descriptive copy such as “Free” stays). The earlier pricing rule (only **Free** and **$1,500**, otherwise **“Contact Us to Discuss Pricing”**) applies again if the switch is turned on. Original prices stay in `data/`. See `CLAUDE.md` §8.
