@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header/Header";
 import Toast from "@/components/layout/Toast/Toast";
 import VoxChat from "@/components/layout/VoxChat/VoxChat";
 import "./globals.css";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 // Inter: the primary font for the whole site (SIL Open Font License 1.1).
 // next/font/google self-hosts the official files at build time; no npm font package.
@@ -33,7 +34,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main id="main">{children}</main>
         <Footer />
-        <CartDrawer />
+        {PURCHASE_ENABLED ? <CartDrawer /> : null}
         <VoxChat />
         <Toast />
       </body>

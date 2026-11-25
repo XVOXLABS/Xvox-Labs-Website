@@ -10,6 +10,7 @@ import { flow, greeting, keymap, questions } from "@/data/vox";
 import Dialog from "@/components/ui/Dialog/Dialog";
 import useReducedMotion from "@/hooks/useReducedMotion";
 import { OPEN_VOX_EVENT } from "@/lib/actions";
+import { focusIsLost, restoreFocusIfLost } from "@/lib/focus";
 import { Confirm, DetailsForm, QuickReplies, Report, Slots } from "./VoxParts";
 import styles from "./VoxChat.module.css";
 
@@ -17,6 +18,8 @@ const t = (match) => voxChat.find((b) => b.text === match)?.text;
 const STAGES = ["Chat", "Plan", "Details", "Time"].map(t);
 const KEYS = keymap.map((k) => [new RegExp(k.pattern, k.flags), k.solution]);
 const bySlug = Object.fromEntries(solutions.map((s) => [s.slug, s]));
+// Prototype render(): the chat is closed on a route change at 560px and below; on wider screens it stays open.
+const NARROW = "(max-width: 560px)";
 
 const fresh = () => ({ phase: "chat", mode: "ai", step: 0, answers: {}, transcript: [], who: null, slot: null });
 
@@ -44,6 +47,14 @@ function localReport(transcript) {
 export default function VoxChat() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const wasOpen = useRef(false);
+  const lastPath = useRef(pathname);
+  const toLauncher = useRef(false);
+  const [shownPath, setShownPath] = useState(pathname);
+  if (shownPath !== pathname) {
+    setShownPath(pathname);
+    if (open && window.matchMedia(NARROW).matches) setOpen(false);
+  }
   const [nudge, setNudge] = useState(false);
   const [nudged, setNudged] = useState(false);
   const [footerInView, setFooterInView] = useState(false);
@@ -180,7 +191,8 @@ export default function VoxChat() {
     startChat();
   };
 
-  const openChat = () => {
+  const openChat = (fromLauncher = false) => {
+    toLauncher.current = fromLauncher;
     setNudged(true);
     setNudge(false);
     setOpen(true);
@@ -190,6 +202,28 @@ export default function VoxChat() {
     }, 300);
   };
   const close = () => setOpen(false);
+  // A link inside the chat closes it and may leave the page, so focus goes to the launcher, which stays.
+  const closeForLink = () => {
+    toLauncher.current = true;
+    close();
+  };
+
+  // Focus after the chat closes. The launcher is removed while the chat is open, so the dialog cannot
+  // return focus to it; that happens here, once it is back. An in-page opener keeps the native return.
+  // If the opener is gone: the launcher after a manual close, the page content after a navigation.
+  useEffect(() => {
+    const navigated = lastPath.current !== pathname;
+    lastPath.current = pathname;
+    const closed = wasOpen.current && !open;
+    wasOpen.current = open;
+    if (!closed) return undefined;
+    if (toLauncher.current) launcherRef.current?.focus({ preventScroll: true });
+    const id = window.setTimeout(() => {
+      if (!navigated && focusIsLost()) launcherRef.current?.focus({ preventScroll: true });
+      restoreFocusIfLost();
+    }, 60);
+    return () => window.clearTimeout(id);
+  }, [open, pathname]);
 
   const onOpenEvent = useEffectEvent(openChat);
   useEffect(() => {
@@ -313,13 +347,13 @@ export default function VoxChat() {
           />
         );
       case "report":
-        return <Report report={m.report} booked={m.booked} onBook={() => showDetails(m.id)} onNavigate={close} />;
+        return <Report report={m.report} booked={m.booked} onBook={() => showDetails(m.id)} onNavigate={closeForLink} />;
       case "details":
         return <DetailsForm who={m.who} onDone={(who) => showSlots(m.id, who)} />;
       case "slots":
         return <Slots picked={m.picked} done={m.done} onPick={(label) => pickSlot(m.id, label)} />;
       case "done":
-        return <Confirm who={m.who} slot={m.slot} onClose={close} onNavigate={close} />;
+        return <Confirm who={m.who} slot={m.slot} onClose={close} onNavigate={closeForLink} />;
       default:
         return <p className={styles.message}>{m.text}</p>;
     }
@@ -332,7 +366,7 @@ export default function VoxChat() {
           ref={launcherRef}
           type="button"
           className={styles.fab}
-          onClick={openChat}
+          onClick={() => openChat(true)}
           data-footer={footerInView ? "in" : "out"}
           data-agent-overlap={pathname === "/" && agentOverlap ? "true" : undefined}
         >

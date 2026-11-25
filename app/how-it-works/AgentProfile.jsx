@@ -18,6 +18,8 @@ import { BlueprintButton, SolutionsBooking } from "../solutions/SolutionsInterac
 import { AgentArt, AgentQuickViews } from "./AgentInteractions";
 import { AgentClosing } from "./HowItWorksSections";
 import styles from "./how-it-works.module.css";
+import EnquiryButton from "@/components/ui/EnquiryButton/EnquiryButton";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 function Chips({ items }) {
   return <ul className={styles.chips}>{items.map((text) => <li key={text}>{text}</li>)}</ul>;
@@ -55,7 +57,7 @@ function ProfileMarket({ blocks, catalogue, href, title, all }) {
       <Frame className={styles.four}>
         {visible.map((item) => <ItemCard key={item.id} item={item} />)}
       </Frame>
-      {samples.length ? <details className={styles.sourceNote}>
+      {PURCHASE_ENABLED && samples.length ? <details className={styles.sourceNote}>
         <summary>{agentPageText.sampleCatalogue}</summary>
         <ul className={styles.list}>{samples.map(({ id, name, price, unit }) => (
           <li key={id}><Link href={`/marketplace/${id}`}>{name}</Link> · ${price.toLocaleString("en-US")}{unit === "/month" ? " / month" : ""}</li>
@@ -78,22 +80,24 @@ function BuyingPaths({ blocks, agent, blueprint, title }) {
           <Card key={path.name} tint={path.highlight ? "p2" : undefined}>
             <h3>{path.name}</h3><p>{path.summary}</p>
             <Price status={path.priceStatus} price={path.price} unit={path.note?.trim()} showCta={false} />
-            {path.action === "buy" ? <BlueprintButton id={blueprint.id} full>{block(blocks, "button.btn").text}</BlueprintButton> :
+            {path.action === "buy" ? (PURCHASE_ENABLED ? <BlueprintButton id={blueprint.id} full>{block(blocks, "button.btn").text}</BlueprintButton>
+              : <EnquiryButton about={about} path={path.name} full />) : PURCHASE_ENABLED ? (
               <SolutionsBooking href={book.href} about={about} path={path.name} full variant={path.highlight ? "primary" : "secondary"}>
                 {book.text}
-              </SolutionsBooking>}
+              </SolutionsBooking>
+            ) : <EnquiryButton about={about} path={path.name} full variant={path.highlight ? "primary" : "secondary"} />}
             <div className={styles.checklist}>
               <strong>{path.listHeading}</strong><ul className={styles.list}>{path.includes.map((text) => <li key={text}>{text}</li>)}</ul>
             </div>
           </Card>
         ))}
       </Frame>
-      <details className={styles.sourceNote}>
+      {PURCHASE_ENABLED ? <details className={styles.sourceNote}>
         <summary>{pricingDisplay.prototypePriceToSetLabel}</summary>
         <ul className={styles.list}>{waysToBuy.filter(({ priceStatus }) => priceStatus === "to-set").map(({ name }) => (
           <li key={name}>{name} · {pricingDisplay.prototypePriceToSetLabel}{name === "Hire" ? ` ${block(blocks, "small", 1).text}` : ""}</li>
         ))}</ul>
-      </details>
+      </details> : null}
       <Card className={styles.unsure}>
         <Image src={vox.image} alt="" width={48} height={48} />
         <div><strong>{block(blocks, "b").text}</strong><p>{unsure.slice(0, -pricing.text.length)}<Link href={pricing.href}>{pricing.text}</Link></p></div>

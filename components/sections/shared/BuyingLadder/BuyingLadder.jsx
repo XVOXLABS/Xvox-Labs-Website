@@ -8,6 +8,8 @@ import { VOX_HREF } from "@/lib/actions";
 import { savePreference } from "@/lib/preference";
 import Link from "next/link";
 import styles from "./BuyingLadder.module.css";
+import EnquiryButton from "@/components/ui/EnquiryButton/EnquiryButton";
+import { PURCHASE_ENABLED, priceShown } from "@/lib/commerce";
 
 // Where each step's button goes (prototype ladderHTML): ask = open Vox, market = the marketplace,
 // book = /book with the topic saved as "{about} | {step title}" (prototype data-pref).
@@ -29,20 +31,26 @@ export default function BuyingLadder({ about, stepLabels, note }) {
                 <span className={styles.ln}>{stepLabels[i]}</span>
                 <h3 className={styles.title}>{step.title}</h3>
                 <p className={styles.text}>{step.text}</p>
-                <div className={`${styles.lp} ${step.priceStatus === "published" ? "" : styles.lpLabel}`.trim()}>
-                  <Price price={step.price} status={step.priceStatus} showCta={false} />
-                </div>
+                {priceShown(step.price) ? (
+                  <div className={`${styles.lp} ${step.priceStatus === "published" ? "" : styles.lpLabel}`.trim()}>
+                    <Price price={step.price} status={step.priceStatus} showCta={false} />
+                  </div>
+                ) : null}
               </div>
               <div className={styles.base}>
-                <Button
-                  href={href}
-                  variant={step.highlight ? "primary" : "secondary"}
-                  full
-                  arrow
-                  onClick={step.action === "book" ? () => savePreference(about, step.title) : undefined}
-                >
-                  {step.cta}
-                </Button>
+                {!PURCHASE_ENABLED && step.action === "book" ? (
+                  <EnquiryButton about={about} path={step.title} variant={step.highlight ? "primary" : "secondary"} full arrow />
+                ) : (
+                  <Button
+                    href={href}
+                    variant={step.highlight ? "primary" : "secondary"}
+                    full
+                    arrow
+                    onClick={step.action === "book" ? () => savePreference(about, step.title) : undefined}
+                  >
+                    {step.cta}
+                  </Button>
+                )}
               </div>
             </Appear>
           );

@@ -22,6 +22,8 @@ import { VOX_HREF } from "@/lib/actions";
 import { block, blocksByTag, fill } from "@/lib/content";
 import { BlueprintButton, DepartmentFilter, DepartmentWork, SolutionsBooking } from "./SolutionsInteractions";
 import styles from "./solutions.module.css";
+import EnquiryButton from "@/components/ui/EnquiryButton/EnquiryButton";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 function section(entry, index) {
   return entry.sections.find((part) => part.index === index).blocks;
@@ -144,6 +146,7 @@ export function HubSections({ entry }) {
 }
 
 function DraftPrices({ steps }) {
+  if (!PURCHASE_ENABLED) return null;
   return (
     <details className={styles.sourceNote}>
       <summary>{pricingDisplay.prototypePriceToSetLabel}</summary>
@@ -250,12 +253,15 @@ function BuyingPaths({ blocks, solution, blueprint }) {
             <p>{path.summary}</p>
             <Price status={path.priceStatus} price={path.price} unit={path.note?.trim()} showCta={false} />
             {path.action === "buy" ? (
-              blueprint ? <BlueprintButton id={blueprint.id} full>{block(blocks, "button.btn").text}</BlueprintButton>
+              blueprint ? (PURCHASE_ENABLED ? <BlueprintButton id={blueprint.id} full>{block(blocks, "button.btn").text}</BlueprintButton>
+                : <EnquiryButton about={solution.pain} path={path.name} full />)
                 : <Button href="/marketplace" full>{T.browseBlueprints}</Button>
-            ) : (
+            ) : PURCHASE_ENABLED ? (
               <SolutionsBooking href={pricingDisplay.consultationCta.href} about={solution.pain} path={path.name} full variant={path.highlight ? "primary" : "secondary"}>
                 {block(blocks, "a.btn").text}
               </SolutionsBooking>
+            ) : (
+              <EnquiryButton about={solution.pain} path={path.name} full variant={path.highlight ? "primary" : "secondary"} />
             )}
             <div className={styles.checklist}>
               <b>{path.listHeading}</b>
@@ -289,7 +295,7 @@ function RelatedItems({ blocks, items }) {
       <Frame className={styles.market}>
         {items.map((item) => <ItemCard key={item.id} item={item} compact />)}
       </Frame>
-      {samples.length ? (
+      {PURCHASE_ENABLED && samples.length ? (
         <details className={styles.sourceNote}>
           <summary>{T.sampleCatalogue}</summary>
           <ul>{samples.map(({ id, name, price, unit }) => (
@@ -319,7 +325,8 @@ export function DetailSections({ entry }) {
     <>
       <Hero title={solution.title} lead={entry.computedText.find((text) => text.includes(" Typically live in "))}
         eyebrow={solution.category.name} breadcrumbs={[root, parent, { text: solution.title }]}>
-        {blueprint ? <BlueprintButton id={blueprint.id}>{block(hero, "button.btn").text}</BlueprintButton> : null}
+        {blueprint ? (PURCHASE_ENABLED ? <BlueprintButton id={blueprint.id}>{block(hero, "button.btn").text}</BlueprintButton>
+          : <EnquiryButton about={solution.pain} path={waysToBuy.find(({ action }) => action === "buy").name} />) : null}
         <SolutionsBooking href={book.href} about={solution.pain} path={T.bookAbout} variant="secondary">{book.text}</SolutionsBooking>
         <Button href={VOX_HREF} variant="secondary">{block(hero, "button.btn", 1).text}</Button>
       </Hero>

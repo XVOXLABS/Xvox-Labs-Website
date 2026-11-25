@@ -16,6 +16,8 @@ import { VOX_HREF } from "@/lib/actions";
 import { block, blocksByTag, fill } from "@/lib/content";
 import ServiceBooking from "./ServiceBooking";
 import styles from "./services.module.css";
+import EnquiryButton from "@/components/ui/EnquiryButton/EnquiryButton";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 function section(entry, index) {
   return entry.sections.find((part) => part.index === index).blocks;
@@ -160,6 +162,7 @@ export function Area({ entry }) {
 }
 
 function DraftPrice({ note }) {
+  if (!PURCHASE_ENABLED) return null;
   return (
     <p className={styles.note}>
       <span title={T.draftPriceTitle}>{pricingDisplay.prototypePriceToSetLabel}</span>{note ? ` ${note}` : null}
@@ -193,7 +196,7 @@ function RelatedItems({ items }) {
       <Frame className={styles.four}>
         {items.map((item) => <ItemCard key={item.id} item={item} />)}
       </Frame>
-      {samples.length ? (
+      {PURCHASE_ENABLED && samples.length ? (
         <details className={styles.note}>
           <summary>{T.sampleCatalogue}</summary>
           <ul>{samples.map(({ id, name, price, unit }) =>
@@ -228,12 +231,14 @@ export function Detail({ entry }) {
               </Card>
             ))}
           </div>
-          <div className={styles.two}>
+          <div className={PURCHASE_ENABLED ? styles.two : styles.one}>
             <Card><h2>{timeline}</h2><p>{service.timeline}</p></Card>
-            <Card>
-              <h2>{price}</h2><Price showCta={false} status="to-set" />
-              <DraftPrice note={T.priceNote} />
-            </Card>
+            {PURCHASE_ENABLED ? (
+              <Card>
+                <h2>{price}</h2><Price showCta={false} status="to-set" />
+                <DraftPrice note={T.priceNote} />
+              </Card>
+            ) : null}
           </div>
         </Frame>
       </Section>
@@ -288,8 +293,9 @@ export function SafeReview({ entry }) {
               <h3>{pack.name}</h3>
               <p>{pack.text}</p>
               <Price showCta={false} status={pack.price ? "published" : "to-set"} price={pack.price} />
-              {pack.price ? <Button href={safe.selfCheckHref} full variant="secondary">{pack.cta}</Button> :
-                <ServiceBooking href={bookHref} about={safe.serviceName} path={pack.path} full variant={pack.highlight ? "primary" : "secondary"}>{pack.cta}</ServiceBooking>}
+              {pack.price ? <Button href={safe.selfCheckHref} full variant="secondary">{pack.cta}</Button> : PURCHASE_ENABLED ?
+                <ServiceBooking href={bookHref} about={safe.serviceName} path={pack.path} full variant={pack.highlight ? "primary" : "secondary"}>{pack.cta}</ServiceBooking>
+                : <EnquiryButton about={safe.serviceName} path={pack.path} full variant={pack.highlight ? "primary" : "secondary"} />}
               {pack.price ? null : <DraftPrice note={pack.draftUnit} />}
             </Card>
           ))}

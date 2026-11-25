@@ -11,6 +11,8 @@ import { fill } from "@/lib/content";
 import { savePreference } from "@/lib/preference";
 import { priceLabel } from "@/lib/pricing";
 import styles from "./ItemCard.module.css";
+import { enquiry } from "@/data/enquiry";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 const REDUCED = "(prefers-reduced-motion: reduce)";
 
@@ -56,22 +58,28 @@ export default function ItemCard({ item, compact = false }) {
         </h3>
         <p className={styles.desc}>{item.description}</p>
         <div className={styles.row}>
-          {price ? (
+          {!PURCHASE_ENABLED ? (
+            <Link href={enquiry.href} className={styles.discuss} onClick={() => savePreference(item.name, type.name)}>
+              {enquiry.label}
+            </Link>
+          ) : price ? (
             <span className={styles.price}>{price}</span>
           ) : (
             <Link href={pricingDisplay.placeholderCta.href} className={styles.discuss} onClick={() => savePreference(item.name, type.name)}>
               {pricingDisplay.placeholderLabel}
             </Link>
           )}
-          <button
-            type="button"
-            className={`${styles.add} ${inCart ? styles.on : ""}`.trim()}
-            aria-pressed={inCart}
-            aria-label={fill(cartToggle.addLabel, { name: item.name })}
-            onClick={toggle}
-          >
-            <span aria-hidden="true">{inCart ? "✓" : "+"}</span>
-          </button>
+          {PURCHASE_ENABLED ? (
+            <button
+              type="button"
+              className={`${styles.add} ${inCart ? styles.on : ""}`.trim()}
+              aria-pressed={inCart}
+              aria-label={fill(cartToggle.addLabel, { name: item.name })}
+              onClick={toggle}
+            >
+              <span aria-hidden="true">{inCart ? "✓" : "+"}</span>
+            </button>
+          ) : null}
         </div>
       </div>
     </article>

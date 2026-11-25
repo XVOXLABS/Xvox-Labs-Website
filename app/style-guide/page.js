@@ -20,6 +20,7 @@ import CountUp from "@/components/motion/CountUp/CountUp";
 import Marquee from "@/components/motion/Marquee/Marquee";
 import StyleGuideTabs from "./StyleGuideTabs";
 import styles from "./page.module.css";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 // Internal review page for the Phase 3 design system. Not for the public site:
 // excluded from search engines and to be removed (or kept blocked) before launch.
@@ -162,19 +163,21 @@ export default function StyleGuidePage() {
         <SectionHeader layout="center" level={3} size="h1" title={faq[0].question} lead={faq[0].answer} action={<Button href="/book" variant="secondary">Book a call</Button>} />
       </Section>
 
-      <Section aria-labelledby="sg-price">
-        <h2 id="sg-price" className={styles.h}>Price display rule</h2>
-        <Frame columns={2}>
-          <Card>
-            <p className={styles.muted}>{blueprint.name} (published)</p>
-            <Price price={blueprint.price} unit={blueprint.unit} status={blueprint.priceStatus} />
-          </Card>
-          <Card>
-            <p className={styles.muted}>{internal.name} (internal price, not shown)</p>
-            <Price price={internal.price} unit={internal.unit} status={internal.priceStatus} />
-          </Card>
-        </Frame>
-      </Section>
+      {PURCHASE_ENABLED ? (
+        <Section aria-labelledby="sg-price">
+          <h2 id="sg-price" className={styles.h}>Price display rule</h2>
+          <Frame columns={2}>
+            <Card>
+              <p className={styles.muted}>{blueprint.name} (published)</p>
+              <Price price={blueprint.price} unit={blueprint.unit} status={blueprint.priceStatus} />
+            </Card>
+            <Card>
+              <p className={styles.muted}>{internal.name} (internal price, not shown)</p>
+              <Price price={internal.price} unit={internal.unit} status={internal.priceStatus} />
+            </Card>
+          </Frame>
+        </Section>
+      ) : null}
 
       <Section aria-labelledby="sg-tabs">
         <h2 id="sg-tabs" className={styles.h}>Tabs</h2>

@@ -6,6 +6,7 @@ import { leadForm } from "@/data/site";
 import { fill } from "@/lib/content";
 import { clearPreference, PREFERENCE_EVENT, readPreference } from "@/lib/preference";
 import styles from "./Contact.module.css";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 const ERROR_ID = "home-contact-error";
 const REQUIRED_FIELDS = ["name", "email", "company"];
@@ -135,11 +136,13 @@ export default function ContactForm({
         </Field>
       </div>
       <div className={styles.pair}>
-        <Field name="budget" label={labels.budget}>
-          <select id="home-contact-budget" name="budget">
-            {budgetOptions.map((option) => <option key={option}>{option}</option>)}
-          </select>
-        </Field>
+        {PURCHASE_ENABLED ? (
+          <Field name="budget" label={labels.budget}>
+            <select id="home-contact-budget" name="budget">
+              {budgetOptions.map((option) => <option key={option}>{option}</option>)}
+            </select>
+          </Field>
+        ) : null}
         <Field name="start" label={labels.start}>
           <select id="home-contact-start" name="start">
             {startOptions.map((option) => <option key={option}>{option}</option>)}

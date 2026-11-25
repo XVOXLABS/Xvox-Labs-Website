@@ -1,6 +1,7 @@
 import { pricingDisplay } from "@/data/pricing";
 import Button from "../Button/Button";
 import styles from "./Price.module.css";
+import { priceShown } from "@/lib/commerce";
 
 const UNIT = { "one-time": "one-time", "/month": "/ month", month: "/ month" };
 
@@ -13,6 +14,7 @@ function format(price) {
 // Anything else shows "Contact Us to Discuss Pricing" with a "Discuss Pricing" button to /book.
 // The original values stay in data/ for internal reference only.
 export default function Price({ price, unit, status, showCta = true, className = "" }) {
+  if (!priceShown(price)) return null;
   if (status === "published" && price !== null && price !== undefined) {
     return (
       <span className={`${styles.price} ${className}`.trim()}>

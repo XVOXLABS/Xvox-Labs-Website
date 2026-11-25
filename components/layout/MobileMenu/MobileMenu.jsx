@@ -5,6 +5,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import Button from "@/components/ui/Button/Button";
 import { VOX_HREF, openCart, openVox } from "@/lib/actions";
 import styles from "./MobileMenu.module.css";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 // Mobile menu below 1200px (Framer inspiration): full-width panel under the bar,
 // accordions for Solutions and Services, plain rows for the rest, black CTA at the bottom.
@@ -14,9 +15,13 @@ export default function MobileMenu({ id, open, groups, book, cartLabel, cartCoun
   const panelRef = useRef(null);
   const baseId = useId();
 
-  // Move focus into the menu when it opens.
+  // Move focus into the menu when it opens. preventScroll keeps the page where it is: the phone
+  // scroll-padding would otherwise move it. The panel starts at its top so the focused item is visible.
   useEffect(() => {
-    if (open) panelRef.current?.querySelector("button, a")?.focus();
+    const panel = panelRef.current;
+    if (!open || !panel) return;
+    panel.scrollTop = 0;
+    panel.querySelector("button, a")?.focus({ preventScroll: true });
   }, [open]);
 
   const accordions = groups.slice(0, 2);
@@ -76,16 +81,18 @@ export default function MobileMenu({ id, open, groups, book, cartLabel, cartCoun
               </ul>
             </div>
           ))}
-          <button
-            type="button"
-            className={styles.row}
-            onClick={() => {
-              onNavigate();
-              openCart();
-            }}
-          >
-            {cartLabel} ({cartCount})
-          </button>
+          {PURCHASE_ENABLED ? (
+            <button
+              type="button"
+              className={styles.row}
+              onClick={() => {
+                onNavigate();
+                openCart();
+              }}
+            >
+              {cartLabel} ({cartCount})
+            </button>
+          ) : null}
         </div>
 
         <Button href={book.href} full className={styles.cta} onClick={onNavigate}>

@@ -8,6 +8,8 @@ import { pricingDisplay } from "@/data/pricing";
 import { solutions } from "@/data/solutions";
 import { flow } from "@/data/vox";
 import styles from "./VoxChat.module.css";
+import { enquiry } from "@/data/enquiry";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 const bySlug = Object.fromEntries(solutions.map((s) => [s.slug, s]));
 const agentById = Object.fromEntries(agents.map((a) => [a.id, a]));
@@ -135,15 +137,15 @@ export function Report({ report, booked, onBook, onNavigate }) {
                     {i.name}
                   </Link>{" "}
                   <span className={styles.small}>
-                    {itemTypes[i.type].name} ·{" "}
-                    {i.priceStatus === "published" ? `${money(i.price)}${i.unit === "/month" ? r.perMonth : ""}` : pricingDisplay.placeholderLabel}
+                    {itemTypes[i.type].name}
+                    {PURCHASE_ENABLED ? ` · ${i.priceStatus === "published" ? `${money(i.price)}${i.unit === "/month" ? r.perMonth : ""}` : pricingDisplay.placeholderLabel}` : null}
                   </span>
                 </li>
               ))}
             </ul>
-            {anyUnpublished ? (
+            {!PURCHASE_ENABLED || anyUnpublished ? (
               <Link href={pricingDisplay.placeholderCta.href} className={`${styles.btn} ${styles.ghost} ${styles.spaced}`} onClick={onNavigate}>
-                {pricingDisplay.placeholderCta.label}
+                {PURCHASE_ENABLED ? pricingDisplay.placeholderCta.label : enquiry.label}
               </Link>
             ) : null}
           </section>

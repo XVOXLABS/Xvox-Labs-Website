@@ -577,3 +577,11 @@
     pointer-events: none;
   }
 }
+
+/* The mobile menu reaches the bottom of the screen, so the launcher steps aside while it is open
+   and its last item, "Book a call", stays fully visible and clickable. */
+:global(body:has(header[data-mobile-open="true"])) .fab {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}

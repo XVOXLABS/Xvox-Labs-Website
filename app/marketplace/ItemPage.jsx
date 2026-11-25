@@ -14,6 +14,8 @@ import { solutions } from "@/data/solutions";
 import { block, fill } from "@/lib/content";
 import { ItemBuyButtons, TopicLink } from "./ItemActions";
 import styles from "./marketplace.module.css";
+import EnquiryButton from "@/components/ui/EnquiryButton/EnquiryButton";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 const solutionBySlug = new Map(solutions.map((solution) => [solution.slug, solution]));
 
@@ -53,13 +55,19 @@ export default function ItemPage({ entry }) {
             <p className={styles.eyebrow}>{type.name}{agent ? ` · ${T.forAgent} ${agent.name}` : ""}</p>
             <h1 className={styles.title}>{item.name}</h1>
             <p className={styles.lead}>{item.description}</p>
-            <div className={styles.price}>
-              <Price status={item.priceStatus} price={item.price} unit={item.unit} />
-            </div>
+            {PURCHASE_ENABLED ? (
+              <div className={styles.price}>
+                <Price status={item.priceStatus} price={item.price} unit={item.unit} />
+              </div>
+            ) : null}
             <div className={styles.actions}>
-              <ItemBuyButtons id={item.id} addLabel={buy.text} inCartLabel={T.inCart} buyLabel={now.text} checkoutHref={cartFilled.checkout.href} />
+              {PURCHASE_ENABLED ? (
+                <ItemBuyButtons id={item.id} addLabel={buy.text} inCartLabel={T.inCart} buyLabel={now.text} checkoutHref={cartFilled.checkout.href} />
+              ) : (
+                <EnquiryButton about={item.name} path={type.name} />
+              )}
             </div>
-            {sample ? (
+            {PURCHASE_ENABLED && sample ? (
               <details className={styles.sourceNote}>
                 <summary>{sample.label}</summary>
                 <p>{sample.body}</p>

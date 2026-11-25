@@ -7,7 +7,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import Button from "@/components/ui/Button/Button";
 import { agents as allAgents } from "@/data/agents";
 import { missions } from "@/data/how-it-works";
-import { items } from "@/data/marketplace";
+import { itemTypes, items } from "@/data/marketplace";
 import { missionBoardText as T } from "@/data/missionBoard";
 import { solutions } from "@/data/solutions";
 import useReducedMotion from "@/hooks/useReducedMotion";
@@ -18,6 +18,8 @@ import { savePreference } from "@/lib/preference";
 import { priceLabel } from "@/lib/pricing";
 import AgentPopup from "../AgentPopup/AgentPopup";
 import styles from "./MissionBoard.module.css";
+import EnquiryButton from "@/components/ui/EnquiryButton/EnquiryButton";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 const team = allAgents.filter((a) => a.id !== "vox");
 const agentById = Object.fromEntries(allAgents.map((a) => [a.id, a]));
@@ -172,7 +174,7 @@ function Board({ initialMission, labels }) {
                   <span className={styles.job}>{slot.job}</span>
                   {agent ? (
                     <div className={styles.drop}>
-                      <Image src={agent.image} alt="" fill sizes="110px" unoptimized draggable={false} />
+                      <span className={styles.art}><Image src={agent.image} alt="" fill sizes="110px" unoptimized draggable={false} /></span>
                     </div>
                   ) : (
                     <button type="button" className={styles.drop} aria-label={fill(T.a11y.slot, { job: slot.job, drop: labels.drop })}
@@ -261,7 +263,8 @@ function Board({ initialMission, labels }) {
               <span className={styles.chip}>{T.completeChip}</span>
               <b>{T.win}</b>
               <div className={styles.actions}>
-                {price ? <Button onClick={() => { addToCart(mission.blueprint, { silent: true }); openCart(); }}>{fill(T.buy, { price })}</Button> : null}
+                {!PURCHASE_ENABLED ? <EnquiryButton about={blueprint.name} path={itemTypes.blueprint.name} />
+                  : price ? <Button onClick={() => { addToCart(mission.blueprint, { silent: true }); openCart(); }}>{fill(T.buy, { price })}</Button> : null}
                 <Button href="/book" variant="secondary" onClick={() => savePreference(fill(T.hireAbout, { name: mission.name, agents: names }), T.hirePath)}>{T.hire}</Button>
                 <Button href="/book" variant="secondary" onClick={() => savePreference(fill(T.buildAbout, { name: mission.name }), T.buildPath)}>{T.build}</Button>
               </div>

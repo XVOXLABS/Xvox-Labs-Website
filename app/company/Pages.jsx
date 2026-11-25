@@ -10,6 +10,7 @@ import { leadForm } from "@/data/site";
 import { companyText as T, placeholderNote, sectionBlocks } from "@/data/companyPages";
 import { pricingDisplay } from "@/data/pricing";
 import { VOX_HREF } from "@/lib/actions";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 import { block, blocksByTag, display, homeSection } from "@/lib/content";
 import ContactForm from "@/components/sections/home/Contact/ContactForm";
 import { WaitlistForm, TopicLink } from "./Interactions";
@@ -46,7 +47,7 @@ function CompareTable({ blocks }) {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row) => (
+          {rows.filter((row) => PURCHASE_ENABLED || row.label !== "Price").map((row) => (
             <tr key={row.label}>
               <th scope="row">{row.label}</th>
               {row.cells.map((cell, i) => <td key={i} className={cell.tag.endsWith(".hi") ? styles.hi : undefined}>{priceText(row, cell)}</td>)}

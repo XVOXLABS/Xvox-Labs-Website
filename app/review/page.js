@@ -13,6 +13,8 @@ import Section from "@/components/ui/Section/Section";
 import SectionHeader from "@/components/ui/SectionHeader/SectionHeader";
 import ReviewNavigation from "./ReviewNavigation";
 import styles from "./page.module.css";
+import { enquiry } from "@/data/enquiry";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 export const metadata = { title: "Prototype review" };
 
@@ -33,6 +35,9 @@ function labelsFor({ text, hidden, priceStatus }) {
   return labels;
 }
 
+// While purchases are off, price values in the source records are masked.
+const mask = (text) => (PURCHASE_ENABLED ? text : text.replace(/\$\s?\d[\d,]*(\.\d+)?|Price to set/g, enquiry.hiddenPrice));
+
 function SourceBlocks({ blocks }) {
   return (
     <ul className={styles.blocks}>
@@ -45,7 +50,7 @@ function SourceBlocks({ blocks }) {
         return (
           <li key={index}>
             {labels.map((label) => <span key={label} className={styles.label}>{label}</span>)}
-            {reviewHref ? <a href={reviewHref}>{text}</a> : text}
+            {reviewHref ? <a href={reviewHref}>{mask(text)}</a> : mask(text)}
           </li>
         );
       })}

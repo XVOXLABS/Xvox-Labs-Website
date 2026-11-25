@@ -1,0 +1,8 @@
+/* The page's one action meets the 44px control height used across the site. */
+.cta {
+  display: contents;
+}
+
+.cta > a {
+  min-height: 44px;
+}

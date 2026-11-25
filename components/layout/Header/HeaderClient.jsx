@@ -10,12 +10,24 @@ import Button from "@/components/ui/Button/Button";
 import { useCart } from "@/lib/cart";
 import { openCart } from "@/lib/actions";
 import styles from "./Header.module.css";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 const CLOSE_DELAY = 150;
+const DESKTOP = "(min-width: 1200px)";
+
+// Pages that sit under another nav item in the prototype (markNav): the self-check and Studio belong to
+// Services, the checkout to Marketplace, Trust and Careers to About.
+const ALSO_ACTIVE = {
+  "/services": ["/safe-ai", "/studio"],
+  "/marketplace": ["/checkout"],
+  "/about": ["/trust", "/careers"],
+};
 
 function isActive(pathname, href) {
   if (!href) return false;
-  return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+  if (href === "/") return pathname === "/";
+  const within = (base) => pathname === base || pathname.startsWith(`${base}/`);
+  return within(href) || (ALSO_ACTIVE[href] ?? []).some(within);
 }
 
 // Header (Framer inspiration): desktop (>= 1200px) floating link pill with hover/click dropdowns;
@@ -28,6 +40,7 @@ export default function HeaderClient({ nav, menus, mobile }) {
   const closeTimer = useRef(0);
   const triggerRefs = useRef({});
   const headerRef = useRef(null);
+  const burgerRef = useRef(null);
 
   const cancelClose = () => window.clearTimeout(closeTimer.current);
   const scheduleClose = () => {
@@ -45,6 +58,7 @@ export default function HeaderClient({ nav, menus, mobile }) {
     const onKey = (e) => {
       if (e.key !== "Escape") return;
       if (openMenu) triggerRefs.current[openMenu]?.focus();
+      else if (mobileOpen) burgerRef.current?.focus({ preventScroll: true });
       closeAll();
     };
     const onPointerDown = (e) => {
@@ -58,13 +72,26 @@ export default function HeaderClient({ nav, menus, mobile }) {
     };
   }, [openMenu, mobileOpen, closeAll]);
 
-  // Lock page scroll while the mobile menu is open.
+  // Lock page scroll while the mobile menu is open. The lock goes on <html>: it has its own overflow-x
+  // (globals.css), so an overflow set on <body> would not reach the viewport and would unstick the header.
+  // The menu closes when the window grows to desktop width, where it is not shown. The phone scroll-padding
+  // is lifted meanwhile, so moving focus within the header and menu cannot nudge the locked page.
   useEffect(() => {
     if (!mobileOpen) return undefined;
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const root = document.documentElement;
+    const previous = root.style.overflow;
+    const previousPadding = root.style.scrollPaddingBlockStart;
+    root.style.overflow = "hidden";
+    root.style.scrollPaddingBlockStart = "0px";
+    const desktop = window.matchMedia(DESKTOP);
+    const onDesktop = (e) => {
+      if (e.matches) setMobileOpen(false);
+    };
+    desktop.addEventListener("change", onDesktop);
     return () => {
-      document.body.style.overflow = previous;
+      root.style.overflow = previous;
+      root.style.scrollPaddingBlockStart = previousPadding;
+      desktop.removeEventListener("change", onDesktop);
     };
   }, [mobileOpen]);
 
@@ -75,7 +102,7 @@ export default function HeaderClient({ nav, menus, mobile }) {
   return (
     <header ref={headerRef} className={styles.header} data-mobile-open={mobileOpen ? "true" : "false"}>
       <div className={styles.bar}>
-        <Logo priority />
+        <Logo image priority />
 
         <nav className={styles.desktopNav} aria-label="Main">
           <ul role="list" className={styles.pill}>
@@ -109,10 +136,12 @@ export default function HeaderClient({ nav, menus, mobile }) {
         </nav>
 
         <div className={styles.actions}>
-          <button type="button" className={styles.cart} onClick={openCart}>
-            <span className={styles.cartLabel}>{nav.cartLabel}</span>{" "}
-            <span className={styles.cartCount}>{cart.length}</span>
-          </button>
+          {PURCHASE_ENABLED ? (
+            <button type="button" className={styles.cart} onClick={openCart} data-cart-trigger>
+              <span className={styles.cartLabel}>{nav.cartLabel}</span>{" "}
+              <span className={styles.cartCount}>{cart.length}</span>
+            </button>
+          ) : null}
           <Button href={nav.plan.href} variant="secondary" className={styles.desktopOnly}>
             {nav.plan.label}
           </Button>
@@ -120,6 +149,7 @@ export default function HeaderClient({ nav, menus, mobile }) {
             {nav.book.label}
           </Button>
           <button
+            ref={burgerRef}
             type="button"
             className={styles.burger}
             aria-expanded={mobileOpen}

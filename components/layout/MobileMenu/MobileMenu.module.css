@@ -10,7 +10,10 @@
     left: 0;
     right: 0;
     max-height: calc(100vh - var(--header-height) - var(--header-offset));
+    /* dvh follows the visible height when a phone's browser toolbars show or hide */
+    max-height: calc(100dvh - var(--header-height) - var(--header-offset));
     overflow-y: auto;
+    overscroll-behavior: contain;
     background: var(--color-surface-raised);
     animation: drop-in var(--dur) var(--ease-out);
   }
@@ -83,7 +86,7 @@
 .groupLabel {
   font-size: 12px;
   line-height: 18px;
-  color: var(--color-ink-faint);
+  color: var(--color-ink-muted);
 }
 
 .row {

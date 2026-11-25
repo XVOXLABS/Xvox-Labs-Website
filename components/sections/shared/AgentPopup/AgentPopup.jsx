@@ -8,7 +8,7 @@ import Dialog from "@/components/ui/Dialog/Dialog";
 import Tabs from "@/components/ui/Tabs/Tabs";
 import { agentPopup as t, agents } from "@/data/agents";
 import { missions } from "@/data/how-it-works";
-import { items } from "@/data/marketplace";
+import { itemTypes, items } from "@/data/marketplace";
 import { pricingDisplay } from "@/data/pricing";
 import { solutions } from "@/data/solutions";
 import useReducedMotion from "@/hooks/useReducedMotion";
@@ -19,6 +19,8 @@ import { fill } from "@/lib/content";
 import { savePreference } from "@/lib/preference";
 import { priceLabel } from "@/lib/pricing";
 import styles from "./AgentPopup.module.css";
+import EnquiryButton from "@/components/ui/EnquiryButton/EnquiryButton";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 const solutionBySlug = Object.fromEntries(solutions.map((s) => [s.slug, s]));
 
@@ -167,7 +169,9 @@ function PopupBody({ agent, onClose, initialTab }) {
         <Tabs label={agent.name} items={tabs} defaultId={initialTab} className={styles.tabs} />
         <div className={styles.actions}>
           {blueprint ? (
-            price ? (
+            !PURCHASE_ENABLED ? (
+              <EnquiryButton about={blueprint.name} path={itemTypes.blueprint.name} onClick={onClose} />
+            ) : price ? (
               <Button onClick={buy}>{fill(t.buy, { name: blueprint.name, price })}</Button>
             ) : (
               <span className={styles.discuss}>

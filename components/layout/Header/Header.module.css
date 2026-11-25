@@ -42,7 +42,7 @@
 .pill {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   height: 50px;
   padding: 0 12px;
   border-radius: var(--radius-pill);
@@ -58,7 +58,7 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 10px 7px;
+  padding: 10px 9px;
   border: 0;
   background: none;
   color: var(--color-ink);
@@ -72,13 +72,17 @@
 
 /* Plain links turn accent on hover; dropdown triggers stay dark (only the chevron turns). */
 @media (hover: hover) {
-  .link:not([aria-expanded]):hover {
+  .link:not([aria-expanded]):not(.active):hover {
     color: var(--color-accent);
   }
 }
 
+/* Current section: the label stays ink for contrast, marked by an accent underline */
 .active {
-  color: var(--color-accent);
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
 }
 
 .chevron {

@@ -7,8 +7,10 @@ import ItemCard from "@/components/sections/shared/ItemCard/ItemCard";
 import Frame from "@/components/ui/Frame/Frame";
 import { items } from "@/data/marketplace";
 import styles from "./marketplace.module.css";
+import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 const GROUPS = ["type", "agent", "cat"];
+const PRICE_SORTS = ["low", "high"];
 
 // Prototype drawMarket: filters AND together; search matches name, description and tools;
 // Featured keeps catalogue order; price sorts use the catalogue's original (sample) values.
@@ -60,7 +62,7 @@ function Browser({ initialAgent, filters, sorts, index, text, search, install, s
           <label className={styles.sort}>
             <span>{sorts.label}</span>
             <select value={state.sort} onChange={(e) => set("sort", e.target.value)}>
-              {sorts.options.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
+              {sorts.options.filter(({ value }) => PURCHASE_ENABLED || !PRICE_SORTS.includes(value)).map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
             </select>
           </label>
         </div>
@@ -71,7 +73,7 @@ function Browser({ initialAgent, filters, sorts, index, text, search, install, s
             <p className={styles.empty}>{text.empty}</p>
           )}
         </Frame>
-        {sample ? (
+        {PURCHASE_ENABLED && sample ? (
           <details className={styles.sourceNote}>
             <summary>{sample.label}</summary>
             <p>{sample.body}</p>
