@@ -31,8 +31,9 @@ Read this file before any task. Then read [`CLAUDE.md`](CLAUDE.md) (project know
 - Content lives in `data/` (copied verbatim from the prototype); never type content inside components.
 - Design values live as tokens in `app/globals.css`; components use tokens, not new raw values, unless the value is documented.
 - Demo mode: while the site is frontend-only, forms, the quiz, the cart and the checkout never claim that something was sent, saved, emailed, ordered or paid. Use the demo wording ("Demo mode: nothing was stored in this view.") until a backend is approved (Phase 8). See `CLAUDE.md` §8 (D3).
-- Purchase actions: the Add to Cart / Pay / Buy to Contact Us change (FINAL-1) is implemented only after all planned phases and final QA are complete. Keep the cart code, add no online payment and leave unrelated CTAs unchanged. See `CLAUDE.md` §8.
-- For published pricing, show only **Free** (AI plan) and **$1,500** (published blueprints). Use **"Contact Us to Discuss Pricing"** for other offers. Preserve the original prototype sample prices and draft pricing notes as labeled, approved team-review content. See `CLAUDE.md` §8.
+- Logo: use the owner-supplied file `public/brand/xvox-logo.png` exactly as it is (no recolouring, redrawing, cropping or re-saving). It appears in the header only; the footer keeps the text “Xvox Labs” unless the owner approves otherwise.
+- Purchase UI is switched off (FINAL-1, executed Nov 25, 2026): `PURCHASE_ENABLED = false` in `lib/commerce.js`. New or changed pages show no money amounts, cart, buy or payment UI; purchase actions are **“Contact Our Team”** linking to `/book`. The Pricing page, its route and its navigation links stay: only its amounts and purchase actions are replaced. Never remove a page to hide pricing. Keep the cart, checkout and price code, add no online payment, leave unrelated CTAs unchanged, and turn the switch on only with explicit approval. See `CLAUDE.md` §8.
+- While the purchase UI is off, show no published or sample prices (descriptive copy such as “Free” stays). The earlier pricing rule (only **Free** and **$1,500**, otherwise **“Contact Us to Discuss Pricing”**) applies again if the switch is turned on. Original prices stay in `data/`. See `CLAUDE.md` §8.
 
 **Core behaviour**
 1. Don't assume. Don't hide confusion. Surface trade-offs.
