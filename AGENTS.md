@@ -23,6 +23,7 @@ Read this file before any task. Then read [`CLAUDE.md`](CLAUDE.md) (project know
 - Never delete files outside the current task's scope.
 - No `git push --force` without explicit confirmation.
 - No commit, push, merge, branch change, remote change or change to `main` without explicit approval for that action.
+- No deployment, redeploy, promotion, new Vercel project or repository, or change to Vercel settings without explicit approval for that action. The owner performs deployments and promotions in the Vercel dashboard; current deployment status lives in `CLAUDE.md` §12, not here.
 
 **Content and design**
 - Never invent business information, pricing, claims or functionality. If something is missing, ask.
