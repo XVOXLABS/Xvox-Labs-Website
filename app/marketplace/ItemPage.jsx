@@ -112,7 +112,7 @@ export default function ItemPage({ entry }) {
         </div>
       </Section>
       <Section className={styles.following}>
-        <SectionHead eyebrow={block(more, "span.eyebrow").text} title={block(more, "h2.big").text}
+        <SectionHead layout="side" eyebrow={block(more, "span.eyebrow").text} title={block(more, "h2.big").text}
           action={<Button href={all.href} variant="secondary" className={styles.tall}>{all.text}</Button>} />
         <Frame className={styles.related}>
           {related.map((other) => <ItemCard key={other.id} item={other} />)}

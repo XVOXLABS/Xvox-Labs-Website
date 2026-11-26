@@ -55,7 +55,6 @@
 
 .intro .ask {
   min-height: 44px;
-  background: var(--color-surface);
 }
 
 .card {
@@ -181,10 +180,6 @@
 
 .error:empty {
   margin-block-start: -14px;
-}
-
-.form .submit {
-  color: var(--color-ink);
 }
 
 .form .submit[aria-disabled="true"] {

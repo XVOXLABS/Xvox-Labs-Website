@@ -227,3 +227,24 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+.question > * {
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+.question .title {
+  font-size: clamp(24px, 3vw, 34px);
+}
+
+.question .answers :is(a, button) {
+  min-width: 120px;
+  min-height: 48px;
+}
+
+.crumbs li {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}

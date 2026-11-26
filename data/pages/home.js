@@ -2,6 +2,8 @@
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
 // Every text block of this page in order. fromData = the same text also lives in a data/ list.
 // hidden + reason "placeholder" = not shown publicly (decision Nov 21, 2026); text kept for reference.
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const page = {
   "prototypeRoute": "#home",
@@ -35,7 +37,7 @@ export const page = {
         },
         {
           "tag": "button.fly2",
-          "text": "Scout · Weekly brief by Monday 9am"
+          "text": "Scout · Weekly brief"
         },
         {
           "tag": "button.fly2",
@@ -47,7 +49,7 @@ export const page = {
         },
         {
           "tag": "button.fly2",
-          "text": "Relay · Replies to leads in minutes"
+          "text": "Relay · Replies to leads"
         },
         {
           "tag": "button.fly2",
@@ -300,13 +302,13 @@ export const page = {
         },
         {
           "tag": "a.icard",
-          "text": "↗ 02 / Customer Experience Answer faster and keep clients informed. Customer support, onboarding and progress updates.",
+          "text": "↗ 02 / Customer Experience Answer clients and keep them informed. Customer support, onboarding and progress updates.",
           "href": "/solutions/cx",
           "prototypeHref": "#dept-cx"
         },
         {
           "tag": "h3",
-          "text": "Answer faster and keep clients informed.",
+          "text": "Answer clients and keep them informed.",
           "fromData": true
         },
         {
@@ -570,7 +572,7 @@ export const page = {
         },
         {
           "tag": "b",
-          "text": "Reply sent in 4 minutes, logged in HubSpot"
+          "text": "Reply sent, logged in HubSpot"
         },
         {
           "tag": "span.olb",
@@ -590,7 +592,7 @@ export const page = {
         },
         {
           "tag": "span.muted",
-          "text": "Inbound lead response · typically live in 2–4 weeks"
+          "text": "Inbound lead response"
         },
         {
           "tag": "a.btn",
@@ -613,7 +615,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "Week 1 · Audit"
+          "text": "Audit"
         },
         {
           "tag": "p",
@@ -621,7 +623,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "Weeks 2–3 · Build"
+          "text": "Build"
         },
         {
           "tag": "p",
@@ -629,7 +631,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "Week 4+ · Live"
+          "text": "Live"
         },
         {
           "tag": "p",
@@ -637,7 +639,7 @@ export const page = {
         },
         {
           "tag": "h4",
-          "text": "Ongoing · Support"
+          "text": "Support"
         },
         {
           "tag": "p",
@@ -953,7 +955,7 @@ export const page = {
         },
         {
           "tag": "p",
-          "text": "A week mapping your process, tools and approvals. Credited to the build.",
+          "text": "Mapping your process, tools and approvals. Credited to the build.",
           "fromData": true
         },
         {
@@ -1155,7 +1157,7 @@ export const page = {
         },
         {
           "tag": "a.mcard",
-          "text": "Automation pack ⇄ Lead router Catches every enquiry, logs it in the CRM and sends the first reply in minutes. $249 +",
+          "text": "Automation pack ⇄ Lead router Catches every enquiry, logs it in the CRM and sends the first reply. $249 +",
           "href": "/marketplace/au-lead-router",
           "prototypeHref": "#item-au-lead-router",
           "priceStatus": "placeholder"
@@ -1395,12 +1397,12 @@ export const page = {
         },
         {
           "tag": "b",
-          "text": "1 day",
+          "text": "",
           "hidden": true
         },
         {
           "tag": "span",
-          "text": "Reply target",
+          "text": "",
           "hidden": true
         },
         {
@@ -1589,7 +1591,7 @@ export const page = {
         },
         {
           "tag": "p",
-          "text": "A person reads every request and replies within one business day. No newsletter.",
+          "text": "A person reads every request and replies. No newsletter.",
           "approvedText": "Demo mode: this form doesn't send or store anything yet.",
           "decision": "K3 (Nov 21, 2026)"
         },
@@ -1608,7 +1610,7 @@ export const page = {
         },
         {
           "tag": "p.lead",
-          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up within a day.",
+          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up.",
           "approvedText": "Tell Vox what is slowing you down. You get a plan.",
           "decision": "K4 (Nov 21, 2026): no follow-up promise while nothing is sent or stored; prototype text kept above"
         },

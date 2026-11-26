@@ -18,12 +18,16 @@
 /* Drawer: full height on the right */
 .drawer {
   position: fixed;
-  inset: 8px 8px 8px auto;
-  width: min(420px, calc(100vw - 16px));
-  height: auto;
+  inset: 0 0 0 auto;
+  width: min(420px, 100vw);
+  height: 100dvh;
   max-height: none;
   margin: 0;
-  border-radius: var(--radius-card);
+  border-radius: 0;
+}
+
+.drawer::backdrop {
+  background: rgba(15, 15, 15, 0.3);
 }
 
 .drawer[open] {

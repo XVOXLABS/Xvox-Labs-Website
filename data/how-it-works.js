@@ -1,5 +1,7 @@
 // Extracted verbatim from the Xvox Labs HTML prototype v5 (index.html).
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const models = [
   {
@@ -60,7 +62,7 @@ export const missions = [
       {
         "job": "Follow up on new leads",
         "agent": "relay",
-        "does": "replies to everyone who responds, within minutes."
+        "does": "replies to everyone who responds."
       },
       {
         "job": "Keep it safe",
@@ -87,7 +89,7 @@ export const missions = [
         "does": "builds a weekly list of companies that match your best clients."
       },
       {
-        "job": "Reply in minutes",
+        "job": "Reply to leads",
         "agent": "relay",
         "does": "answers every new enquiry in your voice, day or night."
       },
@@ -157,7 +159,7 @@ export const missions = [
       {
         "job": "Answer common questions",
         "agent": "relay",
-        "does": "answers by chat or email in seconds and hands hard cases to a person."
+        "does": "answers by chat or email and hands hard cases to a person."
       },
       {
         "job": "Write help articles",
@@ -207,7 +209,7 @@ export const missions = [
       {
         "job": "Make it easy to find help",
         "agent": "beacon",
-        "does": "makes sure people can find a human and the right answers fast."
+        "does": "makes sure people can find a human and the right answers."
       }
     ]
   }

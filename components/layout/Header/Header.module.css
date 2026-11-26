@@ -1,79 +1,64 @@
+/* Values from the Artifacts prototype (.nav, .nav-in, .links, .nl) */
 .header {
   position: sticky;
   top: 0;
   z-index: 100;
   padding-top: var(--header-offset);
+  background: linear-gradient(var(--color-bg) 55%, rgba(250, 250, 250, 0));
 }
 
 .bar {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 18px;
+  max-width: calc(1400px + 32px);
   height: var(--header-height);
-  padding: 10px var(--header-pad-right) 10px var(--header-pad-x);
+  margin-inline: auto;
+  padding: 12px 16px;
 }
 
-/* Desktop: logo | pill | actions. Equal side padding (the CTA inset) and equal 1fr side columns
-   centre the pill in the viewport whenever both sides fit; when the actions need more room
-   (narrower desktops), the grid keeps the pill as close to centre as the space allows.
-   The logo is shifted back to its own inset (58px). Nothing is hidden. */
-@media (min-width: 1200px) {
-  .bar {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    padding-inline: var(--header-pad-right);
-  }
-
-  .bar > :first-child {
-    margin-left: calc(var(--header-pad-x) - var(--header-pad-right));
-  }
-
-  .actions {
-    justify-self: end;
-  }
-}
-
-/* Desktop link pill */
 .desktopNav {
   position: static;
+  justify-self: center;
 }
 
 .pill {
   display: flex;
   align-items: center;
-  gap: 4px;
-  height: 50px;
-  padding: 0 12px;
-  border-radius: var(--radius-pill);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-nav);
+  gap: 2px;
 }
 
 .item {
   display: flex;
 }
 
+/* 10px each side and a 2px gap keep the approved 22px between labels (NAV-1) */
 .link {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 10px 9px;
+  min-height: 40px;
+  padding: 10px;
   border: 0;
+  border-radius: 9px;
   background: none;
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: 15px;
+  font-size: 14.5px;
   line-height: 15px;
   font-weight: 500;
   white-space: nowrap;
-  transition: color var(--dur-fast) var(--ease-out);
+  transition: background-color var(--dur-fast) var(--ease-out);
 }
 
-/* Plain links turn accent on hover; dropdown triggers stay dark (only the chevron turns). */
+.link[aria-expanded="true"] {
+  background: var(--color-control);
+}
+
 @media (hover: hover) {
-  .link:not([aria-expanded]):not(.active):hover {
-    color: var(--color-accent);
+  .link:hover {
+    background: var(--color-control);
   }
 }
 
@@ -93,112 +78,109 @@
   transform: rotate(180deg);
 }
 
-/* Right-hand actions */
+/* Right-hand actions (.btn.sm) */
 .actions {
   display: flex;
+  grid-column: 3;
   align-items: center;
+  justify-self: end;
   gap: 8px;
+}
+
+.actions .action {
+  min-height: 34px;
+  padding: 9px 14px;
+  border-radius: 9px;
+  font-size: 14px;
 }
 
 .cart {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-height: 39px;
-  padding: 0 10px 0 14px;
+  min-height: 34px;
+  padding: 0 10px 0 12px;
   border: 0;
-  border-radius: var(--radius-button);
-  background: var(--color-frame);
+  border-radius: 9px;
+  background: var(--color-control);
   color: var(--color-ink);
-  font-size: 15px;
-  line-height: 15px;
+  font-size: 14px;
+  line-height: 14px;
   font-weight: 500;
 }
 
 .cartCount {
   display: inline-grid;
   place-items: center;
-  min-width: 22px;
-  height: 22px;
-  padding: 0 6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
   border-radius: 6px;
-  background: var(--color-black);
+  background: var(--color-control-active);
   color: var(--color-on-dark);
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1;
 }
 
+/* The menu button: a dark pill with two bars and a label (.pill) */
 .burger {
   display: none;
-  place-items: center;
-  width: 40px;
-  height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 44px;
+  height: 44px;
+  padding: 0 14px;
   border: 0;
-  border-radius: var(--radius-button-sm);
-  background: var(--color-black);
+  border-radius: var(--radius-badge);
+  background: var(--color-control-active);
+  box-shadow: 0 8px 24px -10px rgba(0, 0, 0, 0.6);
+  color: var(--color-on-dark);
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .burgerLines {
-  position: relative;
-  display: block;
-  width: 16px;
-  height: 14px;
+  display: grid;
+  gap: 3px;
 }
 
 .burgerLines i {
-  position: absolute;
-  left: 0;
-  width: 16px;
+  display: block;
+  width: 13px;
   height: 1.5px;
-  border-radius: 1px;
   background: var(--color-on-dark);
-  transition:
-    transform var(--dur) var(--ease-out),
-    opacity var(--dur-fast) var(--ease-out);
-}
-
-.burgerLines i:nth-child(1) {
-  top: 1px;
-}
-
-.burgerLines i:nth-child(2) {
-  top: 6.25px;
-}
-
-.burgerLines i:nth-child(3) {
-  top: 11.5px;
+  transition: transform var(--dur) var(--ease-out);
 }
 
 .burger[aria-expanded="true"] .burgerLines i:nth-child(1) {
-  transform: translateY(5.25px) rotate(45deg);
+  transform: translateY(2.25px) rotate(45deg);
 }
 
 .burger[aria-expanded="true"] .burgerLines i:nth-child(2) {
-  opacity: 0;
+  transform: translateY(-2.25px) rotate(-45deg);
 }
 
-.burger[aria-expanded="true"] .burgerLines i:nth-child(3) {
-  transform: translateY(-5.25px) rotate(-45deg);
-}
+/* The prototype swaps the links for the menu button at 1120px */
+@media (max-width: 1120px) {
+  .bar {
+    grid-template-columns: 1fr auto;
+  }
 
-/* Below 1200px: bar + burger (Framer) */
-@media (max-width: 1199px) {
-  .header {
-    background: var(--color-surface);
-    border-bottom: 1px solid rgba(15, 15, 15, 0.08);
+  .actions {
+    grid-column: 2;
   }
 
   .desktopNav,
-  .desktopOnly {
+  .actions .desktopOnly {
     display: none;
   }
 
   .burger {
-    display: grid;
-    width: 44px;
-    height: 44px;
+    display: inline-flex;
   }
 
+  .actions .action,
   .cart,
   .bar > :first-child {
     min-width: 44px;
@@ -206,9 +188,20 @@
   }
 }
 
-@media (max-width: 809px) {
-  .header {
-    background: var(--color-surface-raised);
+@media (max-width: 760px) {
+  .burger {
+    width: 44px;
+    padding: 0;
+  }
+
+  .burgerText {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .bar {
+    gap: 8px;
   }
 
   .cartLabel {

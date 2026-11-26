@@ -12,11 +12,11 @@ const sage = agents.find((a) => a.id === "sage");
 
 // Section 10: "Your data, your rules, your approval." The prototype's dark Safe AI panel (safeBox):
 // ticks, two buttons, and Sage with its "check passed" card.
-export default function SafeAiBox() {
+export default function SafeAiBox({ className }) {
   const s = homeSection(10);
   const [trust, review] = blocksByTag(s, "a.btn");
   return (
-    <Section>
+    <Section className={className}>
       <Appear className={styles.box}>
         <div className={styles.copy}>
           <Category color="var(--color-on-dark)" className={styles.eyebrow}>
@@ -34,7 +34,7 @@ export default function SafeAiBox() {
             <Button href={trust.href} variant="accent" className={styles.go}>
               {trust.text}
             </Button>
-            <Button href={review.href} variant="secondary" className={styles.ghost}>
+            <Button href={review.href} variant="secondary">
               {review.text}
             </Button>
           </div>

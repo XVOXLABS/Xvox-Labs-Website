@@ -2,6 +2,8 @@
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
 // Every text block of this page in order. fromData = the same text also lives in a data/ list.
 // hidden + reason "placeholder" = not shown publicly (decision Nov 21, 2026); text kept for reference.
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const page = {
   "prototypeRoute": "#solutions",
@@ -55,13 +57,13 @@ export const page = {
         },
         {
           "tag": "a.icard",
-          "text": "↗ 02 / Customer Experience Answer faster and keep clients informed. Customer support, onboarding and progress updates.",
+          "text": "↗ 02 / Customer Experience Answer clients and keep them informed. Customer support, onboarding and progress updates.",
           "href": "/solutions/cx",
           "prototypeHref": "#dept-cx"
         },
         {
           "tag": "h3",
-          "text": "Answer faster and keep clients informed.",
+          "text": "Answer clients and keep them informed.",
           "fromData": true
         },
         {
@@ -161,7 +163,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
+          "text": "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. →",
           "href": "/solutions/consistent-posting",
           "prototypeHref": "#solution-consistent-posting"
         },
@@ -177,7 +179,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
+          "text": "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. →",
           "href": "/solutions/found-online",
           "prototypeHref": "#solution-found-online"
         },
@@ -193,7 +195,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Sales & Marketing Inbound lead response Reply to every new lead within minutes, day or night. Live in 2–4 weeks →",
+          "text": "Sales & Marketing Inbound lead response Reply to every new lead, day or night. →",
           "href": "/solutions/leads-go-cold",
           "prototypeHref": "#solution-leads-go-cold"
         },
@@ -204,12 +206,12 @@ export const page = {
         },
         {
           "tag": "p.muted",
-          "text": "Reply to every new lead within minutes, day or night.",
+          "text": "Reply to every new lead, day or night.",
           "fromData": true
         },
         {
           "tag": "a.card",
-          "text": "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. Live in 3–4 weeks →",
+          "text": "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. →",
           "href": "/solutions/prospecting",
           "prototypeHref": "#solution-prospecting"
         },
@@ -225,7 +227,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Operations & Admin Admin and data entry Stop copying data between tools and chasing routine tasks. Live in 3–5 weeks →",
+          "text": "Operations & Admin Admin and data entry Stop copying data between tools and chasing routine tasks. →",
           "href": "/solutions/admin-overload",
           "prototypeHref": "#solution-admin-overload"
         },
@@ -241,7 +243,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Operations & Admin Tool integrations Connect your CRM, billing and project tools so data stays in sync. Live in 3–5 weeks →",
+          "text": "Operations & Admin Tool integrations Connect your CRM, billing and project tools so data stays in sync. →",
           "href": "/solutions/tools-dont-talk",
           "prototypeHref": "#solution-tools-dont-talk"
         },
@@ -257,7 +259,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Customer Experience AI chat and voice support Answer common questions instantly. A person handles the rest. Live in 4–6 weeks →",
+          "text": "Customer Experience AI chat and voice support Answer common questions. A person handles the rest. →",
           "href": "/solutions/slow-replies",
           "prototypeHref": "#solution-slow-replies"
         },
@@ -268,12 +270,12 @@ export const page = {
         },
         {
           "tag": "p.muted",
-          "text": "Answer common questions instantly. A person handles the rest.",
+          "text": "Answer common questions. A person handles the rest.",
           "fromData": true
         },
         {
           "tag": "a.card",
-          "text": "Customer Experience Client onboarding Collect forms, contracts and setup details automatically. Live in 3–5 weeks →",
+          "text": "Customer Experience Client onboarding Collect forms, contracts and setup details automatically. →",
           "href": "/solutions/manual-onboarding",
           "prototypeHref": "#solution-manual-onboarding"
         },
@@ -289,7 +291,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Design & Brand Website redesign A clear, fast website structured around what visitors need. Live in 4–6 weeks →",
+          "text": "Design & Brand Website redesign A clear, fast website structured around what visitors need. →",
           "href": "/solutions/confusing-site",
           "prototypeHref": "#solution-confusing-site"
         },
@@ -305,7 +307,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Design & Brand Brand consistency kit Templates and rules that keep every channel on brand. Live in 4–6 weeks →",
+          "text": "Design & Brand Brand consistency kit Templates and rules that keep every channel on brand. →",
           "href": "/solutions/inconsistent-brand",
           "prototypeHref": "#solution-inconsistent-brand"
         },
@@ -321,7 +323,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Sales & Marketing Short-form video Turn long videos into ready-to-post clips with captions. Live in 2–4 weeks →",
+          "text": "Sales & Marketing Short-form video Turn long videos into ready-to-post clips with captions. →",
           "href": "/solutions/video-content",
           "prototypeHref": "#solution-video-content"
         },
@@ -337,7 +339,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Safe AI AI safety check Check what your AI can see, say and do before you launch. Live in 4–6 weeks →",
+          "text": "Safe AI AI safety check Check what your AI can see, say and do before you launch. →",
           "href": "/solutions/is-it-safe",
           "prototypeHref": "#solution-is-it-safe"
         },
@@ -353,7 +355,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Safe AI AI agent review An expert review of an agent you or a vendor built. Live in 4–6 weeks →",
+          "text": "Safe AI AI agent review An expert review of an agent you or a vendor built. →",
           "href": "/solutions/review-my-agent",
           "prototypeHref": "#solution-review-my-agent"
         },
@@ -369,7 +371,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Customer Experience Client progress updates Send clients a clear weekly update without writing it yourself. Live in 2–3 weeks →",
+          "text": "Customer Experience Client progress updates Send clients a clear weekly update without writing it yourself. →",
           "href": "/solutions/client-updates",
           "prototypeHref": "#solution-client-updates"
         },
@@ -385,7 +387,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Sales & Marketing Proposals and quotes Turn a sales call into a ready-to-send proposal the same day. Live in 2–4 weeks →",
+          "text": "Sales & Marketing Proposals and quotes Turn a sales call into a ready-to-send proposal. →",
           "href": "/solutions/proposals",
           "prototypeHref": "#solution-proposals"
         },
@@ -396,12 +398,12 @@ export const page = {
         },
         {
           "tag": "p.muted",
-          "text": "Turn a sales call into a ready-to-send proposal the same day.",
+          "text": "Turn a sales call into a ready-to-send proposal.",
           "fromData": true
         },
         {
           "tag": "a.card",
-          "text": "Finance & Reporting Reporting and dashboards Get your key numbers every Monday, pulled from your tools. Live in 3–4 weeks →",
+          "text": "Finance & Reporting Reporting and dashboards Get your key numbers every Monday, pulled from your tools. →",
           "href": "/solutions/reporting",
           "prototypeHref": "#solution-reporting"
         },
@@ -417,7 +419,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Finance & Reporting Invoice reminders Follow up on unpaid invoices automatically and politely. Live in 2–3 weeks →",
+          "text": "Finance & Reporting Invoice reminders Follow up on unpaid invoices automatically and politely. →",
           "href": "/solutions/invoice-chase",
           "prototypeHref": "#solution-invoice-chase"
         },
@@ -433,7 +435,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Operations & Admin Automated phone calls Call customers automatically about bookings, delays and renewals. Live in 4–6 weeks →",
+          "text": "Operations & Admin Automated phone calls Call customers automatically about bookings, delays and renewals. →",
           "href": "/solutions/call-assistant",
           "prototypeHref": "#solution-call-assistant"
         },
@@ -449,7 +451,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Operations & Admin Meeting notes and follow-ups Get notes, action items and follow-ups minutes after every meeting. Live in 2–3 weeks →",
+          "text": "Operations & Admin Meeting notes and follow-ups Get notes, action items and follow-ups after every meeting. →",
           "href": "/solutions/meeting-notes",
           "prototypeHref": "#solution-meeting-notes"
         },
@@ -460,12 +462,12 @@ export const page = {
         },
         {
           "tag": "p.muted",
-          "text": "Get notes, action items and follow-ups minutes after every meeting.",
+          "text": "Get notes, action items and follow-ups after every meeting.",
           "fromData": true
         },
         {
           "tag": "a.card",
-          "text": "Design Operations Design request intake Every design request arrives with a brief, assets and a deadline. Live in 2–4 weeks →",
+          "text": "Design Operations Design request intake Every design request arrives with a brief, assets and a deadline. →",
           "href": "/solutions/design-intake",
           "prototypeHref": "#solution-design-intake"
         },
@@ -481,7 +483,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Design Operations Asset resizing and variants Create every size and format from one approved design. Live in 2–4 weeks →",
+          "text": "Design Operations Asset resizing and variants Create every size and format from one approved design. →",
           "href": "/solutions/asset-variants",
           "prototypeHref": "#solution-asset-variants"
         },
@@ -497,7 +499,7 @@ export const page = {
         },
         {
           "tag": "a.card",
-          "text": "Design Operations Design QA and handoff Check specs and accessibility before designs reach developers. Live in 3–4 weeks →",
+          "text": "Design Operations Design QA and handoff Check specs and accessibility before designs reach developers. →",
           "href": "/solutions/design-qa",
           "prototypeHref": "#solution-design-qa"
         },
@@ -541,7 +543,7 @@ export const page = {
         },
         {
           "tag": "p.lead",
-          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up within a day."
+          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up."
         },
         {
           "tag": "button.btn",

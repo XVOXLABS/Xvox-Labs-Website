@@ -1,3 +1,5 @@
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 import { missions } from "./how-it-works.js";
 import { items } from "./marketplace.js";
 import { prototypeActions, prototypeRoutes } from "./reviewRoutes.js";
@@ -28,7 +30,7 @@ const workflowLabels = sectionBlocks(agentsHub, 2).filter(({ tag }) => tag === "
 export const agentWorkflows = workflowSlugs.map((slug, i) => {
   const solution = solutionInfo(solutionsBySlug.get(slug));
   return { slug, label: workflowLabels[i].text, href: solution.href, spec: solutionOrchestration(solution),
-    footer: `${solution.title} · typically live in ${solution.workflow.timeline}` };
+    footer: `${solution.title}` };
 });
 
 // Banner positions and alt text are part of the prototype, independent of the directory order.
@@ -42,5 +44,4 @@ export const agentPageText = {
   modelToast: "All agents now running on {model} (demo)",
   voxRole: "Your guide",
   sampleCatalogue: "Sample catalogue",
-  liveIn: "Live in {timeline}",
 };

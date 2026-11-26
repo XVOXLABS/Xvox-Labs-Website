@@ -27,15 +27,15 @@ function Chips({ items }) {
 
 function Hero({ agent, back, worksWith, quote, hire, marketplace, count }) {
   return (
-    <Section>
+    <Section className={styles.profileTop}>
       <Link href={back.href} className={styles.back}>{back.text}</Link>
       <div className={styles.profileHero}>
         <Card tint={agent.tint} className={styles.portrait}>
-          <blockquote>{quote}</blockquote>
+          {quote ? <blockquote>{quote}</blockquote> : null}
           <AgentArt agent={agent} className={styles.portraitArt} />
         </Card>
         <div className={styles.profileIntro}>
-          <SectionHeader level={1} eyebrow={<Category color={agent.color}>{agent.role}</Category>} title={agent.name} />
+          <SectionHeader level={1} size="agent" pageHead={false} eyebrow={<Category color={agent.color}>{agent.role}</Category>} title={agent.name} />
           <p className={styles.profileLead}>{agent.line}</p>
           <Chips items={agent.traits} />
           <div><strong>{worksWith}</strong><Chips items={agent.tools} /></div>
@@ -53,7 +53,7 @@ function ProfileMarket({ blocks, catalogue, href, title, all }) {
   const samples = visible.filter(({ priceStatus }) => priceStatus === "placeholder");
   return (
     <Section className={styles.following}>
-      <SectionHead eyebrow={block(blocks, "span.eyebrow").text} title={title} action={<Button href={href} variant="secondary">{all}</Button>} />
+      <SectionHead layout="side" eyebrow={block(blocks, "span.eyebrow").text} title={title} action={<Button href={href} variant="secondary">{all}</Button>} />
       <Frame className={styles.four}>
         {visible.map((item) => <ItemCard key={item.id} item={item} />)}
       </Frame>
@@ -128,20 +128,20 @@ export default function AgentProfile({ entry }) {
         <SectionHead eyebrow={block(persona, "span.eyebrow").text} title={copy("Who ")} />
         <Frame className={styles.four}>
           {[copy(agent.traits.join(", ")), agent.bestFor, agent.never, agent.check].map((text, i) => (
-            <Card key={text} tint={i === 3 ? "p2" : undefined}><h3>{block(persona, "h4", i).text}</h3><p>{text}</p></Card>
+            <Card key={text} tint={i === 3 ? "p2" : undefined} className={styles.cellHead}><h3>{block(persona, "h4", i).text}</h3><p>{text}</p></Card>
           ))}
         </Frame>
       </Section>
       <Section className={styles.following}>
         <SectionHead eyebrow={block(skills, "span.eyebrow").text} title={copy("What ")} />
         <Frame className={styles.three}>
-          <Card><h3>{block(skills, "h4").text}</h3><ul className={styles.list}>{agent.skills.map((text) => <li key={text}>{text}</li>)}</ul></Card>
-          <Card><h3>{block(skills, "h4", 1).text}</h3>
+          <Card className={styles.cellHead}><h3>{block(skills, "h4").text}</h3><ul className={styles.list}>{agent.skills.map((text) => <li key={text}>{text}</li>)}</ul></Card>
+          <Card className={styles.cellHead}><h3>{block(skills, "h4", 1).text}</h3>
             <ul className={styles.jobs}>{jobs.map(({ mission, name, job }) => (
               <li key={`${mission}-${job}`}><Link href={`/build?mission=${mission}`}><span><small>{name}</small>{job}</span><span aria-hidden="true">→</span></Link></li>
             ))}</ul>
           </Card>
-          <Card><h3>{block(skills, "h4", 2).text}</h3><Chips items={agent.tools} /><p>{block(skills, "p.muted").text}</p></Card>
+          <Card className={styles.cellHead}><h3>{block(skills, "h4", 2).text}</h3><Chips items={agent.tools} /><p>{block(skills, "p.muted").text}</p></Card>
         </Frame>
       </Section>
       <Section className={styles.following}>
@@ -153,13 +153,13 @@ export default function AgentProfile({ entry }) {
         </Frame>
       </Section>
       <Section className={styles.following}>
-        <SectionHead eyebrow={block(uses, "span.eyebrow").text} title={copy(`${agent.name} solves`)}
+        <SectionHead layout="side" eyebrow={block(uses, "span.eyebrow").text} title={copy(`${agent.name} solves`)}
           action={<Button href={allUses.href} variant="secondary">{allUses.text}</Button>} />
         <Frame className={styles.three}>
-          {related.map((solution) => <Card key={solution.href} href={solution.href}>
+          {related.map((solution) => <Card key={solution.href} href={solution.href} className={styles.relatedCard}>
             <Category color={solution.category.color}>{solution.category.name}</Category><h3>{solution.title}</h3>
             <p className={styles.muted}>{solution.description}</p>
-            <span className={styles.relatedEnd}>{fill(agentPageText.liveIn, solution.workflow)} <span aria-hidden="true">→</span></span>
+            <span className={styles.relatedEnd} aria-hidden="true">→</span>
           </Card>)}
         </Frame>
       </Section>

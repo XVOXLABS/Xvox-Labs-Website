@@ -1,25 +1,32 @@
 .fab {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: max(16px, env(safe-area-inset-bottom, 0px));
   z-index: 150;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 16px 8px 8px;
+  padding: 6px 16px 6px 6px;
   border: 0;
-  border-radius: var(--radius-badge);
-  background: var(--color-black);
+  border-radius: var(--radius-pill);
+  background: var(--color-control-active);
   color: var(--color-on-dark);
   font-size: 15px;
   line-height: 15px;
   font-weight: 500;
-  box-shadow: var(--shadow-panel);
+  box-shadow: 0 16px 40px -14px rgba(0, 0, 0, 0.6);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .fab:hover {
+    transform: translateY(-3px);
+  }
 }
 
 .face {
-  border-radius: 8px;
-  background: var(--tint-p4);
+  border-radius: var(--radius-button);
+  background: #dce6ff;
 }
 
 .dot {
@@ -44,16 +51,19 @@
   position: absolute;
   right: 0;
   bottom: calc(100% + 10px);
-  width: 240px;
-  padding: 12px 14px;
-  border-radius: var(--radius-badge);
+  width: max-content;
+  max-width: 240px;
+  padding: 11px 14px;
+  border-radius: 14px 14px 4px 14px;
   background: var(--color-surface);
   color: var(--color-ink);
   font-size: 14px;
   line-height: 21px;
   font-weight: 400;
   text-align: left;
-  box-shadow: var(--shadow-panel);
+  box-shadow:
+    0 10px 30px -12px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px var(--color-line);
   animation: nudge-in var(--dur) var(--ease-out);
 }
 
@@ -72,12 +82,33 @@
   overflow: hidden;
 }
 
-/* Prototype panel size: 420 x 660 (shorter on low screens). Phones keep the full-screen sheet. */
-@media (min-width: 810px) {
+dialog.dialog {
+  background: var(--color-bg);
+}
+
+/* Prototype panel: 420 x 660 at the bottom right (shorter on low screens), full screen at 560px and below */
+@media (min-width: 561px) {
   dialog.dialog {
+    inset: auto 16px 16px auto;
     width: min(420px, calc(100vw - 32px));
     height: min(660px, calc(100vh - 96px));
+    max-width: none;
+    max-height: none;
     border-radius: var(--radius-card);
+    box-shadow:
+      0 30px 80px -20px rgba(0, 0, 0, 0.45),
+      inset 0 0 0 1px var(--color-line);
+  }
+}
+
+@media (max-width: 560px) {
+  dialog.dialog {
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
   }
 }
 
@@ -170,7 +201,7 @@
   gap: 10px;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 8px 16px 16px;
+  padding: 14px;
 }
 
 .row {
@@ -198,19 +229,20 @@
 }
 
 .message {
-  max-width: 90%;
-  padding: 12px 14px;
-  border-radius: 4px var(--radius-row) var(--radius-row) var(--radius-row);
-  background: var(--color-bg);
-  font-size: 14px;
-  line-height: 21px;
+  max-width: 88%;
+  padding: 11px 14px;
+  border-radius: 14px 14px 14px 4px;
+  background: var(--color-surface);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  font-size: 15px;
+  line-height: 22.5px;
   white-space: pre-line;
   overflow-wrap: anywhere;
 }
 
 .me {
-  border-radius: var(--radius-row) 4px var(--radius-row) var(--radius-row);
-  background: var(--color-black);
+  border-radius: 14px 14px 4px 14px;
+  background: var(--color-control-active);
   color: var(--color-on-dark);
 }
 
@@ -326,20 +358,37 @@
   white-space: nowrap;
 }
 
-.accent {
-  background: var(--color-accent);
-  color: var(--color-on-dark);
-}
-
+/* Site-wide button colours (REF-10): "accent" and "dark" are primary, "ghost" is secondary */
+.accent,
 .dark {
-  background: var(--color-black);
+  background: var(--color-ink);
   color: var(--color-on-dark);
 }
 
 .ghost {
-  background: transparent;
+  background: var(--color-control);
   color: var(--color-ink);
-  box-shadow: inset 0 0 0 1px rgba(15, 15, 15, 0.14);
+}
+
+.btn,
+.send {
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .accent:hover:not(:disabled),
+  .dark:hover:not(:disabled),
+  .send:hover:not(:disabled) {
+    background: var(--color-accent);
+    color: var(--color-on-dark);
+  }
+
+  .ghost:hover:not(:disabled) {
+    background: var(--color-ink);
+    color: var(--color-on-dark);
+  }
 }
 
 .btn:disabled {
@@ -359,7 +408,8 @@
 .card {
   padding: 14px;
   border-radius: var(--radius-row);
-  background: var(--color-bg);
+  background: var(--color-surface);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .cardTitle {
@@ -375,9 +425,9 @@
 }
 
 .rep section {
-  padding: 12px 14px;
-  border-radius: var(--radius-button);
-  background: var(--color-surface);
+  padding: 14px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
 }
 
 .rep h3 {
@@ -496,29 +546,31 @@
 .form {
   display: flex;
   gap: 8px;
-  padding: 12px 16px 16px;
-  border-top: 1px solid rgba(15, 15, 15, 0.08);
+  padding: 10px 10px max(10px, env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--color-line);
+  background: var(--color-surface);
 }
 
 .input {
   flex: 1;
-  min-height: 40px;
+  min-height: 44px;
   padding: 10px 12px;
-  border: 0;
-  border-radius: var(--radius-button);
-  background: var(--color-frame);
+  border: 1px solid var(--color-line);
+  border-radius: 11px;
+  background: var(--color-bg);
   resize: none;
   font-size: 15px;
   line-height: 20px;
 }
 
 .send {
-  padding: 0 16px;
+  min-width: 68px;
+  padding: 0 14px;
   border: 0;
   border-radius: var(--radius-button);
-  background: var(--color-black);
+  background: var(--color-ink);
   color: var(--color-on-dark);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
 }
 
@@ -533,10 +585,14 @@
 
 @media (max-width: 809px) {
   .fab {
-    right: max(16px, env(safe-area-inset-right, 0px));
-    bottom: max(16px, env(safe-area-inset-bottom, 0px));
     gap: 8px;
-    padding: 8px 12px 8px 8px;
+    padding: 6px 12px 6px 6px;
+  }
+
+  /* The approved compact phone button: a smaller face keeps it clear of the puzzle button at 320px */
+  .fab .face {
+    width: 28px;
+    height: 28px;
   }
 
   /* Compact button on phones: the label stays in the page for screen readers */

@@ -8,6 +8,8 @@
 // checks = Sage checks, flag = [index of the check that fails, what went wrong, how it is fixed],
 // who = the person who approves, ask = the approval question, out = the outcome.
 // Strings with {placeholders} are templates; the text around each placeholder is verbatim.
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const orchestrations = {
   "leads-go-cold": {
@@ -22,7 +24,7 @@ export const orchestrations = {
     "flag": [3, "The reply offers a 20% discount you haven’t approved", "Relay removes the discount"],
     "who": "Sales lead",
     "ask": "Send this reply to Acme Ltd?",
-    "out": "Reply sent in 4 minutes, logged in HubSpot"
+    "out": "Reply sent, logged in HubSpot"
   },
   "consistent-posting": {
     "trig": "Monday 8:00, weekly content run",
@@ -51,7 +53,7 @@ export const orchestrations = {
     "flag": [2, "The customer wants a refund above your limit", "Routed to a person instead of auto-sending"],
     "who": "Support agent",
     "ask": "Approve this reply?",
-    "out": "Answered in 40 seconds, ticket logged"
+    "out": "Answered, ticket logged"
   },
   "proposals": {
     "trig": "Sales call with Acme Ltd ends",
@@ -65,7 +67,7 @@ export const orchestrations = {
     "flag": [0, "One line item is priced below your floor", "Quill corrects the price"],
     "who": "Account owner",
     "ask": "Send this proposal for signature?",
-    "out": "Proposal sent for e-signature the same day"
+    "out": "Proposal sent for e-signature"
   }
 };
 
@@ -125,6 +127,6 @@ export const orchestrationText = {
   // Joins lists inside messages ("Web search and LinkedIn", "Scout and Beacon").
   "and": " and ",
   // Tab footer: "{blueprint title} · typically live in {timeline}" + link to the solution.
-  "footer": "{blueprint} · typically live in {timeline}",
+  "footer": "{blueprint}",
   "seeSolution": "See this solution"
 };

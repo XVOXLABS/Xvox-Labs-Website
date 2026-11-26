@@ -21,7 +21,7 @@ export default function WaysToBuy() {
 
   return (
     <Section>
-      <SectionHead eyebrow={block(s, "span.eb2").text} title={block(s, "h2.big").text} />
+      <SectionHead layout="row" eyebrow={block(s, "span.eb2").text} title={block(s, "h2.big").text} />
       <BuyingLadder about={interactive.ladderAbout} stepLabels={stepLabels} note={{ sentences, link: { text: link.text, href: link.href } }} />
     </Section>
   );

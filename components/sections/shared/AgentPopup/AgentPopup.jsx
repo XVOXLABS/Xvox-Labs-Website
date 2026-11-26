@@ -157,7 +157,7 @@ function PopupBody({ agent, onClose, initialTab }) {
         ✕
       </button>
       <div className={styles.stage} style={{ background: `var(--tint-${agent.tint})` }}>
-        <p className={styles.say}>{`“${agent.quote}”`}</p>
+        {agent.quote ? <p className={styles.say}>{`“${agent.quote}”`}</p> : null}
         <Image src={reduced ? agent.image : agent.animatedImage} alt="" width={w} height={h} unoptimized className={styles.figure} />
       </div>
       <div className={styles.body}>

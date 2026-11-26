@@ -11,16 +11,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: clamp(14px, 3vh, 28px);
   height: 100vh;
   padding-top: calc(var(--header-offset) + var(--header-height));
   overflow: hidden;
-}
-
-.inner {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(14px, 3vh, 28px);
-  width: 100%;
 }
 
 /* Prototype .pz-head: centred eyebrow and heading (h2 22ch). The shared SectionHeader's title
@@ -33,96 +28,13 @@
   max-width: 22ch;
 }
 
-/* Framer agent panel: white card, dark stage on top, status strip below */
-.card {
-  overflow: hidden;
-  border-radius: var(--radius-frame);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-panel);
-  transition: background-color 0.5s;
-}
-
-.panel {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 16px 16px 22px;
-  border-radius: var(--radius-frame);
-  background: var(--color-dark);
-  color: var(--color-on-dark);
-}
-
-/* Header row (decision D1): hint with an icon tile on the left, status chip on the right */
-.panelHead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-  font-size: 15px;
-  line-height: 20px;
-  font-weight: 500;
-}
-
-.icon {
-  display: grid;
-  flex: none;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: var(--radius-tab);
-  box-shadow: inset 0 0 0 1px rgba(250, 250, 250, 0.16);
-}
-
-.icon svg {
-  width: 16px;
-  fill: var(--color-on-dark);
-}
-
-.panelHead .chip {
-  flex: none;
-  padding: 7px 10px;
-  background: transparent;
-  box-shadow: inset 0 0 0 1px rgba(250, 250, 250, 0.16);
-  color: var(--color-on-dark);
-  font-size: 12px;
-  line-height: 15px;
-  font-weight: 500;
-}
-
-/* Status dot with the prototype's ping */
-.dot {
-  display: block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  animation: ping 2s infinite;
-}
-
-@keyframes ping {
-  from {
-    box-shadow: 0 0 0 0 rgba(255, 96, 56, 0.6);
-  }
-  to {
-    box-shadow: 0 0 0 8px rgba(255, 96, 56, 0);
-  }
-}
-
 /* Prototype .pz-board: pieces are anchored at the bottom centre. The size container lets the
    pieces show the locked row before JavaScript places them. */
 .board {
   position: relative;
-  /* Side inset: Scout's start position (prototype maths) sits a quarter piece from the board edge
-     and its -22deg tilt reaches past it; the inset keeps the rotated corner inside the panel. */
-  margin-inline: max(8px, 2%);
+  width: 100%;
   height: min(48vh, 440px);
+  min-height: 0;
   container-type: size;
 }
 
@@ -186,18 +98,16 @@
   }
 }
 
-/* Prototype .pz-tag, always visible above 640px (decision D2), styled as a Framer pill */
+/* Prototype .pz-tag, visible above 640px (decision D2) */
 .tag {
   position: absolute;
   left: 50%;
   top: -8px;
   padding: 5px 9px;
   border-radius: 7px;
-  background: #222222;
-  box-shadow:
-    inset 0 0 0 1px rgba(250, 250, 250, 0.12),
-    0 6px 16px -8px rgba(0, 0, 0, 0.3);
-  color: var(--color-on-dark);
+  background: var(--color-surface);
+  box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.3);
+  color: var(--color-ink);
   font-size: 12px;
   line-height: 15px;
   font-weight: 500;
@@ -210,18 +120,65 @@
   transform: translate(-50%, -100%) scale(0.85);
 }
 
-/* Prototype .pz-solved: the strip turns warm when solved */
-.strip {
+/* Prototype .pz-solved: status chip, supporting line and button; it turns warm when solved */
+.pill {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 12px 16px;
+  max-width: calc(100% - 2 * var(--gutter));
+  padding: 10px 12px 10px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-surface);
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.5s;
 }
 
-.puz[data-solved="true"] .card {
+.puz[data-solved="true"] .pill {
   background: #f7f3ee;
+}
+
+.pill .chip {
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: var(--radius-button-sm);
+  background: var(--color-surface);
+  box-shadow: inset 0 0 0 1px var(--color-frame);
+  font-size: 13px;
+  line-height: 15px;
+  font-weight: 500;
+}
+
+.hint {
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.pill .cta {
+  min-height: 36px;
+  padding: 9px 14px;
+  font-size: 14px;
+}
+
+/* Status dot with the prototype's ping */
+.dot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: ping 2s infinite;
+}
+
+@keyframes ping {
+  from {
+    box-shadow: 0 0 0 0 rgba(255, 96, 56, 0.6);
+  }
+  to {
+    box-shadow: 0 0 0 8px rgba(255, 96, 56, 0);
+  }
 }
 
 @media (max-width: 640px) {
@@ -239,13 +196,29 @@
     height: 180vh;
   }
 
+  /* Keeps the chip and the supporting line on one row, as in the prototype */
+  .pill {
+    column-gap: 8px;
+    max-width: calc(100% - 24px);
+    padding-inline: 12px;
+  }
+
   .board {
+    /* Phones keep a side inset, so the tilted pieces at the edges stay clear of the screen edge */
+    width: calc(100% - 2 * max(8px, 2%));
     height: min(44vh, clamp(160px, 48vw, 280px));
   }
 
   .piece {
     --w: calc(100cqw / 3.8);
     --step: 0.7;
+  }
+}
+
+/* Narrowest phones: slightly narrower button padding keeps it clear of the floating chat button */
+@media (max-width: 340px) {
+  .pill .cta {
+    padding-inline: 7px;
   }
 }
 

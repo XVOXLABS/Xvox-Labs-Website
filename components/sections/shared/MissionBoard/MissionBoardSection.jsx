@@ -23,7 +23,7 @@ export default function MissionBoardSection({ blocks, fullScreen = false, readPa
   };
   return (
     <Section id={id} className={styles.following}>
-      <SectionHead eyebrow={block(blocks, "span.eyebrow").text} title={block(blocks, "h2.big").text} lead={block(blocks, "p.lead").text}
+      <SectionHead layout={fullScreen ? "side" : "stack"} eyebrow={block(blocks, "span.eyebrow").text} title={block(blocks, "h2.big").text} lead={block(blocks, "p.lead").text}
         action={fullScreen ? <Button href={full.href} variant="secondary" className={styles.tall}>{full.text}</Button> : undefined} />
       <MissionBoard labels={labels} readParam={readParam} />
     </Section>

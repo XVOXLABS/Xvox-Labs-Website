@@ -21,7 +21,8 @@ const PHONE = "(max-width: 600px)";
 const team = coreAgentIds.map((id) => agents.find((a) => a.id === id));
 const text = interactive.puzzle;
 
-// Section 2: the puzzle stage (prototype puzSection + puzUpdate, Framer dark agent panel).
+// Section 2: the puzzle stage (prototype puzSection + puzUpdate): the team on the page background with
+// a status pill below.
 // Pinned while the visitor scrolls 260vh (220vh at 601-640px, 180vh at 600px and below); the five
 // scattered, rotated pieces ease into one row and the texts switch to their solved state. Scrolling
 // back reverses it. Pieces are links to the agent profiles. Reduced motion (decision D3): a
@@ -98,7 +99,7 @@ export default function PuzzleStage() {
   return (
     <section ref={secRef} className={styles.puz} aria-labelledby="puzzle-title" data-solved={solved ? "true" : "false"}>
       <div className={styles.stick}>
-        <Container className={styles.inner}>
+        <Container>
           <SectionHeader
             layout="center"
             level={2}
@@ -108,55 +109,41 @@ export default function PuzzleStage() {
             title={<span id="puzzle-title">{solved ? text.headingSolved : text.heading}</span>}
             lead={solved ? text.leadSolved : text.lead}
           />
-
-          <div className={styles.card}>
-            <div className={styles.panel}>
-              <div className={styles.panelHead}>
-                <span className={styles.hint}>
-                  <span className={styles.icon} aria-hidden="true">
-                    <svg viewBox="0 0 24 24">
-                      <path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17.5l-1.9-5.6L4.5 10l5.6-1.4z" />
-                    </svg>
-                  </span>
-                  <span>{solved ? text.hintSolved : text.hint}</span>
-                </span>
-                <Badge className={styles.chip} icon={<span className={styles.dot} />}>
-                  {chip}
-                </Badge>
-              </div>
-
-              <div ref={boardRef} className={styles.board}>
-                {team.map((agent, i) => {
-                  const [w, h] = agentImageSize[agent.id].still;
-                  return (
-                    <Link
-                      key={agent.id}
-                      ref={(el) => (pieceRefs.current[i] = el)}
-                      href={tags[i].href}
-                      className={styles.piece}
-                      style={{ "--i": i, zIndex: i + 1 }}
-                      data-agent-target=""
-                      aria-label={tags[i].text}
-                      onPointerEnter={(e) => swap(e, agent, true)}
-                      onPointerLeave={(e) => swap(e, agent, false)}
-                    >
-                      <span className={styles.tag} aria-hidden="true">
-                        {tags[i].text}
-                      </span>
-                      <Image src={agent.image} alt="" width={w} height={h} unoptimized draggable={false} className={styles.chr} />
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className={styles.strip}>
-              <Button href={cta.href} variant="small">
-                {cta.text}
-              </Button>
-            </div>
-          </div>
         </Container>
+
+        <div ref={boardRef} className={styles.board}>
+          {team.map((agent, i) => {
+            const [w, h] = agentImageSize[agent.id].still;
+            return (
+              <Link
+                key={agent.id}
+                ref={(el) => (pieceRefs.current[i] = el)}
+                href={tags[i].href}
+                className={styles.piece}
+                style={{ "--i": i, zIndex: i + 1 }}
+                data-agent-target=""
+                aria-label={tags[i].text}
+                onPointerEnter={(e) => swap(e, agent, true)}
+                onPointerLeave={(e) => swap(e, agent, false)}
+              >
+                <span className={styles.tag} aria-hidden="true">
+                  {tags[i].text}
+                </span>
+                <Image src={agent.image} alt="" width={w} height={h} unoptimized draggable={false} className={styles.chr} />
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className={styles.pill}>
+          <Badge className={styles.chip} icon={<span className={styles.dot} />}>
+            {chip}
+          </Badge>
+          <span className={styles.hint}>{solved ? text.hintSolved : text.hint}</span>
+          <Button href={cta.href} className={styles.cta}>
+            {cta.text}
+          </Button>
+        </div>
       </div>
     </section>
   );

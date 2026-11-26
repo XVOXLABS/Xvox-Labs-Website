@@ -26,7 +26,7 @@ export default function ServicePillars() {
   const t = interactive.serviceCard;
   return (
     <Section>
-      <SectionHead eyebrow={block(s, "span.eb2").text} title={block(s, "h2.big").text} lead={block(s, "p.lead").text} />
+      <SectionHead layout="row" eyebrow={block(s, "span.eb2").text} title={block(s, "h2.big").text} lead={block(s, "p.lead").text} />
       <Frame className={styles.grid}>
         {servicePillars.map((p, i) => {
           const chips = p.serviceIds.slice(0, MAX_CHIPS).map((id) => serviceById[id].title);

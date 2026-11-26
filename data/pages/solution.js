@@ -3,6 +3,8 @@
 // template: text identical on every page of this type.
 // computedText: per-page text built by the prototype from data (e.g. counts, names in sentences);
 // kept verbatim so templates can be rebuilt and checked against it.
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const template = {
   "prototypeRoutes": [
@@ -148,7 +150,7 @@ export const template = {
         },
         {
           "tag": "h4",
-          "text": "Timeline"
+          "text": ""
         },
         {
           "tag": "h4",
@@ -507,7 +509,7 @@ export const template = {
         },
         {
           "tag": "p.lead",
-          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up within a day."
+          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up."
         },
         {
           "tag": "button.btn",
@@ -527,7 +529,7 @@ export const template = {
 export const computedText = {
   "solution-consistent-posting": [
     "Solutions",
-    "Plan, write and schedule a week of posts in your brand voice. Typically live in 3–4 weeks.",
+    "Plan, write and schedule a week of posts in your brand voice.",
     "Monday 8:00, weekly content run",
     "Brand voice guide",
     "Last week’s results",
@@ -546,7 +548,7 @@ export const computedText = {
     "Approve this week’s posts?",
     "Posts scheduled for the week, results tracked",
     "Every agent reads and writes here: Topic list · Trend notes · Week of drafts",
-    "3–4 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Social media content blueprint The complete system for social media content: agents, workflows, approval steps and setup packs. $1,500 +",
     "Claude skill ✦ Brand voice writer Teaches Claude your tone from five examples, then writes posts and emails that sound like you. $79 +",
     "Claude skill ✦ Competitor weekly brief A one-page weekly brief on what competitors changed, with three things worth acting on. $49 +",
@@ -555,13 +557,13 @@ export const computedText = {
     "Template ▤ Content calendar A 12-week calendar with post types, approvals and a weekly rhythm. $29 +",
     "Related",
     "More in Sales & Marketing.",
-    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
-    "Sales & Marketing Inbound lead response Reply to every new lead within minutes, day or night. Live in 2–4 weeks →",
-    "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. Live in 3–4 weeks →"
+    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. →",
+    "Sales & Marketing Inbound lead response Reply to every new lead, day or night. →",
+    "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. →"
   ],
   "solution-found-online": [
     "Solutions",
-    "Get found on Google and in ChatGPT, Perplexity and Gemini answers. Typically live in 3–4 weeks.",
+    "Get found on Google and in ChatGPT, Perplexity and Gemini answers.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -571,18 +573,18 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1 · Results of step 2",
-    "3–4 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ SEO and AI search visibility blueprint The complete system for seo and ai search visibility: agents, workflows, approval steps and setup packs. $1,500 +",
     "Claude skill ✦ AI answer visibility audit Checks how your business shows up in AI assistant answers and drafts fixes. $99 +",
     "Related",
     "More in Sales & Marketing.",
-    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
-    "Sales & Marketing Inbound lead response Reply to every new lead within minutes, day or night. Live in 2–4 weeks →",
-    "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. Live in 3–4 weeks →"
+    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. →",
+    "Sales & Marketing Inbound lead response Reply to every new lead, day or night. →",
+    "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. →"
   ],
   "solution-leads-go-cold": [
     "Solutions",
-    "Reply to every new lead within minutes, day or night. Typically live in 2–4 weeks.",
+    "Reply to every new lead, day or night.",
     "New enquiry from your website form",
     "HubSpot contact",
     "Past emails",
@@ -597,23 +599,23 @@ export const computedText = {
     "No unapproved promises",
     "Human in the loop · Sales lead",
     "Send this reply to Acme Ltd?",
-    "Reply sent in 4 minutes, logged in HubSpot",
+    "Reply sent, logged in HubSpot",
     "Every agent reads and writes here: Company profile · Draft reply",
-    "2–4 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Inbound lead response blueprint The complete system for inbound lead response: agents, workflows, approval steps and setup packs. $1,500 +",
     "Claude skill ✦ Lead qualifier Scores new leads against your best clients and writes the first reply. $69 +",
     "Claude skill ✦ Proposal writer Turns call notes into a clean proposal in your format. $89 +",
-    "Automation pack ⇄ Lead router Catches every enquiry, logs it in the CRM and sends the first reply in minutes. $249 +",
+    "Automation pack ⇄ Lead router Catches every enquiry, logs it in the CRM and sends the first reply. $249 +",
     "Micro tool ◧ Lead inbox One screen for every lead, its status and what Relay did. Built for small teams. $29 / month +",
     "Related",
     "More in Sales & Marketing.",
-    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
-    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
-    "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. Live in 3–4 weeks →"
+    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. →",
+    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. →",
+    "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. →"
   ],
   "solution-prospecting": [
     "Solutions",
-    "Find companies like your best clients and start the conversation. Typically live in 3–4 weeks.",
+    "Find companies like your best clients and start the conversation.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -623,20 +625,20 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1 · Results of step 2",
-    "3–4 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Lead research and outreach blueprint The complete system for lead research and outreach: agents, workflows, approval steps and setup packs. $1,500 +",
     "Claude skill ✦ Competitor weekly brief A one-page weekly brief on what competitors changed, with three things worth acting on. $49 +",
     "Claude skill ✦ Lead qualifier Scores new leads against your best clients and writes the first reply. $69 +",
     "Micro tool ◧ Lead inbox One screen for every lead, its status and what Relay did. Built for small teams. $29 / month +",
     "Related",
     "More in Sales & Marketing.",
-    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
-    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
-    "Sales & Marketing Inbound lead response Reply to every new lead within minutes, day or night. Live in 2–4 weeks →"
+    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. →",
+    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. →",
+    "Sales & Marketing Inbound lead response Reply to every new lead, day or night. →"
   ],
   "solution-admin-overload": [
     "Solutions",
-    "Stop copying data between tools and chasing routine tasks. Typically live in 3–5 weeks.",
+    "Stop copying data between tools and chasing routine tasks.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -646,19 +648,19 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1",
-    "3–5 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Admin and data entry blueprint The complete system for admin and data entry: agents, workflows, approval steps and setup packs. $1,500 +",
     "Claude skill ✦ Weekly ops report Pulls numbers from your sheets and writes a short Monday report. $49 +",
     "Automation pack ⇄ Invoice reminders Polite reminders before and after due dates, and a weekly list of what is late. No AI needed. $199 +",
     "Related",
     "More in Operations & Admin.",
-    "Operations & Admin Tool integrations Connect your CRM, billing and project tools so data stays in sync. Live in 3–5 weeks →",
-    "Operations & Admin Automated phone calls Call customers automatically about bookings, delays and renewals. Live in 4–6 weeks →",
-    "Operations & Admin Meeting notes and follow-ups Get notes, action items and follow-ups minutes after every meeting. Live in 2–3 weeks →"
+    "Operations & Admin Tool integrations Connect your CRM, billing and project tools so data stays in sync. →",
+    "Operations & Admin Automated phone calls Call customers automatically about bookings, delays and renewals. →",
+    "Operations & Admin Meeting notes and follow-ups Get notes, action items and follow-ups after every meeting. →"
   ],
   "solution-tools-dont-talk": [
     "Solutions",
-    "Connect your CRM, billing and project tools so data stays in sync. Typically live in 3–5 weeks.",
+    "Connect your CRM, billing and project tools so data stays in sync.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -668,18 +670,18 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1",
-    "3–5 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Tool integrations blueprint The complete system for tool integrations: agents, workflows, approval steps and setup packs. $1,500 +",
     "Automation pack ⇄ CRM and projects sync Keeps clients and projects in step between your CRM and monday.com. Plain automation. $299 +",
     "Related",
     "More in Operations & Admin.",
-    "Operations & Admin Admin and data entry Stop copying data between tools and chasing routine tasks. Live in 3–5 weeks →",
-    "Operations & Admin Automated phone calls Call customers automatically about bookings, delays and renewals. Live in 4–6 weeks →",
-    "Operations & Admin Meeting notes and follow-ups Get notes, action items and follow-ups minutes after every meeting. Live in 2–3 weeks →"
+    "Operations & Admin Admin and data entry Stop copying data between tools and chasing routine tasks. →",
+    "Operations & Admin Automated phone calls Call customers automatically about bookings, delays and renewals. →",
+    "Operations & Admin Meeting notes and follow-ups Get notes, action items and follow-ups after every meeting. →"
   ],
   "solution-slow-replies": [
     "Solutions",
-    "Answer common questions instantly. A person handles the rest. Typically live in 4–6 weeks.",
+    "Answer common questions. A person handles the rest.",
     "A customer asks “Where is my order?”",
     "Help centre",
     "Order system",
@@ -694,19 +696,19 @@ export const computedText = {
     "Clear, polite tone",
     "Human in the loop · Support agent",
     "Approve this reply?",
-    "Answered in 40 seconds, ticket logged",
+    "Answered, ticket logged",
     "Every agent reads and writes here: Matching article · Draft reply",
-    "4–6 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ AI chat and voice support blueprint The complete system for ai chat and voice support: agents, workflows, approval steps and setup packs. $1,500 +",
     "Automation pack ⇄ Ticket triage Sorts incoming questions by urgency and sends the urgent ones to Slack. $249 +",
     "Related",
     "More in Customer Experience.",
-    "Customer Experience Client onboarding Collect forms, contracts and setup details automatically. Live in 3–5 weeks →",
-    "Customer Experience Client progress updates Send clients a clear weekly update without writing it yourself. Live in 2–3 weeks →"
+    "Customer Experience Client onboarding Collect forms, contracts and setup details automatically. →",
+    "Customer Experience Client progress updates Send clients a clear weekly update without writing it yourself. →"
   ],
   "solution-manual-onboarding": [
     "Solutions",
-    "Collect forms, contracts and setup details automatically. Typically live in 3–5 weeks.",
+    "Collect forms, contracts and setup details automatically.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -716,18 +718,18 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1 · Results of step 2",
-    "3–5 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Client onboarding blueprint The complete system for client onboarding: agents, workflows, approval steps and setup packs. $1,500 +",
     "Claude skill ✦ Proposal writer Turns call notes into a clean proposal in your format. $89 +",
     "Template ▤ Client onboarding portal A client-facing checklist with forms, documents and progress in one place. $99 +",
     "Related",
     "More in Customer Experience.",
-    "Customer Experience AI chat and voice support Answer common questions instantly. A person handles the rest. Live in 4–6 weeks →",
-    "Customer Experience Client progress updates Send clients a clear weekly update without writing it yourself. Live in 2–3 weeks →"
+    "Customer Experience AI chat and voice support Answer common questions. A person handles the rest. →",
+    "Customer Experience Client progress updates Send clients a clear weekly update without writing it yourself. →"
   ],
   "solution-confusing-site": [
     "Services",
-    "A clear, fast website structured around what visitors need. Typically live in 4–6 weeks.",
+    "A clear, fast website structured around what visitors need.",
     "The problem shows up",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
@@ -738,14 +740,14 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1",
-    "4–6 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Website redesign blueprint The complete system for website redesign: agents, workflows, approval steps and setup packs. $1,500 +",
     "Claude skill ✦ AI answer visibility audit Checks how your business shows up in AI assistant answers and drafts fixes. $99 +",
     "Template ▤ Design system starter Colors, type, spacing and core components to rebuild your site on. $99 +"
   ],
   "solution-inconsistent-brand": [
     "Services",
-    "Templates and rules that keep every channel on brand. Typically live in 4–6 weeks.",
+    "Templates and rules that keep every channel on brand.",
     "The problem shows up",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
@@ -756,7 +758,7 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1",
-    "4–6 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Brand consistency kit blueprint The complete system for brand consistency kit: agents, workflows, approval steps and setup packs. $1,500 +",
     "Claude skill ✦ Brand voice writer Teaches Claude your tone from five examples, then writes posts and emails that sound like you. $79 +",
     "Micro tool ◧ Brand kit studio Stores your colors, fonts and voice so every agent and teammate stays on brand. $19 / month +",
@@ -764,7 +766,7 @@ export const computedText = {
   ],
   "solution-video-content": [
     "Solutions",
-    "Turn long videos into ready-to-post clips with captions. Typically live in 2–4 weeks.",
+    "Turn long videos into ready-to-post clips with captions.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -774,20 +776,20 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1 · Results of step 2",
-    "2–4 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Short-form video blueprint The complete system for short-form video: agents, workflows, approval steps and setup packs. $1,500 +",
     "Claude skill ✦ Short video scriptwriter Writes hooks and 30-second scripts from one idea or a blog post. $59 +",
     "Automation pack ⇄ Long-to-short clip cutter Drops long recordings into a folder and gets back short clips ready for review. $249 +",
     "Micro tool ◧ Caption studio Brand-styled captions and every aspect ratio from one upload. $25 / month +",
     "Related",
     "More in Sales & Marketing.",
-    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
-    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
-    "Sales & Marketing Inbound lead response Reply to every new lead within minutes, day or night. Live in 2–4 weeks →"
+    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. →",
+    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. →",
+    "Sales & Marketing Inbound lead response Reply to every new lead, day or night. →"
   ],
   "solution-is-it-safe": [
     "Services",
-    "Check what your AI can see, say and do before you launch. Typically live in 4–6 weeks.",
+    "Check what your AI can see, say and do before you launch.",
     "The problem shows up",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
@@ -799,7 +801,7 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1",
-    "4–6 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ AI safety check blueprint The complete system for ai safety check: agents, workflows, approval steps and setup packs. $1,500 +",
     "Claude skill ✦ Agent safety checklist Runs an agent through privacy, safety and human-in-the-loop checks and writes a plain report. $59 +",
     "Micro tool ◧ Agent monitor Shows what each agent did, what it could see and anything Sage flagged. $49 / month +",
@@ -807,7 +809,7 @@ export const computedText = {
   ],
   "solution-review-my-agent": [
     "Services",
-    "An expert review of an agent you or a vendor built. Typically live in 4–6 weeks.",
+    "An expert review of an agent you or a vendor built.",
     "The problem shows up",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
@@ -819,14 +821,14 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1",
-    "4–6 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ AI agent review blueprint The complete system for ai agent review: agents, workflows, approval steps and setup packs. $1,500 +",
     "Claude skill ✦ Agent safety checklist Runs an agent through privacy, safety and human-in-the-loop checks and writes a plain report. $59 +",
     "Micro tool ◧ Agent monitor Shows what each agent did, what it could see and anything Sage flagged. $49 / month +"
   ],
   "solution-client-updates": [
     "Solutions",
-    "Send clients a clear weekly update without writing it yourself. Typically live in 2–3 weeks.",
+    "Send clients a clear weekly update without writing it yourself.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -836,16 +838,16 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1 · Results of step 2",
-    "2–3 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Client progress updates blueprint The complete system for client progress updates: agents, workflows, approval steps and setup packs. $1,500 +",
     "Related",
     "More in Customer Experience.",
-    "Customer Experience AI chat and voice support Answer common questions instantly. A person handles the rest. Live in 4–6 weeks →",
-    "Customer Experience Client onboarding Collect forms, contracts and setup details automatically. Live in 3–5 weeks →"
+    "Customer Experience AI chat and voice support Answer common questions. A person handles the rest. →",
+    "Customer Experience Client onboarding Collect forms, contracts and setup details automatically. →"
   ],
   "solution-proposals": [
     "Solutions",
-    "Turn a sales call into a ready-to-send proposal the same day. Typically live in 2–4 weeks.",
+    "Turn a sales call into a ready-to-send proposal.",
     "Sales call with Acme Ltd ends",
     "Call transcript",
     "Price list",
@@ -858,19 +860,19 @@ export const computedText = {
     "Client details correct",
     "Human in the loop · Account owner",
     "Send this proposal for signature?",
-    "Proposal sent for e-signature the same day",
+    "Proposal sent for e-signature",
     "Every agent reads and writes here: Call summary · Draft proposal",
-    "2–4 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Proposals and quotes blueprint The complete system for proposals and quotes: agents, workflows, approval steps and setup packs. $1,500 +",
     "Related",
     "More in Sales & Marketing.",
-    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
-    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
-    "Sales & Marketing Inbound lead response Reply to every new lead within minutes, day or night. Live in 2–4 weeks →"
+    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. →",
+    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. →",
+    "Sales & Marketing Inbound lead response Reply to every new lead, day or night. →"
   ],
   "solution-reporting": [
     "Solutions",
-    "Get your key numbers every Monday, pulled from your tools. Typically live in 3–4 weeks.",
+    "Get your key numbers every Monday, pulled from your tools.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -880,15 +882,15 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1 · Results of step 2",
-    "3–4 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Reporting and dashboards blueprint The complete system for reporting and dashboards: agents, workflows, approval steps and setup packs. $1,500 +",
     "Related",
     "More in Finance & Reporting.",
-    "Finance & Reporting Invoice reminders Follow up on unpaid invoices automatically and politely. Live in 2–3 weeks →"
+    "Finance & Reporting Invoice reminders Follow up on unpaid invoices automatically and politely. →"
   ],
   "solution-invoice-chase": [
     "Solutions",
-    "Follow up on unpaid invoices automatically and politely. Typically live in 2–3 weeks.",
+    "Follow up on unpaid invoices automatically and politely.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -898,15 +900,15 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1",
-    "2–3 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Invoice reminders blueprint The complete system for invoice reminders: agents, workflows, approval steps and setup packs. $1,500 +",
     "Related",
     "More in Finance & Reporting.",
-    "Finance & Reporting Reporting and dashboards Get your key numbers every Monday, pulled from your tools. Live in 3–4 weeks →"
+    "Finance & Reporting Reporting and dashboards Get your key numbers every Monday, pulled from your tools. →"
   ],
   "solution-call-assistant": [
     "Solutions",
-    "Call customers automatically about bookings, delays and renewals. Typically live in 4–6 weeks.",
+    "Call customers automatically about bookings, delays and renewals.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -916,17 +918,17 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1",
-    "4–6 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Automated phone calls blueprint The complete system for automated phone calls: agents, workflows, approval steps and setup packs. $1,500 +",
     "Related",
     "More in Operations & Admin.",
-    "Operations & Admin Admin and data entry Stop copying data between tools and chasing routine tasks. Live in 3–5 weeks →",
-    "Operations & Admin Tool integrations Connect your CRM, billing and project tools so data stays in sync. Live in 3–5 weeks →",
-    "Operations & Admin Meeting notes and follow-ups Get notes, action items and follow-ups minutes after every meeting. Live in 2–3 weeks →"
+    "Operations & Admin Admin and data entry Stop copying data between tools and chasing routine tasks. →",
+    "Operations & Admin Tool integrations Connect your CRM, billing and project tools so data stays in sync. →",
+    "Operations & Admin Meeting notes and follow-ups Get notes, action items and follow-ups after every meeting. →"
   ],
   "solution-meeting-notes": [
     "Solutions",
-    "Get notes, action items and follow-ups minutes after every meeting. Typically live in 2–3 weeks.",
+    "Get notes, action items and follow-ups after every meeting.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -936,17 +938,17 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1 · Results of step 2",
-    "2–3 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Meeting notes and follow-ups blueprint The complete system for meeting notes and follow-ups: agents, workflows, approval steps and setup packs. $1,500 +",
     "Related",
     "More in Operations & Admin.",
-    "Operations & Admin Admin and data entry Stop copying data between tools and chasing routine tasks. Live in 3–5 weeks →",
-    "Operations & Admin Tool integrations Connect your CRM, billing and project tools so data stays in sync. Live in 3–5 weeks →",
-    "Operations & Admin Automated phone calls Call customers automatically about bookings, delays and renewals. Live in 4–6 weeks →"
+    "Operations & Admin Admin and data entry Stop copying data between tools and chasing routine tasks. →",
+    "Operations & Admin Tool integrations Connect your CRM, billing and project tools so data stays in sync. →",
+    "Operations & Admin Automated phone calls Call customers automatically about bookings, delays and renewals. →"
   ],
   "solution-design-intake": [
     "Solutions",
-    "Every design request arrives with a brief, assets and a deadline. Typically live in 2–4 weeks.",
+    "Every design request arrives with a brief, assets and a deadline.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -956,16 +958,16 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1 · Results of step 2",
-    "2–4 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Design request intake blueprint The complete system for design request intake: agents, workflows, approval steps and setup packs. $1,500 +",
     "Related",
     "More in Design Operations.",
-    "Design Operations Asset resizing and variants Create every size and format from one approved design. Live in 2–4 weeks →",
-    "Design Operations Design QA and handoff Check specs and accessibility before designs reach developers. Live in 3–4 weeks →"
+    "Design Operations Asset resizing and variants Create every size and format from one approved design. →",
+    "Design Operations Design QA and handoff Check specs and accessibility before designs reach developers. →"
   ],
   "solution-asset-variants": [
     "Solutions",
-    "Create every size and format from one approved design. Typically live in 2–4 weeks.",
+    "Create every size and format from one approved design.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -975,16 +977,16 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1 · Results of step 2",
-    "2–4 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Asset resizing and variants blueprint The complete system for asset resizing and variants: agents, workflows, approval steps and setup packs. $1,500 +",
     "Related",
     "More in Design Operations.",
-    "Design Operations Design request intake Every design request arrives with a brief, assets and a deadline. Live in 2–4 weeks →",
-    "Design Operations Design QA and handoff Check specs and accessibility before designs reach developers. Live in 3–4 weeks →"
+    "Design Operations Design request intake Every design request arrives with a brief, assets and a deadline. →",
+    "Design Operations Design QA and handoff Check specs and accessibility before designs reach developers. →"
   ],
   "solution-design-qa": [
     "Solutions",
-    "Check specs and accessibility before designs reach developers. Typically live in 3–4 weeks.",
+    "Check specs and accessibility before designs reach developers.",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
     "Facts match sources",
@@ -994,16 +996,16 @@ export const computedText = {
     "Human in the loop · You",
     "Approve the result?",
     "Every agent reads and writes here: Results of step 1",
-    "3–4 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Design QA and handoff blueprint The complete system for design qa and handoff: agents, workflows, approval steps and setup packs. $1,500 +",
     "Related",
     "More in Design Operations.",
-    "Design Operations Design request intake Every design request arrives with a brief, assets and a deadline. Live in 2–4 weeks →",
-    "Design Operations Asset resizing and variants Create every size and format from one approved design. Live in 2–4 weeks →"
+    "Design Operations Design request intake Every design request arrives with a brief, assets and a deadline. →",
+    "Design Operations Asset resizing and variants Create every size and format from one approved design. →"
   ],
   "solution-marketing-team": [
     "Solutions",
-    "Content, search and follow-up handled by one coordinated team. Typically live in 4–6 weeks.",
+    "Content, search and follow-up handled by one coordinated team.",
     "The problem shows up",
     "Your rules and templates",
     "Split the job, run the agents, check, get approval",
@@ -1020,7 +1022,7 @@ export const computedText = {
     "Results are hard to read",
     "A weekly rhythm of content, search work and follow-up",
     "A person on our team checks in with you",
-    "4–6 weeks: audit, build and test, then live with approvals.",
+    "",
     "Blueprint ▦ Social media content blueprint The complete system for social media content: agents, workflows, approval steps and setup packs. $1,500 +",
     "Blueprint ▦ SEO and AI search visibility blueprint The complete system for seo and ai search visibility: agents, workflows, approval steps and setup packs. $1,500 +",
     "Blueprint ▦ Inbound lead response blueprint The complete system for inbound lead response: agents, workflows, approval steps and setup packs. $1,500 +",
@@ -1032,7 +1034,7 @@ export const computedText = {
     "Claude skill ✦ AI answer visibility audit Checks how your business shows up in AI assistant answers and drafts fixes. $99 +",
     "Claude skill ✦ Lead qualifier Scores new leads against your best clients and writes the first reply. $69 +",
     "Claude skill ✦ Proposal writer Turns call notes into a clean proposal in your format. $89 +",
-    "Automation pack ⇄ Lead router Catches every enquiry, logs it in the CRM and sends the first reply in minutes. $249 +",
+    "Automation pack ⇄ Lead router Catches every enquiry, logs it in the CRM and sends the first reply. $249 +",
     "Automation pack ⇄ Social scheduler Moves approved posts from your content calendar to Facebook and Instagram on schedule. $199 +",
     "Micro tool ◧ Lead inbox One screen for every lead, its status and what Relay did. Built for small teams. $29 / month +",
     "Micro tool ◧ Brand kit studio Stores your colors, fonts and voice so every agent and teammate stays on brand. $19 / month +",
@@ -1042,8 +1044,8 @@ export const computedText = {
     "Template ▤ Content calendar A 12-week calendar with post types, approvals and a weekly rhythm. $29 +",
     "Related",
     "More in Sales & Marketing.",
-    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
-    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
-    "Sales & Marketing Inbound lead response Reply to every new lead within minutes, day or night. Live in 2–4 weeks →"
+    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. →",
+    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. →",
+    "Sales & Marketing Inbound lead response Reply to every new lead, day or night. →"
   ]
 };

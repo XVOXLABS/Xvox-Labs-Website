@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useState } from "react";
 import AgentPopup from "@/components/sections/shared/AgentPopup/AgentPopup";
-import Button from "@/components/ui/Button/Button";
 import { agentImageSize } from "@/lib/agentImages";
 import { TOAST_EVENT } from "@/lib/cart";
 import { fill } from "@/lib/content";
@@ -39,7 +38,7 @@ export function AgentArt({ agent, className }) {
   );
 }
 
-export function ModelSelector({ models, label, toast }) {
+export function ModelSelector({ models, label, toast, note, agents }) {
   const [active, setActive] = useState(0);
 
   function select(index) {
@@ -50,16 +49,24 @@ export function ModelSelector({ models, label, toast }) {
   }
 
   return (
-    <div>
-      <ul className={styles.modelStrip}>
-        {models.map(({ name }, i) => <li key={name} className={i === active ? styles.currentModel : undefined}>{name}</li>)}
-      </ul>
-      <div className={styles.three} role="group" aria-label={label}>
-        {models.map(({ name, maker }, i) => (
-          <Button key={name} variant="secondary" className={styles.modelButton} aria-pressed={i === active} onClick={() => select(i)}>
-            <strong>{name}</strong> <span>{maker}</span> <span aria-hidden="true">⇄</span>
-          </Button>
-        ))}
+    <div className={styles.models}>
+      <div className={styles.modelStage} aria-hidden="true">
+        <div className={styles.sockets}>
+          {models.map(({ name }, i) => <span key={name} className={i === active ? styles.socketOn : undefined}><i />{name}</span>)}
+        </div>
+        <div className={styles.gang}>
+          {agents.map((agent) => <AgentArt key={agent.id} agent={agent} className={styles.gangArt} />)}
+        </div>
+      </div>
+      <div className={styles.modelList}>
+        <div role="group" aria-label={label}>
+          {models.map(({ name, maker }, i) => (
+            <button key={name} type="button" className={styles.modelButton} aria-pressed={i === active} onClick={() => select(i)}>
+              <span><strong>{name}</strong><small>{maker}</small></span> <span aria-hidden="true">⇄</span>
+            </button>
+          ))}
+        </div>
+        <p>{note}</p>
       </div>
     </div>
   );

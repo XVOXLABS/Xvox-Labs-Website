@@ -2,6 +2,14 @@
   padding-block: var(--section-pad-y);
 }
 
+.section:has([data-page-head]) {
+  padding-block: clamp(40px, 6vw, 90px) 20px;
+}
+
+.section:has([data-page-head]) + .section {
+  padding-block-start: 10px;
+}
+
 .inner {
   display: flex;
   flex-direction: column;

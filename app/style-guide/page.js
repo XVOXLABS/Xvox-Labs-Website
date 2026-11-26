@@ -5,7 +5,6 @@ import { faq } from "@/data/faq";
 import { items } from "@/data/marketplace";
 import { solutions } from "@/data/solutions";
 import Accordion from "@/components/ui/Accordion/Accordion";
-import Badge from "@/components/ui/Badge/Badge";
 import Button from "@/components/ui/Button/Button";
 import Card from "@/components/ui/Card/Card";
 import Category from "@/components/ui/Category/Category";
@@ -126,7 +125,6 @@ export default function StyleGuidePage() {
           {scout.traits.map((t) => (
             <Tag key={t}>{t}</Tag>
           ))}
-          <Badge icon="◷">{sample.workflow.timeline}</Badge>
         </div>
       </Section>
 

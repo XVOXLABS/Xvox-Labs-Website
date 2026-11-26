@@ -17,9 +17,10 @@ import { departments } from "@/data/departments";
 import { faq } from "@/data/faq";
 import { orchestrationText } from "@/data/orchestration";
 import { ladder, pricingDisplay, waysToBuy } from "@/data/pricing";
-import { departmentSolutions, solutionInfo, solutionMarketplace, solutionOrchestration, solutionsText as T } from "@/data/solutionsPages";
+import { departmentSolutions, hubSolutions, solutionInfo, solutionMarketplace, solutionOrchestration, solutionsText as T } from "@/data/solutionsPages";
 import { VOX_HREF } from "@/lib/actions";
 import { block, blocksByTag, fill } from "@/lib/content";
+import DepartmentReference, { DepartmentChips, DepartmentClosing, DepartmentHead, DepartmentSection } from "./DepartmentReference";
 import { BlueprintButton, DepartmentFilter, DepartmentWork, SolutionsBooking } from "./SolutionsInteractions";
 import styles from "./solutions.module.css";
 import EnquiryButton from "@/components/ui/EnquiryButton/EnquiryButton";
@@ -61,15 +62,12 @@ function Closing({ blocks }) {
   const book = block(blocks, "a.btn");
   return (
     <Section>
-      <Frame className={styles.closing}>
-        <SectionHeader
-          layout="center"
-          size="h1"
+      <SectionHeader
+          layout="closing"
           title={block(blocks, "h2").text}
           lead={block(blocks, "p.lead").text}
           action={<div className={styles.actions}><Button href={VOX_HREF}>{block(blocks, "button.btn").text}</Button><Button href={book.href} variant="secondary">{book.text}</Button></div>}
         />
-      </Frame>
     </Section>
   );
 }
@@ -80,7 +78,7 @@ function SolutionCard({ solution }) {
       <Category color={solution.category.color}>{solution.category.name}</Category>
       <h3>{solution.title}</h3>
       <p className={styles.muted}>{solution.description}</p>
-      <span className={styles.cardEnd}>{fill(T.liveIn, solution.workflow)} <span aria-hidden="true">→</span></span>
+      <span className={styles.cardEnd} aria-hidden="true">→</span>
     </Card>
   );
 }
@@ -99,8 +97,8 @@ export function HubSections({ entry }) {
   const filter = section(entry, 2);
   const custom = section(entry, 3);
   const options = blocksByTag(filter, "button").map(({ text }, i) => ({ id: departments[i - 1]?.id ?? "all", label: text }));
-  const cards = departmentSolutions.map((solution) => ({
-    department: solution.group.id,
+  const cards = hubSolutions.map((solution) => ({
+    department: solution.group?.id,
     content: <SolutionCard key={solution.slug} solution={solution} />,
   }));
   const book = block(hero, "a.btn");
@@ -169,42 +167,54 @@ export function DepartmentSections({ entry }) {
   const note = block(buy, "p.note");
   const noteLink = block(buy, "a");
   const draftUnit = block(buy, "small").text;
+  // As on the homepage and Pricing (decision A3), the sentence about prices "to set" stays hidden.
+  const noteSentences = note.text.slice(0, -noteLink.text.length).trim().split(/(?<=\.)\s+/).filter((text) => !text.includes("“to set”"));
+  const closing = section(entry, 5);
+  const closingBook = block(closing, "a.btn");
   const flows = solutions.slice(0, 4).map((solution) => ({
     slug: solution.slug,
     label: solution.label,
     href: solution.href,
     spec: solutionOrchestration(solution),
-    footer: fill(orchestrationText.footer, { blueprint: solution.title, timeline: solution.workflow.timeline }),
+    footer: fill(orchestrationText.footer, { blueprint: solution.title }),
   }));
 
   return (
     <>
-      <Hero eyebrow={department.name} title={department.pain} lead={entry.computedText[0]} image={department.image}
-        breadcrumbs={[block(hero, "a"), { text: department.name }]}>
+      <DepartmentReference
+        eyebrow={department.name}
+        title={department.pain}
+        lead={entry.computedText[0]}
+        image={department.image}
+        breadcrumbs={[block(hero, "a"), { text: department.name }]}
+        solutions={solutions}
+      >
         <Button href={VOX_HREF}>{block(hero, "button.btn").text}</Button>
         <SolutionsBooking href={book.href} about={department.name} path={T.groupAbout} variant="secondary">{book.text}</SolutionsBooking>
-      </Hero>
-      <Section className={styles.following}><SolutionGrid solutions={solutions} /></Section>
-      <Section>
-        <SectionHead layout="center" eyebrow={block(work, "span.eyebrow").text} title={fill(T.departmentWorkflow, department)} />
+      </DepartmentReference>
+      <DepartmentSection variant="team">
+        <DepartmentHead eyebrow={block(work, "span.eyebrow").text} title={fill(T.departmentWorkflow, department)} />
         <DepartmentWork flows={flows} label={block(work, "span.eyebrow").text} seeSolution={block(work, "a.btn").text} />
-      </Section>
-      <Section className={styles.following}>
-        <SectionHead layout="center" eyebrow={block(buy, "span.eyebrow").text} title={block(buy, "h2.big").text} />
-        <BuyingLadder about={department.name} stepLabels={blocksByTag(buy, "span.ln").map(({ text }) => text)}
-          note={{ sentences: note.text.slice(0, -noteLink.text.length).trim().split(/(?<=\.)\s+/), link: noteLink }} />
-        <DraftPrices steps={ladder.filter(({ priceStatus }) => priceStatus === "to-set").map(({ title }) => ({
-          name: title, unit: title === "Hire" ? draftUnit : null,
-        }))} />
-      </Section>
-      <Section className={styles.following}>
-        <div className={styles.chips}>
-          {departments.filter(({ id }) => id !== department.id).map(({ id, name }) => (
-            <Button key={id} href={`/solutions/${id}`} variant="secondary" arrow>{name}</Button>
-          ))}
+      </DepartmentSection>
+      <DepartmentSection variant="buy">
+        <DepartmentHead eyebrow={block(buy, "span.eyebrow").text} title={block(buy, "h2.big").text} />
+        <div>
+          <BuyingLadder about={department.name} stepLabels={blocksByTag(buy, "span.ln").map(({ text }) => text)}
+            note={{ sentences: noteSentences, link: noteLink }} />
+          <DraftPrices steps={ladder.filter(({ priceStatus }) => priceStatus === "to-set").map(({ title }) => ({
+            name: title, unit: title === "Hire" ? draftUnit : null,
+          }))} />
         </div>
-      </Section>
-      <Closing blocks={section(entry, 5)} />
+      </DepartmentSection>
+      <DepartmentSection>
+        <DepartmentChips links={departments.filter(({ id }) => id !== department.id).map(({ id, name }) => ({ href: `/solutions/${id}`, name }))} />
+      </DepartmentSection>
+      <DepartmentSection variant="closing">
+        <DepartmentClosing title={block(closing, "h2").text} lead={block(closing, "p.lead").text}>
+          <Button href={VOX_HREF}>{block(closing, "button.btn").text}</Button>
+          <Button href={closingBook.href} variant="secondary">{closingBook.text}</Button>
+        </DepartmentClosing>
+      </DepartmentSection>
     </>
   );
 }
@@ -226,7 +236,6 @@ function Comparison({ blocks, solution }) {
           ))}
         </div>
         <div className={styles.facts}>
-          <Card><h3>{headings[2].text}</h3><p>{fill(T.timeline, solution.workflow)}</p></Card>
           <Card><h3>{headings[3].text}</h3><ul className={styles.tools}>{tools.map((tool) => <li key={tool}>{tool}</li>)}</ul></Card>
           <Card><h3>{headings[4].text}</h3><p>{data.text.slice(0, -trust.text.length)}<Link href={trust.href}>{trust.text}</Link></p></Card>
         </div>
@@ -290,7 +299,7 @@ function RelatedItems({ blocks, items }) {
   const samples = items.filter(({ priceStatus }) => priceStatus === "placeholder");
   return (
     <Section className={styles.following}>
-      <SectionHead eyebrow={block(blocks, "span.eyebrow").text} title={block(blocks, "h2.big").text}
+      <SectionHead layout="side" eyebrow={block(blocks, "span.eyebrow").text} title={block(blocks, "h2.big").text}
         action={<Button href={market.href} variant="secondary">{market.text}</Button>} />
       <Frame className={styles.market}>
         {items.map((item) => <ItemCard key={item.id} item={item} compact />)}
@@ -323,7 +332,7 @@ export function DetailSections({ entry }) {
 
   return (
     <>
-      <Hero title={solution.title} lead={entry.computedText.find((text) => text.includes(" Typically live in "))}
+      <Hero title={solution.title} lead={solution.description ?? solution.summary}
         eyebrow={solution.category.name} breadcrumbs={[root, parent, { text: solution.title }]}>
         {blueprint ? (PURCHASE_ENABLED ? <BlueprintButton id={blueprint.id}>{block(hero, "button.btn").text}</BlueprintButton>
           : <EnquiryButton about={solution.pain} path={waysToBuy.find(({ action }) => action === "buy").name} />) : null}

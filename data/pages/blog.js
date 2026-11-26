@@ -2,6 +2,8 @@
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
 // Every text block of this page in order. fromData = the same text also lives in a data/ list.
 // hidden + reason "placeholder" = not shown publicly (decision Nov 21, 2026); text kept for reference.
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const page = {
   "prototypeRoute": "#blog",
@@ -92,7 +94,7 @@ export const page = {
         },
         {
           "tag": "p.lead",
-          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up within a day."
+          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up."
         },
         {
           "tag": "button.btn",

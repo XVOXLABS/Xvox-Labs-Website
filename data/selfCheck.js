@@ -4,6 +4,8 @@
 // The questions and the five check areas live in data/safe-ai.js.
 // Demo mode (decision D3): the prototype's "Result saved" / "emailed" confirmation is not used; the page
 // shows the site's demo note instead (data/site.js leadForm.done.demoNote).
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const selfCheckText = {
   answers: [
@@ -30,8 +32,8 @@ export const selfCheckText = {
   invalidEmail: "Add a valid email.",
   // Verdict bands (prototype: tot >= 16, tot >= 10, otherwise). `tint` is a design token name.
   verdicts: [
-    { min: 16, label: "Close to ready", tint: "p3", package: "Quick Scan", text: "A Quick Scan confirms it and catches what a self-check can’t.", packageText: "Automated checks plus an expert pass. 3–5 days." },
-    { min: 10, label: "Ship with fixes", tint: "p2", package: "Full Review", text: "A Full Review finds the gaps and gives you a fix plan.", packageText: "Hands-on testing, report and walkthrough call. 1–2 weeks." },
-    { min: 0, label: "Not ready yet", tint: "p1", package: "Full Review", text: "A Full Review, then a Fix Sprint, is the safest path.", packageText: "Hands-on testing, report and walkthrough call. 1–2 weeks." },
+    { min: 16, label: "Close to ready", tint: "p3", package: "Quick Scan", text: "A Quick Scan confirms it and catches what a self-check can’t.", packageText: "Automated checks plus an expert pass." },
+    { min: 10, label: "Ship with fixes", tint: "p2", package: "Full Review", text: "A Full Review finds the gaps and gives you a fix plan.", packageText: "Hands-on testing, report and walkthrough call." },
+    { min: 0, label: "Not ready yet", tint: "p1", package: "Full Review", text: "A Full Review, then a Fix Sprint, is the safest path.", packageText: "Hands-on testing, report and walkthrough call." },
   ],
 };

@@ -23,7 +23,7 @@ export default function ProblemTiles() {
   const notSure = { label: tile.slice(tile.indexOf(" ") + 1, tile.indexOf(heading)).trim(), heading, text: block(s, "p.muted", 5).text };
   return (
     <Section>
-      <SectionHead eyebrow={block(s, "span.eb2").text} title={block(s, "h2.big").text} lead={block(s, "p.lead").text} />
+      <SectionHead layout="row" eyebrow={block(s, "span.eb2").text} title={block(s, "h2.big").text} lead={block(s, "p.lead").text} />
       <Frame className={styles.grid}>
         {departments.map((d, i) => (
           <Appear key={d.id} delay={Math.min(i, 10) * 70} className={styles.cell}>

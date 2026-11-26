@@ -1,5 +1,7 @@
 // Extracted verbatim from the Xvox Labs HTML prototype v5 (index.html).
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const itemTypes = {
   "blueprint": {
@@ -754,7 +756,7 @@ export const items = [
       "Zoho CRM",
       "Gmail"
     ],
-    "description": "Catches every enquiry, logs it in the CRM and sends the first reply in minutes.",
+    "description": "Catches every enquiry, logs it in the CRM and sends the first reply.",
     "includes": [
       "n8n workflow",
       "Zapier version",

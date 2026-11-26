@@ -1,71 +1,99 @@
+/* Values from the Artifacts prototype (.fork, .fcard, .fimg, .rbtn) */
+.section {
+  padding-block-start: 0;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(12px, 1.4vw, 16px);
+  gap: 16px;
 }
 
 .cell {
   display: flex;
 }
 
-a.card {
-  width: 100%;
-  min-width: 0;
-  padding: clamp(12px, 1.35vw, 20px);
-  gap: 0;
-  border: 1px solid color-mix(in srgb, var(--color-ink) 10%, var(--color-surface));
-}
-
-.copy {
+.card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: clamp(12px, 1.5vw, 20px) clamp(8px, 1.35vw, 20px) clamp(24px, 3.25vw, 44px);
+  width: 100%;
+  min-width: 0;
+  min-height: 600px;
+  padding: clamp(24px, 3vw, 40px);
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--color-control);
+  color: var(--color-ink);
+}
+
+.alt {
+  background: #ecebf3;
+}
+
+.label {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 500;
+  color: var(--color-ink-muted);
 }
 
 .title {
-  font-size: var(--fs-h2);
-  line-height: var(--lh-h2);
-  letter-spacing: var(--ls-h2);
+  font-size: clamp(30px, 3.4vw, 50px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
 }
 
 .text {
+  position: relative;
+  z-index: 1;
   max-width: 40ch;
   font-size: 16px;
   line-height: 24px;
   color: var(--color-ink-muted);
 }
 
-.media {
-  position: relative;
-  flex: none;
-  aspect-ratio: 8 / 5;
-  margin-block-start: auto;
-  overflow: hidden;
-  border-radius: var(--radius-panel);
-}
-
-.media img {
-  object-fit: cover;
-}
-
-.team {
-  object-position: 46% center;
-}
-
-/* Centre the portrait artwork on the stones in the landscape frame. */
-.stones {
-  object-position: center 66%;
-}
-
-.arrow {
+.picture {
   position: absolute;
-  inset-inline-end: clamp(10px, 1.25vw, 16px);
-  inset-block-end: clamp(10px, 1.25vw, 16px);
+  inset: auto 0 0;
+  width: 100%;
+  height: 48%;
+  object-fit: cover;
+  object-position: center 30%;
 }
 
-@media (max-width: 809px) {
+/* The artwork is tall (2:3): keep the stacked stones in the landscape area. In the wide cards the whole
+   stack cannot fit, so the top stone is kept; narrower cards have room for both. */
+.picture.stones {
+  object-position: center 61%;
+}
+
+@media (max-width: 480px), (min-width: 761px) and (max-width: 960px) {
+  .picture.stones {
+    object-position: center 73%;
+  }
+}
+
+.card .arrow {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.4);
+  font-size: 20px;
+}
+
+@media (max-width: 760px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    min-height: 560px;
   }
 }

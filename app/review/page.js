@@ -41,7 +41,7 @@ const mask = (text) => (PURCHASE_ENABLED ? text : text.replace(/\$\s?\d[\d,]*(\.
 function SourceBlocks({ blocks }) {
   return (
     <ul className={styles.blocks}>
-      {blocks.map((block, index) => {
+      {blocks.filter(({ text }) => text !== "").map((block, index) => {
         const { text, prototypeHref, href } = block;
         const target = targets[prototypeHref] ?? targets[routesByHref.get(href)?.hash];
         const action = Object.hasOwn(prototypeActions, prototypeHref) ? prototypeHref : undefined;

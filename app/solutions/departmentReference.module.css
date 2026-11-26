@@ -1,0 +1,345 @@
+/* Values are the Artifacts reference's (.ph1, .crumbs, .dhero, .frame, .grid, .card); colours and
+   font come from the site tokens. */
+.wrap {
+  max-width: calc(1100px + 32px);
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+.hero {
+  padding-block: clamp(40px, 6vw, 90px) 20px;
+}
+
+.crumbs {
+  margin-bottom: 22px;
+  font-size: 13px;
+  /* 24px keeps the link at the minimum target height (the reference uses 19.5px) */
+  line-height: 24px;
+  color: var(--color-ink-muted);
+}
+
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.crumbs li + li::before {
+  content: "/";
+  margin-inline-end: 8px;
+}
+
+.crumbs a {
+  display: inline-block;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.crumbs a:hover {
+  color: var(--color-ink);
+}
+
+.crumbs [aria-current="page"] {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+/* The reference's label: a dark tile with a white dot */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
+  font-size: 13px;
+  line-height: 13px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-button-sm);
+  background:
+    radial-gradient(circle, var(--color-surface) 0 3px, transparent 3.6px),
+    var(--color-dark);
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  max-width: 17ch;
+  margin-top: 18px;
+  font-size: clamp(38px, 6.4vw, 80px);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.lead {
+  max-width: 48ch;
+  margin-top: 16px;
+  font-size: clamp(16px, 1.4vw, 18px);
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.image {
+  position: relative;
+  margin-top: 28px;
+  overflow: hidden;
+  aspect-ratio: 21 / 8;
+  border-radius: 26px;
+  background: var(--color-control);
+}
+
+.image img {
+  object-fit: cover;
+}
+
+.solutions {
+  padding-block: 10px clamp(64px, 9vw, 128px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 8px;
+  padding: 8px;
+  border-radius: 28px;
+  background: var(--color-control);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 220px;
+  padding: 24px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  /* Entrance (.stg): 0.8s, 70ms apart. As in the reference, hover adds a shadow without moving the card. */
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+
+.grid[data-state="out"] > .card {
+  transform: translateY(26px);
+}
+
+.grid > .card:focus-visible {
+  transform: none;
+  transition: none;
+}
+
+/* Light sweep on hover (.sheen) */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.6) 50%, transparent 62%);
+  transform: translateX(-110%);
+  transition: transform 0.9s;
+  pointer-events: none;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.dot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.card h3 {
+  font-size: 24px;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.card p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+.more {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: auto;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+}
+
+.arrow {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-tab);
+  background: var(--color-control);
+  font-weight: 400;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+@media (hover: hover) {
+  .card:hover {
+    box-shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.35);
+  }
+
+  .card:hover::after {
+    transform: translateX(110%);
+  }
+
+  .card:hover .arrow {
+    background: var(--color-dark);
+    color: var(--color-on-dark);
+  }
+}
+
+.card:focus-visible .arrow {
+  background: var(--color-dark);
+  color: var(--color-on-dark);
+}
+
+/* Sections below the cards: no top space, the reference's bottom space */
+.section {
+  padding-block-end: clamp(64px, 9vw, 128px);
+}
+
+.closing {
+  padding-block-start: clamp(64px, 9vw, 128px);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.team .stack {
+  gap: 28px;
+}
+
+.buy .stack {
+  gap: 36px;
+}
+
+/* Label to heading */
+.head {
+  gap: 23px;
+}
+
+/* Section headings (h2.big) */
+.head h2 {
+  max-width: 20ch;
+  margin-inline: auto;
+  font-size: clamp(32px, 4.2vw, 46px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 14px;
+  border-radius: var(--radius-button-sm);
+  background: var(--color-surface);
+  /* The reference's line colour */
+  box-shadow: inset 0 0 0 1px #e7e7e7;
+  color: var(--color-ink);
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 500;
+}
+
+.closingBox {
+  padding: clamp(56px, 9vw, 120px) 16px;
+  border-top: 1px solid #e7e7e7;
+  text-align: center;
+}
+
+.closingBox h2 {
+  font-size: clamp(38px, 6vw, 76px);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+}
+
+.closingBox p {
+  max-width: 48ch;
+  margin: 16px auto 0;
+  font-size: clamp(16px, 1.4vw, 18px);
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+.closingActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+/* The buying cards enter like the reference's .stg: rising 70ms apart, without fading */
+.buy li[data-state] {
+  opacity: 1;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) var(--appear-delay, 0ms);
+}
+
+.buy li[data-state="out"] {
+  transform: translateY(26px);
+}
+
+.buy li[data-state]:focus-within {
+  transform: none;
+  transition: none;
+}
+
+/* Six columns in the 1100px width are about 8px narrower than elsewhere: trim only the buttons' side space so
+   each label stays on one line */
+@media (min-width: 1200px) {
+  .buy li > div:last-child > * {
+    gap: 4px;
+    padding-inline: 2px;
+  }
+}

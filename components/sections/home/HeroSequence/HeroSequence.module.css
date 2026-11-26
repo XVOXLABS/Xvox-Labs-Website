@@ -61,7 +61,7 @@
   letter-spacing: var(--ls-display);
 }
 
-/* Inline icon tile (prototype .htile, accent colour: decision D2) */
+/* Inline icon tile (prototype .htile): black, orange on hover (REF-10) */
 .tile {
   display: inline-grid;
   place-items: center;
@@ -70,14 +70,19 @@
   margin: 0 0.04em;
   vertical-align: -0.06em;
   border-radius: 0.18em;
-  background: var(--color-accent);
+  background: var(--color-ink);
   box-shadow: 0 0.1em 0.25em -0.08em rgba(0, 0, 0, 0.6);
   transform: rotate(-6deg);
-  transition: transform 0.4s;
+  transition:
+    transform 0.4s,
+    background-color var(--dur-fast) var(--ease-out);
 }
 
-.tile:hover {
-  transform: rotate(6deg) scale(1.06);
+@media (hover: hover) {
+  .tile:hover {
+    background: var(--color-accent);
+    transform: rotate(6deg) scale(1.06);
+  }
 }
 
 .tile svg {

@@ -38,7 +38,7 @@ div.grid {
 }
 
 .title {
-  font-size: var(--fs-h3);
+  font-size: clamp(26px, 3vw, 36px);
   line-height: var(--lh-h3);
   letter-spacing: var(--ls-h3);
 }

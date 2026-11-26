@@ -17,7 +17,6 @@
 
 .actions,
 .chips,
-.modelStrip,
 .unsure {
   display: flex;
   flex-wrap: wrap;
@@ -26,7 +25,6 @@
 }
 
 .chips,
-.modelStrip,
 .week,
 .timeline,
 .jobs,
@@ -35,17 +33,11 @@
   padding: 0;
 }
 
-.chips li,
-.modelStrip li {
+.chips li {
   padding: 6px 10px;
   border-radius: var(--radius-button);
   background: var(--color-control);
   overflow-wrap: anywhere;
-}
-
-.modelStrip li.currentModel {
-  background: var(--color-ink);
-  color: var(--color-on-dark);
 }
 
 .muted,
@@ -89,7 +81,6 @@
 
 .cardArt,
 .portraitArt,
-.sageArt,
 .teammateArt {
   display: block;
   min-width: 0;
@@ -102,7 +93,6 @@
 
 .cardArt img,
 .portraitArt img,
-.sageArt img,
 .teammateArt img {
   display: block;
   width: 100%;
@@ -197,13 +187,6 @@
 .banner button.hotspot:focus-visible { z-index: 1; }
 .hotspot:is(:hover, :focus-visible) .hotLabel { visibility: visible; }
 
-.sage {
-  display: flex;
-  justify-content: center;
-}
-
-.sageArt { height: 210px; }
-
 .list {
   padding-inline-start: 1.2em;
 }
@@ -212,61 +195,27 @@
   margin-block-start: 6px;
 }
 
-.delivery {
-  --weeks: minmax(0, 2.3fr) repeat(6, minmax(0, 1fr));
-}
-
-.chartHead,
-.chartRow {
-  display: grid;
-  grid-template-columns: var(--weeks);
-  gap: 6px;
-  align-items: center;
-}
-
-.chartHead span:not(:first-child) { text-align: center; }
-
-.chartRow,
 .boardList li,
 .jobs li + li {
   border-top: 1px solid var(--color-frame);
 }
 
-.chartRow {
+.phase {
   padding: 10px;
+  border-top: 1px solid var(--color-frame);
   background: var(--color-surface);
 }
 
-.chartBar {
-  grid-column: var(--start) / var(--end);
-  padding: 6px;
-  border-radius: var(--radius-tag);
-  background: var(--tint);
-  text-align: center;
-  overflow-wrap: anywhere;
-}
-
-.chartRange {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-}
-
-.modelStrip {
-  margin-block-end: 10px;
-}
-
-.actions :is(a, button),
-.modelButton.modelButton {
+.actions :is(a, button) {
   min-height: 44px;
   white-space: normal;
   text-align: center;
 }
 
-.modelButton.modelButton {
-  width: 100%;
+/* The Vox card uses the shared button but is not a call-to-action button: it keeps its colours on hover */
+.directory .voxCard:hover {
+  background: var(--color-dark);
+  color: var(--color-on-dark);
 }
 
 .boardList li,
@@ -322,8 +271,9 @@
   line-height: var(--lh-lead);
 }
 
+/* The figure stays at the foot of the card, with or without a speech bubble above it */
 .portrait {
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .portrait blockquote {
@@ -357,6 +307,10 @@
 .relatedEnd,
 .checklist {
   margin-block-start: auto;
+}
+
+.relatedEnd {
+  text-align: end;
 }
 
 .sourceNote,
@@ -393,14 +347,6 @@
 
 .teammateArt { width: 32px; height: 32px; }
 
-.closing {
-  padding: clamp(16px, 4vw, 48px);
-}
-
-.closing .actions {
-  justify-content: center;
-}
-
 @media (max-width: 1199px) {
   .four.four,
   .directory.directory { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -413,17 +359,260 @@
   .directory.directory,
   .profileHero { grid-template-columns: minmax(0, 1fr); }
 
-  .chartHead { display: none; }
-  .chartRow { grid-template-columns: minmax(0, 1fr); }
-  .chartBar { grid-column: 1; text-align: start; }
-  .chartRange { position: static; width: auto; height: auto; clip-path: none; }
 
   .weekRow.weekRow { grid-template-columns: minmax(0, 1fr) auto; }
   .weekRow > :nth-child(2) { grid-column: 1 / -1; grid-row: 2; }
-  .four article button[aria-pressed] { min-width: 44px; min-height: 44px; }
 }
 
 @media (max-width: 479px) {
   .banner button.hotspot:is(:nth-of-type(4), :nth-of-type(6)) { inset-block-start: 22px; }
   .banner button.hotspot:is(:nth-of-type(3), :nth-of-type(5)) { inset-block-start: max(66px, var(--y)); }
+}
+
+/* Prototype .card */
+.relatedCard {
+  min-height: 220px;
+  padding: 24px;
+  border-radius: 20px;
+}
+
+.relatedCard h3 {
+  font-size: 24px;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+/* Prototype .pcell: small grey capitals above the text */
+.smallHead.smallHead,
+.cellHead h3 {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+/* Prototype .acard */
+.directory .agentCard,
+.directory .voxCard {
+  min-height: 400px;
+  padding: 22px;
+  border-radius: 22px;
+}
+
+.agentCard h3,
+.voxContent strong {
+  font-size: 30px;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.directory .cardArt {
+  height: 230px;
+  margin: auto -22px -24px;
+}
+
+.directory .cardArrow {
+  inset-block: 18px auto;
+  inset-inline-end: 18px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-button);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--color-ink);
+}
+
+/* Prototype .ahero: tinted stage beside a white card */
+.profileTop {
+  padding-block: clamp(40px, 6vw, 90px) clamp(64px, 9vw, 128px);
+}
+
+.profileHero.profileHero {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.profileHero .portrait {
+  min-height: 480px;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+.portrait .portraitArt {
+  width: min(66%, 320px);
+  height: auto;
+  aspect-ratio: 1;
+  margin: 0 auto -7%;
+}
+
+.profileIntro {
+  align-content: center;
+  padding: clamp(22px, 3vw, 34px);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+/* Prototype .models */
+.models {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 8px;
+}
+
+.modelStage {
+  position: relative;
+  display: grid;
+  align-content: space-between;
+  gap: 24px;
+  min-height: 360px;
+  padding: 20px;
+  overflow: hidden;
+  border-radius: 22px;
+  background: var(--tint-p4);
+}
+
+.sockets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 48px;
+}
+
+.sockets > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: var(--radius-badge);
+  background: var(--color-surface);
+  box-shadow: 0 10px 24px -16px rgba(0, 0, 0, 0.4);
+  font-size: 14px;
+  font-weight: 500;
+  transition: transform 0.3s;
+}
+
+.sockets i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #cfcfcf;
+}
+
+.sockets > .socketOn {
+  transform: translateY(-4px);
+}
+
+.sockets > .socketOn i {
+  background: var(--color-accent);
+}
+
+.gang {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.gang .gangArt {
+  flex: 1;
+  max-width: 110px;
+  aspect-ratio: 1;
+}
+
+.gangArt img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.modelList,
+.modelList > div {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modelList {
+  padding: 22px;
+  border-radius: 22px;
+  background: var(--color-surface);
+}
+
+.modelList p {
+  font-size: 13px;
+  color: var(--color-ink-muted);
+}
+
+.modelButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: var(--radius-badge);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 16px;
+  text-align: start;
+  cursor: pointer;
+  transition:
+    transform 0.25s,
+    background-color 0.25s;
+}
+
+.modelButton strong {
+  display: block;
+  font-weight: 500;
+}
+
+.modelButton small {
+  display: block;
+  font-size: 13px;
+  color: var(--color-ink-muted);
+}
+
+.modelButton[aria-pressed="true"] {
+  background: var(--tint-p3);
+  transform: translateX(6px);
+}
+
+@media (hover: hover) {
+  .modelButton:hover {
+    background: var(--tint-p3);
+    transform: translateX(6px);
+  }
+}
+
+@media (max-width: 860px) {
+  .models,
+  .profileHero.profileHero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .modelButton[aria-pressed="true"],
+  .modelButton:hover {
+    transform: none;
+  }
+}
+
+.unsure.unsure {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 8px;
+  padding: 18px 22px;
+  border-radius: 22px;
+  background: var(--tint-p3);
+}
+
+.unsure > div {
+  flex: 1 1 240px;
 }

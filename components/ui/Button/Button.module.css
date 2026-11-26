@@ -14,25 +14,15 @@
   white-space: nowrap;
   transition:
     background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
     opacity var(--dur-fast) var(--ease-out);
 }
 
-.primary {
-  background: var(--color-black);
-  color: var(--color-on-dark);
-}
-
-.secondary {
-  background: var(--color-frame);
-  color: var(--color-ink);
-}
-
+/* Sizes. "small" is the compact secondary button, "accent" the large primary form button. */
 .small {
   min-height: 34px;
   padding: 9px 14px;
   border-radius: var(--radius-button-sm);
-  background: var(--color-frame);
-  color: var(--color-ink);
 }
 
 .accent {
@@ -40,8 +30,35 @@
   padding: 0 22px;
   gap: 10px;
   border-radius: var(--radius-badge);
-  background: var(--color-accent);
+}
+
+/* Site-wide colours (REF-10). Primary: black, orange on hover. Secondary: light grey, black on hover. */
+.primary,
+.accent {
+  background: var(--color-ink);
   color: var(--color-on-dark);
+}
+
+.secondary,
+.small {
+  background: var(--color-control);
+  color: var(--color-ink);
+}
+
+/* Hover only where a pointer can hover, so nothing stays highlighted after a tap. The keyboard focus ring
+   is the global :focus-visible outline. */
+@media (hover: hover) {
+  .primary:hover,
+  .accent:hover {
+    background: var(--color-accent);
+    color: var(--color-on-dark);
+  }
+
+  .secondary:hover,
+  .small:hover {
+    background: var(--color-ink);
+    color: var(--color-on-dark);
+  }
 }
 
 .full {

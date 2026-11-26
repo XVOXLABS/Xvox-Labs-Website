@@ -2,6 +2,8 @@
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
 // Every text block of this page in order. fromData = the same text also lives in a data/ list.
 // hidden + reason "placeholder" = not shown publicly (decision Nov 21, 2026); text kept for reference.
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const page = {
   "prototypeRoute": "#pricing",
@@ -71,7 +73,7 @@ export const page = {
         },
         {
           "tag": "p",
-          "text": "A week mapping your process, tools and approvals. Credited to the build.",
+          "text": "Mapping your process, tools and approvals. Credited to the build.",
           "fromData": true
         },
         {
@@ -294,25 +296,25 @@ export const page = {
         },
         {
           "tag": "th",
-          "text": "Time to live"
+          "text": ""
         },
         {
           "tag": "td",
-          "text": "Your pace"
+          "text": ""
         },
         {
           "tag": "td.hi",
-          "text": "4–6 weeks",
+          "text": "",
           "fromData": true
         },
         {
           "tag": "td",
-          "text": "4–6 weeks",
+          "text": "",
           "fromData": true
         },
         {
           "tag": "td",
-          "text": "Scoped in the audit"
+          "text": ""
         },
         {
           "tag": "th",
@@ -413,7 +415,7 @@ export const page = {
         },
         {
           "tag": "h2.big",
-          "text": "Fixed prices, instant download."
+          "text": "Fixed prices."
         },
         {
           "tag": "a.btn",
@@ -485,7 +487,7 @@ export const page = {
         },
         {
           "tag": "p.lead",
-          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up within a day."
+          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up."
         },
         {
           "tag": "button.btn",

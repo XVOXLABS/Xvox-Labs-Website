@@ -1,5 +1,9 @@
 // Extracted verbatim from the Xvox Labs HTML prototype v5 (index.html).
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-8): the prototype's service "timeline" values were
+// removed because the durations are not verified.
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const servicePillars = [
   {
@@ -70,13 +74,12 @@ export const services = [
     "id": "ux-research",
     "pillar": "design",
     "title": "AI-driven UX research",
-    "summary": "Interviews, surveys and analytics, synthesised fast with AI and checked by researchers.",
+    "summary": "Interviews, surveys and analytics, synthesised with AI and checked by researchers.",
     "deliverables": [
       "Research plan and recruiting",
       "Interview and survey synthesis",
       "Personas and journey maps"
     ],
-    "timeline": "2–4 weeks",
     "solutions": []
   },
   {
@@ -89,7 +92,6 @@ export const services = [
       "Speed and Core Web Vitals check",
       "Prioritised fix list"
     ],
-    "timeline": "1–2 weeks",
     "solutions": [
       "confusing-site"
     ]
@@ -104,7 +106,6 @@ export const services = [
       "Wireframes and prototypes",
       "Usability testing"
     ],
-    "timeline": "4–8 weeks",
     "solutions": []
   },
   {
@@ -117,7 +118,6 @@ export const services = [
       "High-fidelity screens",
       "Component specs"
     ],
-    "timeline": "3–6 weeks",
     "solutions": []
   },
   {
@@ -130,7 +130,6 @@ export const services = [
       "Design and build in Framer, Webflow or code",
       "SEO and AEO setup"
     ],
-    "timeline": "4–8 weeks",
     "solutions": [
       "confusing-site"
     ]
@@ -145,7 +144,6 @@ export const services = [
       "Documentation",
       "DesignOps workflow"
     ],
-    "timeline": "4–10 weeks",
     "solutions": [
       "inconsistent-brand",
       "design-intake"
@@ -155,13 +153,12 @@ export const services = [
     "id": "nano-tools",
     "pillar": "design",
     "title": "Nano tools and MVPs",
-    "summary": "Small tools built around one problem, shipped fast. Some are already in the marketplace.",
+    "summary": "Small tools built around one problem. Some are already in the marketplace.",
     "deliverables": [
       "Problem framing",
       "A working tool",
       "Handover or hosting"
     ],
-    "timeline": "2–6 weeks",
     "solutions": []
   },
   {
@@ -174,7 +171,6 @@ export const services = [
       "Your process and brand",
       "Flexible monthly capacity"
     ],
-    "timeline": "Ongoing",
     "solutions": []
   },
   {
@@ -187,7 +183,6 @@ export const services = [
       "Agent and workflow build",
       "Human checkpoints and Sage checks"
     ],
-    "timeline": "4–8 weeks",
     "solutions": [
       "admin-overload"
     ]
@@ -202,7 +197,6 @@ export const services = [
       "Skills and custom instructions",
       "Connectors to your tools"
     ],
-    "timeline": "1–3 weeks",
     "solutions": []
   },
   {
@@ -215,7 +209,6 @@ export const services = [
       "Orchestration design",
       "Build, test and hand over"
     ],
-    "timeline": "3–6 weeks",
     "solutions": [
       "tools-dont-talk"
     ]
@@ -230,7 +223,6 @@ export const services = [
       "Prompt and skill libraries",
       "Usage policy walkthrough"
     ],
-    "timeline": "1–2 weeks",
     "solutions": []
   },
   {
@@ -243,7 +235,6 @@ export const services = [
       "Answer-ready pages and structured data",
       "Monthly search and AI citation tracking"
     ],
-    "timeline": "4–6 weeks, then monthly",
     "solutions": [
       "found-online"
     ]
@@ -258,7 +249,6 @@ export const services = [
       "Identity system",
       "Brand guidelines"
     ],
-    "timeline": "4–6 weeks",
     "solutions": [
       "inconsistent-brand"
     ]
@@ -273,7 +263,6 @@ export const services = [
       "Voice and tone guide",
       "Organised asset library"
     ],
-    "timeline": "2–4 weeks",
     "solutions": [
       "inconsistent-brand"
     ]
@@ -288,7 +277,6 @@ export const services = [
       "Landing page assets",
       "Email and ad creatives"
     ],
-    "timeline": "2–3 weeks",
     "solutions": [
       "asset-variants"
     ]
@@ -303,7 +291,6 @@ export const services = [
       "Templates for your team",
       "Approval workflow"
     ],
-    "timeline": "Monthly",
     "solutions": [
       "consistent-posting"
     ]
@@ -318,7 +305,6 @@ export const services = [
       "Calendar and workflow",
       "Agent setup"
     ],
-    "timeline": "3–4 weeks",
     "solutions": [
       "consistent-posting",
       "found-online"
@@ -334,7 +320,6 @@ export const services = [
       "Scores across five areas",
       "Ranked findings and a fix plan"
     ],
-    "timeline": "3 days to 2 weeks",
     "solutions": [
       "is-it-safe",
       "review-my-agent"
@@ -350,7 +335,6 @@ export const services = [
       "Staff one-pager",
       "Guardrail settings"
     ],
-    "timeline": "1–2 weeks",
     "solutions": [
       "is-it-safe"
     ]
@@ -365,7 +349,6 @@ export const services = [
       "Regression checks",
       "Trend report"
     ],
-    "timeline": "Monthly",
     "solutions": [
       "review-my-agent"
     ]

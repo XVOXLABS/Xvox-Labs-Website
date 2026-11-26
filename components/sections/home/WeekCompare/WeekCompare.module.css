@@ -20,9 +20,9 @@ div.grid {
 }
 
 .title {
-  font-size: var(--fs-h3);
+  font-size: clamp(28px, 3.4vw, 44px);
   line-height: var(--lh-h3);
-  letter-spacing: var(--ls-h3);
+  letter-spacing: -0.035em;
 }
 
 .list {
@@ -54,4 +54,27 @@ div.grid {
   div.grid {
     grid-template-columns: minmax(0, 1fr);
   }
+}
+
+/* Prototype .wk: one bordered panel, the second half tinted */
+div.grid {
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: 28px;
+  background: transparent;
+}
+
+.grid .card {
+  padding: clamp(24px, 4vw, 56px);
+  border-radius: 0;
+}
+
+.grid .without {
+  background: transparent;
+}
+
+.grid .with {
+  background: var(--color-frame);
 }

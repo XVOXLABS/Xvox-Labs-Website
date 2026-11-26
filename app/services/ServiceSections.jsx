@@ -45,22 +45,19 @@ function Closing({ blocks }) {
   const book = block(blocks, "a.btn");
   return (
     <Section>
-      <Frame className={styles.closing}>
-        <SectionHeader layout="center" size="h1" title={block(blocks, "h2").text} lead={block(blocks, "p.lead").text}
+      <SectionHeader layout="closing" title={block(blocks, "h2").text} lead={block(blocks, "p.lead").text}
           action={<div className={styles.actions}>
             <Button href={VOX_HREF}>{block(blocks, "button.btn").text}</Button>
             <Button href={book.href} variant="secondary">{book.text}</Button>
           </div>} />
-      </Frame>
     </Section>
   );
 }
 
-function ServiceRow({ href, title, summary, timeline }) {
+function ServiceRow({ href, title, summary }) {
   return (
     <Card href={href} className={styles.row}>
       <div><h3>{title}</h3><p className={styles.muted}>{summary}</p></div>
-      <div><small>{T.timeline}</small><p>{timeline}</p></div>
       <span className={styles.arrow} aria-hidden="true">›</span>
     </Card>
   );
@@ -152,8 +149,8 @@ export function Area({ entry }) {
       <Section className={styles.following}>
         <div className={styles.siblings}>
           {areasInOrder.filter(({ href }) => href !== entry.href).map(({ href, title }) =>
-            <Button key={href} href={href} variant="secondary" arrow>{title}</Button>)}
-          <Button href={studio.href} variant="secondary">{studio.text}</Button>
+            <Link key={href} href={href}>{title}<span aria-hidden="true">→</span></Link>)}
+          <Link href={studio.href}>{studio.text}</Link>
         </div>
       </Section>
       <Closing blocks={section(entry, 4)} />
@@ -180,7 +177,7 @@ function RelatedSolutions({ entries }) {
             <Category color={solution.category.color}>{solution.category.name}</Category>
             <h3>{solution.title}</h3>
             <p className={styles.muted}>{solution.description}</p>
-            <span className={styles.cardEnd}>{fill(T.liveIn, solution.workflow)} <span aria-hidden="true">→</span></span>
+            <span className={`${styles.cardEnd} ${styles.arrowOnly}`} aria-hidden="true">→</span>
           </Card>
         ))}
       </Frame>
@@ -212,7 +209,8 @@ export function Detail({ entry }) {
   const area = serviceAreaById.get(service.pillar);
   const hero = section(entry, 0);
   const book = block(hero, "a.btn");
-  const [deliverables, timeline, price] = entry.computedText;
+  // The second computed line is the prototype's "Timeline" label, which is not shown.
+  const [deliverables, , price] = entry.computedText;
   const related = serviceRelated(entry);
   return (
     <>
@@ -231,15 +229,14 @@ export function Detail({ entry }) {
               </Card>
             ))}
           </div>
-          <div className={PURCHASE_ENABLED ? styles.two : styles.one}>
-            <Card><h2>{timeline}</h2><p>{service.timeline}</p></Card>
-            {PURCHASE_ENABLED ? (
+          {PURCHASE_ENABLED ? (
+            <div className={styles.one}>
               <Card>
                 <h2>{price}</h2><Price showCta={false} status="to-set" />
                 <DraftPrice note={T.priceNote} />
               </Card>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
         </Frame>
       </Section>
       {related.solutions.length ? <RelatedSolutions entries={related.solutions} /> : null}

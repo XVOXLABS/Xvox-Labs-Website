@@ -1,3 +1,5 @@
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 import { agents, coreAgentIds } from "./agents.js";
 import { departments, otherCategories } from "./departments.js";
 import { items } from "./marketplace.js";
@@ -21,8 +23,6 @@ const marketingTeam = {
 };
 
 export const solutionsText = {
-  timeline: "{timeline}: audit, build and test, then live with approvals.",
-  liveIn: "Live in {timeline}",
   departmentWorkflow: "{name}, step by step.",
   moreIn: "More in {name}.",
   related: "Related",
@@ -41,7 +41,6 @@ export function solutionInfo(entry) {
     trigger: "The problem shows up",
     steps: record.agentIds.map((id) => ({ agent: id, does: agents.find((agent) => agent.id === id).line })),
     outcome: record.with[0],
-    timeline: "4–6 weeks",
   };
   return {
     ...record,
@@ -56,6 +55,8 @@ export function solutionInfo(entry) {
 
 const solutions = solutionEntries.map(solutionInfo);
 export const departmentSolutions = solutions.filter(({ group, isBundle }) => group && !isBundle);
+// The hub's grid: every solution except the bundle (prototype drawGrid).
+export const hubSolutions = solutions.filter(({ isBundle }) => !isBundle);
 
 export function solutionMarketplace(solution) {
   const slugs = solution.isBundle

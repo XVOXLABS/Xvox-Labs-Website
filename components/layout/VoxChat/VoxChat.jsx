@@ -370,7 +370,7 @@ export default function VoxChat() {
           data-footer={footerInView ? "in" : "out"}
           data-agent-overlap={pathname === "/" && agentOverlap ? "true" : undefined}
         >
-          <Image src={vox.image} alt="" width={28} height={28} className={styles.face} />
+          <Image src={vox.image} alt="" width={38} height={38} className={styles.face} />
           <span className={styles.label}>{askVox.label}</span>
           <span className={styles.dot} aria-hidden="true" />
           {nudge ? <span className={styles.nudge} aria-hidden="true">{askVox.nudge}</span> : null}

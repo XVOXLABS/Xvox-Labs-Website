@@ -47,7 +47,7 @@ function CompareTable({ blocks }) {
           </tr>
         </thead>
         <tbody>
-          {rows.filter((row) => PURCHASE_ENABLED || row.label !== "Price").map((row) => (
+          {rows.filter((row) => row.label && (PURCHASE_ENABLED || row.label !== "Price")).map((row) => (
             <tr key={row.label}>
               <th scope="row">{row.label}</th>
               {row.cells.map((cell, i) => <td key={i} className={cell.tag.endsWith(".hi") ? styles.hi : undefined}>{priceText(row, cell)}</td>)}
@@ -127,7 +127,7 @@ export function BookPage({ entry }) {
   }));
   return (
     <>
-      <Intro blocks={head} />
+      <Intro blocks={head} size="wide" />
       <Section className={styles.following}>
         <Frame className={styles.layout}>
           <div className={styles.aside}>
@@ -234,7 +234,7 @@ export function BlogPage({ entry }) {
   const arrows = blocksByTag(list, "b");
   return (
     <>
-      <Intro blocks={head} />
+      <Intro blocks={head} size="wide" reveal={false} />
       <Section className={styles.following}>
         <Cells cols={3}>
           {blocksByTag(list, "h3").map(({ text }, i) => (
@@ -259,7 +259,7 @@ export function TalentPage({ entry }) {
   const labels = blocksByTag(body, "label").map(({ text }) => text);
   return (
     <>
-      <Intro blocks={head} />
+      <Intro blocks={head} size="wide" />
       <Section className={styles.following}>
         <Frame className={styles.layout}>
           <div className={styles.aside}>
@@ -285,7 +285,7 @@ export function StubPage({ entry }) {
   return (
     <>
       {/* P4: the prototype lead points to a sitemap button this site does not have, so it is not shown. */}
-      <Intro blocks={head} lead={entry.hash === "#notfound" ? null : undefined}>
+      <Intro blocks={head} size={entry.hash === "#inbox" ? undefined : "stub"} reveal={false} lead={entry.hash === "#notfound" ? null : undefined}>
         {headButtons.map(({ href, text }) => <Button key={text} href={href} variant="secondary">{text}</Button>)}
       </Intro>
       {moreButtons.length ? (

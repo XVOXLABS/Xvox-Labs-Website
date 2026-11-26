@@ -19,7 +19,7 @@ export default function WeekCompare() {
   ];
   return (
     <Section>
-      <SectionHead eyebrow={block(s, "span.eb2").text} title={block(s, "h2.big").text} />
+      <SectionHead layout="row" eyebrow={block(s, "span.eb2").text} title={block(s, "h2.big").text} />
       <Frame className={styles.grid}>
         {sides.map((side, i) => (
           <Appear key={side.kind} delay={i * 70} className={styles.cell}>

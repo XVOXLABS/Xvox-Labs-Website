@@ -13,7 +13,7 @@ import styles from "./Header.module.css";
 import { PURCHASE_ENABLED } from "@/lib/commerce";
 
 const CLOSE_DELAY = 150;
-const DESKTOP = "(min-width: 1200px)";
+const DESKTOP = "(min-width: 1121px)";
 
 // Pages that sit under another nav item in the prototype (markNav): the self-check and Studio belong to
 // Services, the checkout to Marketplace, Trust and Careers to About.
@@ -30,8 +30,8 @@ function isActive(pathname, href) {
   return within(href) || (ALSO_ACTIVE[href] ?? []).some(within);
 }
 
-// Header (Framer inspiration): desktop (>= 1200px) floating link pill with hover/click dropdowns;
-// below 1200px a bar with a black burger that opens the mobile menu.
+// Header (Artifacts prototype): above 1120px the links with their dropdowns; at 1120px and below a menu
+// button that opens the menu card. "Book a call" stays in the bar at every width.
 export default function HeaderClient({ nav, menus, mobile }) {
   const pathname = usePathname();
   const cart = useCart();
@@ -142,10 +142,10 @@ export default function HeaderClient({ nav, menus, mobile }) {
               <span className={styles.cartCount}>{cart.length}</span>
             </button>
           ) : null}
-          <Button href={nav.plan.href} variant="secondary" className={styles.desktopOnly}>
+          <Button href={nav.plan.href} variant="secondary" className={`${styles.action} ${styles.desktopOnly}`}>
             {nav.plan.label}
           </Button>
-          <Button href={nav.book.href} className={styles.desktopOnly}>
+          <Button href={nav.book.href} className={styles.action}>
             {nav.book.label}
           </Button>
           <button
@@ -160,13 +160,13 @@ export default function HeaderClient({ nav, menus, mobile }) {
             <span className={styles.burgerLines} aria-hidden="true">
               <i />
               <i />
-              <i />
             </span>
+            <span className={styles.burgerText} aria-hidden="true">Menu</span>
           </button>
         </div>
       </div>
 
-      <MobileMenu id="mobile-menu" open={mobileOpen} groups={mobile} book={nav.book} cartLabel={nav.cartLabel} cartCount={cart.length} onNavigate={closeAll} />
+      <MobileMenu id="mobile-menu" open={mobileOpen} groups={mobile} cartLabel={nav.cartLabel} cartCount={cart.length} onNavigate={closeAll} />
     </header>
   );
 }

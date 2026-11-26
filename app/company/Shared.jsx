@@ -8,11 +8,11 @@ import { block } from "@/lib/content";
 import styles from "./company.module.css";
 
 // Page header (prototype ph / stub): eyebrow, h1, lead and buttons. Hidden placeholder leads are not shown.
-export function Intro({ blocks, lead, children }) {
+export function Intro({ blocks, lead, children, size, reveal }) {
   const text = lead === undefined ? blocks.find(({ tag, hidden }) => tag === "p.lead" && !hidden)?.text : lead || undefined;
   return (
     <Section>
-      <SectionHeader level={1} eyebrow={<Category>{block(blocks, "span.eyebrow").text}</Category>}
+      <SectionHeader level={1} size={size} reveal={reveal} eyebrow={<Category>{block(blocks, "span.eyebrow").text}</Category>}
         title={block(blocks, "h1").text} lead={text}
         action={children ? <div className={styles.actions}>{children}</div> : undefined} />
     </Section>
@@ -24,13 +24,11 @@ export function Closing({ blocks }) {
   const book = block(blocks, "a.btn");
   return (
     <Section className={styles.following}>
-      <Frame className={styles.closing}>
-        <SectionHeader layout="center" size="h1" title={block(blocks, "h2").text} lead={block(blocks, "p.lead").text}
+      <SectionHeader layout="closing" title={block(blocks, "h2").text} lead={block(blocks, "p.lead").text}
           action={<div className={styles.actions}>
             <Button href={VOX_HREF}>{block(blocks, "button.btn").text}</Button>
             <Button href={book.href} variant="secondary">{book.text}</Button>
           </div>} />
-      </Frame>
     </Section>
   );
 }

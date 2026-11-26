@@ -2,6 +2,8 @@
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
 // Every text block of this page in order. fromData = the same text also lives in a data/ list.
 // hidden + reason "placeholder" = not shown publicly (decision Nov 21, 2026); text kept for reference.
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const page = {
   "prototypeRoute": "#book",
@@ -208,7 +210,7 @@ export const page = {
         },
         {
           "tag": "p",
-          "text": "A person reads every request and replies within one business day. No newsletter."
+          "text": "A person reads every request and replies. No newsletter."
         },
         {
           "tag": "input[placeholder]",

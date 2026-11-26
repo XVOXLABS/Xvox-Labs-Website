@@ -1,6 +1,8 @@
 // Extracted verbatim from the Xvox Labs HTML prototype v5 (index.html).
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
 // Decision (Nov 21, 2026): $1,500 (blueprint) and "Free" are published; every other price is internal only.
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const pricingDisplay = {
   "rule": "Only published prices are shown. Placeholder or unset prices show the label and CTA below. Original values stay in data for internal reference.",
@@ -28,7 +30,7 @@ export const ladder = [
   },
   {
     "title": "Paid audit",
-    "text": "A week mapping your process, tools and approvals. Credited to the build.",
+    "text": "Mapping your process, tools and approvals. Credited to the build.",
     "price": null,
     "priceStatus": "to-set",
     "cta": "Book an audit",

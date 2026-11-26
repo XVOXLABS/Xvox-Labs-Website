@@ -24,7 +24,7 @@ export default function HowSteps() {
   const link = block(s, "a.btn");
   return (
     <Section>
-      <SectionHead eyebrow={block(s, "span.eb2").text} title={block(s, "h2.big").text} />
+      <SectionHead layout="row" eyebrow={block(s, "span.eb2").text} title={block(s, "h2.big").text} />
       <Frame className={styles.grid}>
         {STEPS.map((step, i) => (
           <Appear key={titles[i].text} delay={i * 70} className={styles.cell}>

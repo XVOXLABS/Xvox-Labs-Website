@@ -1,6 +1,8 @@
 // Extracted verbatim from the Xvox Labs HTML prototype v5 (index.html).
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
 // otherCategories are solution categories that have no department page in the prototype (design, rai).
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const departments = [
   {
@@ -17,7 +19,7 @@ export const departments = [
     "name": "Customer Experience",
     "color": "#3DDBA4",
     "tint": "p3",
-    "pain": "Answer faster and keep clients informed.",
+    "pain": "Answer clients and keep them informed.",
     "line": "Customer support, onboarding and progress updates.",
     "image": "/images/x-7.webp"
   },

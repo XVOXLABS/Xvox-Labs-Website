@@ -1,28 +1,36 @@
 # Xvox Labs Website — Build Plan
 
-> **For Claude Code:** This is the build plan for the Xvox Labs website. Read it together with `CLAUDE.md` and `AGENTS.md` before any task. **What the site contains comes from the HTML prototype. How it looks and behaves comes from the Framer reference.** Always plan first and wait for approval before writing code. Anything marked **Pending approval** is not decided: ask, don't assume. Proposed folders and files are not created until a task approves them.
+> **For Claude Code:** This is the build plan for the Xvox Labs website. Read it together with `CLAUDE.md` and `AGENTS.md` before any task. **The Artifacts prototype in `reference/` is the single source of truth for what the site contains and how it looks and behaves (REF-1, Nov 26, 2026), with the approved exceptions listed under “Project references”.** Always plan first and wait for approval before writing code. Anything marked **Pending approval** is not decided: ask, don't assume. Proposed folders and files are not created until a task approves them.
 
-Version: Nov 24, 2026 (rev. 16 records Phase 3 as completed, committed and pushed in `746344f`). Rev. 15 recorded the review status of Phases 2.2 to 2.4. Rev. 14 recorded the Agent routes and the boundary of Mission Board work. Rev. 13 reconciled checkpoint, handover and deployment status. Rev. 12 (Nov 24) recorded Services. Rev. 11 (Nov 24) recorded Solutions. Rev. 10 (Nov 24) recorded the review index and route manifest. Rev. 9 (Nov 24) recorded the move to Vercel. Rev. 8 (Nov 24) recorded Step 7 implementation, visual approval, and test results. Rev. 7 (Nov 24) recorded Step 6 implementation and test results. Rev. 6 (Nov 24) synced Phase 3 and Phase 4 Steps 1–5 and recorded the approved step decisions. Rev. 5 (Nov 21) recorded the remaining Phase 3 decisions and implementation approval.
+Version: Nov 26, 2026 (rev. 17 makes the Artifacts prototype the only design reference). Earlier: Nov 24, 2026 (rev. 16 records Phase 3 as completed, committed and pushed in `746344f`). Rev. 15 recorded the review status of Phases 2.2 to 2.4. Rev. 14 recorded the Agent routes and the boundary of Mission Board work. Rev. 13 reconciled checkpoint, handover and deployment status. Rev. 12 (Nov 24) recorded Services. Rev. 11 (Nov 24) recorded Solutions. Rev. 10 (Nov 24) recorded the review index and route manifest. Rev. 9 (Nov 24) recorded the move to Vercel. Rev. 8 (Nov 24) recorded Step 7 implementation, visual approval, and test results. Rev. 7 (Nov 24) recorded Step 6 implementation and test results. Rev. 6 (Nov 24) synced Phase 3 and Phase 4 Steps 1–5 and recorded the approved step decisions. Rev. 5 (Nov 21) recorded the remaining Phase 3 decisions and implementation approval.
 
 ## Project references
 
 | # | Reference | Location | Role |
 | --- | --- | --- | --- |
-| 1 | **HTML prototype v5** | `D:\Downloads\Xvox Labs — Website prototype v5 (1)\` (`index.html` + `img/`) | **WHAT the site contains**: all content and copy, sections and their order, pages, navigation structure, business information, features, assets and functionality. Read-only: never modify or delete its files |
-| 2 | **Framer site** | https://rational-happen-962580.framer.app/ | **HOW the site looks and behaves**: visual theme, typography, colours, backgrounds, layouts, spacing, alignment, section presentation, navbar, buttons, cards, UI components, hover effects, scroll animations, transitions, interactions and responsive behaviour |
-| 3 | **Business blueprint** | `D:\Downloads\Xvox Labs — What we sell & how people buy.pdf` | Business reference for later content decisions (B1–B13). It does not override the prototype's content without your approval |
+| 1 | **Artifacts reference** (HTML prototype v5) | `reference/index.html` (git-ignored copy) of `D:\Downloads\Xvox Labs — Website prototype v5 (1)\` (`index.html` + `img/`) | **The only design reference: what the site contains and how it looks and behaves.** Content and copy, sections and order, pages, navigation, business information, features, assets, layout, typography, spacing, colours, components, motion and responsive behaviour. Read-only: never modify or delete its files |
+| 2 | **Business blueprint** | `D:\Downloads\Xvox Labs — What we sell & how people buy.pdf` | Business reference for later content decisions (B1–B13). It does not override the prototype's content without your approval |
 
 **Rules**
 
-- Never copy Framer's content, copy, branding, business information, client logos, images or page structure. Only its design language and behaviour.
-- Never invent new sections or replace prototype content without approval. A Framer pattern is used only where a prototype section exists to carry it.
-- Framer platform elements ("Made in Framer" badge, edit button) are not part of the design.
-- The prototype's "Prototype: sitemap" developer panel is not part of the public website (decided).
+- Follow the design reference rules in `AGENTS.md` section C: compare first, change only confirmed differences, ask when anything is uncertain or intentional, one section at a time.
+- Never invent new sections or replace prototype content without approval.
+- The prototype's “Prototype: sitemap” developer panel is not part of the public website (decided).
+- Framer is not a design source unless the owner asks for it on a particular task. Never copy the Framer site or its “Kaviyan” template (source, components, assets, content or structure).
 
-**Notes on the references**
+**Approved exceptions to the reference** (REF-2, Nov 26, 2026)
 
-- The Framer site is the earlier Xvox Labs site, built on the commercial "Kaviyan" Framer template (its tab title still says so). The template is marked **Limited**. **Approved use (Nov 21, 2026): inspiration only.** Use its visual theme (colours, typography, spacing, visual styling, UI feel, responsive approach, animation inspiration). Do **not** copy or extract the Framer template, its source files, components, assets, content, page structure or proprietary implementation. The Xvox Labs design is implemented independently in Next.js with the prototype's content and functionality.
-- Both references already share the same agent characters (Scout, Quill, Beacon, Relay, Sage and the pink video agent Reel), a `#FAFAFA` background, `#0F0F0F` text, large regular-weight headings with tight letter-spacing, and white cards inside light-grey frames. The redesign is a shift in typeface, accent, component styling and motion, not a different world.
+1. Inter font (the reference uses Geist).
+2. Colour tokens `#FF6038` and `#000`.
+3. Supplied Xvox Labs logo in the header; text-only brand in the footer.
+4. Prices and cart hidden; “Contact Our Team” kept.
+5. Placeholder content and prototype-only notes hidden.
+6. Working contact form and email functionality.
+7. Approved accessibility and mobile usability improvements.
+8. Other sections are compared one at a time, asking before any uncertain or intentional change.
+9. Unverified durations, speed claims, result figures and agent quotes are not published (REF-8, REF-9).
+10. Button colours and hover states follow REF-10. REF-11: the prototype wins for design and layout on every page and section.
+11. The second homepage card’s picture is full width (FORK-1).
 
 ## Confirmed technology stack
 
@@ -37,14 +45,14 @@ Version: Nov 24, 2026 (rev. 16 records Phase 3 as completed, committed and pushe
 
 ## Current project status
 
-Verified against code and Git on Nov 24, 2026. Branch tip `b03a4c8` (`b03a4c81edcb2ed1b49eb02dd1ca33f0f9e67b0e`, documentation checkpoint on the Phase 3 checkpoint `746344f`); local and remote are in sync. Vercel Production serves this commit at https://xvox-labs-team-preview.vercel.app (project `xvox-labs-team-preview`, promoted by the owner, publicly accessible). The pushed `phase-4-homepage` checkpoint `8c7d2b66f3c7d24655702700434c5e1e60c0c61d` includes the Step 8 fixes, Vercel migration, Phase 1 review index and manifest, and Phase 2.1 Solutions. The Hero animation lifecycle fix (`5478e7a`) is pushed on top of it. Phase 2.2 Services is reviewed and accepted with known dependencies, and Phase 2.3 Agents is approved. Both are committed in the team-review checkpoint `58b3761`. Phase 2.4 Marketplace and the 12 Phase 2.5 company pages are committed and pushed in `4861d6a` (`4861d6a84a469007f8e9cbf6af635cb9a3e87acd`), reviewed by the owner before Phase 3 started. See `CLAUDE.md` §5–§8 and §12.
+**Latest confirmed pushed commit (Nov 25, 2026, 23:21 IST):** `7d18d6e` (`7d18d6e50a6f99e1c5eabeecc694c6dbf2533a6b`) on `phase-4-homepage`. Later commits after the Nov 24 checkpoint `b03a4c8`: `b36428f`, `64fa6a5`, `2e28698`, `fe55d10`, `3b0d16a` and `7d18d6e`. The public address https://xvox-labs-team-preview.vercel.app serves the contact form code, but **the commit Production currently serves is not verified**. Earlier history: the pushed `phase-4-homepage` checkpoint `8c7d2b66f3c7d24655702700434c5e1e60c0c61d` includes the Step 8 fixes, Vercel migration, Phase 1 review index and manifest, and Phase 2.1 Solutions. The Hero animation lifecycle fix (`5478e7a`) is pushed on top of it. Phase 2.2 Services is reviewed and accepted with known dependencies, and Phase 2.3 Agents is approved. Both are committed in the team-review checkpoint `58b3761`. Phase 2.4 Marketplace and the 12 Phase 2.5 company pages are committed and pushed in `4861d6a` (`4861d6a84a469007f8e9cbf6af635cb9a3e87acd`), reviewed by the owner before Phase 3 started. See `CLAUDE.md` §5–§8 and §12.
 
 | Item | Status |
 | --- | --- |
 | Next.js 16.4.6, React 19.3.0, ESLint 9 | Installed; JavaScript only, `jsconfig.json` `@/*` alias; no TypeScript, Tailwind, Bootstrap or React Router |
 | `next.config.mjs` | Native Next.js routing and image optimization for Vercel at the domain root. `agentRules: false` |
 | `app/layout.js` | Inter via `next/font/google`, `lang="en"`, header/footer shell, review `noindex` metadata, deployment origin from `VERCEL_URL` with a localhost fallback, title template `%s \| Xvox Labs`. Production domain pending (B12). |
-| `app/globals.css` | **Phase 3:** reset, design tokens (Framer measurements + approved corrections), base typography, focus and reduced-motion rules |
+| `app/globals.css` | **Phase 3:** reset, approved design tokens, base typography, focus and reduced-motion rules |
 | Routes | `/`, `/style-guide`, `/review`, 29 Solutions routes, 26 Services routes and seven Agent routes. Remaining native prototype routes are pending. |
 | `components/` | **Phase 3:** `ui/` (14 components), `layout/` (header, menus, footer, logo, cart drawer, toast, Vox chat), `motion/` (Appear, CountUp, Marquee, StickyStage). **Phase 4:** `sections/home/` and `sections/shared/` |
 | `hooks/`, `lib/` | `useInView`, `useReducedMotion`, `useScrollProgress`; `actions`, `agentImages`, `brand`, `cart`, `content`, `navigation`, `orchestration`, `preference`, `pricing` |
@@ -53,13 +61,13 @@ Verified against code and Git on Nov 24, 2026. Branch tip `b03a4c8` (`b03a4c81ed
 | Logo | Supplied Nov 25, 2026: `public/brand/xvox-logo.png`, configured in `lib/brand.js`, shown in the header only (footer keeps the text) |
 | `docs/CONTENT_INVENTORY.md` | **Phase 2:** internal inventory: counts, internal-only prices, hidden placeholders, open items, route map |
 | `reference/` | Git-ignored: read-only copy of the prototype (`index.html`) and local visual-review screenshots |
-| Deployment | Live. The existing Vercel project `xvox-labs-team-preview` is connected to `XVOXLABS/Xvox-Labs-Website` and builds every push of `phase-4-homepage`. The owner promoted the latest deployment (`b03a4c8`) to Production: https://xvox-labs-team-preview.vercel.app, Ready / Current, publicly accessible, `noindex, nofollow`; `/`, `/build`, `/checkout`, `/safe-ai/self-check`, `/marketplace`, `/services`, `/how-it-works`, `/pricing` and `/book` verified 200 and an unknown path 404 on Nov 24, 2026. Preview deployments of other pushes are protected by Vercel Authentication, and production changes only when the owner promotes again. No new project, repository, code or configuration change was needed. `main` holds Phase 1 setup only (`9ab7d7e`). Details in `CLAUDE.md` §12. |
+| Deployment | The Vercel project `xvox-labs-team-preview` is connected to `XVOXLABS/Xvox-Labs-Website` and builds every push of `phase-4-homepage`; Vercel reported the deployment of `7d18d6e` completed on Nov 25, 2026 (22:38 IST), environment not verified. Public address: https://xvox-labs-team-preview.vercel.app. **Current Production commit: not verified.** Historical (Nov 24): the owner promoted `b03a4c8` to Production, publicly accessible, `noindex, nofollow`; `/`, `/build`, `/checkout`, `/safe-ai/self-check`, `/marketplace`, `/services`, `/how-it-works`, `/pricing` and `/book` returned 200 and an unknown path 404. Preview deployments are protected by Vercel Authentication. `main` holds Phase 1 setup only (`9ab7d7e`). Details in `CLAUDE.md` §12. |
 
-## Framer design system (measured from the live site)
+## Current design tokens (historical measurements)
 
-Values below were read from the rendered Framer site (computed styles and screenshots at 390, 810, 1024, 1200 and 1440px). Approved decisions are marked **Approved**.
+**Historical record, not a design reference (REF-1).** These values were measured from the earlier Framer site and describe the current tokens. Design comparisons use the Artifacts reference with the approved exceptions; do not change a token without approval.
 
-| Area | Framer reference | Prototype today | Plan |
+| Area | Earlier measurement | Prototype | Adopted at the time |
 | --- | --- | --- | --- |
 | Primary font | Switzer 400 / 500 / 600 (Fontshare) | Geist | **Approved (Nov 21, 2026): Inter** (SIL Open Font License 1.1) for all text, via `next/font/google` (official files, self-hosted at build time, no npm package). Switzer is not used. |
 | Secondary font | Inter (11px UI text) | Geist Mono | Inter (the same primary font); category labels keep their Inter styling |
@@ -89,9 +97,11 @@ Values below were read from the rendered Framer site (computed styles and screen
 | UI label | 15 / 15, weight 500 | same | same |
 | Micro | 11 / 15.4 (Switzer), 11 / 15.95 (Inter) | same | 12 / 18 |
 
-**Breakpoints (Framer):** desktop ≥ 1200px, tablet 810–1199px, phone < 810px. The burger navigation replaces the desktop nav below 1200px. Margins, section spacing, shadows and component sizes per breakpoint are measured from Framer at the start of Phase 3 (not guessed).
+**Current breakpoints:** desktop ≥ 1200px, tablet 810–1199px, phone < 810px. The burger navigation replaces the desktop nav below 1200px.
 
-## Framer components and patterns (observed)
+## Historical component patterns
+
+Record of how the current components were first built, before REF-1. Not design guidance.
 
 | Pattern | What it looks like |
 | --- | --- |
@@ -115,9 +125,11 @@ Values below were read from the rendered Framer site (computed styles and screen
 | **Footer** | White card inside a grey frame: logo + short text left; columns with grey labels right; divider; copyright row; huge accent **gradient wordmark** at the bottom fading out |
 | **Logo strip** | Small muted label, row of bordered white tiles (2-column grid on mobile) |
 
-## Motion and interaction (Framer reference)
+## Historical motion observations and motion approach
 
-| Effect | Where on Framer | Evidence |
+The table records observations made before REF-1; it is not design guidance. Motion now follows the Artifacts reference. The approved motion approach below still applies.
+
+| Effect | Where observed (earlier site) | Evidence |
 | --- | --- | --- |
 | **Sticky hero stage** | Hero pins for ~1800px of scroll: headline + agents row → agents fan out → statement sentence assembles | Verified (scroll screenshots, `Hero Stage` / `Fan` layers) |
 | **Word-by-word statement** | Large sentence whose words and inline agent images animate in while scrolling | Verified (mid-animation screenshot) |
@@ -134,15 +146,17 @@ Values below were read from the rendered Framer site (computed styles and screen
 | **Button / card hovers** | No computed change detected | **Unverified** |
 | **Timings and easing** | Not measurable from outside | **Unverified** |
 
-**Motion approach (Approved):** reproduce these with plain CSS (transitions, keyframes, `position: sticky`) and small client hooks (`IntersectionObserver`, one `requestAnimationFrame` scroll handler). No animation library. Animate only `transform` and `opacity`. Respect `prefers-reduced-motion` (content simply appears). The hero H1 is visible immediately, never hidden behind an animation, to protect LCP. If any effect cannot be matched without a library, it comes back to you as a question.
+**Motion approach (Approved):** reproduce motion with plain CSS (transitions, keyframes, `position: sticky`) and small client hooks (`IntersectionObserver`, one `requestAnimationFrame` scroll handler). No animation library. Animate only `transform` and `opacity`. Respect `prefers-reduced-motion` (content simply appears). The hero H1 is visible immediately, never hidden behind an animation, to protect LCP. If any effect cannot be matched without a library, it comes back to you as a question.
 
-**Prototype interactions that stay (functionality):** Solutions/Services menus, mobile menu, cart + drawer + checkout (browser storage), scripted Vox chat with local plan, Safe AI self-check quiz, mission board, marketplace filters and search, team-at-work tabs, FAQ, forms. They are restyled and animated the Framer way; their behaviour stays.
+**Prototype interactions that stay (functionality):** Solutions/Services menus, mobile menu, cart + drawer + checkout (browser storage), scripted Vox chat with local plan, Safe AI self-check quiz, mission board, marketplace filters and search, team-at-work tabs, FAQ, forms. Their behaviour stays; look and motion follow the Artifacts reference.
 
-## Section mapping: prototype content → Framer design
+## Section mapping: how sections were first built (historical)
+
+Record of the design patterns used before REF-1. Not design guidance: compare each section with the Artifacts reference before changing it.
 
 ### Global
 
-| Prototype element | Framer pattern | Responsive behaviour (Framer) | Notes |
+| Prototype element | Pattern used when built | Responsive behaviour when built | Notes |
 | --- | --- | --- | --- |
 | Header: logo, 6 links (Solutions ▾, Services ▾, How it works, Marketplace, Pricing, About), Cart, "Get your AI plan", "Book a call" | Floating white link pill (hover and active links in accent) + right-side buttons ("Book a call" black, "Get your AI plan" grey secondary, Cart as small grey button) | Below 1200px: logo + black square burger | Prototype has more links/buttons than Framer's pill; fit checked at 1200px first and reported if it doesn't fit (nothing is dropped). **Logo: Option C (orange striped sphere + XVOX wordmark), used exactly as supplied in `public/brand/`; file not yet provided** |
 | Solutions / Services mega menus | Framer dropdown panel (verified): full width, column hairlines, grey column headings, title items | Below 1200px: accordion rows | Opens on hover like Framer, and also on click, tap and keyboard. Prototype items have no descriptions or bottom CTA row; only prototype content is shown |
@@ -150,11 +164,11 @@ Values below were read from the rendered Framer site (computed styles and screen
 | Cart drawer | Framer card styling (white, radius 24px, grey frame), slide-in | Full-width on mobile | — |
 | Ask Vox floating button + chat | Black pill button, white chat card with Framer type and inputs | Full-screen sheet on mobile | — |
 | Closing CTA "Start with a two-minute plan." | Section header B (centred) + buttons | Stacked | — |
-| Footer (logo, description, 2 buttons, Solutions / Services / Explore / Company columns, "© 2026 Xvox Labs.") | **Approved:** Framer footer design with original XVOX branding: white card in a grey frame, grey column labels, divider, copyright row, large accent gradient wordmark | Columns become 2×2 on phone | Wordmark text: `XVOX LABS` (decided) |
+| Footer (logo, description, 2 buttons, Solutions / Services / Explore / Company columns, "© 2026 Xvox Labs.") | *(Superseded by REF-4.)* Earlier: Framer footer design with original XVOX branding: white card in a grey frame, grey column labels, divider, copyright row, large accent gradient wordmark | Columns become 2×2 on phone | Wordmark text: `XVOX LABS` (decided) |
 
 ### Homepage (prototype order kept)
 
-| # | Prototype section (content) | Framer pattern | Motion | Mobile / tablet |
+| # | Prototype section (content) | Pattern used when built | Motion | Mobile / tablet |
 | --- | --- | --- | --- | --- |
 | 1 | Hero: "Your business, run by AI agents." + inline icon tile, sub-line, 2 buttons, agents row, team sentence ("Your team: Scout researches, …") | Framer hero: centred 104px H1 with inline **accent** icon tile, muted sub-line, agents row at the bottom; then the **statement panel** with inline agent images | Sticky hero stage: agents fan → team sentence assembles word by word (Framer's statement effect fits the prototype's sentence with agent slots) | H1 ~36px; agents row scaled; sequence shortened |
 | 2 | Puzzle: "Each agent is one piece of the puzzle." (scroll assembly) | Dark agent stage panel (header chip, character row, status strip) | Keep the prototype's puzzle assembly on scroll, restyled; hover tooltips on characters | Characters wrap / scale |
@@ -175,7 +189,7 @@ Values below were read from the rendered Framer site (computed styles and screen
 
 ### Other pages (same patterns, prototype content)
 
-| Prototype page | Framer patterns used |
+| Prototype page | Patterns used when built |
 | --- | --- |
 | Page heroes (`.ph1`) on every inner page | Section header A (big heading left, lead + button right) |
 | Solutions hub, department pages | Use-case cards in grey frames |
@@ -190,9 +204,8 @@ Values below were read from the rendered Framer site (computed styles and screen
 
 ## Responsive behaviour
 
-- Framer breakpoints (measured): **desktop ≥ 1200px, tablet 810–1199px, phone < 810px**. Checked at 390, 810, 1024, 1200 and 1440px, plus a 320px safety check.
-- Phone (measured): logo + black burger; full-width drop menu; H1 37px; agent and use-case cards one column; logo strip two columns; footer columns 2×2; wordmark scaled to width.
-- Tablet (measured at 810 and 1024px): burger navigation; H1 72px; agent cards two columns; stat cards three columns.
+- Site breakpoints: **desktop ≥ 1200px, tablet 810–1199px, phone < 810px**. Checked at 390, 810, 1024, 1200 and 1440px, plus a 320px safety check.
+- A section compared with the Artifacts reference follows the reference's responsive behaviour, including its own breakpoints (for example the footer at 900px), with the approved mobile improvements.
 - Fixes found in the prototype audit still apply: no horizontal overflow at 320px (the prototype header overflows there), and no `100vw` full-bleed offset on desktops with scrollbars.
 
 ## Pending decisions
@@ -204,25 +217,25 @@ Values below were read from the rendered Framer site (computed styles and screen
 - [x] ~~Switzer font (replaces Geist)~~ Replaced by Inter (see below)
 - [x] Accent `#FF6038` (replaces `#EB5A2B`)
 - [x] Original XVOX logo, used exactly as selected: no substitute variant, recolouring, redrawing or recreating
-- [x] Framer footer design with original XVOX branding
-- [x] Framer mobile navbar: hamburger, accordion, CTA
-- [x] Reproduce the Framer visual experience and the prototype's functionality, with no omissions or invented additions
+- [x] ~~Framer footer design with original XVOX branding~~ Superseded by REF-1.
+- [x] ~~Framer mobile navbar: hamburger, accordion, CTA~~ Superseded as a design source by REF-1; the current navbar stays until it is compared with the reference.
+- [x] ~~Reproduce the Framer visual experience and the prototype's functionality, with no omissions or invented additions~~ Superseded by REF-1.
 - [x] Motion with CSS animations and lightweight React hooks; no animation libraries
 
 **Decided (Nov 21, 2026)**
 
 - [x] **Logo:** Option C, the original orange striped sphere + XVOX wordmark. Preserved exactly (design and colour); no other variant, recolouring or recreation. You will place the exact image file in `public/brand/`.
-- [x] **Footer wordmark text:** `XVOX LABS`.
+- [x] ~~**Footer wordmark text:** `XVOX LABS`.~~ Superseded by REF-4: the footer wordmark is `xvox labs` as in the reference.
 - [x] **Primary font: Inter** (approved Nov 21, 2026; replaces Switzer). Official Inter under the SIL Open Font License 1.1, loaded with the existing `next/font/google` setup (no new package or dependency). Used for headings, body, navigation, buttons and components; category labels keep their Inter styling. All approved sizes, weights, spacing and breakpoints unchanged. Switzer is not downloaded or used, and its licence review is no longer needed.
-- [x] **Unverifiable motion** (button/card hovers, timings, easing): match the observed behaviour; you review it side by side with Framer before it is final.
+- [x] ~~**Unverifiable motion** (button/card hovers, timings, easing): match the observed behaviour; you review it side by side with Framer before it is final.~~ Superseded by REF-1.
 - [x] **"Prototype: sitemap" panel:** left out of the public website.
 
-- [x] **Kaviyan / Framer reference:** inspiration only (visual theme, typography, colours, spacing, UI feel, responsive approach, animation inspiration). No copying or extraction of the template, its source, components, assets, content, page structure or implementation. Our design is implemented independently.
+- [x] ~~**Kaviyan / Framer reference:** inspiration only (visual theme, typography, colours, spacing, UI feel, responsive approach, animation inspiration). No copying or extraction of the template, its source, components, assets, content, page structure or implementation. Our design is implemented independently.~~ Superseded by REF-1.
 - [x] **Phase 3 implementation approved** (Nov 21, 2026).
 - [x] **Cart totals:** a total shows only when every item has a published price; otherwise "Contact Us to Discuss Pricing" with the "Discuss Pricing" CTA.
 - [x] **Vox guided conversation** (Phase 3): the prototype's guided flow, frontend only. The confirmation never claims a lead was sent or saved. Real AI replies are Phase 8.
 
-**Visual corrections after the side-by-side Framer review (approved Nov 21, 2026)**
+**Visual corrections after the side-by-side Framer review (approved Nov 21, 2026; historical, made before REF-1)**
 
 - [x] Section spacing 110 / 96 / 56 px (desktop / tablet / phone).
 - [x] Tablet (810–1199px) side gutter for sections and footer: 24px. The header keeps 32px.
@@ -350,15 +363,15 @@ The inline Mission Board retains the original starting state in place and is ful
 
 **Status:** completed, fully tested, and committed and pushed in `746344f` (`746344fd4261aa9c1be2153e38279cf01ae2759e`, "feat: complete phase 3 interactive pages", 22 files, +1,932 / −60, branch `phase-4-homepage`, local and remote in sync, working tree clean after the push; not yet deployed at that point, deployed afterwards, see the Deployment row). Results: lint exit 0; production build 128 pages; `git diff --check` clean; Phase 3 suite 183/183; Marketplace suite 188/188; company pages suite 279/279 (route counts raised to 123), which also load every Phase 1 and Phase 2 route. Exact manifest of the commit (22 files: the 21 tested files plus `AGENTS.md`): 5 modified tracked files (`BUILD_PLAN.md`, `CLAUDE.md`, `app/how-it-works/HowItWorksSections.jsx`, `data/how-it-works.js`, `data/reviewRoutes.js`) and 16 new files (`app/build/` 2: `build.module.css`, `page.js`; `app/checkout/` 3: `CheckoutDemo.jsx`, `checkout.module.css`, `page.js`; `app/not-found.js`; `app/safe-ai/self-check/` 3: `SelfCheck.jsx`, `page.js`, `selfcheck.module.css`; `components/sections/shared/MissionBoard/` 3: `MissionBoard.jsx`, `MissionBoard.module.css`, `MissionBoardSection.jsx`; `data/` 4: `checkout.js`, `missionBoard.js`, `phase3Pages.js`, `selfCheck.js`). The three deferred accessibility findings (Team-at-Work flag checkbox 18 px; Team-at-Work run log not keyboard-focusable; `ItemCard` + toggle 34 px) stay listed for final QA, see `CLAUDE.md` §9. Data note: the prototype's `preset: true` flags on the four "Keep it safe" slots were restored in `data/how-it-works.js`. See `CLAUDE.md` §7.
 
-### Phase 3.2 — remaining interaction parity (Batch 1 verified locally, awaiting approval)
+### Phase 3.2 — remaining interaction parity (Batch 1 released in `64fa6a5`)
 
 Read-only audit of Nov 24, 2026 against `reference/index.html`. **Orchestration fallbacks:** no work needed (the generic fallback matches the prototype for all 22 solutions). **Findings:** F1 Marketplace filters not kept after item then back (Low–Medium); F2 Mission Board state not kept across navigation (Low); F3 header highlight for the self-check and Studio (Services), checkout (Marketplace), Trust and Careers (About) (Low); F4 cart drawer and Vox stay open after browser Back (Low–Medium); F5 `/#guide` and `/#vox` deep link (Low); F6 cart-count bump and F7 pointer effects (cosmetic, F7 deferred); F8 link crawl, 0 broken of 123 targets. **Backend-only states** (inbox lead list, saved confirmations, AI chat mode) stay for Phase 8. **Plan:** 3.2-A correct the stale Step 5 note in `CLAUDE.md`; 3.2-B header highlight; 3.2-C close the cart drawer on navigation and Vox on narrow screens only; 3.2-D persist Marketplace filters and Mission Board state; 3.2-E optional cosmetics; 3.2-F optional `/review` guide to runtime-only states. **Acceptance criteria:** lint, build and `git diff --check` pass; the 183, 188 and 279 suites pass with updated expectations; new checks at 390 and 1440 px for keyboard, reduced motion and scoped axe; earlier routes unaffected. **Pending owner decisions:** URL parameters or session storage for F1, F5, F6 and the review guide. FINAL-1 was later brought forward (see the Enquiry UI section).
 
-**Batch 1 status (Nov 25, 2026):** 3.2-A, B and C, plus owner-requested mobile menu and Mission Board mascot fixes, are implemented locally and uncommitted. Lint, the 128-page build and `git diff --check` pass. Suites on one build: Batch 1 113/113, mobile menu 146/146, mascots 70/70, Phase 3 183/183, Marketplace 188/188, company pages 279/279. Awaiting owner approval; open accessibility findings are in `CLAUDE.md` §9.
+**Batch 1 status (Nov 25, 2026):** 3.2-A, B and C, plus owner-requested mobile menu and Mission Board mascot fixes, were implemented and later committed in `64fa6a5` (REL-1). Lint, the 128-page build and `git diff --check` pass. Suites on one build: Batch 1 113/113, mobile menu 146/146, mascots 70/70, Phase 3 183/183, Marketplace 188/188, company pages 279/279. Open accessibility findings are in `CLAUDE.md` §9.
 
-### Enquiry UI (FINAL-1, brought forward Nov 25, 2026) — implemented locally, awaiting review
+### Enquiry UI (FINAL-1, brought forward Nov 25, 2026) — released in `64fa6a5`
 
-**Scope:** one switch (`lib/commerce.js`) turns off prices, cart, buy and payment UI; purchase actions become “Contact Our Team” linking to `/book`; `/pricing` keeps its content and navigation links without amounts or the comparison “Price” row (“Browse blueprints” stays); `/checkout` shows an enquiry view; the Budget field is hidden; internal pages mask prices. Decisions E1–E6 and details in `CLAUDE.md` §7–§8. **Acceptance:** no money amounts or purchase controls on any public route, direct checkout exposes no payment UI, no sent or purchase claim, descriptions kept, no redesign, purchase code preserved. **Results:** lint, 128-page build and `git diff --check` pass; enquiry suite 104/108 (the 4 failures are the deferred shared-component accessibility findings), mascots 70/70, corrections smoke check 25/25. **Remaining:** older suites not updated for the switched-off UI; switch-on state untested; the enquiry form sends nothing until a backend exists.
+**Scope:** one switch (`lib/commerce.js`) turns off prices, cart, buy and payment UI; purchase actions become “Contact Our Team” linking to `/book`; `/pricing` keeps its content and navigation links without amounts or the comparison “Price” row (“Browse blueprints” stays); `/checkout` shows an enquiry view; the Budget field is hidden; internal pages mask prices. Decisions E1–E6 and details in `CLAUDE.md` §7–§8. **Acceptance:** no money amounts or purchase controls on any public route, direct checkout exposes no payment UI, no sent or purchase claim, descriptions kept, no redesign, purchase code preserved. **Results:** lint, 128-page build and `git diff --check` pass; enquiry suite 104/108 (the 4 failures are the deferred shared-component accessibility findings), mascots 70/70, corrections smoke check 25/25. **Remaining:** older suites not updated for the switched-off UI; switch-on state untested; the enquiry form's email sending was added afterwards (see “Contact form with email”).
 
 Correction round 3 (Batch 1): focus, header style and menu contrast fixes passed a first pass (Batch 1 150/150, mobile menu 169/169); the full six-suite run was stopped by the owner.
 
@@ -366,9 +379,37 @@ Correction round 3 (Batch 1): focus, header style and menu contrast fixes passed
 
 Owner-supplied logo in the header and an even 22 px between desktop navigation labels (LOGO-1, NAV-1, approved). Released together with Phase 3.2 Batch 1 and the enquiry UI (REL-1). **Release checks:** lint, 128-page build and `git diff --check` pass; navbar 32/32, focus and header 25/25, Phase 3 183/183, enquiry 104/108 (4 known accessibility failures). The Batch 1, mobile menu, mascot, Marketplace and company suites were not run on the release build (details in `CLAUDE.md` §7).
 
-### Contact form with email (Nov 25, 2026) — integrated and tested locally, production not live
+### Contact form with email (Nov 25, 2026) — implementation complete, production launch pending
 
-**Scope (CONTACT-1):** the shared contact form sends through a server route to Resend; first approved part of Phase 8. No storage, no new packages. **Acceptance:** server validation, spam protection, key only on the server, success only after confirmation, demo behaviour while switched off. **Done:** frontend and backend integration; contact suite 92/92 on (desktop and mobile) and 42/42 off with a simulated provider; lint, build and `git diff --check` pass; the earlier regression run passed apart from the 4 known accessibility failures. **Temporary local test (not the final configuration):** one real email from `onboarding@resend.dev` received at `tools@xvoxlabs.com` (reported by the owner); submission, loading, success and duplicate-click prevention verified. **Final configuration:** from and to `hello@xvoxlabs.com`. **Pending:** domain verification and DNS setup, a delivery test with the final addresses, privacy notice, Vercel environment variables (without the test overrides), separate Production approval. **Production email delivery is not verified.**
+**Scope (CONTACT-1):** the shared contact form sends through a server route to Resend; first approved part of Phase 8. No storage, no new packages. **Acceptance:** server validation, spam protection, key only on the server, success only after confirmation, demo behaviour while switched off. **Implementation: complete** (`fe55d10`; temporary diagnostic logging added in `3b0d16a` and removed in `7d18d6e`). **Automated tests (simulated provider):** contact suite 92/92 on (desktop and mobile) and 42/42 off; lint and build pass. **Owner-confirmed:** the form works; one temporary local test email was received at a company test inbox. **Final configuration:** from and to `hello@xvoxlabs.com`. **Launch pending:** privacy notice, domain verification and DNS, delivery test with the final addresses, removal of test overrides, recorded Production approval. **Not verified:** Production email delivery, the sender and recipient Production uses, and the Resend domain status. **Production contact sending is disabled** (`CONTACT_FORM_ENABLED=false`; set and redeployed by the owner, Nov 26, 2026). A read-only request to the public `GET /api/contact` returned `{"enabled":false}` at 12:26 and 12:29 UTC. No form was submitted. It stays disabled until email delivery and the privacy notice are verified. Approval for Production sending is still required; see `CLAUDE.md` §7, §9 and §13.
+
+### Reference-matching corrections (Nov 25–26, 2026) — implemented locally, uncommitted
+
+Reference: the Artifacts prototype, with the approved exceptions (REF-2). Decisions REF-3 to REF-7; details, results and remaining differences are in `CLAUDE.md` §7–§8.
+
+| Area | Completed | Latest results |
+| --- | --- | --- |
+| Homepage puzzle section | Reference layout; reference agent sizes above 600 px; phone layout and header offset kept; narrower pill button at 340 px and below | Sizing and chat-button checks 445/445; behaviour 109/114 (5 overlaps also present in the reference) |
+| Footer | Reference card, columns, buttons, wordmark and fine print; text brand; hidden notes | Footer checks 98/98 (build `iIvKj4L2ZBP3nDQbwoALh`) |
+| Five department pages | Hero, card grid, sections, label tile, entrance animations, headings, chips, closing, hidden footnote sentence, intro full stops, buying-button wrapping | Checks 817/817 |
+
+Latest build `rZ8YGFRu8CnT0vPifbQZS`: lint and 128-page build pass. **Pending:** commit approval (nothing committed or deployed); comparison of the remaining homepage sections, navbar, Solutions hub, solution detail pages and other pages, one at a time when named.
+
+### Unverified claims removed (REF-8 and REF-9, Nov 26, 2026) — implemented locally, uncommitted
+
+Delivery and response durations, product speed claims, example result figures and agent quotes are not published (exception to the reference), including on `/review`. Visitor time estimates stay. Details, rewordings and kept items: `CLAUDE.md` §7. Lint and build pass; site-wide checks 1400/1400, behaviour 23/23, department 817/817. **Pending:** owner review of the rewordings and commit approval.
+
+### Button colours (REF-10, Nov 26, 2026) — implemented locally, uncommitted
+
+Primary `#0F0F0F` → `#FF6038` on hover; secondary `#F0F0F0` → `#0F0F0F`; hero icon black → orange. Results and open contrast effects: `CLAUDE.md` §7. **Pending:** owner review and commit approval.
+
+### Site-wide reference matching (REF-12, Nov 26, 2026) — implemented locally, uncommitted
+
+Layout width, type scale, section arrangements, panels and cards follow the prototype; the earlier design token tables in this file are historical where they differ. Changes, results and the open item: `CLAUDE.md` §7. **Pending:** owner review and commit approval.
+
+### Cards and components (REF-13, FORK-1, Nov 26, 2026) — implemented locally, uncommitted
+
+Homepage cards, header, menus, agent popup, chat and cart matched to the prototype. Results, exceptions and tests not yet run: `CLAUDE.md` §7. **Pending:** Production email setting decision and release approval.
 
 ## Phase overview
 
@@ -376,12 +417,12 @@ Owner-supplied logo in the header and an even 22 px between desktop navigation l
 | --- | --- | --- | --- | --- |
 | 1. Setup | Next.js running locally | Clean app | Site loads | **Done** (`9ab7d7e`) |
 | 2. References & content | Extract prototype content into `data/`; copy prototype images | `data/` files, `public/images/`, `docs/CONTENT_INVENTORY.md` | You approve decisions and URL map | **Approved** (commits `855ea2e`, `932401b`; branch `phase-2-content` pushed) |
-| 3. Design system + shared layout | Global design system, reusable UI components, desktop and mobile navbar, dropdown menus, footer, shared layout shell, motion and animation system | `globals.css`, fonts, logo, `components/ui`, `components/layout`, `components/motion`, `hooks/`, `/style-guide` | You compare `/style-guide`, header and footer with Framer at 390 / 810 / 1024 / 1200 / 1440px | **Done** (commits `c3063eb` … `c0ed4a7`, Nov 21; branch `phase-3-design-system` is local only and is contained in `phase-4-homepage`); still open: logo file |
-| 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs Framer (look) and prototype (content) | Steps 1–8 complete on `phase-4-homepage`, including the Step 8 fixes in the checkpoint. Phase sign-off and merge require owner approval. |
-| 5. Other pages | All prototype pages in the Framer style | Routes | Every link works, content matches prototype | In progress. See “Complete team review” for current routes and approval gates. |
+| 3. Design system + shared layout | Global design system, reusable UI components, desktop and mobile navbar, dropdown menus, footer, shared layout shell, motion and animation system | `globals.css`, fonts, logo, `components/ui`, `components/layout`, `components/motion`, `hooks/`, `/style-guide` | You compare `/style-guide`, header and footer with Framer at 390 / 810 / 1024 / 1200 / 1440px | **Done** (commits `c3063eb` … `c0ed4a7`, Nov 21; branch `phase-3-design-system` is local only and is contained in `phase-4-homepage`); logo file supplied Nov 25 |
+| 4. Homepage | The 16 homepage sections, one at a time | Section components | Side-by-side review vs the Artifacts reference | Steps 1–8 complete on `phase-4-homepage`, including the Step 8 fixes in the checkpoint. Phase sign-off and merge require owner approval. |
+| 5. Other pages | All prototype pages, matching the Artifacts reference | Routes | Every link works, content matches prototype | In progress. See “Complete team review” for current routes and approval gates. |
 | 6. SEO & AEO | Metadata, schema, sitemap | `sitemap.js`, `robots.js`, JSON-LD, `llms.txt` | Lighthouse + Rich Results | — |
-| 7. Test & deploy | Production build, hosting | Live site | Checklist signed off | Team-review deployment is live: Production serves `b03a4c8` at https://xvox-labs-team-preview.vercel.app (see the Deployment row). The release checklist, final production domain (B12), SEO and AEO remain pending. |
-| 8. Backend (later) | Real Vox AI, form storage, checkout | APIs, database, payments | Separate approval | — |
+| 7. Test & deploy | Production build, hosting | Live site | Checklist signed off | A team-review site is publicly reachable (see the Deployment row); the commit Production serves is not verified. The release checklist, final production domain (B12), SEO and AEO remain pending. |
+| 8. Backend (later) | Real Vox AI, form storage, checkout | APIs, database, payments | Separate approval | Contact form email implemented, launch pending (see above); the rest not started |
 
 ## Phase 4 — homepage steps
 
@@ -445,7 +486,7 @@ The audit and approved fixes are complete and included in the checkpoint. The ma
 2. **Read the plan.** Check the files it creates or changes.
 3. **Approve.** "Approved, implement."
 4. **Run it.** `npm run dev`, open `http://localhost:3000`, check 375 / 810 / 1024 / 1440px.
-5. **Compare.** Look against Framer (design and motion) and the prototype (content).
+5. **Compare.** Compare design, motion and content with the Artifacts reference.
 6. **Commit after explicit owner approval.** Review `git status` and the diff, stage only the approved files, and use the approved commit message.
 7. **If something breaks,** paste the exact error.
 
@@ -453,13 +494,13 @@ The audit and approved fixes are complete and included in the checkpoint. The ma
 
 - One feature per prompt.
 - Content lives in `data/`, copied from the prototype; never typed inside components, never invented.
-- Design values live as tokens in `globals.css`, measured from Framer; never raw hex in components.
+- Design values live as tokens in `globals.css`, changed only with approval; never raw hex in components unless documented.
 - Keep `CLAUDE.md` updated with every decision.
 - Follow `AGENTS.md` for branch changes and obtain explicit owner approval for each commit, push and merge.
 
 ## Folder structure
 
-**Exists (Nov 24, 2026):** `app/` (`layout.js`, `page.js`, `globals.css`, `favicon.ico`, `style-guide/`, `review/`, `solutions/` with 29 routes, `services/` with 26 local routes, and `how-it-works/` with seven local routes), `components/ui/`, `components/layout/`, `components/motion/` (Phase 3), `components/sections/home/` and `components/sections/shared/` (Phase 4), `hooks/`, `lib/`, `data/` and `data/pages/` (Phase 2), `public/images/` and `public/images/agents/` (Phase 2), `docs/CONTENT_INVENTORY.md`, git-ignored `reference/`, config files. Not yet: `public/brand/` (logo file pending), remaining native prototype routes (Phase 5), `lib/seo.js` and `lib/schema.js` (Phase 6). Actual tree: `CLAUDE.md` §3.
+**Exists (Nov 24, 2026):** `app/` (`layout.js`, `page.js`, `globals.css`, `favicon.ico`, `style-guide/`, `review/`, `solutions/` with 29 routes, `services/` with 26 local routes, and `how-it-works/` with seven local routes), `components/ui/`, `components/layout/`, `components/motion/` (Phase 3), `components/sections/home/` and `components/sections/shared/` (Phase 4), `hooks/`, `lib/`, `data/` and `data/pages/` (Phase 2), `public/images/` and `public/images/agents/` (Phase 2), `docs/CONTENT_INVENTORY.md`, git-ignored `reference/`, config files. `public/brand/` has held the logo since Nov 25. Not yet: remaining native prototype routes (Phase 5), `lib/seo.js` and `lib/schema.js` (Phase 6). Actual tree: `CLAUDE.md` §3.
 
 **Planned structure (original proposal; parts above now exist):**
 
@@ -484,7 +525,7 @@ public/
 
 - `app/`: routing, composition, metadata. Pages assemble sections and read `data/`.
 - `components/layout/`: chrome shared by every page.
-- `components/ui/`: small, reusable Framer-style building blocks with no business content.
+- `components/ui/`: small, reusable building blocks with no business content.
 - `components/sections/`: page sections; content passed in from `data/`.
 - `components/motion/` + `hooks/`: the only place animation logic lives, so every effect respects reduced motion in one place.
 - `data/`: the single source of content (from the prototype).
@@ -530,11 +571,11 @@ Target: Lighthouse 90+ on mobile; LCP < 2.5s, CLS < 0.1, INP < 200ms.
 
 ## Phase 7 — Testing, Git and deployment
 
-**Team-review hosting (VERCEL-1, Nov 24, 2026).** Use Vercel's Next.js preset with the existing GitHub repository and `phase-4-homepage` branch. Build from the repository root and use the preset's output. Use `npm run build` and `npm run start` to verify locally. Public assets use domain-root URLs. The review index, Solutions, Services and Agent pages are available locally. Status (Nov 24, 2026): deployed to the existing project and promoted to Production by the owner, see the Deployment row.
+**Team-review hosting (VERCEL-1, Nov 24, 2026).** Use Vercel's Next.js preset with the existing GitHub repository and `phase-4-homepage` branch. Build from the repository root and use the preset's output. Use `npm run build` and `npm run start` to verify locally. Public assets use domain-root URLs. The review index, Solutions, Services and Agent pages are available locally. Deployed to the existing project and promoted to Production by the owner on Nov 24, 2026; current status is in the Deployment row.
 
 Approve repository connection and the first deployment separately. Vercel treats a new project's first deployment as production. Confirm the intended Git revision, production branch and review access before import. Use the approved preview branch for later review deployments.
 
-The native Next.js configuration and production build were verified locally. No Vercel deployment is recorded. The project connection, live preview URL, deployed revision and access settings are unverified.
+The native Next.js configuration and production build were verified locally before the project was connected. Deployment status since then is in the Deployment row and `CLAUDE.md` §12.
 
 **Git approvals.** Keep the approved `phase-4-homepage` branch for team review. Obtain explicit owner approval for each commit, push and merge. Stage only approved files, use a normal push to the approved branch on `origin`, and review changes before an approved merge into `main`. Commit prefixes include `feat:`, `fix:`, `style:`, `docs:` and `chore:`.
 
@@ -542,11 +583,11 @@ The native Next.js configuration and production build were verified locally. No 
 
 - [ ] `npm run build` and `npm run lint` clean
 - [ ] Every prototype page and link works in the new routes
-- [ ] Side-by-side check vs Framer at 375 / 810 / 1024 / 1440px
+- [ ] Side-by-side check vs the Artifacts reference at 375 / 810 / 1024 / 1440px
 - [ ] Content check vs prototype: nothing added, removed or reworded without approval
 - [ ] Chrome, Safari / iPhone, Firefox, Edge
 - [ ] Lighthouse mobile 90+ in all four
-- [ ] No Framer copy, client logos or branding; no placeholder or invented claims
+- [ ] No Framer or template material; no placeholder or invented claims
 - [ ] Domain, HTTPS, `metadataBase`, sitemap submitted
 
 ## Claude Code prompts
@@ -556,7 +597,7 @@ Each prompt asks for a plan first. Prompts that depend on pending decisions wait
 **Prompt 0 — Update project memory**
 
 ```text
-Read CLAUDE.md, AGENTS.md and BUILD_PLAN.md. Add a short "Build plan" section to CLAUDE.md: content comes from the HTML prototype (read-only); look and behaviour come from the Framer reference (never its content, branding or assets); stack is Next.js App Router, JavaScript, CSS Modules + globals.css; no TypeScript/Tailwind/Bootstrap/React Router; no dependency changes without approval; content in data/; design tokens from Framer measurements. Show me the diff before saving.
+Read CLAUDE.md, AGENTS.md and BUILD_PLAN.md. Add a short "Build plan" section to CLAUDE.md: content comes from the HTML prototype (read-only); look and behaviour also come from that prototype, with the approved exceptions; stack is Next.js App Router, JavaScript, CSS Modules + globals.css; no TypeScript/Tailwind/Bootstrap/React Router; no dependency changes without approval; content in data/; approved design tokens. Show me the diff before saving.
 ```
 
 **Prompt 1 — Extract prototype content (Phase 2)**
@@ -568,13 +609,13 @@ Extract the prototype's content (agents, departments, solutions, services, ladde
 **Prompt 2 — Design tokens and style guide (Phase 3)**
 
 ```text
-Using the "Framer design system" section of BUILD_PLAN.md and the approved decisions, write app/globals.css (reset, tokens, base typography, focus styles, reduced-motion rule), set up the approved fonts, and create a noindex /style-guide page showing every token and base component. Plan first.
+Using the Artifacts reference, the current design tokens in BUILD_PLAN.md and the approved decisions, write app/globals.css (reset, tokens, base typography, focus styles, reduced-motion rule), set up the approved fonts, and create a noindex /style-guide page showing every token and base component. Plan first.
 ```
 
 **Prompt 3 — UI components**
 
 ```text
-Create components/ui (Button, IconButton, Frame, Card, Tag, Badge, Tabs, Accordion, SectionHeader, StatCard, Tooltip, Field) matching the Framer patterns table in BUILD_PLAN.md. Each has Name.jsx + Name.module.css and uses only tokens. Add them to /style-guide. Plan first.
+Create components/ui (Button, IconButton, Frame, Card, Tag, Badge, Tabs, Accordion, SectionHeader, StatCard, Tooltip, Field) matching the Artifacts reference. Each has Name.jsx + Name.module.css and uses only tokens. Add them to /style-guide. Plan first.
 ```
 
 **Prompt 4 — Motion hooks**
@@ -586,23 +627,23 @@ Create the approved motion utilities (useInView, useScrollProgress, useReducedMo
 **Prompt 5 — Header, menus, footer (Phase 3)**
 
 ```text
-Build the header (Framer floating nav pill, prototype links and buttons), Solutions/Services menus, mobile menu, cart drawer and footer, following the Global rows of the section mapping in BUILD_PLAN.md. Content from data/navigation.js. Keyboard and screen-reader accessible. Plan first.
+Build the header (as in the Artifacts reference, with the approved exceptions), Solutions/Services menus, mobile menu, cart drawer and footer. Content from data/navigation.js. Keyboard and screen-reader accessible. Plan first.
 ```
 
 **Prompt 6 — One homepage section (repeat per row of the homepage mapping)**
 
 ```text
-Build homepage section [#] from the "Homepage" mapping table in BUILD_PLAN.md as components/sections/home/[Name]/[Name].jsx + .module.css. Content from data/ (prototype, unchanged); design, motion and responsive behaviour from the Framer pattern named in the table. Do not add or remove content. Plan first.
+Build homepage section [#] as components/sections/home/[Name]/[Name].jsx + .module.css. Content from data/ (prototype, unchanged); design, motion and responsive behaviour from the Artifacts reference, with the approved exceptions. Do not add or remove content. Plan first.
 ```
 
 **Prompt 7 — Page template**
 
 ```text
-Build the [solution detail] page at the route in the URL map, using the Framer patterns listed for it in BUILD_PLAN.md and content from data/. generateStaticParams + generateMetadata; unknown slug returns notFound(). Plan first.
+Build the [solution detail] page at the route in the URL map, matching the Artifacts reference, with content from data/. generateStaticParams + generateMetadata; unknown slug returns notFound(). Plan first.
 ```
 
 **Prompt 8 — Check a finished page**
 
 ```text
-Review [page] against BUILD_PLAN.md: content matches the prototype exactly; look and motion match Framer at 375/810/1024/1440; one H1 and heading order; metadata; alt text; keyboard; contrast; reduced motion. Report problems as a list before changing anything.
+Review [page] against BUILD_PLAN.md: content, look and motion match the Artifacts reference (with the approved exceptions) at 375/810/1024/1440; one H1 and heading order; metadata; alt text; keyboard; contrast; reduced motion. Report problems as a list before changing anything.
 ```

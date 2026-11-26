@@ -1,6 +1,8 @@
 // Extracted verbatim from the Xvox Labs HTML prototype v5 (index.html).
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
 // SKILLS and RES from the prototype are already merged into each agent (skills, result).
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const agents = [
   {
@@ -15,7 +17,7 @@ export const agents = [
       "Thorough",
       "A little nosy"
     ],
-    "quote": "I already checked. Here is what changed this week.",
+    "quote": "",
     "bestFor": "Owners who keep meaning to look at competitors and never find the hour.",
     "never": "Contacts anyone or publishes anything. Scout only reads and reports.",
     "check": "You choose which competitors and markets Scout watches, and you read the weekly brief.",
@@ -58,7 +60,7 @@ export const agents = [
       "Prospect list building",
       "Weekly briefs"
     ],
-    "result": "Weekly brief by Monday 9am",
+    "result": "Weekly brief",
     "image": "/images/agents/scout.webp",
     "animatedImage": "/images/agents/anim-scout.webp"
   },
@@ -74,7 +76,7 @@ export const agents = [
       "On-brand",
       "Never misses a deadline"
     ],
-    "quote": "Your week of posts is drafted. Want the spicy version or the safe one?",
+    "quote": "",
     "bestFor": "Teams who know what to say but never have time to write it.",
     "never": "Posts without approval. Every draft waits for a person.",
     "check": "You approve each week’s plan and every post before it goes out.",
@@ -133,7 +135,7 @@ export const agents = [
       "Patient",
       "Data-minded"
     ],
-    "quote": "You moved up for “emergency plumber near me”. Two pages still need work.",
+    "quote": "",
     "bestFor": "Businesses that customers should find but don’t, on Google or in AI assistants.",
     "never": "Changes your live site on its own. It proposes fixes for a person to apply.",
     "check": "You or your developer approve each page change.",
@@ -191,7 +193,7 @@ export const agents = [
       "Persistent",
       "Always polite"
     ],
-    "quote": "New lead at 11:42 pm. Replied in two minutes. Call booked for Thursday.",
+    "quote": "",
     "bestFor": "Teams losing deals because nobody replied fast enough.",
     "never": "Pressures people or messages anyone who opted out.",
     "check": "A person takes over as soon as a lead is ready to talk.",
@@ -204,7 +206,7 @@ export const agents = [
     "day": [
       {
         "time": "Any time",
-        "task": "Replies to new enquiries within minutes, in your voice",
+        "task": "Replies to new enquiries in your voice",
         "by": "relay"
       },
       {
@@ -236,7 +238,7 @@ export const agents = [
       "Call booking",
       "CRM updates"
     ],
-    "result": "Replies to leads in minutes",
+    "result": "Replies to leads",
     "image": "/images/agents/relay.webp",
     "animatedImage": "/images/agents/anim-relay.webp"
   },
@@ -252,7 +254,7 @@ export const agents = [
       "Honest",
       "The one who says “wait”"
     ],
-    "quote": "Before this goes live: it can see customer phone numbers. Should it?",
+    "quote": "",
     "bestFor": "Anyone putting AI in front of customers or customer data.",
     "never": "Approves anything on its own. Sage flags; a person decides.",
     "check": "Every finding goes to a named person on your team.",
@@ -311,7 +313,7 @@ export const agents = [
       "Fast",
       "Has an eye for a hook"
     ],
-    "quote": "Your 40-minute call is now six clips. The second one is the hook.",
+    "quote": "",
     "bestFor": "Teams with footage and ideas but no editor.",
     "never": "Publishes a video without a person watching it first.",
     "check": "You approve every cut before it goes out.",

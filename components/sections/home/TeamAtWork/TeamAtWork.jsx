@@ -32,7 +32,7 @@ export default function TeamAtWork() {
         <>
           <Orchestration slug={slug} active={active === slug} runSignal={signals[slug] || 0} />
           <div className={styles.foot}>
-            <span className={styles.muted}>{fill(T.footer, { blueprint: sol.title, timeline: sol.workflow.timeline })}</span>
+            <span className={styles.muted}>{fill(T.footer, { blueprint: sol.title })}</span>
             <Button href={`/solutions/${slug}`} variant="small" arrow>
               {T.seeSolution}
             </Button>
@@ -44,7 +44,7 @@ export default function TeamAtWork() {
 
   return (
     <Section>
-      <SectionHead eyebrow={block(s, "span.eb2").text} title={block(s, "h2.big").text} lead={block(s, "p.lead").text} />
+      <SectionHead layout="row" eyebrow={block(s, "span.eb2").text} title={block(s, "h2.big").text} lead={block(s, "p.lead").text} />
       <Frame>
         <Tabs
           label={block(s, "span.eb2").text}

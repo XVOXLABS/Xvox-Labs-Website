@@ -3,6 +3,8 @@
 // template: text identical on every page of this type.
 // computedText: per-page text built by the prototype from data (e.g. counts, names in sentences);
 // kept verbatim so templates can be rebuilt and checked against it.
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const template = {
   "prototypeRoutes": [
@@ -355,7 +357,7 @@ export const template = {
         },
         {
           "tag": "p.lead",
-          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up within a day."
+          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up."
         },
         {
           "tag": "button.btn",
@@ -374,7 +376,7 @@ export const template = {
 
 export const computedText = {
   "agent-scout": [
-    "“I already checked. Here is what changed this week.”",
+    "",
     "Hire Scout ↓",
     "6 items in the marketplace",
     "Who Scout is.",
@@ -385,9 +387,9 @@ export const computedText = {
     "Video content engine Spot what is trending →",
     "A week with Scout",
     "Scout solves these.",
-    "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. Live in 3–4 weeks →",
-    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
-    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
+    "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. →",
+    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. →",
+    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. →",
     "Skills, blueprints and tools for Scout.",
     "See all 6 ↗",
     "Blueprint ▦ Inbound lead response blueprint The complete system for inbound lead response: agents, workflows, approval steps and setup packs. $1,500 +",
@@ -404,7 +406,7 @@ export const computedText = {
     "Reel Video agent"
   ],
   "agent-quill": [
-    "“Your week of posts is drafted. Want the spicy version or the safe one?”",
+    "",
     "Hire Quill ↓",
     "10 items in the marketplace",
     "Who Quill is.",
@@ -417,9 +419,9 @@ export const computedText = {
     "Safe AI rollout Write the AI policy →",
     "A week with Quill",
     "Quill solves these.",
-    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
-    "Design & Brand Brand consistency kit Templates and rules that keep every channel on brand. Live in 4–6 weeks →",
-    "Customer Experience Client onboarding Collect forms, contracts and setup details automatically. Live in 3–5 weeks →",
+    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. →",
+    "Design & Brand Brand consistency kit Templates and rules that keep every channel on brand. →",
+    "Customer Experience Client onboarding Collect forms, contracts and setup details automatically. →",
     "Skills, blueprints and tools for Quill.",
     "See all 10 ↗",
     "Blueprint ▦ Social media content blueprint The complete system for social media content: agents, workflows, approval steps and setup packs. $1,500 +",
@@ -438,7 +440,7 @@ export const computedText = {
     "Reel Video agent"
   ],
   "agent-beacon": [
-    "“You moved up for “emergency plumber near me”. Two pages still need work.”",
+    "",
     "Hire Beacon ↓",
     "6 items in the marketplace",
     "Who Beacon is.",
@@ -448,8 +450,8 @@ export const computedText = {
     "Safe AI rollout Make it easy to find help →",
     "A week with Beacon",
     "Beacon solves these.",
-    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. Live in 3–4 weeks →",
-    "Design & Brand Website redesign A clear, fast website structured around what visitors need. Live in 4–6 weeks →",
+    "Sales & Marketing SEO and AI search visibility Get found on Google and in ChatGPT, Perplexity and Gemini answers. →",
+    "Design & Brand Website redesign A clear, fast website structured around what visitors need. →",
     "Skills, blueprints and tools for Beacon.",
     "See all 6 ↗",
     "Blueprint ▦ SEO and AI search visibility blueprint The complete system for seo and ai search visibility: agents, workflows, approval steps and setup packs. $1,500 +",
@@ -466,23 +468,23 @@ export const computedText = {
     "Reel Video agent"
   ],
   "agent-relay": [
-    "“New lead at 11:42 pm. Replied in two minutes. Call booked for Thursday.”",
+    "",
     "Hire Relay ↓",
     "11 items in the marketplace",
     "Who Relay is.",
     "Energetic, Persistent, Always polite.",
     "What Relay brings to the board.",
     "Marketing on autopilot Follow up on new leads →",
-    "Never miss a lead Reply in minutes →",
+    "Never miss a lead Reply to leads →",
     "Support that never sleeps Answer common questions →",
     "Support that never sleeps Onboard new clients →",
     "A week with Relay",
     "Relay solves these.",
-    "Sales & Marketing Inbound lead response Reply to every new lead within minutes, day or night. Live in 2–4 weeks →",
-    "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. Live in 3–4 weeks →",
-    "Customer Experience AI chat and voice support Answer common questions instantly. A person handles the rest. Live in 4–6 weeks →",
-    "Customer Experience Client onboarding Collect forms, contracts and setup details automatically. Live in 3–5 weeks →",
-    "Operations & Admin Admin and data entry Stop copying data between tools and chasing routine tasks. Live in 3–5 weeks →",
+    "Sales & Marketing Inbound lead response Reply to every new lead, day or night. →",
+    "Sales & Marketing Lead research and outreach Find companies like your best clients and start the conversation. →",
+    "Customer Experience AI chat and voice support Answer common questions. A person handles the rest. →",
+    "Customer Experience Client onboarding Collect forms, contracts and setup details automatically. →",
+    "Operations & Admin Admin and data entry Stop copying data between tools and chasing routine tasks. →",
     "Skills, blueprints and tools for Relay.",
     "See all 11 ↗",
     "Blueprint ▦ Admin and data entry blueprint The complete system for admin and data entry: agents, workflows, approval steps and setup packs. $1,500 +",
@@ -491,7 +493,7 @@ export const computedText = {
     "Blueprint ▦ Automated phone calls blueprint The complete system for automated phone calls: agents, workflows, approval steps and setup packs. $1,500 +",
     "Claude skill ✦ Lead qualifier Scores new leads against your best clients and writes the first reply. $69 +",
     "Claude skill ✦ Weekly ops report Pulls numbers from your sheets and writes a short Monday report. $49 +",
-    "Automation pack ⇄ Lead router Catches every enquiry, logs it in the CRM and sends the first reply in minutes. $249 +",
+    "Automation pack ⇄ Lead router Catches every enquiry, logs it in the CRM and sends the first reply. $249 +",
     "Automation pack ⇄ Invoice reminders Polite reminders before and after due dates, and a weekly list of what is late. No AI needed. $199 +",
     "Put Relay to work.",
     "Scout Research agent",
@@ -501,7 +503,7 @@ export const computedText = {
     "Reel Video agent"
   ],
   "agent-sage": [
-    "“Before this goes live: it can see customer phone numbers. Should it?”",
+    "",
     "Hire Sage ↓",
     "7 items in the marketplace",
     "Who Sage is.",
@@ -515,9 +517,9 @@ export const computedText = {
     "Safe AI rollout Test real conversations →",
     "A week with Sage",
     "Sage solves these.",
-    "Safe AI AI safety check Check what your AI can see, say and do before you launch. Live in 4–6 weeks →",
-    "Safe AI AI agent review An expert review of an agent you or a vendor built. Live in 4–6 weeks →",
-    "Operations & Admin Tool integrations Connect your CRM, billing and project tools so data stays in sync. Live in 3–5 weeks →",
+    "Safe AI AI safety check Check what your AI can see, say and do before you launch. →",
+    "Safe AI AI agent review An expert review of an agent you or a vendor built. →",
+    "Operations & Admin Tool integrations Connect your CRM, billing and project tools so data stays in sync. →",
     "Skills, blueprints and tools for Sage.",
     "See all 7 ↗",
     "Blueprint ▦ Tool integrations blueprint The complete system for tool integrations: agents, workflows, approval steps and setup packs. $1,500 +",
@@ -535,7 +537,7 @@ export const computedText = {
     "Reel Video agent"
   ],
   "agent-reel": [
-    "“Your 40-minute call is now six clips. The second one is the hook.”",
+    "",
     "Hire Reel ↓",
     "4 items in the marketplace",
     "Who Reel is.",
@@ -545,8 +547,8 @@ export const computedText = {
     "Video content engine Captions and posting →",
     "A week with Reel",
     "Reel solves these.",
-    "Sales & Marketing Short-form video Turn long videos into ready-to-post clips with captions. Live in 2–4 weeks →",
-    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. Live in 3–4 weeks →",
+    "Sales & Marketing Short-form video Turn long videos into ready-to-post clips with captions. →",
+    "Sales & Marketing Social media content Plan, write and schedule a week of posts in your brand voice. →",
     "Skills, blueprints and tools for Reel.",
     "See all 4 ↗",
     "Blueprint ▦ Short-form video blueprint The complete system for short-form video: agents, workflows, approval steps and setup packs. $1,500 +",

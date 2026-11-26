@@ -1,6 +1,8 @@
 // Extracted verbatim from the Xvox Labs HTML prototype v5 (index.html).
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
 // Text blocks in prototype order. href = new route; prototypeHref = original hash link.
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const header = [
   {
@@ -82,7 +84,7 @@ export const solutionsMenu = [
   },
   {
     "tag": "a",
-    "text": "Inbound lead responseReply to every new lead within minutes, day or night.",
+    "text": "Inbound lead responseReply to every new lead, day or night.",
     "href": "/solutions/leads-go-cold",
     "prototypeHref": "#solution-leads-go-cold"
   },
@@ -100,7 +102,7 @@ export const solutionsMenu = [
   },
   {
     "tag": "a",
-    "text": "Proposals and quotesTurn a sales call into a ready-to-send proposal the same day.",
+    "text": "Proposals and quotesTurn a sales call into a ready-to-send proposal.",
     "href": "/solutions/proposals",
     "prototypeHref": "#solution-proposals"
   },
@@ -112,7 +114,7 @@ export const solutionsMenu = [
   },
   {
     "tag": "a",
-    "text": "AI chat and voice supportAnswer common questions instantly. A person handles the rest.",
+    "text": "AI chat and voice supportAnswer common questions. A person handles the rest.",
     "href": "/solutions/slow-replies",
     "prototypeHref": "#solution-slow-replies"
   },
@@ -172,7 +174,7 @@ export const solutionsMenu = [
   },
   {
     "tag": "a",
-    "text": "Meeting notes and follow-upsGet notes, action items and follow-ups minutes after every meeting.",
+    "text": "Meeting notes and follow-upsGet notes, action items and follow-ups after every meeting.",
     "href": "/solutions/meeting-notes",
     "prototypeHref": "#solution-meeting-notes"
   },

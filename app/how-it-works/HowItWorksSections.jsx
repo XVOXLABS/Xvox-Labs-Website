@@ -17,6 +17,7 @@ import { block, blocksByTag } from "@/lib/content";
 import { DepartmentWork } from "../solutions/SolutionsInteractions";
 import { AgentArt, AgentQuickViews, ModelSelector } from "./AgentInteractions";
 import styles from "./how-it-works.module.css";
+import SafeAiBox from "@/components/sections/home/SafeAiBox/SafeAiBox";
 
 function Head({ blocks, title = "h2.big", lead = false, ...props }) {
   return <SectionHead eyebrow={block(blocks, "span.eyebrow").text} title={block(blocks, title).text}
@@ -27,11 +28,9 @@ export function AgentClosing({ blocks }) {
   const book = block(blocks, "a.btn");
   return (
     <Section className={styles.following}>
-      <Frame className={styles.closing}>
-        <SectionHeader layout="center" size="h1" title={block(blocks, "h2").text} lead={block(blocks, "p.lead").text}
+      <SectionHeader layout="closing" title={block(blocks, "h2").text} lead={block(blocks, "p.lead").text}
           action={<div className={styles.actions}><Button href={VOX_HREF}>{block(blocks, "button.btn").text}</Button>
             <Button href={book.href} variant="secondary">{book.text}</Button></div>} />
-      </Frame>
     </Section>
   );
 }
@@ -42,7 +41,7 @@ function Team({ directory, banner }) {
   return (
     <AgentQuickViews>
       <Section id="team" className={styles.following}>
-        <Head blocks={directory} lead action={<Button href={custom.href} variant="secondary">{custom.text}</Button>} />
+        <Head blocks={directory} lead layout="side" action={<Button href={custom.href} variant="secondary">{custom.text}</Button>} />
         <Frame className={styles.directory}>
           {agentProfiles.map(({ href, record }) => (
             <Card key={href} href={href} tint={record.tint} className={styles.agentCard} data-agent-popup={record.id} aria-haspopup="dialog">
@@ -82,54 +81,24 @@ function Team({ directory, banner }) {
   );
 }
 
-function SafeAI({ blocks }) {
-  const sage = agentProfiles.find(({ record }) => record.id === "sage").record;
-  return (
-    <Section className={styles.following}>
-      <Frame className={styles.two}>
-        <Card>
-          <Head blocks={blocks} title="h2" />
-          <ul className={styles.list}>{blocksByTag(blocks, "li").map(({ text }) => <li key={text}>{text}</li>)}</ul>
-          <div className={styles.actions}>{blocksByTag(blocks, "a.btn").map(({ href, text }, i) =>
-            <Button key={href} href={href} variant={i ? "secondary" : "primary"}>{text}</Button>)}</div>
-        </Card>
-        <Card tint={sage.tint} className={styles.sage}>
-          <AgentArt agent={sage} className={styles.sageArt} />
-          <div><strong>{block(blocks, "b").text}</strong><p>{block(blocks, "span").text}</p></div>
-        </Card>
-      </Frame>
-    </Section>
-  );
-}
-
-// Week spans follow gantt() in the final prototype. Each bar also exposes its weeks as text.
+// The four delivery phases (prototype gantt()). The week columns, bars and duration are not published (REF-9).
 function Delivery({ blocks }) {
-  const headings = blocksByTag(blocks, "span.g-h");
   const notes = blocksByTag(blocks, "span");
-  const duration = blocksByTag(blocks, "span.g-bar");
-  const weeks = [[1, 1], [2, 3], [4, 4], [5, 6]];
-  const live = block(blocks, "span.chip").text;
-  const summary = block(blocks, "div.g-done").text.slice(live.length).trim();
+  const summary = block(blocks, "div.g-done").text;
   return (
     <Section className={styles.following}>
-      <Head blocks={blocks} lead />
-      <Frame className={styles.delivery}>
-        <div className={styles.chartHead} aria-hidden="true">{headings.map(({ text }) => <span key={text}>{text}</span>)}</div>
+      {/* The prototype heading was the duration, so the introduction line is the heading */}
+      <SectionHead eyebrow={block(blocks, "span.eyebrow").text} title={block(blocks, "p.lead").text} />
+      <Frame>
         <ol className={styles.timeline}>
-          {blocksByTag(blocks, "b").map(({ text }, i) => {
-            const [start, end] = weeks[i];
-            const range = headings[start].text + (end === start ? "" : `–${headings[end].text}`);
-            return (
-              <li key={text} className={styles.chartRow}>
-                <div><strong>{text}</strong><p className={styles.muted}>{notes[i].text}</p></div>
-                <span className={styles.chartBar} style={{ "--start": start + 1, "--end": end + 2, "--tint": `var(--tint-p${i + 1})` }}>
-                  <span className={styles.chartRange}>{range}</span> {duration[i].text}
-                </span>
-              </li>
-            );
-          })}
+          {blocksByTag(blocks, "b").map(({ text }, i) => (
+            <li key={text} className={styles.phase}>
+              <strong>{text}</strong>
+              <p className={styles.muted}>{notes[i].text}</p>
+            </li>
+          ))}
         </ol>
-        <p><strong>{live}</strong> {summary}</p>
+        <p>{summary}</p>
       </Frame>
     </Section>
   );
@@ -161,12 +130,12 @@ export default function HowItWorksSections({ entry }) {
         <DepartmentWork flows={agentWorkflows} label={block(work, "span.eyebrow").text} seeSolution={block(work, "a.btn").text} />
       </Section>
       <Team directory={section(3)} banner={section(4)} />
-      <SafeAI blocks={section(5)} />
+      <SafeAiBox className={styles.following} />
       <Delivery blocks={section(6)} />
       <Section className={styles.following}>
         <Head blocks={compatibility} lead />
-        <Frame><ModelSelector models={models} label={block(compatibility, "span.eyebrow").text} toast={agentPageText.modelToast} />
-          <p className={styles.muted}>{block(compatibility, "p.note").text}</p></Frame>
+        <Frame><ModelSelector models={models} label={block(compatibility, "span.eyebrow").text} toast={agentPageText.modelToast}
+          note={block(compatibility, "p.note").text} agents={agentProfiles.filter(({ record }) => record.id !== "sage").map(({ record }) => record).concat(agentProfiles.find(({ record }) => record.id === "sage").record)} /></Frame>
       </Section>
       <MissionBoardSection blocks={section(8)} id="build-sec" fullScreen />
       <Section className={styles.following} containerClassName={styles.two}>

@@ -21,7 +21,7 @@ export default function BuildPage() {
   const team = block(complete, "a.btn");
   return (
     <>
-      <Intro blocks={head} />
+      <Intro blocks={head} size="wide" />
       <MissionBoardSection blocks={board} readParam />
       <Section className={styles.following}>
         <SectionHead eyebrow={block(complete, "span.eyebrow").text} title={block(complete, "h2.big").text} />

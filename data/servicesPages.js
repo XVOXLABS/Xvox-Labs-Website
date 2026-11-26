@@ -31,7 +31,6 @@ export const servicesText = {
   explore: "Explore {name}",
   more: "+{count} more",
   sisterCompany: "Sister company",
-  timeline: "Timeline",
   bookPath: "Not sure yet",
   priceNote: "Fixed after a 30-minute call.",
   draftPriceTitle: "Set by the team before launch",
@@ -42,15 +41,15 @@ export const servicesText = {
   sampleCatalogue: "Sample catalogue",
   moreIn: "More in {name}",
   otherServices: "Other services.",
-  liveIn: "Live in {timeline}",
   packagedAutomation: {
     title: "Packaged automation",
     summary: "Ready solutions by department, staffed by agents.",
-    timeline: "2–6 weeks",
     href: "/solutions",
   },
 };
 
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-8): unverified delivery durations are not published,
+// so the package durations and the "How long does it take?" question are removed.
 // The report, package paths and FAQ are the structured version of safeReview() in prototype v5.
 // The review manifest keeps the original flat extraction as well.
 export const safeReview = {
@@ -60,8 +59,8 @@ export const safeReview = {
   builders: ["Lovable", "Bolt", "Cursor", "n8n", "Custom GPTs", "Claude projects", "Your own code"],
   packages: [
     { name: "Free self-check", text: "Ten questions, instant score.", price: "Free", cta: "Start now →" },
-    { name: "Quick Scan", text: "Automated checks plus an expert pass. 3–5 days.", path: "Quick Scan", cta: "Book a Quick Scan →" },
-    { name: "Full Review", text: "Hands-on testing, report and walkthrough call. 1–2 weeks.", path: "Full Review", cta: "Book a Full Review →", highlight: true },
+    { name: "Quick Scan", text: "Automated checks plus an expert pass.", path: "Quick Scan", cta: "Book a Quick Scan →" },
+    { name: "Full Review", text: "Hands-on testing, report and walkthrough call.", path: "Full Review", cta: "Book a Full Review →", highlight: true },
     { name: "Fix Sprint", text: "We fix what the review found.", path: "Fix Sprint", cta: "Book a Fix Sprint →" },
     { name: "Ongoing", text: "A review before each major release.", path: "Ongoing reviews", cta: "Talk to us →", draftUnit: "/ month" },
   ],
@@ -77,7 +76,6 @@ export const safeReview = {
     ],
   },
   faq: [
-    { question: "How long does it take?", answer: "A Quick Scan takes 3 to 5 days. A Full Review takes 1 to 2 weeks." },
     { question: "What do you need from us?", answer: "Access to a test environment, a short walkthrough, and the code or workflow export if you have one." },
     { question: "Do you fix the issues?", answer: "If you want. The Fix Sprint is a separate step, priced from the report." },
     { question: "Is this a certification?", answer: "No. It is an expert review of what we tested, at the time we tested it." },

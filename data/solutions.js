@@ -2,6 +2,8 @@
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
 // title = prototype S.bp (identical to COPY[slug][0]); summary = COPY[slug][1]; workflow = FLOW[slug].
 // agentNames is omitted when it equals the names of agentIds (exact duplicate).
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const solutions = [
   {
@@ -38,7 +40,6 @@ export const solutions = [
         }
       ],
       "outcome": "Posts scheduled after you approve",
-      "timeline": "3–4 weeks"
     }
   },
   {
@@ -75,7 +76,6 @@ export const solutions = [
         }
       ],
       "outcome": "Pages updated, visibility tracked",
-      "timeline": "3–4 weeks"
     }
   },
   {
@@ -83,7 +83,7 @@ export const solutions = [
     "title": "Inbound lead response",
     "category": "growth",
     "pain": "Leads go cold before we reply",
-    "summary": "Reply to every new lead within minutes, day or night.",
+    "summary": "Reply to every new lead, day or night.",
     "agentIds": [
       "scout",
       "relay"
@@ -94,11 +94,11 @@ export const solutions = [
       "Nobody knows which leads were missed"
     ],
     "with": [
-      "First reply goes out in minutes, in your voice",
+      "First reply goes out in your voice",
       "Follow-ups continue until the lead answers",
       "A person steps in when a lead is ready to talk"
     ],
-    "description": "Reply to every new lead within minutes, day or night.",
+    "description": "Reply to every new lead, day or night.",
     "workflow": {
       "trigger": "A new enquiry arrives",
       "steps": [
@@ -111,8 +111,7 @@ export const solutions = [
           "does": "Writes a first reply in your voice"
         }
       ],
-      "outcome": "First reply in minutes, logged in your CRM",
-      "timeline": "2–4 weeks"
+      "outcome": "First reply logged in your CRM",
     }
   },
   {
@@ -149,7 +148,6 @@ export const solutions = [
         }
       ],
       "outcome": "Replies routed to the right person",
-      "timeline": "3–4 weeks"
     }
   },
   {
@@ -181,7 +179,6 @@ export const solutions = [
         }
       ],
       "outcome": "Admin done on schedule; people review exceptions",
-      "timeline": "3–5 weeks"
     }
   },
   {
@@ -213,7 +210,6 @@ export const solutions = [
         }
       ],
       "outcome": "One source of truth across your tools",
-      "timeline": "3–5 weeks"
     }
   },
   {
@@ -221,7 +217,7 @@ export const solutions = [
     "title": "AI chat and voice support",
     "category": "cx",
     "pain": "Clients wait too long for answers",
-    "summary": "Answer common questions instantly. A person handles the rest.",
+    "summary": "Answer common questions. A person handles the rest.",
     "agentIds": [
       "beacon",
       "relay"
@@ -232,11 +228,11 @@ export const solutions = [
       "Tickets are sorted by whoever sees them first"
     ],
     "with": [
-      "Instant answers to common questions by chat or voice",
+      "Answers to common questions by chat or voice",
       "Hard cases handed to a person with context",
       "Tickets sorted by urgency"
     ],
-    "description": "Answer common questions instantly. A person handles the rest.",
+    "description": "Answer common questions. A person handles the rest.",
     "workflow": {
       "trigger": "A message or call comes in",
       "steps": [
@@ -249,8 +245,7 @@ export const solutions = [
           "does": "Replies by chat or voice"
         }
       ],
-      "outcome": "Answered in minutes; hard cases go to a person",
-      "timeline": "4–6 weeks"
+      "outcome": "Common questions answered; hard cases go to a person",
     }
   },
   {
@@ -286,8 +281,7 @@ export const solutions = [
           "does": "Writes the welcome pack"
         }
       ],
-      "outcome": "Client set up fast, every step logged",
-      "timeline": "3–5 weeks"
+      "outcome": "Client set up, every step logged",
     }
   },
   {
@@ -366,7 +360,6 @@ export const solutions = [
         }
       ],
       "outcome": "Clips in every format, ready to post",
-      "timeline": "2–4 weeks"
     }
   },
   {
@@ -445,7 +438,6 @@ export const solutions = [
         }
       ],
       "outcome": "Clients stop asking where things stand",
-      "timeline": "2–3 weeks"
     }
   },
   {
@@ -453,7 +445,7 @@ export const solutions = [
     "title": "Proposals and quotes",
     "category": "growth",
     "pain": "Proposals take days to write",
-    "summary": "Turn a sales call into a ready-to-send proposal the same day.",
+    "summary": "Turn a sales call into a ready-to-send proposal.",
     "agentIds": [
       "scout",
       "quill"
@@ -464,11 +456,11 @@ export const solutions = [
       "Deals cool while the proposal waits"
     ],
     "with": [
-      "A draft proposal the same day as the call",
+      "A draft proposal from the call",
       "Your template, your pricing rules",
       "You approve before it goes out"
     ],
-    "description": "Turn a sales call into a ready-to-send proposal the same day.",
+    "description": "Turn a sales call into a ready-to-send proposal.",
     "workflow": {
       "trigger": "A sales call ends",
       "steps": [
@@ -481,8 +473,7 @@ export const solutions = [
           "does": "Writes the proposal from your template"
         }
       ],
-      "outcome": "Proposal ready to send the same day",
-      "timeline": "2–4 weeks"
+      "outcome": "Proposal ready to send",
     }
   },
   {
@@ -519,7 +510,6 @@ export const solutions = [
         }
       ],
       "outcome": "Numbers weekly, not at month-end",
-      "timeline": "3–4 weeks"
     }
   },
   {
@@ -550,8 +540,7 @@ export const solutions = [
           "does": "Sends polite reminders and logs replies"
         }
       ],
-      "outcome": "Paid faster, with a weekly late list",
-      "timeline": "2–3 weeks"
+      "outcome": "A weekly list of late invoices",
     }
   },
   {
@@ -583,7 +572,6 @@ export const solutions = [
         }
       ],
       "outcome": "Outcome recorded; people handle exceptions",
-      "timeline": "4–6 weeks"
     }
   },
   {
@@ -591,7 +579,7 @@ export const solutions = [
     "title": "Meeting notes and follow-ups",
     "category": "admin",
     "pain": "Meetings end and nothing gets written down",
-    "summary": "Get notes, action items and follow-ups minutes after every meeting.",
+    "summary": "Get notes, action items and follow-ups after every meeting.",
     "agentIds": [
       "quill",
       "relay"
@@ -602,11 +590,11 @@ export const solutions = [
       "Follow-ups are booked days later"
     ],
     "with": [
-      "Notes and action items minutes after the call",
+      "Notes and action items after the call",
       "Follow-ups booked and reminders sent",
       "Everything filed where your team looks"
     ],
-    "description": "Get notes, action items and follow-ups minutes after every meeting.",
+    "description": "Get notes, action items and follow-ups after every meeting.",
     "workflow": {
       "trigger": "A meeting ends",
       "steps": [
@@ -619,8 +607,7 @@ export const solutions = [
           "does": "Books follow-ups and sends reminders"
         }
       ],
-      "outcome": "Notes and next steps in minutes",
-      "timeline": "2–3 weeks"
+      "outcome": "Notes and next steps",
     }
   },
   {
@@ -657,7 +644,6 @@ export const solutions = [
         }
       ],
       "outcome": "Requests arrive complete and prioritised",
-      "timeline": "2–4 weeks"
     }
   },
   {
@@ -694,7 +680,6 @@ export const solutions = [
         }
       ],
       "outcome": "Every variant ready for review",
-      "timeline": "2–4 weeks"
     }
   },
   {
@@ -726,7 +711,6 @@ export const solutions = [
         }
       ],
       "outcome": "Developers get complete, checked designs",
-      "timeline": "3–4 weeks"
     }
   }
 ];

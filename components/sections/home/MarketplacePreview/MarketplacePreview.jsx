@@ -15,7 +15,7 @@ export default function MarketplacePreview() {
 
   return (
     <Section>
-      <SectionHead eyebrow={eyebrow} title={block(s, "h2.big").text} lead={block(s, "p.lead").text} />
+      <SectionHead layout="row" eyebrow={eyebrow} title={block(s, "h2.big").text} lead={block(s, "p.lead").text} />
       <MarketplaceFeatured featuredIds={interactive.featuredItems} labels={labels} label={eyebrow} />
       <div>
         <Button href={open.href}>{open.text}</Button>

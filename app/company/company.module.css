@@ -211,10 +211,6 @@ a.cell {
   margin-block-end: 10px;
 }
 
-.aside .tall.tall {
-  background: var(--color-surface);
-}
-
 .steps {
   margin: 0;
   padding-inline-start: 1.2em;
@@ -331,5 +327,31 @@ a.cell {
 
   .cell {
     min-height: 0;
+  }
+}
+
+div.cell h3,
+a.cell h3 {
+  font-size: 17px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.cell p {
+  font-size: 14.5px;
+}
+
+article.cell h3,
+div.cell h2 {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+@media (max-width: 809px) {
+  .cells.cells.cells {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

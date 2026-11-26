@@ -2,6 +2,8 @@
 // Do not reword, shorten or remove content without approval (see BUILD_PLAN.md).
 // Every text block of this page in order. fromData = the same text also lives in a data/ list.
 // hidden + reason "placeholder" = not shown publicly (decision Nov 21, 2026); text kept for reference.
+// Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
+// figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
 
 export const page = {
   "prototypeRoute": "#how",
@@ -228,7 +230,7 @@ export const page = {
         },
         {
           "tag": "b",
-          "text": "Reply sent in 4 minutes, logged in HubSpot"
+          "text": "Reply sent, logged in HubSpot"
         },
         {
           "tag": "span.olb",
@@ -248,7 +250,7 @@ export const page = {
         },
         {
           "tag": "span.muted",
-          "text": "Inbound lead response · typically live in 2–4 weeks"
+          "text": "Inbound lead response"
         },
         {
           "tag": "a.btn",
@@ -282,7 +284,7 @@ export const page = {
         },
         {
           "tag": "a.acard",
-          "text": "Research agent Scout Weekly brief by Monday 9am →",
+          "text": "Research agent Scout Weekly brief →",
           "href": "/how-it-works/agents/scout",
           "prototypeHref": "#agent-scout"
         },
@@ -315,7 +317,7 @@ export const page = {
         },
         {
           "tag": "a.acard",
-          "text": "Outreach agent Relay Replies to leads in minutes →",
+          "text": "Outreach agent Relay Replies to leads →",
           "href": "/how-it-works/agents/relay",
           "prototypeHref": "#agent-relay"
         },
@@ -453,11 +455,11 @@ export const page = {
         },
         {
           "tag": "h2.big",
-          "text": "Live in 4 to 6 weeks."
+          "text": ""
         },
         {
           "tag": "p.lead",
-          "text": "An example implementation. Your real timeline is set in the audit."
+          "text": "An example implementation."
         },
         {
           "tag": "span.g-h",
@@ -465,27 +467,27 @@ export const page = {
         },
         {
           "tag": "span.g-h",
-          "text": "W1"
+          "text": ""
         },
         {
           "tag": "span.g-h",
-          "text": "W2"
+          "text": ""
         },
         {
           "tag": "span.g-h",
-          "text": "W3"
+          "text": ""
         },
         {
           "tag": "span.g-h",
-          "text": "W4"
+          "text": ""
         },
         {
           "tag": "span.g-h",
-          "text": "W5"
+          "text": ""
         },
         {
           "tag": "span.g-h",
-          "text": "W6"
+          "text": ""
         },
         {
           "tag": "b",
@@ -497,7 +499,7 @@ export const page = {
         },
         {
           "tag": "span.g-bar",
-          "text": "1 week"
+          "text": ""
         },
         {
           "tag": "b",
@@ -509,7 +511,7 @@ export const page = {
         },
         {
           "tag": "span.g-bar",
-          "text": "2 weeks"
+          "text": ""
         },
         {
           "tag": "b",
@@ -521,7 +523,7 @@ export const page = {
         },
         {
           "tag": "span.g-bar",
-          "text": "1 week"
+          "text": ""
         },
         {
           "tag": "b",
@@ -533,15 +535,15 @@ export const page = {
         },
         {
           "tag": "span.g-bar",
-          "text": "Ongoing →"
+          "text": ""
         },
         {
           "tag": "span.chip",
-          "text": "Live in 4 to 6 weeks"
+          "text": ""
         },
         {
           "tag": "div.g-done",
-          "text": "Live in 4 to 6 weeks Then we stay on: monitoring, fixes and a monthly check-in."
+          "text": "Then we stay on: monitoring, fixes and a monthly check-in."
         }
       ]
     },
@@ -943,7 +945,7 @@ export const page = {
         },
         {
           "tag": "p.lead",
-          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up within a day."
+          "text": "Tell Vox what is slowing you down. You get a plan, and a person from our team follows up."
         },
         {
           "tag": "button.btn",
