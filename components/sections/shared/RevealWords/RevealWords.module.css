@@ -5,9 +5,9 @@
 
 /* Not yet in view: muted. In view, static (reduced motion / server): full colour. */
 .light[data-state="out"] .word {
-  color: var(--color-ink-faint);
+  color: var(--color-ink-muted);
 }
 
 .dark[data-state="out"] .word {
-  color: #555555;
+  color: #8a8a8a;
 }
