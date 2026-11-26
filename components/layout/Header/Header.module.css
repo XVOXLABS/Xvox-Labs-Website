@@ -199,6 +199,13 @@
   }
 }
 
+/* At 320px the two buttons sit 3px closer, so the logo keeps 12px clear of "Book a call" */
+@media (max-width: 340px) {
+  .actions {
+    gap: 5px;
+  }
+}
+
 @media (max-width: 560px) {
   .bar {
     gap: 8px;
