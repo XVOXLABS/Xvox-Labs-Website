@@ -15,6 +15,13 @@
 .directory.directory { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .four.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
+/* Team grid only (prototype .acards): no grey frame, 8px gaps (REF-15) */
+.directory.directory {
+  gap: 8px;
+  padding: 0;
+  background: transparent;
+}
+
 .actions,
 .chips,
 .unsure {
@@ -352,6 +359,11 @@
   .directory.directory { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
+/* The prototype keeps three agent columns down to 901px (REF-15) */
+@media (min-width: 901px) and (max-width: 1199px) {
+  .directory.directory { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
 @media (max-width: 809px) {
   .two.two,
   .three.three,
@@ -407,9 +419,56 @@
   letter-spacing: -0.03em;
 }
 
+/* Prototype .fig: artwork area as wide as the card; the picture is 64% of it, at most 240px (REF-15).
+   --art-ratio reserves the still image's shape, so the animated image on hover does not move the card. */
 .directory .cardArt {
-  height: 230px;
+  width: calc(100% + 44px);
+  max-width: none;
+  height: auto;
   margin: auto -22px -24px;
+}
+
+.directory .cardArt img {
+  width: min(64%, 240px);
+  height: auto;
+  margin-inline: auto;
+  aspect-ratio: var(--art-ratio);
+}
+
+.directory .voxCard .cardArt img {
+  aspect-ratio: 620 / 553;
+}
+
+/* Prototype Vox card text. The card is a button, so its text styles are set here.
+   #aaaaaa is the prototype's muted text on the dark card. */
+.directory .voxCard {
+  justify-content: flex-start;
+}
+
+/* The button wraps its content in one span; it fills the card so the artwork sits at the bottom. */
+.directory .voxCard > span:first-child {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.directory .voxContent {
+  gap: 10px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.directory .voxContent > span:first-child {
+  color: #aaaaaa;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.directory .voxContent > span:last-child {
+  color: #aaaaaa;
+  font-size: 16px;
 }
 
 .directory .cardArrow {

@@ -31,7 +31,8 @@ export function AgentArt({ agent, className }) {
   const [hover, setHover] = useState(false);
 
   return (
-    <picture className={className} onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)}>
+    <picture className={className} style={{ "--art-ratio": `${width} / ${height}` }}
+      onPointerEnter={() => setHover(true)} onPointerLeave={() => setHover(false)}>
       <source media="(prefers-reduced-motion: reduce)" srcSet={agent.image} />
       <Image src={hover && agent.animatedImage ? agent.animatedImage : agent.image} alt="" width={width} height={height} unoptimized />
     </picture>

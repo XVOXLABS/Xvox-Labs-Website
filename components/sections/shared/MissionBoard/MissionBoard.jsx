@@ -216,6 +216,7 @@ function Board({ initialMission, labels }) {
                       <span className={styles.avatar}><Image src={agent.image} alt="" fill sizes="40px" unoptimized draggable={false} /></span>
                       <span>{agent.name}<small>{agent.role}</small></span>
                     </button>
+                    {recommended ? <span className={styles.badge} aria-hidden="true">{T.badge}</span> : null}
                     <button type="button" className={styles.info} aria-label={fill(T.info, { name: agent.name })} onClick={() => setPopup(agent.id)}>i</button>
                     <span className={styles.tip}><b>{T.skills}</b> {agent.skills.join(", ")}<br /><b>{T.connects}</b> {agent.tools.join(", ")}</span>
                   </li>

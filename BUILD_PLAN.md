@@ -32,6 +32,7 @@ Version: Nov 26, 2026 (rev. 17 makes the Artifacts prototype the only design ref
 10. Button colours and hover states follow REF-10. REF-11: the prototype wins for design and layout on every page and section.
 11. The second homepage card’s picture is full width (FORK-1).
 12. No decorative icon or dot appears before section headings (REF-14).
+13. Mission board empty slots keep the dark dashed border and the info button keeps a 44 px target (REF-15).
 
 ## Confirmed technology stack
 
@@ -414,7 +415,11 @@ Homepage cards, header, menus, agent popup, chat and cart matched to the prototy
 
 ### Section label markers removed (REF-14, Nov 27, 2026, approved) — committed locally, not pushed
 
-The reference’s decorative label tiles, squares and dots before section headings are removed on every page; heading text, typography, spacing and alignment stay, and no new icons are added. This replaces the label tile of REF-6. Kept for now: functional markers, coloured dots on card labels (including “Sample report” and “Placeholder”), the progress bar, the hero headline star and the style guide samples. On marketplace item pages the label keeps its earlier line breaks. Results, including the 60 failing checks: `CLAUDE.md` “Current status”. **Pending:** push approval.
+The reference’s decorative label tiles, squares and dots before section headings are removed on every page; heading text, typography, spacing and alignment stay, and no new icons are added. This replaces the label tile of REF-6. Kept for now: functional markers, coloured dots on card labels (including “Sample report” and “Placeholder”), the progress bar, the hero headline star and the style guide samples. On marketplace item pages the label keeps its earlier line breaks. Committed locally as `80edb77`. Results, including the 60 failing checks: `CLAUDE.md` “Current status”. **Pending:** push approval.
+
+### Four visual differences matched (REF-15, Nov 27, 2026, approved) — implemented locally, uncommitted
+
+Buying buttons on one line; Solutions department cards and the How it works team grid and Vox card matched to the prototype (three team columns from 901px); mission board orange outline, badge and round info button, with dark empty slots and the new board sentence. Results, remaining differences and failing checks: `CLAUDE.md` “Current status”. **Pending:** commit approval, then push approval.
 
 ## Phase overview
 

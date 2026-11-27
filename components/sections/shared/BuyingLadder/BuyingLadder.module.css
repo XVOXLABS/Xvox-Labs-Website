@@ -86,14 +86,13 @@
 
 .base {
   display: flex;
-  padding: 0 2px 2px;
 }
 
-/* Narrow six-column cards (about 180px at 1200-1440px): tight button padding so "Browse blueprints →"
-   stays on one line; longer labels may still wrap */
+/* Narrow six-column cards (about 177px at 1200px and up): tight button padding so every label stays on
+   one line (REF-7, REF-15) */
 .base > * {
-  gap: 6px;
-  padding-inline: 6px;
+  gap: 4px;
+  padding-inline: 4px;
   white-space: normal;
   text-align: center;
 }

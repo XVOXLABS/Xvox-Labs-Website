@@ -296,9 +296,15 @@
   border-radius: 3px;
 }
 
+/* Prototype .frame.dgrid: 8px frame and gaps, no side padding on the cards (REF-15) */
+.departmentGrid.departmentGrid {
+  gap: 8px;
+  padding: 8px;
+}
+
 .departmentGrid .departmentCard {
   gap: 10px;
-  padding: 8px 8px 16px;
+  padding: 0 0 8px;
   background: transparent;
 }
 

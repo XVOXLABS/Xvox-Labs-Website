@@ -4,6 +4,8 @@
 // hidden + reason "placeholder" = not shown publicly (decision Nov 21, 2026); text kept for reference.
 // Approved change (owner, Nov 26, 2026; CLAUDE.md REF-9): unverified delivery durations, speed claims, result
 // figures and agent quotes are removed or reworded. Records that held only such text are empty strings.
+// Approved change (owner, Nov 27, 2026; CLAUDE.md REF-15): “Recommended pieces glow green.” now reads
+// “Recommended pieces are highlighted in orange.”
 
 export const page = {
   "prototypeRoute": "#how",
@@ -841,7 +843,7 @@ export const page = {
         },
         {
           "tag": "p.note",
-          "text": "4 steps to go. Recommended pieces glow green."
+          "text": "4 steps to go. Recommended pieces are highlighted in orange."
         }
       ]
     },

@@ -100,6 +100,7 @@ Framer is **not** a design reference: do not use it unless the owner asks for it
 10. Button colours and hover states (REF-10): primary buttons are `#0F0F0F` with white text, `#FF6038` on hover; secondary buttons are `#F0F0F0` with dark text, `#0F0F0F` on hover; the homepage hero icon is black, orange on hover. Cards, tabs, filters, text links and icon controls are not affected. Buttons on dark panels carry a thin light edge (REF-12).
 11. The second homepage card’s picture is full width (FORK-1).
 12. No decorative icon or dot appears before section headings: the reference’s label tiles, squares and dots are removed; the label text and its spacing stay (REF-14). Coloured dots on card labels stay.
+13. Mission board: empty job slots keep a dark dashed border and the info button keeps a 44 px target; the board sentence says pieces are highlighted in orange (REF-15).
 
 The prototype wins on every page and section for design and layout (REF-11). Do not add visual treatments of your own; where an approved exception causes a problem, report it and ask.
 
@@ -143,7 +144,7 @@ The prototype wins on every page and section for design and layout (REF-11). Do 
 - Update `AGENTS.md` only when universal rules or the workflow change.
 - When reporting changed files, list every file (expand untracked directories) and state the count, so manifests and counts agree.
 - Never mark planned, partial or untested work as complete. Use "in progress" and list what is left.
-- The latest verified test results, known failures and test script locations are in `CLAUDE.md` “Current status” (Nov 27, 2026, with REF-14: 16,930 of 16,990 checks; 46 outdated expectations, 10 known defects, 4 fade-in flags). A copy of the scripts and logs is in `D:\Xvox Labs\Xvox-Labs-testing\`. When a test expects a superseded design, report it separately from defects; never delete or overwrite the original script, and never change unrelated components only to make a test pass.
+- The latest verified test results, known failures and test script locations are in `CLAUDE.md` “Current status” (Nov 27, 2026, with REF-15: 16,898 of 16,990 checks; 46 outdated expectations, 10 known defects, 4 fade-in flags, 32 geometry baseline differences from REF-15). A copy of the scripts and logs is in `D:\Xvox Labs\Xvox-Labs-testing\`. When a test expects a superseded design, report it separately from defects; never delete or overwrite the original script, and never change unrelated components only to make a test pass.
 - Record every new approved decision (with its ID and date) in `CLAUDE.md` §8.
 - Keep the three files consistent; link to details instead of copying them.
 

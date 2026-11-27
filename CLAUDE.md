@@ -4,13 +4,15 @@
 
 `AGENTS.md` (imported above) holds the rules and workflow every agent must follow. This file holds what the project is, what is done, what is approved and what comes next. Detailed design tables, the section mapping, the URL map and the roadmap live in [`BUILD_PLAN.md`](BUILD_PLAN.md); this file links to them instead of copying them.
 
-Last verified against the code and Git: **Nov 27, 2026**, on `phase-4-homepage`: REF-14 committed locally on top of `c0f4a64`, not pushed (current status below, §12, §13). Other sections reflect the date stated in them.
+Last verified against the code and Git: **Nov 27, 2026**, on `phase-4-homepage`: REF-14 committed locally as `80edb77`, REF-15 uncommitted, nothing pushed (current status below, §12, §13). Other sections reflect the date stated in them.
 
 ## Current status (Nov 27, 2026)
 
 Read this first. Where an older note in this file says work is “uncommitted” or “not pushed”, this section is current.
 
-**Git.** The REF-14 commit (`style: remove decorative markers before section headings`, 13 files) was approved by the owner on Nov 27 and made on the local `phase-4-homepage` on top of `c0f4a64`. It is **not pushed or deployed**: `origin/phase-4-homepage` is still `c0f4a64` and `main` is `9ab7d7e`. Pushing needs separate approval, after the owner has seen the review of the four visual differences.
+**Git.** The REF-14 commit `80edb77` (`style: remove decorative markers before section headings`, 13 files) was approved by the owner on Nov 27 and made on the local `phase-4-homepage` on top of `c0f4a64`. It is **not pushed or deployed**: `origin/phase-4-homepage` is still `c0f4a64` and `main` is `9ab7d7e`. Pushing needs separate approval.
+
+**Uncommitted (12 files):** the REF-15 changes (9 files: `BuyingLadder.module.css`, `solutions.module.css`, `how-it-works.module.css`, `AgentInteractions.jsx`, `MissionBoard.jsx`, `MissionBoard.module.css`, `data/missionBoard.js`, `data/pages/build.js`, `data/pages/how-it-works.js`) and `CLAUDE.md`, `AGENTS.md`, `BUILD_PLAN.md`. The document changes made after `80edb77` are part of these.
 
 **Completed and pushed** (`b744f87`, `02fc096`, `c0f4a64`; pushed Nov 26 with approval): homepage and site-wide layout matched to the reference, primary and secondary button colours and hover states, removal of delivery durations and other unverified claims, spacing and consistency corrections, heading contrast and the 320 px header fix (§7).
 
@@ -20,9 +22,29 @@ Read this first. Where an older note in this file says work is “uncommitted”
 - 320 px fix: the item page label keeps its earlier two-line wrap (`padding-inline-end: 38px` in `marketplace.module.css`), so the five automation item pages are back to their earlier geometry.
 - Review reports, content checklist and test archive (below). No website content was changed.
 
-**Latest results** (build `JfDVqXhyf2ZFy59-Hsii4`): lint, 128-page build and `git diff --check` pass. **16,930 of 16,990 checks pass; 60 fail.** After the 320 px fix, only the heading reveal, Marketplace (187/188), widths (2625/2625) and site-wide (1400/1400) suites were rerun; the other figures are from the full run just before it (build `7WO1xDTXKEbRPOMfhWwVn`). The reveal suite gave 1001/1006 once (one homepage geometry check that matched in four repeat samples) and 1002/1006 on the full repeat.
+**REF-15 (Nov 27, 2026, approved, implemented locally, uncommitted):** four visual differences matched to the prototype.
 
-Passing in full: contact with a simulated provider 318/318 (no email sent) · department (updated copy) 817/817 · buttons 8387/8387 · menus and popups 303/303 · widths 2625/2625 · site-wide 1400/1400 · footer 98/98 · 320 px header 69/69 · dark headings 51/51 · Batch 1 116/116 · mascots 70/70 · cart 10/10 · updated mobile menu 174/174.
+1. Buying buttons: one line at all measured widths (tighter button padding, shared component).
+2. Solutions department cards: prototype frame, gaps and image sizes.
+3. How it works team grid: no grey frame, 8 px gaps, three columns from 901 px, artwork 64% of the card (at most 240 px), prototype Vox card text.
+4. Mission board tray: orange outline and “Recommended” badge (text in `data/missionBoard.js`), round “i” inside the 44 px button; empty slots keep the dark dashed border; the sentence now reads “Recommended pieces are highlighted in orange.”
+
+A first build also removed the grey frame from the other grids on How it works and the agent profiles (shared style rule). The geometry check caught it; the rule is now limited to the team grid, and those grids match `80edb77` again.
+
+**Latest results** (build `UjLneWWzLzItVBbyN8o36`): lint, 128-page build and `git diff --check` pass. Targeted REF-15 checks 217/217 at 320, 390, 810, 1024, 1200 and 1440 px (plus 900, 901, 960 and 1199 for the team columns). Every suite was then run on this build (final review, Nov 27): outside the heading reveal, failure names are identical to the REF-14 run.
+
+**Final review** (report: Git-ignored `reference/visual-review/ref15/final-review.md`): all 32 geometry differences equal the height change of an approved component, with no heading moved or resized; an element-by-element comparison with a build of `80edb77` (125 pages, six widths) found differences only in the four changed components and their containing sections; `/review` differs only by the approved sentence.
+
+**Across the latest result of every suite: 16,898 of 16,990 checks pass; 92 fail.**
+
+| Group | Count |
+| --- | --- |
+| A. Outdated expectations (table below) | 46 |
+| B. Known defects, deferred (table below) | 10 |
+| C. Fade-in contrast flags (heading reveal) | 4 |
+| D. Heading reveal geometry baseline predates REF-15: section heights changed on 32 page-widths (home, `/build`, `/how-it-works`, five department pages); each change equals that of an approved component, and no heading moved or changed size | 32 |
+
+The original Phase 3 suite gives 176/183 because two checks expect the old board sentence; `audit/phase3test-ref15.mjs` is a copy with the new sentence (original unchanged).
 
 **A. Outdated expectations (46): the test expects a superseded design**
 
@@ -43,17 +65,17 @@ Passing in full: contact with a simulated provider 318/318 (no email sent) · de
 | Phase 3 | 178/183 | 5 | Mission board button names (label-content-name-mismatch) |
 | Older puzzle | 109/114 | 5 | Overlapping tap targets in the scattered state, as in the prototype |
 
-**C. Fade-in contrast flags (4):** heading reveal 1002/1006 (§9).
+**C. Fade-in contrast flags (4):** heading reveal (§9).
 
-Do not change unrelated components to make A or B pass. The accessibility scan reports only the two known rules (run log not focusable; mission board names); run-log nodes rose from 19 to 25, cause not confirmed. Heading comparison with the prototype: 117/123 pages at 1440 and 390 px; component comparison identical. Previous run on `c0f4a64`: 16,930/16,990, 60 failures.
+Do not change unrelated components to make A or B pass. The accessibility scan reports only the two known rules (run log not focusable; mission board names); run-log nodes were 19, 25 and now 30 across builds, cause not confirmed (the workflow component is unchanged). Before REF-15 (`80edb77`): 16,930/16,990, 60 failures.
 
-**Six pages differing from the prototype** (reviewed, nothing changed): Home, How it works, Solutions, Customer Experience, Checkout, Pricing. Heading differences are approved rewordings or hidden items, or heading level only. Screenshots also show visual differences with no recorded approval: department card spacing on Solutions, the team grid and Vox card and the mission board tray on How it works; the buying cards’ two-line labels on Pricing conflict with REF-7. Report: Git-ignored `reference/visual-review/six-pages/report.md`. **Awaiting the owner’s decision.**
+**Six pages differing from the prototype** (reviewed, nothing changed): Home, How it works, Solutions, Customer Experience, Checkout, Pricing. Heading differences are approved rewordings or hidden items, or heading level only. Screenshots also show visual differences with no recorded approval: department card spacing on Solutions, the team grid and Vox card and the mission board tray on How it works; the buying cards’ two-line labels on Pricing conflict with REF-7. Report: Git-ignored `reference/visual-review/six-pages/report.md`. The four visual differences were then approved and implemented (REF-15, above). **Remaining differences:** buying cards are white in a grey frame with prices hidden (REF-7, FINAL-1); agent cards have a dot label and plain result text where the prototype has a muted label and white chip; between 561 and 809 px the team grid has one column against two; tray pieces are larger (44 px “i” target) and wrap onto more rows; the tray avatar background is grey (white was not approved); empty slots are dark (approved); the live blueprint panel, XP label and progress bar differ. The final review also measured smaller differences in all four areas (label and description sizes and weights, radii, muted text and frame colours, tray text alignment and sizes, empty-slot height, system chips and the board frame); they are listed in the final review report.
 
 **Content audit** (not published, local only): `reference/content-audit/2026-11-27-content-audit.md` and the review checklist `2026-11-27-review-checklist.md` (31 items with page, section, current text and the information needed).
 
 **Test archive:** `D:\Xvox Labs\Xvox-Labs-testing\2026-11-27\` (outside the project and Git): 706 script, log and data files copied and verified, `README.md` and `KNOWN-FAILURES.md`. Originals remain in the temporary folder `C:\Users\ali18\AppData\Local\Temp\claude\69fcde24cb0bb0d5\2abc8f42-fde1-422a-9e20-6addc5c84e6b\scratchpad`. Scripts contain absolute paths to that folder. The department suite is `dept/compare-ref14.mjs`; `compare.mjs` is unchanged.
 
-**Pending** (details in §13): push approval · decisions on the six-page differences · content checklist answers · Preview contact form.
+**Pending** (details in §13): commit approval for REF-15 · push approval · content checklist answers · Preview contact form.
 
 ## 1. Project overview
 
@@ -456,11 +478,14 @@ Checks (build `gD122XgqjDkrNgnbIjpiY` unless noted): lint, 128-page build and `g
 
 **REF-14 (Nov 27, 2026, requested):** remove all decorative icons and dots before section headings on every page (dark square tiles, white-dot tiles, small squares and dots); keep heading text, typography, spacing, alignment and design; add no new icons. Supersedes the label tile of REF-6 and, for these markers, the prototype (REF-11). Applied to section and page labels, the agent popup role label, the item page label, the FAQ and Safe AI labels and the Xvox Studio band. Kept unchanged for now (confirmed by the owner, Nov 27): functional markers (list ticks, status dots, the XP progress bar), coloured dots on card labels including “Sample report” and “Placeholder”, the black star in the hero headline and the Style Guide sample dots. No unrelated UI changes.
 
+**REF-15 (Nov 27, 2026, approved):** buying buttons on one line; Solutions department cards and the How it works team grid and Vox card matched to the prototype, with the 1024 px layout and artwork sizing corrected; mission board orange outline, “Recommended” badge and round info button with accessibility minimum sizes kept; empty job slots keep the dark dashed border; “Recommended pieces glow green.” reads “Recommended pieces are highlighted in orange.” No unrelated design changes.
+
 ## 9. Known issues and risks (verified)
 
 - **Open: Preview contact form is off.** The owner set `CONTACT_FORM_ENABLED=true` and redeployed, but the Preview `/api/contact` returns `{"enabled":false}` (reported Nov 26). A local test shows the code returns `true` only when `RESEND_API_KEY` is non-empty and the value is exactly `true`. Not yet confirmed: the address opened (`xvox-labs-team-preview.vercel.app` is **Production**; the branch Preview needs team login) and the environments and branch each of the two variables applies to. The Resend DNS records were still not publicly visible (Nov 26), so sending from `hello@xvoxlabs.com` is expected to fail until the domain is Verified. The privacy notice is still a placeholder; `AGENTS.md` forbids live sending until both are resolved. No Preview or Production email delivery is verified.
 - **Open: outdated tests.** Several suites outside the repository still expect superseded designs (current status). A copy is archived outside the project.
-- **Open: differences from the prototype without a recorded approval** on Solutions, How it works and the buying cards (current status).
+- **Open: differences from the prototype without a recorded approval**, mainly on the mission board and the agent cards, with smaller ones in the other changed areas (current status).
+- The empty mission slot code refers to a missing style (`styles.need`), leaving a class named `undefined` on list items; harmless, not changed.
 - **Open, separate from the reveal contrast fix: entrance fade-in.** Content wrapped in the fade-in (`Appear`) has opacity 0 until it scrolls into view, so an accessibility scan taken before scrolling reports low contrast on it (for example the homepage department tiles and the Safe AI panel: panel opacity 0, below the viewport). A scan after scrolling reports no contrast violation. The animation is unchanged; any change needs its own approval.
 - **Resolved (Nov 26, 2026): Production contact sending.** **Production contact sending is disabled** (`CONTACT_FORM_ENABLED=false`; set and redeployed by the owner, Nov 26, 2026). A read-only request to the public `GET /api/contact` returned `{"enabled":false}` at 12:26 and 12:29 UTC. No form was submitted. It stays disabled until email delivery and the privacy notice are verified. It had reported `enabled: true` on Nov 25 and earlier on Nov 26 without a recorded approval. No privacy text is approved or written; the form collects name, email, phone, company and message, which would pass to Resend and a mailbox once sending is enabled.
 - Mission board buttons fail axe `label-content-name-mismatch` (visible “Recommended” text is not in the button name); present on `7d18d6e`.
@@ -521,8 +546,8 @@ Checks (build `gD122XgqjDkrNgnbIjpiY` unless noted): lint, 128-page build and `g
 
 Do not repeat completed work. Commit, push, deployment, Production promotion, Vercel settings, DNS, a merge into `main` and any change to the Framer website each need explicit owner approval.
 
-1. **REF-14:** committed locally; wait for the owner’s separate approval to push.
-2. **Six-page differences:** the owner decides which to match; check 390 px before changing anything.
+1. **REF-15:** ask for commit approval. **REF-14** (`80edb77`) is committed locally. Pushing needs separate approval.
+2. **Remaining prototype differences** (current status): change only if the owner approves.
 3. **Content checklist:** change content only with the owner’s answers and approval; never fill in company information.
 4. **Outdated tests:** update or retire them only with approval.
 5. **Preview contact form** (§9): confirm the address opened and the scope of `RESEND_API_KEY` and `CONTACT_FORM_ENABLED` (names and scopes only, never values). Before live sending: Resend domain **Verified**, privacy notice approved, no `CONTACT_FORM_FROM` or `CONTACT_FORM_TO` in Vercel, real delivery to `hello@xvoxlabs.com` and Reply-To confirmed. Production sending stays disabled.

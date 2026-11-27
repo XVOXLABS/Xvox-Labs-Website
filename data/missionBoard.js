@@ -3,8 +3,11 @@
 // built by the prototype's JavaScript, so they are not part of the extracted page blocks. The missions,
 // slots and per-step copy live in data/how-it-works.js; the starting-state labels live in the page blocks.
 // `a11y` strings are additions for assistive technology only (no prototype equivalent).
+// Approved change (owner, Nov 27, 2026; CLAUDE.md REF-15): “Recommended pieces glow green.” now reads
+// “Recommended pieces are highlighted in orange.”
 
 export const missionBoardText = {
+  badge: "Recommended",
   hint: "Hint: needs a {role}",
   progress: "{n} jobs on this board · {open} still open",
   xp: "{xp} XP",
@@ -24,7 +27,7 @@ export const missionBoardText = {
   hire: "Hire this team ↗",
   build: "Build it for me ↗",
   useCase: "Use case",
-  stepsToGo: "{n} step{s} to go. Recommended pieces glow green.",
+  stepsToGo: "{n} step{s} to go. Recommended pieces are highlighted in orange.",
   hireAbout: "Mission: {name} ({agents})",
   hirePath: "Hosted by us",
   buildAbout: "Mission: {name}",
