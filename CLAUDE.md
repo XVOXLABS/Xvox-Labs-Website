@@ -4,15 +4,21 @@
 
 `AGENTS.md` (imported above) holds the rules and workflow every agent must follow. This file holds what the project is, what is done, what is approved and what comes next. Detailed design tables, the section mapping, the URL map and the roadmap live in [`BUILD_PLAN.md`](BUILD_PLAN.md); this file links to them instead of copying them.
 
-Last verified against the code and Git: **Nov 27, 2026**, on `phase-4-homepage`: REF-14 committed locally as `80edb77`, REF-15 uncommitted, nothing pushed (current status below, §12, §13). Other sections reflect the date stated in them.
+Last verified against the code and Git: **Nov 27, 2026**, on `phase-4-homepage`: REF-14 (`80edb77`) and REF-15 (`f643717`) committed locally, not pushed (current status below, §12, §13). Other sections reflect the date stated in them.
 
 ## Current status (Nov 27, 2026)
 
 Read this first. Where an older note in this file says work is “uncommitted” or “not pushed”, this section is current.
 
-**Git.** The REF-14 commit `80edb77` (`style: remove decorative markers before section headings`, 13 files) was approved by the owner on Nov 27 and made on the local `phase-4-homepage` on top of `c0f4a64`. It is **not pushed or deployed**: `origin/phase-4-homepage` is still `c0f4a64` and `main` is `9ab7d7e`. Pushing needs separate approval.
+**Git.** Committed on the local `phase-4-homepage` on top of `c0f4a64`, each approved by the owner on Nov 27 and **not pushed or deployed**:
 
-**Uncommitted (12 files):** the REF-15 changes (9 files: `BuyingLadder.module.css`, `solutions.module.css`, `how-it-works.module.css`, `AgentInteractions.jsx`, `MissionBoard.jsx`, `MissionBoard.module.css`, `data/missionBoard.js`, `data/pages/build.js`, `data/pages/how-it-works.js`) and `CLAUDE.md`, `AGENTS.md`, `BUILD_PLAN.md`. The document changes made after `80edb77` are part of these.
+- `80edb77` `style: remove decorative markers before section headings` (REF-14, 13 files)
+- `f643717` `style: match four approved components to the prototype` (REF-15, 12 files)
+- a documentation-only commit after them that records this status (`CLAUDE.md`, `BUILD_PLAN.md`)
+
+`origin/phase-4-homepage` is still `c0f4a64` and `main` is `9ab7d7e`. Pushing needs separate approval.
+
+**REF-15 files (in `f643717`):** `BuyingLadder.module.css`, `solutions.module.css`, `how-it-works.module.css`, `AgentInteractions.jsx`, `MissionBoard.jsx`, `MissionBoard.module.css`, `data/missionBoard.js`, `data/pages/build.js`, `data/pages/how-it-works.js`, `CLAUDE.md`, `AGENTS.md` and `BUILD_PLAN.md`.
 
 **Completed and pushed** (`b744f87`, `02fc096`, `c0f4a64`; pushed Nov 26 with approval): homepage and site-wide layout matched to the reference, primary and secondary button colours and hover states, removal of delivery durations and other unverified claims, spacing and consistency corrections, heading contrast and the 320 px header fix (§7).
 
@@ -22,7 +28,7 @@ Read this first. Where an older note in this file says work is “uncommitted”
 - 320 px fix: the item page label keeps its earlier two-line wrap (`padding-inline-end: 38px` in `marketplace.module.css`), so the five automation item pages are back to their earlier geometry.
 - Review reports, content checklist and test archive (below). No website content was changed.
 
-**REF-15 (Nov 27, 2026, approved, implemented locally, uncommitted):** four visual differences matched to the prototype.
+**REF-15 (Nov 27, 2026, approved, committed locally as `f643717`):** four visual differences matched to the prototype.
 
 1. Buying buttons: one line at all measured widths (tighter button padding, shared component).
 2. Solutions department cards: prototype frame, gaps and image sizes.
@@ -75,7 +81,7 @@ Do not change unrelated components to make A or B pass. The accessibility scan r
 
 **Test archive:** `D:\Xvox Labs\Xvox-Labs-testing\2026-11-27\` (outside the project and Git): 706 script, log and data files copied and verified, `README.md` and `KNOWN-FAILURES.md`. Originals remain in the temporary folder `C:\Users\ali18\AppData\Local\Temp\claude\69fcde24cb0bb0d5\2abc8f42-fde1-422a-9e20-6addc5c84e6b\scratchpad`. Scripts contain absolute paths to that folder. The department suite is `dept/compare-ref14.mjs`; `compare.mjs` is unchanged.
 
-**Pending** (details in §13): commit approval for REF-15 · push approval · content checklist answers · Preview contact form.
+**Pending** (details in §13): push approval · content checklist answers · Preview contact form.
 
 ## 1. Project overview
 
@@ -525,7 +531,7 @@ Checks (build `gD122XgqjDkrNgnbIjpiY` unless noted): lint, 128-page build and `g
 
 ## 12. Git and deployment status (updated Nov 27, 2026)
 
-- **Current (Nov 26–27):** the latest pushed commit is `c0f4a64`; its Vercel build completed Nov 26. The owner confirmed that Production tracks `main` and that `xvox-labs-team-preview.vercel.app` is assigned to Production; Production was not changed by the push. REF-14 is committed locally and not pushed. The bullets below are earlier history.
+- **Current (Nov 26–27):** the latest pushed commit is `c0f4a64`; its Vercel build completed Nov 26. The owner confirmed that Production tracks `main` and that `xvox-labs-team-preview.vercel.app` is assigned to Production; Production was not changed by the push. REF-14 and REF-15 are committed locally and not pushed. The bullets below are earlier history.
 - Branch `phase-4-homepage` tracks `origin/phase-4-homepage`; the latest confirmed pushed commit is `7d18d6e50a6f99e1c5eabeecc694c6dbf2533a6b` (remote verified Nov 25, 23:21 IST; local changes made after that push are not part of it). Later pushed checkpoints, after `b03a4c8`: `b36428f`, `64fa6a5`, `2e28698`, `fe55d10` (contact form), `3b0d16a` (diagnostic logging) and `7d18d6e` (logging removed). Earlier pushed checkpoints, oldest first: `8c7d2b6` (Step 8, Vercel migration, review index, Solutions), `5478e7a` (Hero lifecycle fix), `9c17435` (Agent preview mobile fix), `58b3761` (Services, Agents and review UI refinements), `4861d6a` (Marketplace and the 12 company pages), `6b55c93` (documentation), `746344f` (Phase 3) and `b03a4c8` (documentation).
 - Commit `5478e7a7d0c26b89b74eb0c0913db6af2d1c4560` (Hero animation lifecycle fix, one file) is one of the pushed commits listed above.
 - Step 8 major fixes and five minor fixes passed owner visual review and are included in the checkpoint.
@@ -546,7 +552,7 @@ Checks (build `gD122XgqjDkrNgnbIjpiY` unless noted): lint, 128-page build and `g
 
 Do not repeat completed work. Commit, push, deployment, Production promotion, Vercel settings, DNS, a merge into `main` and any change to the Framer website each need explicit owner approval.
 
-1. **REF-15:** ask for commit approval. **REF-14** (`80edb77`) is committed locally. Pushing needs separate approval.
+1. **Push:** REF-14 and REF-15 are committed locally; wait for the owner’s separate approval to push.
 2. **Remaining prototype differences** (current status): change only if the owner approves.
 3. **Content checklist:** change content only with the owner’s answers and approval; never fill in company information.
 4. **Outdated tests:** update or retire them only with approval.

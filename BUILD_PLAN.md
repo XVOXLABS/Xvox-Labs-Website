@@ -417,9 +417,9 @@ Homepage cards, header, menus, agent popup, chat and cart matched to the prototy
 
 The reference’s decorative label tiles, squares and dots before section headings are removed on every page; heading text, typography, spacing and alignment stay, and no new icons are added. This replaces the label tile of REF-6. Kept for now: functional markers, coloured dots on card labels (including “Sample report” and “Placeholder”), the progress bar, the hero headline star and the style guide samples. On marketplace item pages the label keeps its earlier line breaks. Committed locally as `80edb77`. Results, including the 60 failing checks: `CLAUDE.md` “Current status”. **Pending:** push approval.
 
-### Four visual differences matched (REF-15, Nov 27, 2026, approved) — implemented locally, uncommitted
+### Four visual differences matched (REF-15, Nov 27, 2026, approved) — committed locally, not pushed
 
-Buying buttons on one line; Solutions department cards and the How it works team grid and Vox card matched to the prototype (three team columns from 901px); mission board orange outline, badge and round info button, with dark empty slots and the new board sentence. Results, remaining differences and failing checks: `CLAUDE.md` “Current status”. **Pending:** commit approval, then push approval.
+Buying buttons on one line; Solutions department cards and the How it works team grid and Vox card matched to the prototype (three team columns from 901px); mission board orange outline, badge and round info button, with dark empty slots and the new board sentence. Committed locally as `f643717`. Results, remaining differences and failing checks: `CLAUDE.md` “Current status”. **Pending:** push approval.
 
 ## Phase overview
 
