@@ -54,6 +54,8 @@ Read this file before any task. Then read [`CLAUDE.md`](CLAUDE.md) (project know
 
 **How the owner works**
 - Claude and Codex work sequentially, with one active agent at a time. At every switch, the outgoing agent records completed work, changed files, test results and pending tasks in `CLAUDE.md` and provides a handover summary. The incoming agent reads the project documents, checks Git status and recent commits, and continues from the existing work.
+- Keep `CLAUDE.md` and this file synchronized with completed work, pending tasks, bugs, decisions and GitHub changes. Start from the “Current status” section of `CLAUDE.md`, and do not repeat completed work without a reason.
+- Never modify the existing Framer website without explicit approval.
 - Plan before build: confirm the approach in chat before generating files.
 - Execution-ready output, not outlines or scaffolds.
 - When iterating, make targeted corrections; don't rewrite the whole thing.
@@ -97,6 +99,7 @@ Framer is **not** a design reference: do not use it unless the owner asks for it
 9. Unverified claims are not published, even where the reference shows them: delivery and response durations, product speed claims, example result figures and agent quotes (REF-8, REF-9). Visitor time estimates (for example the two-minute plan or the 30-minute discovery call) stay. Never restore a removed claim or invent a replacement.
 10. Button colours and hover states (REF-10): primary buttons are `#0F0F0F` with white text, `#FF6038` on hover; secondary buttons are `#F0F0F0` with dark text, `#0F0F0F` on hover; the homepage hero icon is black, orange on hover. Cards, tabs, filters, text links and icon controls are not affected. Buttons on dark panels carry a thin light edge (REF-12).
 11. The second homepage card’s picture is full width (FORK-1).
+12. No decorative icon or dot appears before section headings: the reference’s label tiles, squares and dots are removed; the label text and its spacing stay (REF-14). Coloured dots on card labels stay.
 
 The prototype wins on every page and section for design and layout (REF-11). Do not add visual treatments of your own; where an approved exception causes a problem, report it and ask.
 
@@ -140,6 +143,7 @@ The prototype wins on every page and section for design and layout (REF-11). Do 
 - Update `AGENTS.md` only when universal rules or the workflow change.
 - When reporting changed files, list every file (expand untracked directories) and state the count, so manifests and counts agree.
 - Never mark planned, partial or untested work as complete. Use "in progress" and list what is left.
+- The latest verified test results, known failures and test script locations are in `CLAUDE.md` “Current status” (Nov 27, 2026, with REF-14: 16,930 of 16,990 checks; 46 outdated expectations, 10 known defects, 4 fade-in flags). A copy of the scripts and logs is in `D:\Xvox Labs\Xvox-Labs-testing\`. When a test expects a superseded design, report it separately from defects; never delete or overwrite the original script, and never change unrelated components only to make a test pass.
 - Record every new approved decision (with its ID and date) in `CLAUDE.md` §8.
 - Keep the three files consistent; link to details instead of copying them.
 

@@ -4,7 +4,56 @@
 
 `AGENTS.md` (imported above) holds the rules and workflow every agent must follow. This file holds what the project is, what is done, what is approved and what comes next. Detailed design tables, the section mapping, the URL map and the roadmap live in [`BUILD_PLAN.md`](BUILD_PLAN.md); this file links to them instead of copying them.
 
-Last verified against the code and Git: **Nov 25, 2026**, on `phase-4-homepage` at `7d18d6e` (contact form, Git state and the public endpoint, §7, §12, §13). Other sections reflect the date stated in them.
+Last verified against the code and Git: **Nov 27, 2026**, on `phase-4-homepage`: REF-14 committed locally on top of `c0f4a64`, not pushed (current status below, §12, §13). Other sections reflect the date stated in them.
+
+## Current status (Nov 27, 2026)
+
+Read this first. Where an older note in this file says work is “uncommitted” or “not pushed”, this section is current.
+
+**Git.** The REF-14 commit (`style: remove decorative markers before section headings`, 13 files) was approved by the owner on Nov 27 and made on the local `phase-4-homepage` on top of `c0f4a64`. It is **not pushed or deployed**: `origin/phase-4-homepage` is still `c0f4a64` and `main` is `9ab7d7e`. Pushing needs separate approval, after the owner has seen the review of the four visual differences.
+
+**Completed and pushed** (`b744f87`, `02fc096`, `c0f4a64`; pushed Nov 26 with approval): homepage and site-wide layout matched to the reference, primary and secondary button colours and hover states, removal of delivery durations and other unverified claims, spacing and consistency corrections, heading contrast and the 320 px header fix (§7).
+
+**Completed locally (Nov 27):**
+
+- REF-14 decorative marker removal (§7), added to `BUILD_PLAN.md`.
+- 320 px fix: the item page label keeps its earlier two-line wrap (`padding-inline-end: 38px` in `marketplace.module.css`), so the five automation item pages are back to their earlier geometry.
+- Review reports, content checklist and test archive (below). No website content was changed.
+
+**Latest results** (build `JfDVqXhyf2ZFy59-Hsii4`): lint, 128-page build and `git diff --check` pass. **16,930 of 16,990 checks pass; 60 fail.** After the 320 px fix, only the heading reveal, Marketplace (187/188), widths (2625/2625) and site-wide (1400/1400) suites were rerun; the other figures are from the full run just before it (build `7WO1xDTXKEbRPOMfhWwVn`). The reveal suite gave 1001/1006 once (one homepage geometry check that matched in four repeat samples) and 1002/1006 on the full repeat.
+
+Passing in full: contact with a simulated provider 318/318 (no email sent) · department (updated copy) 817/817 · buttons 8387/8387 · menus and popups 303/303 · widths 2625/2625 · site-wide 1400/1400 · footer 98/98 · 320 px header 69/69 · dark headings 51/51 · Batch 1 116/116 · mascots 70/70 · cart 10/10 · updated mobile menu 174/174.
+
+**A. Outdated expectations (46): the test expects a superseded design**
+
+| Suite | Result | Failing | Expects |
+| --- | --- | --- | --- |
+| Original mobile menu | 153/174 | 21 | The menu before REF-13 |
+| Puzzle sizing | 435/445 | 10 | The 82 px header |
+| Enquiry | 102/108 | 6 | A six-row comparison table (Price row hidden, E6) |
+| Navbar | 27/32 | 5 | The 1200 px breakpoint and earlier link height |
+| Company pages | 277/279 | 2 | Earlier row count and placeholder wording |
+| Marketplace | 187/188 | 1 | “within a day” (removed, REF-9) |
+| Behaviour | 22/23 | 1 | Popup artwork inside its stage (REF-13 matches the prototype) |
+
+**B. Known defects (10), deferred**
+
+| Suite | Result | Failing | Defect |
+| --- | --- | --- | --- |
+| Phase 3 | 178/183 | 5 | Mission board button names (label-content-name-mismatch) |
+| Older puzzle | 109/114 | 5 | Overlapping tap targets in the scattered state, as in the prototype |
+
+**C. Fade-in contrast flags (4):** heading reveal 1002/1006 (§9).
+
+Do not change unrelated components to make A or B pass. The accessibility scan reports only the two known rules (run log not focusable; mission board names); run-log nodes rose from 19 to 25, cause not confirmed. Heading comparison with the prototype: 117/123 pages at 1440 and 390 px; component comparison identical. Previous run on `c0f4a64`: 16,930/16,990, 60 failures.
+
+**Six pages differing from the prototype** (reviewed, nothing changed): Home, How it works, Solutions, Customer Experience, Checkout, Pricing. Heading differences are approved rewordings or hidden items, or heading level only. Screenshots also show visual differences with no recorded approval: department card spacing on Solutions, the team grid and Vox card and the mission board tray on How it works; the buying cards’ two-line labels on Pricing conflict with REF-7. Report: Git-ignored `reference/visual-review/six-pages/report.md`. **Awaiting the owner’s decision.**
+
+**Content audit** (not published, local only): `reference/content-audit/2026-11-27-content-audit.md` and the review checklist `2026-11-27-review-checklist.md` (31 items with page, section, current text and the information needed).
+
+**Test archive:** `D:\Xvox Labs\Xvox-Labs-testing\2026-11-27\` (outside the project and Git): 706 script, log and data files copied and verified, `README.md` and `KNOWN-FAILURES.md`. Originals remain in the temporary folder `C:\Users\ali18\AppData\Local\Temp\claude\69fcde24cb0bb0d5\2abc8f42-fde1-422a-9e20-6addc5c84e6b\scratchpad`. Scripts contain absolute paths to that folder. The department suite is `dept/compare-ref14.mjs`; `compare.mjs` is unchanged.
+
+**Pending** (details in §13): push approval · decisions on the six-page differences · content checklist answers · Preview contact form.
 
 ## 1. Project overview
 
@@ -25,7 +74,7 @@ All tokens are in `app/globals.css` (current values; their history is in `BUILD_
 | Shape | Radii: frame 32 (24 on phone), card 24, panel 20, row 16, pill 14, badge 12, button 10, small button 8, tab 9, tag 5 |
 | Pattern | Current components: white cards inside light-grey frames, dark agent stage panels, pill tabs (active `#111`, inactive `#F0F0F0`). Existing sections are compared with the reference one at a time (REF-2) |
 | Logo | **Option C** (orange striped sphere + XVOX wordmark), used exactly as supplied. Supplied Nov 25, 2026: `public/brand/xvox-logo.png` (2172 × 724, transparent, 3:1, about 480 KB, served unoptimized), configured in `lib/brand.js`. Header only: 144 × 48, 126 × 42 below 810 px, `object-fit: contain`. The footer keeps the text “Xvox Labs”. Never substitute, recolour or redraw it |
-| Footer wordmark | `xvox labs`, ink, `clamp(70px, 17vw, 230px)`, as in the reference (REF-4; implemented locally, uncommitted. The committed code still has the earlier accent `XVOX LABS`) |
+| Footer wordmark | `xvox labs`, ink, `clamp(70px, 17vw, 230px)`, as in the reference (REF-4; committed in `b744f87`) |
 | Motion | CSS transitions/keyframes, `position: sticky`, `IntersectionObserver` and one `requestAnimationFrame` scroll loop per effect; animate only `transform`/`opacity`; `prefers-reduced-motion` respected (global rule in `globals.css`); H1 never hidden (LCP) |
 | Responsive | Checked at 390, 810, 1024, 1200, 1440 (+320). No horizontal overflow; no `100vw` full-bleed |
 | References | Artifacts prototype (`reference/index.html`) = content, behaviour, look and motion, with the approved exceptions (REF-1, REF-2). Framer is not a design source |
@@ -77,7 +126,7 @@ Data source: `data/pages/home.js` (section `index` in brackets). "Done" = commit
 | # | Section | Component | Status |
 | --- | --- | --- | --- |
 | 1 | Hero sequence "Your business, run by AI agents." + agent popup [0] | `home/HeroSequence`, `shared/AgentPopup` | Done (Step 3, `27f36ac`) |
-| 2 | Puzzle "Each agent is one piece of the puzzle." [1] | `home/PuzzleStage` | Done (Step 4, `73f81fc`); matched to the reference locally, uncommitted (§7) |
+| 2 | Puzzle "Each agent is one piece of the puzzle." [1] | `home/PuzzleStage` | Done (Step 4, `73f81fc`); matched to the reference in `b744f87` (§7) |
 | 3 | Tools strip "Works inside the tools you already use" [2–3] | `home/ToolsStrip` | Done (Step 2, `77056b7`) |
 | 4 | "What's getting in your way?" department tiles [4] | `home/ProblemTiles` | Done (Step 2) |
 | 5 | "I need a team." / "I need one thing." [5] | `home/ForkCards` | Done (Step 2) |
@@ -321,6 +370,8 @@ Checks (build `gD122XgqjDkrNgnbIjpiY` unless noted): lint, 128-page build and `g
 
 **320px header spacing (Nov 26, 2026): committed locally after `02fc096`, not pushed.** `Header.module.css` only: at 340px and below the gap between “Book a call” and the menu button is 5px (was 8px), so the logo-to-button gap at 320px is 12.4px (was 9.4px). Logo and button sizes, navigation and wider layouts are unchanged. Checks on build `iSrrh3zft5UjxT5aYFrKI`: lint, 128-page build and `git diff --check` pass; header geometry and behaviour 69/69; widths 2625/2625; menus and popups 303/303; navbar suite 27/32, the five failures expecting the earlier 1200px breakpoint and links shorter than 40px.
 
+**Section label markers removed (REF-14, Nov 27, 2026): committed locally, not pushed or deployed.** Files: `SectionHeader.module.css`, `Category.jsx` (new `dot` prop), `departmentReference.module.css`, `marketplace.module.css`, `AgentPopup.module.css`, `SafeAiBox` (JSX and CSS), `Faq.jsx`, `services.module.css` and `ServiceSections.jsx`. Build `VNByqkHvhkMpzlSfjcGGQ`: lint, build and `git diff --check` pass; no tile found on 126 routes at 390, 810 and 1440 px or in the agent popup; no console errors or new overflow on 125 pages at 390 and 1440. Heading positions equal the earlier build except below running workflow panels, whose height changes while they run (the Services page, fixed during the task, matches exactly). The department checks that required the removed tile were then updated in a copy of the suite and the full test run completed; a 20 px shift on five item pages at 320 px was fixed (current status, above).
+
 ## 8. Approved decisions (do not change without approval)
 
 **Phase 2 (Nov 21):** prices: only $1,500 (blueprints) and Free (AI plan) published; everything else "Contact Us to Discuss Pricing" (originals kept in `data/` `priceStatus` and the inventory) · placeholder blocks hidden (`hidden: true`), incl. homepage proof section and footer note · Studio links stay on internal `/studio` (external URL pending) · no legal placeholder text (Terms, Cookies, Marketplace Terms pending) · flat solution URLs · URL map approved.
@@ -403,8 +454,13 @@ Checks (build `gD122XgqjDkrNgnbIjpiY` unless noted): lint, 128-page build and `g
 
 **REF-13 (Nov 26, 2026, approved):** homepage two-choice cards, header, dropdowns, mobile menu, agent popup, chat and cart match the prototype; approved exceptions and the workflow stacking below 1200px stay. **FORK-1 (Nov 26, 2026, approved):** the second homepage card uses the first card’s structure with a full-width picture.
 
+**REF-14 (Nov 27, 2026, requested):** remove all decorative icons and dots before section headings on every page (dark square tiles, white-dot tiles, small squares and dots); keep heading text, typography, spacing, alignment and design; add no new icons. Supersedes the label tile of REF-6 and, for these markers, the prototype (REF-11). Applied to section and page labels, the agent popup role label, the item page label, the FAQ and Safe AI labels and the Xvox Studio band. Kept unchanged for now (confirmed by the owner, Nov 27): functional markers (list ticks, status dots, the XP progress bar), coloured dots on card labels including “Sample report” and “Placeholder”, the black star in the hero headline and the Style Guide sample dots. No unrelated UI changes.
+
 ## 9. Known issues and risks (verified)
 
+- **Open: Preview contact form is off.** The owner set `CONTACT_FORM_ENABLED=true` and redeployed, but the Preview `/api/contact` returns `{"enabled":false}` (reported Nov 26). A local test shows the code returns `true` only when `RESEND_API_KEY` is non-empty and the value is exactly `true`. Not yet confirmed: the address opened (`xvox-labs-team-preview.vercel.app` is **Production**; the branch Preview needs team login) and the environments and branch each of the two variables applies to. The Resend DNS records were still not publicly visible (Nov 26), so sending from `hello@xvoxlabs.com` is expected to fail until the domain is Verified. The privacy notice is still a placeholder; `AGENTS.md` forbids live sending until both are resolved. No Preview or Production email delivery is verified.
+- **Open: outdated tests.** Several suites outside the repository still expect superseded designs (current status). A copy is archived outside the project.
+- **Open: differences from the prototype without a recorded approval** on Solutions, How it works and the buying cards (current status).
 - **Open, separate from the reveal contrast fix: entrance fade-in.** Content wrapped in the fade-in (`Appear`) has opacity 0 until it scrolls into view, so an accessibility scan taken before scrolling reports low contrast on it (for example the homepage department tiles and the Safe AI panel: panel opacity 0, below the viewport). A scan after scrolling reports no contrast violation. The animation is unchanged; any change needs its own approval.
 - **Resolved (Nov 26, 2026): Production contact sending.** **Production contact sending is disabled** (`CONTACT_FORM_ENABLED=false`; set and redeployed by the owner, Nov 26, 2026). A read-only request to the public `GET /api/contact` returned `{"enabled":false}` at 12:26 and 12:29 UTC. No form was submitted. It stays disabled until email delivery and the privacy notice are verified. It had reported `enabled: true` on Nov 25 and earlier on Nov 26 without a recorded approval. No privacy text is approved or written; the form collects name, email, phone, company and message, which would pass to Resend and a mailbox once sending is enabled.
 - Mission board buttons fail axe `label-content-name-mismatch` (visible “Recommended” text is not in the button name); present on `7d18d6e`.
@@ -442,8 +498,9 @@ Checks (build `gD122XgqjDkrNgnbIjpiY` unless noted): lint, 128-page build and `g
 - Regression of all completed steps after each step.
 - Pricing allow/deny-list checks wherever prices appear.
 
-## 12. Git and deployment status (updated Nov 25, 2026)
+## 12. Git and deployment status (updated Nov 27, 2026)
 
+- **Current (Nov 26–27):** the latest pushed commit is `c0f4a64`; its Vercel build completed Nov 26. The owner confirmed that Production tracks `main` and that `xvox-labs-team-preview.vercel.app` is assigned to Production; Production was not changed by the push. REF-14 is committed locally and not pushed. The bullets below are earlier history.
 - Branch `phase-4-homepage` tracks `origin/phase-4-homepage`; the latest confirmed pushed commit is `7d18d6e50a6f99e1c5eabeecc694c6dbf2533a6b` (remote verified Nov 25, 23:21 IST; local changes made after that push are not part of it). Later pushed checkpoints, after `b03a4c8`: `b36428f`, `64fa6a5`, `2e28698`, `fe55d10` (contact form), `3b0d16a` (diagnostic logging) and `7d18d6e` (logging removed). Earlier pushed checkpoints, oldest first: `8c7d2b6` (Step 8, Vercel migration, review index, Solutions), `5478e7a` (Hero lifecycle fix), `9c17435` (Agent preview mobile fix), `58b3761` (Services, Agents and review UI refinements), `4861d6a` (Marketplace and the 12 company pages), `6b55c93` (documentation), `746344f` (Phase 3) and `b03a4c8` (documentation).
 - Commit `5478e7a7d0c26b89b74eb0c0913db6af2d1c4560` (Hero animation lifecycle fix, one file) is one of the pushed commits listed above.
 - Step 8 major fixes and five minor fixes passed owner visual review and are included in the checkpoint.
@@ -462,16 +519,12 @@ Checks (build `gD122XgqjDkrNgnbIjpiY` unless noted): lint, 128-page build and `g
 
 ## 13. Next action
 
-**Contact form (implementation complete; production setup pending).** Next steps, in order:
+Do not repeat completed work. Commit, push, deployment, Production promotion, Vercel settings, DNS, a merge into `main` and any change to the Framer website each need explicit owner approval.
 
-1. Keep Production sending disabled (`CONTACT_FORM_ENABLED=false`) until steps 2 to 5 are complete.
-2. Get approval for the privacy notice.
-3. Fix the Resend DNS records and wait for the domain status **Verified**.
-4. Remove `CONTACT_FORM_FROM` and `CONTACT_FORM_TO` wherever set (local `.env.local`, and Vercel if present).
-5. Test real delivery from and to `hello@xvoxlabs.com`; confirm arrival and Reply-To.
-6. Review the four known accessibility failures (§9).
-7. Record the separate approval for Production sending.
+1. **REF-14:** committed locally; wait for the owner’s separate approval to push.
+2. **Six-page differences:** the owner decides which to match; check 390 px before changing anything.
+3. **Content checklist:** change content only with the owner’s answers and approval; never fill in company information.
+4. **Outdated tests:** update or retire them only with approval.
+5. **Preview contact form** (§9): confirm the address opened and the scope of `RESEND_API_KEY` and `CONTACT_FORM_ENABLED` (names and scopes only, never values). Before live sending: Resend domain **Verified**, privacy notice approved, no `CONTACT_FORM_FROM` or `CONTACT_FORM_TO` in Vercel, real delivery to `hello@xvoxlabs.com` and Reply-To confirmed. Production sending stays disabled.
 
-**Design corrections.** Implemented and verified locally, awaiting commit approval: the homepage puzzle section, the footer and the five department pages (§7). No comparison question is open for these. Not yet compared with the reference: the other homepage sections, the navbar, the Solutions hub and solution detail pages, and all other pages; compare them one at a time when the owner names them (REF-2). The Services duration removal (REF-8) also awaits commit approval. The hashes of the code commits are to be recorded here when they are created. The site-wide claim removal (REF-9) awaits review and commit approval; it changes some files of the earlier proposed commits, whose reviewed copies are in the Git-ignored `reference/checkpoint-before-groupA/`.
-
-The release (Batch 1, correction rounds, enquiry UI, navbar logo and spacing) is verified as recorded in §7 and committed on `phase-4-homepage` for the team review (REL-1; push and Vercel status are in Git and the Vercel dashboard). A push creates a Preview deployment; the public Production address changes only when the owner promotes it. Open: run the five older suites on the release before sign-off; contact form delivery is still unverified (steps above); the full website UI audit (findings first, fixes only after approval); the deferred accessibility findings in §9; unapproved 3.2-D, 3.2-E, F5, 3.2-F. No merge into `main`. Commit, push, merge, Vercel settings changes, redeploys and promotions each require explicit owner approval.
+Also open, not scheduled: the known accessibility findings (§9) and the business items B1–B13 in `BUILD_PLAN.md`.

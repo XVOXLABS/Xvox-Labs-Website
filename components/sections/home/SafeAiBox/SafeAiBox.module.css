@@ -17,6 +17,7 @@
 }
 
 .copy .eyebrow {
+  min-height: 28px;
   color: var(--color-on-dark);
 }
 
@@ -142,14 +143,4 @@
   .box {
     grid-template-columns: minmax(0, 1fr);
   }
-}
-
-/* !important: the shared label sets its dot colour inline */
-.eyebrow.eyebrow > span[aria-hidden="true"] {
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-button-sm);
-  background:
-    radial-gradient(circle, var(--color-dark) 0 3px, transparent 3.6px),
-    var(--color-on-dark) !important;
 }

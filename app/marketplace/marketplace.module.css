@@ -482,25 +482,16 @@
   }
 }
 
-/* Prototype .eyebrow tile above the item name */
+/* Label above the item name, in a 28px row. The end padding keeps the earlier line breaks
+   (the removed 28px tile and its 10px gap), so long labels still use two lines at 320px. */
 .eyebrow {
   display: flex;
   align-items: center;
-  gap: 10px;
+  min-height: 28px;
+  padding-inline-end: 38px;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--color-ink);
-}
-
-.eyebrow::before {
-  content: "";
-  flex: none;
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-button-sm);
-  background:
-    radial-gradient(circle, var(--color-surface) 0 3px, transparent 3.6px),
-    var(--color-dark);
 }

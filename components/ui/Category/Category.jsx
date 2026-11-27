@@ -1,10 +1,11 @@
 import styles from "./Category.module.css";
 
 // Coloured dot + category label (Framer use-case cards; department colour from data/).
-export default function Category({ color, className = "", children }) {
+// dot={false} for labels above section headings, which carry no marker.
+export default function Category({ color, dot = true, className = "", children }) {
   return (
     <span className={`${styles.category} ${className}`.trim()}>
-      <span className={styles.dot} style={color ? { background: color } : undefined} aria-hidden="true" />
+      {dot ? <span className={styles.dot} style={color ? { background: color } : undefined} aria-hidden="true" /> : null}
       <span>{children}</span>
     </span>
   );

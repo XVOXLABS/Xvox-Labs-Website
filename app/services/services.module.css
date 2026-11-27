@@ -142,11 +142,10 @@
 }
 
 .studio.studio > div > span {
+  display: flex;
+  min-height: 34px;
+  padding-bottom: 6px;
   color: var(--color-on-dark);
-}
-
-.studio.studio > div > span > span[aria-hidden="true"] {
-  background: var(--color-on-dark) !important;
 }
 
 .studio.studio > span {
@@ -291,15 +290,6 @@
   font-size: 24px;
   line-height: 1.04;
   letter-spacing: -0.03em;
-}
-
-.studio.studio > div > span > span[aria-hidden="true"] {
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-button-sm);
-  background:
-    radial-gradient(circle, var(--color-dark) 0 3px, transparent 3.6px),
-    var(--color-on-dark) !important;
 }
 
 .five h3,

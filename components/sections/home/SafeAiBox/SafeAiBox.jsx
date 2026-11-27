@@ -19,7 +19,7 @@ export default function SafeAiBox({ className }) {
     <Section className={className}>
       <Appear className={styles.box}>
         <div className={styles.copy}>
-          <Category color="var(--color-on-dark)" className={styles.eyebrow}>
+          <Category dot={false} className={styles.eyebrow}>
             {block(s, "span.eyebrow").text}
           </Category>
           <h2 className={styles.title}>

@@ -23,9 +23,8 @@
   display: flex;
 }
 
-/* The label: a dark tile with a white dot */
+/* The label: text only, in a 28px row */
 .eyebrow > span {
-  gap: 10px;
   min-height: 28px;
   font-size: 13px;
   font-weight: 500;
@@ -33,15 +32,9 @@
   color: var(--color-ink);
 }
 
-/* !important: the shared label sets its dot colour inline */
+/* No marker before section headings */
 .eyebrow > span > span[aria-hidden="true"] {
-  width: 28px;
-  height: 28px;
-  border-radius: var(--radius-button-sm);
-  background:
-    radial-gradient(circle, var(--color-surface) 0 3px, transparent 3.6px),
-    var(--color-dark) !important;
-  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.5);
+  display: none;
 }
 
 .title {
@@ -135,15 +128,6 @@
 
 .row .eyebrow > span {
   min-height: 0;
-}
-
-/* The homepage label uses a small square */
-.row .eyebrow > span > span[aria-hidden="true"] {
-  width: 12px;
-  height: 12px;
-  border-radius: 3px;
-  background: var(--color-ink) !important;
-  box-shadow: none;
 }
 
 .row .h2 {

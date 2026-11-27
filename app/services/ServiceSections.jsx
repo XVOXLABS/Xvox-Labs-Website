@@ -95,7 +95,7 @@ export function Hub({ entry }) {
         </Frame>
         <Card href={block(studio, "a.studio").href} className={styles.studio}>
           <div>
-            <Category>{T.sisterCompany}</Category>
+            <Category dot={false}>{T.sisterCompany}</Category>
             <h2>{block(studio, "h3").text}</h2>
             <p className={styles.muted}>{block(studio, "p.muted").text}</p>
           </div>

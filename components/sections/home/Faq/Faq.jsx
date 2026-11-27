@@ -14,7 +14,7 @@ export default function Faq() {
     <Section aria-labelledby="home-faq-title">
       <div className={styles.layout}>
         <header className={styles.intro}>
-          <Category color="var(--color-ink)">{block(section, "span.eyebrow").text}</Category>
+          <Category dot={false}>{block(section, "span.eyebrow").text}</Category>
           <h2 id="home-faq-title" className={styles.title}>
             {block(section, "h2.big").text}
           </h2>
